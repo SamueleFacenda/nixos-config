@@ -24,6 +24,21 @@
     };
   };
 
+  nixConfig = {
+	experimental-features = [ "nix-command" "flakes" ];
+	substituters = [
+	  "https://cache.nixos.org/"
+	];
+
+	# nix community`s cache server
+	extra-substituters = [
+	  "https://nix-community.cachix.org"
+	];
+	extra-trusted-public-keys = [
+	  "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+	];
+  };
+
   # `outputs` are all the build result of the flake.
   #
   # A flake can have many use cases and different types of outputs.
@@ -34,7 +49,7 @@
   # 
   # The `@` syntax here is used to alias the attribute set of the
   # inputs`s parameter, making it convenient to use inside the function.
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
       # By default, NixOS will try to refer the nixosConfiguration with
       # its hostname, so the system named `nixos-test` will use this one.

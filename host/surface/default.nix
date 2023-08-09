@@ -9,14 +9,13 @@
     [
       ../../modules/system.nix
 
-      .hardware-configuration.nix
-    ]
+      ./hardware-configuration.nix
+    ];
 
-  # Bootloader.
+  # Bootloader. 
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi"; # ← use the same mount point here.
     };
     systemd-boot.enable = true;
   };
