@@ -5,7 +5,7 @@
 	  enableCompletion = true;
 	  shellAliases = {
 	    ll = "ls -l";
-	    update = "sudo nixos-rebuild switch /nixos-config#surface";
+	    update = "sudo nixos-rebuild switch --flake /nixos-config#surface";
 	  };
 	  history = {
 	    size = 10000;
@@ -16,7 +16,8 @@
 	  oh-my-zsh = {
 	    enable = true;
 	    plugins = [ 
-	    	"git" 
+	    	"git"
+		"sudo" 
 	    ];
 	    theme = "robbyrussell";
 	  };
