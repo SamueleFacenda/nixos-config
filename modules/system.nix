@@ -62,13 +62,6 @@
     isNormalUser = true;
     description = "Samuele Facenda";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      # web
-      brave
-
-      # misc
-      tree
-    ];
 
     # change default shell
     shell = pkgs.zsh;
