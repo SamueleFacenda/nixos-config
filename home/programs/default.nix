@@ -5,5 +5,6 @@
 }: {
   imports = [
     ./git.nix
+    ./default-apps.nix
   ];
 }
