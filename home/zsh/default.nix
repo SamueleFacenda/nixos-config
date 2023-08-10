@@ -17,7 +17,8 @@
 	    enable = true;
 	    plugins = [ 
 	    	"git"
-		"sudo" 
+			"sudo" 
+			"z"
 	    ];
 	    # theme = "robbyrussell";
 	  };
