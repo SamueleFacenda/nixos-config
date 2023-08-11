@@ -8,6 +8,7 @@
   imports = 
     [
       ../../modules/system.nix
+      ../../modules/nix-optim.nix
 
       ./hardware-configuration.nix
     ];

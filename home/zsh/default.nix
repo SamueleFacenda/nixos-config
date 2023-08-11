@@ -6,6 +6,7 @@
 	  shellAliases = {
 	    ll = "ls -l";
 	    update = "sudo nixos-rebuild switch --flake /nixos-config#surface";
+	    free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
 	  };
 	  history = {
 	    size = 10000;
