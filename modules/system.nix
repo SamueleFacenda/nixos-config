@@ -82,6 +82,8 @@
 	ranger
   ];
 
+  environment.variables.EDITOR = "micro"
+
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
