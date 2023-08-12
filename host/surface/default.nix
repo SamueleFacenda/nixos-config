@@ -9,6 +9,7 @@
     [
       ../../modules/system.nix
       ../../modules/nix-optim.nix
+      ../../modules/gnome.nix
 
       ./hardware-configuration.nix
     ];
@@ -26,19 +27,6 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

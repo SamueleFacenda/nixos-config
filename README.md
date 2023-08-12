@@ -3,14 +3,14 @@
 I was tired of always configuring new systems.
 
 TODOS:
-- [] sway
+- [ ] sway
 - [x] zsh
 - [x] powerlevel10k
-- [] neovim + copilot
-- [] secure boot
+- [ ] neovim + copilot
+- [ ] secure boot
 - [x] surface kernel
-- [] libwacom overlay
+- [ ] libwacom overlay
 - [x] fonts
 - [x] cache cleanup
-- [] rice
-- [] wallaper(s)
+- [ ] rice
+- [ ] wallaper(s)
