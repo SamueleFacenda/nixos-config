@@ -10,9 +10,9 @@
     };
     "org/gnome/shell" = {
       favorite-apps = [
-        "brave.desktop"
+        "brave-browser.desktop"
         #"code.desktop"
-        "org.gnome.Terminal.desktop"
+        "org.gnome.Console.desktop"
         #"spotify.desktop"
         #"virt-manager.desktop"
         "org.gnome.Nautilus.desktop"
