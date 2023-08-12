@@ -7,5 +7,6 @@
     ./git.nix
     ./default-apps.nix
     ./common.nix
+    ./dconf.nix
   ];
 }
