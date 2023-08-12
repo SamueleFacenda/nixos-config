@@ -7,6 +7,7 @@
 
     # utils
     htop
+    mdcat
 
     # misc
     xdg-utils
