@@ -22,6 +22,7 @@
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
     gnome-tour
+    gnome-text-editor
   ]) ++ (with pkgs.gnome; [
     cheese # webcam tool
     gnome-music
@@ -36,6 +37,10 @@
     iagno # go game
     hitori # sudoku game
     atomix # puzzle game
+    gnome-contacts
+    gnome-weather
+    gnome-maps
+    gnome-calendar
   ]);
 
   # enable dconf for global config

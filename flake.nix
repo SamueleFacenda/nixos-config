@@ -23,7 +23,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
+    # nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
     spicetify-nix.url = github:the-argus/spicetify-nix;
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
   };

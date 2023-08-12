@@ -9,5 +9,6 @@
     ./common.nix
     ./dconf.nix
     ./spotify.nix
+    ./kitty.nix
   ];
 }

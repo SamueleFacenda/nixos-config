@@ -83,6 +83,7 @@
   ];
 
   environment.variables.EDITOR = "micro";
+  environment.variables.TERMINAL = "kitty";
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
