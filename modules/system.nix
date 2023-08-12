@@ -61,7 +61,7 @@
   users.users.samu = {
     isNormalUser = true;
     description = "Samuele Facenda";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "surface-control"];
 
     # change default shell
     shell = pkgs.zsh;

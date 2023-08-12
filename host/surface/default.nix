@@ -24,6 +24,12 @@
 
   networking.hostName = "surface"; # Define your hostname.
 
+  # enable surface stylus and touch, and surface control tool
+  microsoft-surface = {
+  	ipts.enable = true;
+  	surface-control.enable = true;
+  };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
