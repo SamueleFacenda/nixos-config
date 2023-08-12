@@ -16,6 +16,7 @@
         #"spotify.desktop"
         #"virt-manager.desktop"
         "org.gnome.Nautilus.desktop"
+        "spotify.desktop"
       ];
 
 	  # enable the extensions for the user. "gnome-extensions list" to get the full name

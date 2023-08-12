@@ -8,5 +8,6 @@
     ./default-apps.nix
     ./common.nix
     ./dconf.nix
+    ./spotify.nix
   ];
 }
