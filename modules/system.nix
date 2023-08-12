@@ -82,8 +82,11 @@
 	ranger
   ];
 
-  environment.variables.EDITOR = "micro";
-  environment.variables.TERMINAL = "kitty";
+  environment.variables = {
+  	EDITOR = "micro";
+    TERMINAL = "kitty";
+    ZSH_WAKATIME_BIN = "/etc/profiles/per-user/samu/bin/wakatime-cli"; # !!!!
+  };
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

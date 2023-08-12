@@ -31,10 +31,19 @@
 		    src = pkgs.zsh-powerlevel10k;
 		    file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
 		  }
-		    {
+		  {
 		    name = "powerlevel10k-config";
 		    src = lib.cleanSource ./p10k-config;
 		    file = "p10k.zsh";
+		  }
+		  {
+		  	name = "wakatime";
+		  	src = pkgs.fetchFromGitHub {
+		  		owner = "sobolevn";
+		  		repo = "wakatime-zsh-plugin";
+		  		rev = "69c6028b0c8f72e2afcfa5135b1af29afb49764a"; # latest commit as of 12 august 2023
+		  		sha256 = "pA1VOkzbHQjmcI2skzB/OP5pXn8CFUz5Ok/GLC6KKXQ=";
+		  	};
 		  }
 	];
   };

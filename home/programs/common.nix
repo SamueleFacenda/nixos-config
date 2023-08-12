@@ -11,6 +11,7 @@
     # misc
     xdg-utils
     tree
+    wakatime
 
     # productivity
     obsidian
@@ -18,7 +19,7 @@
     # web
     brave
   ];
-
+  
   programs = {
     tmux = {
       enable = true;
