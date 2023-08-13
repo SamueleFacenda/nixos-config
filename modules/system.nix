@@ -80,6 +80,7 @@
 	curl
 	neofetch
 	ranger
+	trashy
   ];
 
   environment.variables = {

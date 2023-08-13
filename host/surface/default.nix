@@ -10,6 +10,7 @@
       ../../modules/system.nix
       ../../modules/nix-optim.nix
       ../../modules/gnome.nix
+      ../../timers/empty-trash.nix
 
       ./hardware-configuration.nix
     ];
