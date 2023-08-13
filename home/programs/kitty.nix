@@ -3,5 +3,6 @@
 		enable = true;
 		font.name = "Monofur Nerd Font Mono";
 		font.size = 15;
+		# theme = "Adwaita dark";
 	};
 }

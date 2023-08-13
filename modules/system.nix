@@ -84,6 +84,7 @@
 
   environment.variables = {
   	EDITOR = "micro";
+  	VISUAL = "micro";
     TERMINAL = "kitty";
     ZSH_WAKATIME_BIN = "/etc/profiles/per-user/samu/bin/wakatime-cli"; # !!!!
   };

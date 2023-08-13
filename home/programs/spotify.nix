@@ -16,12 +16,15 @@ in
     {
       enable = true;
       theme = spicePkgs.themes.catppuccin-mocha;
-      colorScheme = "flamingo";
+      # colorScheme = "flamingo";
 
       enabledExtensions = with spicePkgs.extensions; [
         fullAppDisplay
         shuffle # shuffle+ (special characters are sanitized out of ext names)
         hidePodcasts
+        fullAlbumDate
+        wikify
+        history
       ];
     };
 }

@@ -7,9 +7,14 @@
 	syntaxHighlighting.enable = true;
 
 	shellAliases = {
-	  ll = "ls -l";
-	  update = "sudo nixos-rebuild switch --flake /nixos-config#surface";
+	  update = "sudo nixos-rebuild switch --flake /nixos-config";
 	  free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
+	  ls = "exa --icons --group-directories-first";
+	  ll = "exa --icons --long --git --group-directories-first";
+	  la = "exa --icons --long --git --all --group-directories-first";
+	  tree = "exa --icons --tree";
+	  c = "clear";
+	  q = "exit";
 	};
 
 	history = {
