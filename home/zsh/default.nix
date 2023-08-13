@@ -1,28 +1,32 @@
 {config,  lib, pkgs, ...}: {
-	programs.zsh = {
-	  enable = true;
-	  enableAutosuggestions = true;
-	  enableCompletion = true;
-	  shellAliases = {
-	    ll = "ls -l";
-	    update = "sudo nixos-rebuild switch --flake /nixos-config#surface";
-	    free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
-	  };
-	  history = {
-	    size = 10000;
-	    path = "${config.xdg.dataHome}/zsh/history";
-	  };
+  programs.zsh = {
+	enable = true;
+	enableAutosuggestions = true;
+	enableCompletion = true;
+	autocd = true;
+	syntaxHighlighting.enable = true;
 
-	  # plugins with oh-my-zsh
-	  oh-my-zsh = {
-	    enable = true;
-	    plugins = [ 
-	    	"git"
-			"sudo" 
-			"z"
-	    ];
-	    # theme = "robbyrussell";
-	  };
+	shellAliases = {
+	  ll = "ls -l";
+	  update = "sudo nixos-rebuild switch --flake /nixos-config#surface";
+	  free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
+	};
+
+	history = {
+	  size = 10000;
+	  path = "${config.xdg.dataHome}/zsh/history";
+	};
+
+	# plugins with oh-my-zsh
+	oh-my-zsh = {
+	  enable = true;
+	  plugins = [ 
+	  	"git"
+		"sudo" 
+		"z"
+	  ];
+	  # theme = "robbyrussell";
+	};
 
 	# manual plugins
 	plugins = [
@@ -46,5 +50,12 @@
 	  	};
 	  }
 	];
-  };
+
+	# enable p10k instant prompt
+	initExtraFirst = ''
+	  if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+	    source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+	  fi
+	'';
+	 };
 }
