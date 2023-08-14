@@ -81,6 +81,7 @@
 	neofetch
 	ranger
 	trashy
+	networkmanager
   ];
 
   environment.variables = {

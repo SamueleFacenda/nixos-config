@@ -1,7 +1,7 @@
 # My nixos config
 
 I was tired of always configuring new systems.
-So I jumped on the train:train:.
+So I jumped on the train :train:.
  
 TODOS:
 - [ ] sway
