@@ -19,6 +19,10 @@
 
     # web
     brave
+
+    (python3.withPackages(ps: with ps; [
+    	pillow
+    ]))
   ];
   
   programs = {
