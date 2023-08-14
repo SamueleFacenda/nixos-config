@@ -47,9 +47,14 @@
   programs.dconf.enable = true;
 
   # install extensions
-  environment.systemPackages = with pkgs.gnomeExtensions; [
+  environment.systemPackages = (with pkgs.gnomeExtensions; [
   	user-themes
   	caffeine
-  	system-monitor-next
-  ];
+  	# system-monitor-next not working
+  	# tophat
+  	# system-monitor-2
+  ]) ++ (with pkgs; [
+  	# libgtop # dependecy of tophat
+  	# gtop
+  ]);
 }

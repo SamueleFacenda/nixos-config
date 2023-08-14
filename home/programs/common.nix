@@ -22,17 +22,9 @@
   ];
   
   programs = {
-    tmux = {
-      enable = true;
-      clock24 = true;
-      # keyMode = "vi";
-      # extraConfig = "mouse on";
-    };
-
     btop.enable = true;  # replacement of htop/nmon
     exa.enable = true;   # A modern replacement for ‘ls’
     ssh.enable = true;
-
   };
 
   services = {
@@ -40,5 +32,9 @@
 
     # auto mount usb drives
     udiskie.enable = true;
+  };
+
+  home.sessionVariables = {
+  	ZLE_RPROMPT_INDENT = 0;
   };
 }

@@ -10,5 +10,6 @@
     ./dconf.nix
     ./spotify.nix
     ./kitty.nix
+	./tmux.nix
   ];
 }

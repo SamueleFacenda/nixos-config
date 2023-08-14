@@ -24,7 +24,9 @@
       enabled-extensions = [
 		"user-theme@gnome-shell-extensions.gcampax.github.com"
 		"caffeine@patapon.info"
-		"system-monitor-next@paradoxxx.zero.gmail.com"
+		# "system-monitor-next@paradoxxx.zero.gmail.com"
+		# "tophat@fflewddur.github.io"
+		# "System_Monitor@bghome.gmail.com"
       ];
     };
   };
