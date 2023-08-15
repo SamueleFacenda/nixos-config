@@ -12,11 +12,12 @@
       favorite-apps = [
         "brave-browser.desktop"
         #"code.desktop"
-        "org.gnome.Console.desktop"
+        # "org.gnome.Console.desktop"
         #"spotify.desktop"
         #"virt-manager.desktop"
         "org.gnome.Nautilus.desktop"
         "spotify.desktop"
+        "kitty.desktop"
       ];
 
 	  # enable the extensions for the user. "gnome-extensions list" to get the full name

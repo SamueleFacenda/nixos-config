@@ -23,6 +23,11 @@
     systemd-boot.enable = true;
   };
 
+  # https://github.com/linux-surface/linux-surface/issues/652 shoud remove the IPTSD shutdown block
+  boot.kernelParams = [
+  	"intel_iommu=off"
+  ];
+
   networking.hostName = "surface"; # Define your hostname.
 
   # enable surface stylus and touch, and surface control tool
