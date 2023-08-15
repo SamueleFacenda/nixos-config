@@ -12,8 +12,7 @@
     # misc
     xdg-utils
     tree
-    wakatime
-
+    
     # productivity
     obsidian
 

@@ -82,13 +82,14 @@
 	ranger
 	trashy
 	networkmanager
+	wakatime
   ];
 
   environment.variables = {
   	EDITOR = "micro";
   	VISUAL = "micro";
     TERMINAL = "kitty";
-    ZSH_WAKATIME_BIN = "/etc/profiles/per-user/samu/bin/wakatime-cli"; # !!!!
+    ZSH_WAKATIME_BIN = "${pkgs.wakatime}/bin/wakatime-cli";
   };
 
   # Enable Flakes and the new command-line tool
