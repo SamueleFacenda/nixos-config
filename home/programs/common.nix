@@ -19,9 +19,35 @@
     # web
     brave
 
+	# code
     (python3.withPackages(ps: with ps; [
-    	pillow
+    	pillow # for ranger kitty image preview
+
+    	# ranger deps
+    	chardet
+    	python-bidi
     ]))
+
+    # ranger dependencies
+    file
+    libcaca
+    imagemagick
+    librsvg
+    ffmpeg
+    highlight
+    atool
+    libarchive
+    unrar
+    lynx
+    poppler_utils
+    # djvulibre
+    # calibre
+    # transmission-qt
+    exiftool
+    odt2txt
+    # fontforge
+    # openscad
+    # drawio
   ];
   
   programs = {
