@@ -24,7 +24,7 @@
     gnome-tour
     gnome-text-editor
   ]) ++ (with pkgs.gnome; [
-    cheese # webcam tool
+    # cheese # webcam tool
     gnome-music
     # gnome-terminal
     gedit # text editor

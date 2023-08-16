@@ -8,10 +8,12 @@
     # utils
     htop
     mdcat
+    xclip
 
     # misc
     xdg-utils
     tree
+    wakatime
     
     # productivity
     obsidian
@@ -61,9 +63,5 @@
 
     # auto mount usb drives
     udiskie.enable = true;
-  };
-
-  home.sessionVariables = {
-  	ZLE_RPROMPT_INDENT = 0;
   };
 }

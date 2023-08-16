@@ -9,7 +9,7 @@
 	shellAliases = {
 	  update = "sudo nixos-rebuild switch --flake /nixos-config";
 	  free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
-	  rm = "trash put";
+	  # rm = "trash put";
 	  
 	  ls = "exa --icons --group-directories-first";
 	  ll = "exa --icons --long --git --group-directories-first";
@@ -61,14 +61,17 @@
 	];
 
 	# enable p10k instant prompt
-	initExtraFirst = ''
-	  if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-	    source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-	  fi
-	'';
-
-	localVariables = {
-	  ZLE_RPROMPT_INDENT = "0";	
-	};
+	initExtraFirst = 
+	  ''
+        if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+        fi
+      '';
   };
+
+  # needed config for zsh wakatime plugin
+  home.sessionVariables.ZSH_WAKATIME_BIN = "${pkgs.wakatime}/bin/wakatime-cli";
+
+  # remove the right side 1 char padding
+  home.sessionVariables.ZLE_RPROMPT_INDENT = "0";
 }
