@@ -19,3 +19,4 @@ TODOS:
 - [x] wakatime zsh integration
 - [x] cli trash bin with clean up
 - [x] spotify with spicetify
+- [x] ranger with kitty image preview
