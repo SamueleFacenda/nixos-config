@@ -35,7 +35,7 @@
     libcaca
     imagemagick
     librsvg
-    ffmpeg
+    ffmpegthumbnailer
     highlight
     atool
     libarchive
