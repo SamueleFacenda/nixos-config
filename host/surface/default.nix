@@ -8,7 +8,7 @@
   imports = 
     [
       ../../modules/system.nix
-      ../../modules/nix-optim.nix
+      ../../modules/nixos.nix
       ../../modules/gnome.nix
       ../../timers/empty-trash.nix
 

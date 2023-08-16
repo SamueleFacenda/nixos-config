@@ -4,7 +4,7 @@
 # Run garbage collection after wiping history
 # sudo nix store gc --debug
 
-{ lib, pkgs, ... }:
+{ lib, pkgs, inputs, ... }:
 
 {
   # ...
@@ -18,7 +18,23 @@
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 1w";
- };
+  };
+
+  # only for a flake system
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "--commit-lock-file"
+      "-L" # print build logs
+    ];
+    
+    dates = "daily";
+    randomizedDelaySec = "20min";
+    persistent = true; # so I don't miss the time
+  };
 
   # Optimize storage
   # You can also manually optimize the store via:
