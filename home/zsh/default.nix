@@ -19,6 +19,7 @@
 	  c = "clear";
 	  q = "exit";
 	  rl = "omz reload";
+	  search = "nix search nixpkgs";
 	};
 
 	history = {

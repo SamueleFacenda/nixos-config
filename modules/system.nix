@@ -83,6 +83,7 @@
 	trashy
 	networkmanager
 	wakatime
+	linux-firmware
   ];
 
   environment.variables = {
