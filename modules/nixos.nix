@@ -31,7 +31,7 @@
       "-L" # print build logs
     ];
     
-    dates = "daily";
+    dates = "weekly";
     randomizedDelaySec = "20min";
     persistent = true; # so I don't miss the time
   };

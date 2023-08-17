@@ -7,7 +7,7 @@
 	syntaxHighlighting.enable = true;
 
 	shellAliases = {
-	  update = "sudo nixos-rebuild switch --flake /nixos-config";
+	  update = "sudo nixos-rebuild switch --flake /nixos-config |& nom";
 	  free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
 	  # rm = "trash put";
 	  
@@ -20,6 +20,10 @@
 	  q = "exit";
 	  rl = "omz reload";
 	  search = "nix search nixpkgs";
+
+	  nix-build = "nom-build";
+	  nix-shell = "nom-shell":
+	  nix = "nom"
 	};
 
 	history = {
