@@ -84,13 +84,34 @@
 	networkmanager
 	wakatime
 	linux-firmware
+	make
+
+	# Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
+    (let base = pkgs.appimageTools.defaultFhsEnvArgs; in
+      pkgs.buildFHSUserEnv (base // {
+      name = "fhs";
+      targetPkgs = pkgs: (
+        # pkgs.buildFHSUserEnv provides only a minimal FHS environment,
+        # lacking many basic packages needed by most software.
+        # Therefore, we need to add them manually.
+        #
+        # pkgs.appimageTools provides basic packages required by most software.
+        (base.targetPkgs pkgs) ++ with pkgs; [
+          pkg-config
+          ncurses
+          # Feel free to add more packages here if needed.
+        ]
+      );
+      profile = "export FHS=1";
+      runScript = "bash";
+      extraOutputsToInstall = ["dev"];
+    }))
   ];
 
   environment.variables = {
   	EDITOR = "micro";
   	VISUAL = "micro";
     TERMINAL = "kitty";
-    ZSH_WAKATIME_BIN = "${pkgs.wakatime}/bin/wakatime-cli";
   };
 
   # Enable Flakes and the new command-line tool
@@ -127,8 +148,6 @@
 
       # nerdfonts
       (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Monofur"]; })
-
-      # TODO: add monofur font for something
     ];
 
     # use fonts specified by user rather than default ones
@@ -145,4 +164,10 @@
     };
   };
 
+  # Make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
+  nix.registry.nixpkgs.flake = nixpkgs;
+
+  # Make `nix repl '<nixpkgs>'` use the same nixpkgs as the one used by this flake.
+  environment.etc."nix/inputs/nixpkgs".source = "${nixpkgs}";
+  nix.nixPath = ["/etc/nix/inputs"];
 }
