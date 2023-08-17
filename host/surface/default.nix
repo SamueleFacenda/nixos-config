@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = 
@@ -32,7 +32,7 @@
 
   # enable surface stylus and touch, and surface control tool
   microsoft-surface = {
-  	ipts.enable = true;
+  	ipts.enable = lib.mkForce false; # problem at shutdown
   	surface-control.enable = true;
   };
 

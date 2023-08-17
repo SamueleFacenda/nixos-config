@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, nixpkgs, ... }:
 
 {
 
@@ -84,7 +84,7 @@
 	networkmanager
 	wakatime
 	linux-firmware
-	make
+	gnumake
 
     # beautiful build logs
 	nix-output-monitor
@@ -99,11 +99,11 @@
         # Therefore, we need to add them manually.
         #
         # pkgs.appimageTools provides basic packages required by most software.
-        (base.targetPkgs pkgs) ++ with pkgs; [
+        (base.targetPkgs pkgs) ++ (with pkgs; [
           pkg-config
           ncurses
           # Feel free to add more packages here if needed.
-        ]
+        ])
       );
       profile = "export FHS=1";
       runScript = "bash";

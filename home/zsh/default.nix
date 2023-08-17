@@ -22,8 +22,8 @@
 	  search = "nix search nixpkgs";
 
 	  nix-build = "nom-build";
-	  nix-shell = "nom-shell":
-	  nix = "nom"
+	  nix-shell = "nom-shell";
+	  nix = "nom";
 	};
 
 	history = {
