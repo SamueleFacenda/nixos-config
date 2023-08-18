@@ -38,10 +38,12 @@
 	];
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs: let
+    system = "x86_64-linux";
+  in {
     nixosConfigurations = {
       "surface" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        inherit system;
 
         specialArgs = inputs // {inputs = inputs;};
         modules = with inputs; [
@@ -58,6 +60,10 @@
           }
         ];
       };
+    };
+
+    devShells."${system}".pwn = import ./shells/pwn/default.nix {
+    	pkgs = nixpkgs.legacyPackages.${system};
     };
   };
 }

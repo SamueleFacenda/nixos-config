@@ -8,22 +8,19 @@
 
 	shellAliases = {
 	  update = "sudo nixos-rebuild switch --flake /nixos-config |& nom";
+	  pwn = "NIXPKGS_ALLOW_UNFREE=1 nix develop /nixos-config#pwn --impure";
 	  free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
 	  # rm = "trash put";
 	  
 	  ls = "exa --icons --group-directories-first";
-	  ll = "exa --icons --long --git --group-directories-first";
-	  la = "exa --icons --long --git --all --group-directories-first";
+	  ll = "exa --icons --long --group --git --group-directories-first";
+	  la = "exa --icons --long --group --git --all --group-directories-first";
 	  tree = "exa --icons --tree";
 	  
 	  c = "clear";
 	  q = "exit";
 	  rl = "omz reload";
 	  search = "nix search nixpkgs";
-
-	  nix-build = "nom-build";
-	  nix-shell = "nom-shell";
-	  nix = "nom";
 	};
 
 	history = {
