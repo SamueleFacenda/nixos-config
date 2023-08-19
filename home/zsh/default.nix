@@ -7,7 +7,7 @@
 	syntaxHighlighting.enable = true;
 
 	shellAliases = {
-	  update = "sudo nixos-rebuild switch --flake /nixos-config |& nom";
+	  update = "sudo nixos-rebuild switch --flake /nixos-config";
 	  pwn = "NIXPKGS_ALLOW_UNFREE=1 nix develop /nixos-config#pwn --impure";
 	  free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
 	  # rm = "trash put";

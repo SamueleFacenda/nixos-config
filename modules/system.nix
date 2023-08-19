@@ -170,4 +170,8 @@
   # Make `nix repl '<nixpkgs>'` use the same nixpkgs as the one used by this flake.
   environment.etc."nix/inputs/nixpkgs".source = "${nixpkgs}";
   nix.nixPath = ["/etc/nix/inputs"];
+
+  security.pki.certificateFiles = [
+  	../assets/burpsuiteca.pem
+  ];
 }
