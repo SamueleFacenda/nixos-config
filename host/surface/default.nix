@@ -10,6 +10,7 @@
       ../../modules/system.nix
       ../../modules/nixos.nix
       ../../modules/gnome.nix
+      ../../modules/remote-build.nix
       ../../timers/empty-trash.nix
 
       ./hardware-configuration.nix
