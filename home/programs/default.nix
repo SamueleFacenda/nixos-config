@@ -11,5 +11,6 @@
     ./spotify.nix
     ./kitty.nix
 	./tmux.nix
+	./vscode.nix
   ];
 }
