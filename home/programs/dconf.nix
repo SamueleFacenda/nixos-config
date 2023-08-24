@@ -18,6 +18,7 @@
         "org.gnome.Nautilus.desktop"
         "spotify.desktop"
         "kitty.desktop"
+        "codium.desktop"
       ];
 
 	  # enable the extensions for the user. "gnome-extensions list" to get the full name

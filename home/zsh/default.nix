@@ -21,6 +21,7 @@
 	  q = "exit";
 	  rl = "omz reload";
 	  search = "nix search nixpkgs";
+	  find = "find -L";
 	};
 
 	history = {
