@@ -1,6 +1,6 @@
 { pkgs, ... }: pkgs.mkShell {
 
-  packages = with pkgs; [
+  nativeBuildInputs = with pkgs; [
     # misc
   	php
   	curl

@@ -12,5 +12,6 @@
     ./kitty.nix
 	./tmux.nix
 	./vscode.nix
+	./idea.nix
   ];
 }

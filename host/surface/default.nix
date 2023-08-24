@@ -33,7 +33,7 @@
 
   # enable surface stylus and touch, and surface control tool
   microsoft-surface = {
-  	ipts.enable = lib.mkForce false; # problem at shutdown
+  	ipts.enable = true;# lib.mkForce false; # problem at shutdown
   	surface-control.enable = true;
   };
 

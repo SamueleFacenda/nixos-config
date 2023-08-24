@@ -29,7 +29,6 @@
     	chardet
     	python-bidi
     ]))
-    jetbrains.idea-ultimate
 
     # ranger dependencies
     file
