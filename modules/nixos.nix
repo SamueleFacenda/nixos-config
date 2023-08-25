@@ -4,7 +4,7 @@
 # Run garbage collection after wiping history
 # sudo nix store gc --debug
 
-{ lib, pkgs, inputs, ... }:
+{ lib, pkgs, self, ... }:
 
 {
   # ...
@@ -23,7 +23,7 @@
   # only for a flake system
   system.autoUpgrade = {
     enable = true;
-    flake = inputs.self.outPath;
+    flake = self.outPath;
     flags = [
       "--update-input"
       "nixpkgs"

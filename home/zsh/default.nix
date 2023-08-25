@@ -1,4 +1,4 @@
-{config,  lib, pkgs, ...}: {
+{config, lib, pkgs, self, ...}: {
   programs.zsh = {
 	enable = true;
 	enableAutosuggestions = true;
@@ -8,7 +8,7 @@
 
 	shellAliases = {
 	  update = "sudo nixos-rebuild switch --flake /nixos-config";
-	  pwn = "NIXPKGS_ALLOW_UNFREE=1 nix develop /nixos-config#pwn --impure";
+	  shell = "NIXPKGS_ALLOW_UNFREE=1 nix develop --impure";
 	  free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
 	  # rm = "trash put";
 	  
@@ -22,6 +22,8 @@
 	  rl = "omz reload";
 	  search = "nix search nixpkgs";
 	  find = "find -L";
+
+	  pwn = "shell ${self.outPath}#pwn";
 	};
 
 	history = {

@@ -45,7 +45,7 @@
       "surface" = nixpkgs.lib.nixosSystem {
         inherit system;
 
-        specialArgs = inputs // {inputs = inputs;};
+        specialArgs = inputs;
         modules = with inputs; [
           ./host/surface
 	  	  nixos-hardware.nixosModules.microsoft-surface-pro-intel
@@ -62,7 +62,7 @@
       };
     };
 
-    devShells."${system}".pwn = import ./shells/pwn/default.nix {
+    devShells."${system}".pwn = import ./shells/pwn.nix {
     	pkgs = nixpkgs.legacyPackages.${system};
     };
   };
