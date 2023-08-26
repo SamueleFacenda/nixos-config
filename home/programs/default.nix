@@ -13,5 +13,6 @@
 	./tmux.nix
 	./vscode.nix
 	./idea.nix
+	./desktop-entries.nix
   ];
 }

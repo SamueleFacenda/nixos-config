@@ -19,6 +19,7 @@
         "spotify.desktop"
         "kitty.desktop"
         "codium.desktop"
+        "intellij-nix-shell.desktop"
       ];
 
 	  # enable the extensions for the user. "gnome-extensions list" to get the full name
