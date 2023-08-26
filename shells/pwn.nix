@@ -1,6 +1,6 @@
 { pkgs, ... }: pkgs.mkShell {
 
-  nativeBuildInputs = with pkgs; [
+  packages = with pkgs; [
     # misc
   	php
   	curl
@@ -37,7 +37,7 @@
   	ghidra
 
   	# crypto
-  	sage
+  	# sage
 
   	(python3.withPackages (ps: with ps; [
   		pycryptodome

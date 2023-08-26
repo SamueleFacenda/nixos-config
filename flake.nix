@@ -62,7 +62,7 @@
       };
     };
 
-    devShells."${system}".pwn = import ./shells/pwn.nix {
+    devShells."${system}" = import ./shells/make-shells.nix {
     	pkgs = nixpkgs.legacyPackages.${system};
     };
   };
