@@ -1,6 +1,22 @@
 {
   description = "Samuele's NixOS Flake";
 
+  nixConfig = {
+	experimental-features = [ "nix-command" "flakes" ];
+	substituters = [
+	  "https://cache.nixos.org/"
+	];
+
+	# nix community`s cache server
+	extra-substituters = [
+	  "https://nix-community.cachix.org"
+	];
+	extra-trusted-public-keys = [
+	  "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+	];
+  };
+
+
   inputs = {
 
     # Official NixOS package source, using nixos-unstable branch here
@@ -17,25 +33,12 @@
     };
     
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    # nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
     
     spicetify-nix.url = github:the-argus/spicetify-nix;
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
-  };
 
-  nixConfig = {
-	experimental-features = [ "nix-command" "flakes" ];
-	substituters = [
-	  "https://cache.nixos.org/"
-	];
-
-	# nix community`s cache server
-	extra-substituters = [
-	  "https://nix-community.cachix.org"
-	];
-	extra-trusted-public-keys = [
-	  "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-	];
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: let
@@ -48,7 +51,7 @@
         specialArgs = inputs;
         modules = with inputs; [
           ./host/surface
-	  	  nixos-hardware.nixosModules.microsoft-surface-pro-intel
+          nixos-hardware.nixosModules.microsoft-surface-pro-intel
 
           home-manager.nixosModules.home-manager
           {
