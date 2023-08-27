@@ -38,7 +38,7 @@
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows "nixpkgs";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs: let
