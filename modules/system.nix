@@ -60,7 +60,8 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.samu = {
     isNormalUser = true;
-    description = "Samuele Facenda";
+    description = "Samuele Facenda's user";
+    hashedPassword = "$y$j9T$uT/2s7MBr3VdlbSg9VOly.$01sbSx0zeTs2axvuJZOdpEs3Xreti2XMaPm.RSuaj/7";
     extraGroups = [ "networkmanager" "wheel" "surface-control"];
 
     # change default shell
