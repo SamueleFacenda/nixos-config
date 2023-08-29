@@ -1,12 +1,12 @@
 {config, options, pkgs, lib,  ...}:
 with lib;
 let
-  cfg = config.agenix.fill-placeholders;
+  cfg = config.age.fill-placeholders;
   inherit (attrsets) mapAttrs;
 in {
-  options.agenix.fill-placeholders = mkOption {
+  options.age.fill-placeholders = mkOption {
     default = {};
-    type = types.attrsOf types.string;
+    type = types.attrsOf types.str;
     description = "Replace all occurrence of @name@ in the specified file with the named secret";
     example = {
       wakatime-key = "/home/samu/.wakatime.cfg";

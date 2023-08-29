@@ -14,5 +14,6 @@
 	./vscode.nix
 	./idea.nix
 	./desktop-entries.nix
+	./wakatime.nix
   ];
 }

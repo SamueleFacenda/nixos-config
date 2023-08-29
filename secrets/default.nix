@@ -1,7 +1,4 @@
 {config, pkgs, ...}:{
-  imports = [
-    ../modules/agenix-utils.nix
-  ];
  
   age.secrets = {
     github-token = {
@@ -17,4 +14,7 @@
     "/home/samu/.ssh/id_rsa"
     "/home/samu/.ssh/id_ed25519"
   ];
+
+  age.fill-placeholders.wakatime-key = "/home/samu/.wakatime.cfg";
+
 }

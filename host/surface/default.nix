@@ -11,7 +11,7 @@
       ../../modules/nixos.nix
       ../../modules/gnome.nix
       ../../modules/remote-build.nix
-      #../../modules/agenix-utils.nix
+      ../../modules/agenix-utils.nix
       ../../timers/empty-trash.nix
       ../../secrets
 
