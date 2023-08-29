@@ -52,6 +52,7 @@
         modules = with inputs; [
           ./host/surface
           nixos-hardware.nixosModules.microsoft-surface-pro-intel
+          agenix.nixosModules.default
 
           home-manager.nixosModules.home-manager
           {
