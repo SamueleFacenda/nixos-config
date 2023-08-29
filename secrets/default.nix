@@ -16,5 +16,4 @@
   ];
 
   age.fill-placeholders.wakatime-key = "/home/samu/.wakatime.cfg";
-
 }

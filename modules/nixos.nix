@@ -5,8 +5,9 @@
 # sudo nix store gc --debug
 
 { lib, pkgs, self, ... }:
-
-{
+let
+  inherit (builtins) toString;
+in {
   # ...
 
   # Limit the number of generations to keep
@@ -23,7 +24,7 @@
   # only for a flake system
   system.autoUpgrade = {
     enable = true;
-    flake = self.outPath;
+    flake = toString ./.. ;
     flags = [
       "--update-input"
       "nixpkgs"
@@ -33,7 +34,7 @@
     
     dates = "weekly";
     randomizedDelaySec = "20min";
-    persistent = true; # so I don't miss the time
+    persistent = true; # so I don't miss the update if the system is down
   };
 
   # Optimize storage
