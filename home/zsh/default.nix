@@ -75,11 +75,13 @@
           source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
         fi
       '';
+
+    localVariables = {
+      # remove the right side 1 char padding
+      ZLE_RPROMPT_INDENT = "0";
+    };
   };
 
   # needed config for zsh wakatime plugin
   home.sessionVariables.ZSH_WAKATIME_BIN = "${pkgs.wakatime}/bin/wakatime-cli";
-
-  # remove the right side 1 char padding
-  home.sessionVariables.ZLE_RPROMPT_INDENT = "0";
 }
