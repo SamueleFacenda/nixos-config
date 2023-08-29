@@ -87,6 +87,9 @@
 	linux-firmware
 	gnumake
 
+    gnupg
+    pinentry
+
 	agenix.packages."${system}".default
 	
 	# Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
@@ -140,6 +143,11 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
+
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "gtk2";
+  };
 
   fonts = {
    fonts = with pkgs; [
