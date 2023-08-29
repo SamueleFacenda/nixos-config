@@ -7,6 +7,7 @@
         # theme = "GitHub Dark";
 		environment = {
 			# ZLE_RPROMPT_INDENT = "0";
+			TERMINAL = "kitty";
 		};
 
 		settings = {
