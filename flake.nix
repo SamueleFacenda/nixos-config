@@ -3,26 +3,11 @@
 
   nixConfig = {
 	experimental-features = [ "nix-command" "flakes" ];
-	substituters = [
-	  "https://cache.nixos.org/"
-	];
-
-	# nix community`s cache server
-	extra-substituters = [
-	  "https://nix-community.cachix.org"
-	];
-	extra-trusted-public-keys = [
-	  "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-	];
   };
 
-
   inputs = {
-
-    # Official NixOS package source, using nixos-unstable branch here
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     
-    # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager";
       # The `follows` keyword in inputs is used for inheritance.
@@ -51,8 +36,9 @@
         specialArgs = inputs;
         modules = with inputs; [
           ./host/surface
-          nixos-hardware.nixosModules.microsoft-surface-pro-intel
           agenix.nixosModules.default
+          nixos-hardware.nixosModules.microsoft-surface-pro-intel
+
 
           home-manager.nixosModules.home-manager
           {
