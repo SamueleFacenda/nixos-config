@@ -24,7 +24,7 @@
 	  find = "find -L";
 
 	  pwn = "shell ${self.outPath}#pwn";
-      sd = "sudo systemctl stop iptsd && systemctl status iptsd && shutdown now";
+      sd = "sudo systemctl stop iptsd && shutdown now";
 	};
 
 	history = {
