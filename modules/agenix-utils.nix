@@ -15,13 +15,17 @@ let
       example = ["/path/to/file/with/placeholder" "/second/path/to/file/with/placeholder"];
     };
   };
+  
 
   genFlatScriptAttrset = set: listToAttrs (concatLists (mapAttrsToList genFromOptions set));
+  
   genFromOptions  = name: options: map (mkEntry name) options.fillPlaceholdersFiles;
+  
   mkEntry = name: path: {
     name = "${name}${replaceStrings ["/" "."] ["-" ""] path}";
     value = makeScript name path;
   };
+  
   makeScript = secretName: path: ''
       secret=$(cat "${config.age.secrets."${secretName}".path}")
       configFile=${path}
