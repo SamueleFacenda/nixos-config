@@ -58,4 +58,7 @@
   	# libgtop # dependecy of tophat
   	# gtop
   ]);
+
+  # enable plymouth
+  boot.plymouth.enable = true;
 }
