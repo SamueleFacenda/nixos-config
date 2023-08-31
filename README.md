@@ -21,3 +21,8 @@ TODOS:
 - [x] spotify with spicetify
 - [x] ranger with kitty image preview
 - [ ] Hyprland
+- [x] Agenix
+- [x] Dev and pwn shells
+- [x] Kitty
+- [x] Remote build with nixbuild.net
+- [x] Wakatime
