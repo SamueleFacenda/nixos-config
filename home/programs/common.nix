@@ -14,6 +14,7 @@
     xdg-utils
     tree
     wakatime
+    spotify-tui
     
     # productivity
     obsidian

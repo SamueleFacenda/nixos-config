@@ -108,6 +108,7 @@
     # battery               # internal battery
     # wifi                  # wifi speed
     # example               # example user-defined segment (see prompt_example function below)
+    fhs
   )
 
   ##################
@@ -115,6 +116,12 @@
   ##################
 
   typeset -g POWERLEVEL9K_TERM_SHELL_INTEGRATION=true
+
+  function prompt_fhs() {
+  	if test $FHS; then
+  		p10k segment -t FHS -b yellow
+  	fi
+  }
 
   ######################
   ## END USER DEFINED ##

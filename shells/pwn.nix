@@ -35,6 +35,7 @@
   	one_gadget
   	# seccomp-tools
   	ghidra
+  	rocgdb
 
   	# crypto
   	# sage
