@@ -13,18 +13,22 @@ in
 
   # configure spicetify :)
   programs.spicetify =
-    {
-      enable = true;
-      theme = spicePkgs.themes.catppuccin-mocha;
-      # colorScheme = "flamingo";
+  {
+    enable = true;
+    theme = spicePkgs.themes.DefaultDynamic;
+    # colorScheme = "flamingo";
 
-      enabledExtensions = with spicePkgs.extensions; [
-        fullAppDisplay
-        shuffle # shuffle+ (special characters are sanitized out of ext names)
-        hidePodcasts
-        fullAlbumDate
-        wikify
-        history
-      ];
-    };
+    enabledExtensions = with spicePkgs.extensions; [
+      fullAppDisplay
+      shuffle # shuffle+ (special characters are sanitized out of ext names)
+      hidePodcasts
+      fullAlbumDate
+      wikify
+      history
+    ];
+  };
+
+  home.packages = with pkgs; [
+    spotify-tui
+  ];
 }

@@ -23,8 +23,7 @@
         supportedFeatures = [ "benchmark" "big-parallel" ];
       }
     ];
-    extraOptions = ''
-      builders-use-substitutes = true
-    '';
+    
+    settings.builders-use-substitutes = true;
   };
 }
