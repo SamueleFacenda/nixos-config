@@ -39,6 +39,21 @@
   	surface-control.enable = true;
   };
 
+  system.activationScripts.repairButtons = ''
+    modprobe -r soc_button_array
+    modprobe soc_button_array
+  ''; # bad fix
+
+  # or
+  boot.kernelPatches = [ {
+    name = "fix-surface-buttons";
+    patch = null;
+    extraConfig = ''
+      PINCTRL_INTEL y
+      PINCTRL_SUNRISEPOINT y
+    '';
+  }];
+
   environment.systemPackages = with pkgs; [
   	microcodeIntel
   	libwacom-surface
