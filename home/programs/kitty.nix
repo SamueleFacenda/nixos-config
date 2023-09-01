@@ -12,7 +12,7 @@
 
 		settings = {
 			clipboard_control = "write-clipboard write-primary read-clipboard read-primary";
-			disable-ligatures = "cursor";
+			disable_ligatures = "cursor";
 			# font_features = "MonofurNF "
 			background = "#292929";
 			background_opacity = "0.85";
