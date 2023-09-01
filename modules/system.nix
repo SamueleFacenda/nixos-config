@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, nixpkgs, agenix, ... }:
+{ config, pkgs, nixpkgs, ... }:
 
 {
 
@@ -87,11 +87,6 @@
 	linux-firmware
 	gnumake
 
-    gnupg
-    pinentry
-
-	agenix.packages."${system}".default
-	
 	# Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
     (let base = pkgs.appimageTools.defaultFhsEnvArgs; in
       pkgs.buildFHSUserEnv (base // {
@@ -140,11 +135,6 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
-
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryFlavor = "gtk2";
-  };
 
   fonts = {
    fonts = with pkgs; [

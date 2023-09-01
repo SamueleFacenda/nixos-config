@@ -1,5 +1,24 @@
-{config, pkgs, ...}:{
- 
+{config, pkgs, agenix, ...}:{
+
+  imports = [
+    # get the fillPlacehodersFiles option for secrets
+    ../modules/agenix-utils.nix
+  ];
+
+  # needed client programs
+  environment.systemPackages = [
+    agenix.packages."${system}".default
+    
+    gnupg
+    pinentry
+  ]
+  
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryFlavor = "gtk2";
+  };
+
+  # secrets config
   age.secrets = {
     github-token = {
   	  file = ./github-token.age;
