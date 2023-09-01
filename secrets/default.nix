@@ -6,12 +6,12 @@
   ];
 
   # needed client programs
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     agenix.packages."${system}".default
-    
+
     gnupg
     pinentry
-  ]
+  ];
   
   programs.gnupg.agent = {
     enable = true;
