@@ -5,7 +5,7 @@
   ];
 
   home.packages = with pkgs; [
-  	xdg-desktop-portal-hyprland
+  	gtk3
   ];
 
   wayland.windowManager.hyprland = {
@@ -14,7 +14,10 @@
       
     ];
     settings = {
-      
+      "$mod" = "SUPER";
+      bind = [
+        "$mod,Q,exec,kitty"
+      ];
     };
   };
 }
