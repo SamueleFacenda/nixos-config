@@ -1,8 +1,8 @@
 {config, pkgs, ...}:{
   programs.waybar = {
     enable = true;
-    settings = {
-      
+    settings.mainBar = {
+      output = ["DP-3"];
     };
     systemd.enable = false;
   };

@@ -20,6 +20,8 @@
 
       exec-once = [
         "waybar"
+        "brave"
+        "kitty"
         #"dunst"
       ];
     };

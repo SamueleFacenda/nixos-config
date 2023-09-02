@@ -12,7 +12,9 @@
       package = pkgs.gnome.adwaita-icon-theme;
     };
     settings = {
-      
+      global = {
+        monitor = 1;
+      };
     };
   };
 }
