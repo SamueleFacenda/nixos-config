@@ -4,7 +4,7 @@
       PubkeyAcceptedKeyTypes ssh-ed25519
       ServerAliveInterval 60
       IPQoS throughput
-      IdentityFile /home/samu/.ssh/id_ed25519
+      IdentityFile /home/samu/.ssh/nixbuild
   '';
   
   programs.ssh.knownHosts = {
