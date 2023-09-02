@@ -6,6 +6,7 @@
   	./zsh
   	./programs
   	./ranger
+  	./hyprland
   ];
 
   # Home Manager needs a bit of information about you and the

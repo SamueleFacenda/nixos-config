@@ -15,6 +15,5 @@
 	./idea.nix
 	./desktop-entries.nix
 	./wakatime.nix
-	./hyprland.nix
   ];
 }

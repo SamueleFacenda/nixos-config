@@ -1,7 +1,7 @@
 {config, pkgs, ...}:{
 
   services.dunst = {
-    enable = true;
+    enable = false;
     iconTheme = { 
       name = "Adwaita";
       size = "32x32";
