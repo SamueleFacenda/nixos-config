@@ -49,6 +49,7 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+  services.udisks2.enable = true;
 
   # enable zsh system-wide
   programs.zsh.enable = true;

@@ -1,5 +1,9 @@
 {config, pkgs, ...}:{
 
+  home.packages = [
+  	pkgs.dunst
+  ];
+
   services.dunst = {
     enable = false;
     iconTheme = { 

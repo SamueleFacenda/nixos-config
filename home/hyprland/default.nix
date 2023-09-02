@@ -2,6 +2,7 @@
 
   imports = [
     ./dunst.nix
+    ./waybar.nix
   ];
 
   home.packages = with pkgs; [
@@ -14,7 +15,14 @@
       
     ];
     settings = {
+      exec-once = [
+        "waybar"
+        "dunst"
+      ];
+     
       "$mod" = "SUPER";
+     
+      
       bind = [
         "$mod, Q, exec, kitty"
         "$mod, C, killactive,"
@@ -56,6 +64,10 @@
 
       gestures = {
         workspace_swipe = true;
+      };
+
+      misc = {
+        force_hypr_chan = false;
       };
     };
   };
