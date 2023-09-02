@@ -3,6 +3,7 @@
   imports = [
     ./dunst.nix
     ./waybar.nix
+    ./rofi.nix
   ];
 
   home.packages = with pkgs; [
