@@ -5,7 +5,7 @@
   ];
 
   services.dunst = {
-    enable = false;
+    enable = true;
     iconTheme = { 
       name = "Adwaita";
       size = "32x32";
