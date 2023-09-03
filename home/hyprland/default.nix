@@ -8,6 +8,8 @@
 
   home.packages = with pkgs; [
   	gtk3
+  	swayidle
+  	swaylock-effects
   ];
 
   wayland.windowManager.hyprland = {
@@ -20,9 +22,10 @@
       import ./settings.nix // {
 
       exec-once = [
-        "/home/samu/.scripts/waybar.sh" # auto-reload
+        "/home/samu/.scripts/waybar.sh" # waybar auto-reload
         "brave"
         "kitty"
+        "/home/samu/.scripts/sleep.sh" # auto suspend
         #"dunst"
       ];
     };

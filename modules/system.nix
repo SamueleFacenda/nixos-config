@@ -126,6 +126,14 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
+  
+  # LidSwitch and PowerButton actions
+  services.logind = {
+  	powerKey = "suspend";
+  	lidSwitchExternalPower = "suspend";
+  	lidSwitchDocked = "ignore";
+  	lidSwitch = "suspend";
+  };
 
   fonts = {
    fonts = with pkgs; [
