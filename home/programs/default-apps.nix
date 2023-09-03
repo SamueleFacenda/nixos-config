@@ -10,7 +10,7 @@
 	        #"application/rar" = "org.gnome.FileRoller.desktop";
 	        #"application/7z" = "org.gnome.FileRoller.desktop";
 	        #"application/*tar" = "org.gnome.FileRoller.desktop";
-	        #"inode/directory" = "pcmanfm.desktop";
+	        "inode/directory" = "org.gnome.Nautilus.desktop";
 	        #"application/pdf" = "okularApplication_pdf.desktop";
 	        #"image/*" = "imv-folder.desktop";
 	        #"video/*" = "umpv.desktop";
