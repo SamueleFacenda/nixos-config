@@ -20,7 +20,7 @@
       import ./settings.nix // {
 
       exec-once = [
-        "waybar"
+        "/home/samu/.script/waybar.sh" # auto-reload
         "brave"
         "kitty"
         #"dunst"
