@@ -25,4 +25,10 @@
   	#",switch:on:Lid Switch,exec,hyprctl keyword monitor \"DP-3, disable\""
   	#",switch:on:Lid Switch,exec,hyprctl keyword monitor \"DP-4, disable\""
   ];
+  
+  bindle = [
+    # volume keys
+  	", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+  	", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+  ];
 }
