@@ -1,8 +1,7 @@
-{config, pkgs, ...}:{
-
-  home.packages = [
-  	pkgs.dunst
-  ];
+{config, pkgs, lib, ...}:{
+  
+  systemd.user.services.duns.Unit.PartOf = lib.mkForce ["hyprland-session.target"];
+  systemd.user.services.duns.Unit.After = lib.mkForce ["hyprland-session.target"];
 
   services.dunst = {
     enable = true;
