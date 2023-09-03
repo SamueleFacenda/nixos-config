@@ -19,6 +19,10 @@
 			background_blur = "30"; # not supported on wayland
 			dynamic_background_opacity = "yes";
 			
+			enable_audio_bell = "no";
+			bell_on_tab = "🔔";
+			visual_bell_duration = "0.0";
+			
 			wayland_titlebar_color = "system";
 		};
 	};
