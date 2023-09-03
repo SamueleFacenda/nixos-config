@@ -2,11 +2,6 @@
 
 	imports = [
 		./waybar.nix
+		./sleep.nix
 	];
-	
-  home.file.".scripts" = {
-    executable = true;
-    source = ./files;
-    recursive = true;
-  };
 }
