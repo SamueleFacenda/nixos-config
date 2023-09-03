@@ -51,6 +51,12 @@
   # services.xserver.libinput.enable = true;
   services.udisks2.enable = true;
 
+  # Bootloader
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
+
   # enable zsh system-wide
   programs.zsh.enable = true;
 
@@ -80,6 +86,7 @@
 	wakatime
 	linux-firmware
 	gnumake
+	inotify-tools
 
 	# Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
     (let base = pkgs.appimageTools.defaultFhsEnvArgs; in
