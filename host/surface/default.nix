@@ -11,6 +11,7 @@
       ../../modules/nixos.nix
       ../../modules/gnome.nix
       ../../modules/remote-build.nix
+      ../../modules/hyprland.nix
       ../../timers/empty-trash.nix
       ../../secrets
 
@@ -30,10 +31,10 @@
   	surface-control.enable = true;
   };
 
-  system.activationScripts.repairButtons = ''
-    /run/current-system/sw/bin/modprobe -r soc_button_array
-    /run/current-system/sw/bin/modprobe soc_button_array
-  ''; # bad fix
+  # system.activationScripts.repairButtons = ''
+  #  /run/current-system/sw/bin/modprobe -r soc_button_array
+  #  /run/current-system/sw/bin/modprobe soc_button_array
+  # ''; # bad fix
 
   # or
   boot.kernelPatches = [ {

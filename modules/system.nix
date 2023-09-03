@@ -76,36 +76,34 @@
 
   environment.systemPackages = with pkgs; [
     wget
-	micro
-	git
-	curl
-	neofetch
-	ranger
-	trashy
-	networkmanager
-	wakatime
-	linux-firmware
-	gnumake
-	inotify-tools
-	killall
+		micro
+		git
+		curl
+		neofetch
+		ranger
+		trashy
+		networkmanager
+		wakatime
+		linux-firmware
+		gnumake
 
-	# Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
-    (let base = pkgs.appimageTools.defaultFhsEnvArgs; in
-      pkgs.buildFHSUserEnv (base // {
-      name = "fhs";
-      targetPkgs = pkgs: (
-        (base.targetPkgs pkgs) ++ (with pkgs; [
-          pkg-config
-          ncurses
-          libseccomp
-          glibc
-          glib
-        ])
-      );
-      profile = "export FHS=1";
-      runScript = "zsh";
-      extraOutputsToInstall = ["dev"];
-    }))
+		# Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
+	    (let base = pkgs.appimageTools.defaultFhsEnvArgs; in
+	      pkgs.buildFHSUserEnv (base // {
+	      name = "fhs";
+	      targetPkgs = pkgs: (
+	        (base.targetPkgs pkgs) ++ (with pkgs; [
+	          pkg-config
+	          ncurses
+	          libseccomp
+	          glibc
+	          glib
+	        ])
+	      );
+	      profile = "export FHS=1";
+	      runScript = "zsh";
+	      extraOutputsToInstall = ["dev"];
+	    }))
   ];
 
   environment.variables = {
@@ -116,8 +114,6 @@
   # for vscode in wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  programs.hyprland.enable = true;
-
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -126,42 +122,34 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
-  
-  # LidSwitch and PowerButton actions
-  services.logind = {
-  	powerKey = "suspend";
-  	lidSwitchExternalPower = "suspend";
-  	lidSwitchDocked = "ignore";
-  	lidSwitch = "suspend";
-  };
 
   fonts = {
    fonts = with pkgs; [
-      # icon fonts
-      material-design-icons
+     # icon fonts
+     material-design-icons
 
-      # normal fonts
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
+     # normal fonts
+     noto-fonts
+     noto-fonts-cjk
+     noto-fonts-emoji
 
-      # nerdfonts
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Monofur"]; })
-    ];
+     # nerdfonts
+     (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Monofur"]; })
+  ];
 
-    # use fonts specified by user rather than default ones
-    enableDefaultFonts = false;
+   # use fonts specified by user rather than default ones
+   enableDefaultFonts = false;
 
-    # user defined fonts
-    # the reason there's Noto Color Emoji everywhere is to override DejaVu's
-    # B&W emojis that would sometimes show instead of some Color emojis
-    fontconfig.defaultFonts = {
-      serif = [ "Noto Serif" "Noto Color Emoji" ];
-      sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
-      monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
-      emoji = [ "Noto Color Emoji" ];
-    };
-  };
+   # user defined fonts
+   # the reason there's Noto Color Emoji everywhere is to override DejaVu's
+   # B&W emojis that would sometimes show instead of some Color emojis
+   fontconfig.defaultFonts = {
+     serif = [ "Noto Serif" "Noto Color Emoji" ];
+     sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
+     monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
+     emoji = [ "Noto Color Emoji" ];
+   };
+ };
 
   # Make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
   nix.registry.nixpkgs.flake = nixpkgs;
@@ -174,4 +162,7 @@
   security.pki.certificateFiles = [
   	../assets/burpsuiteca.pem
   ];
+  
+  # enable plymouth
+  boot.plymouth.enable = true;
 }
