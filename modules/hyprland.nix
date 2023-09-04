@@ -24,5 +24,9 @@
   ];
   
   # enable file choser on gtk apps
-  xdg.portal.gtkUsePortal = true;
+  #xdg.portal.gtkUsePortal = true;
+  
+  xdg.portal.extraPortals = [
+  	(pkgs.callPackage ../packages/xdg-desktop-portal-shana.nix {})
+  ];
 }
