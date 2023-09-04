@@ -6,6 +6,7 @@
     "$mod, Q, exec, kitty"
     "$mod, C, killactive,"
     "$mod, M, exit,"
+    "$mod, R, exec, rofi -show drun"
   ];
 
   bindm = [

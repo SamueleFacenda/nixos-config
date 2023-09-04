@@ -4,12 +4,14 @@
     ./dunst.nix
     ./waybar
     ./rofi
+    ./hyprpaper.nix
   ];
 
   home.packages = with pkgs; [
   	gtk3
   	swayidle
   	swaylock-effects
+  	hyprpaper
   ];
 
   wayland.windowManager.hyprland = {
@@ -26,6 +28,7 @@
         "brave"
         "kitty"
         "/home/samu/.scripts/sleep.sh" # auto suspend
+        "hyprpaper"
         #"dunst"
       ];
     };

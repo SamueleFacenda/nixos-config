@@ -6,11 +6,14 @@
     modules-left = [
       "custom/launcher"
       "temperature"
+      "hyprland/workspaces"
+      "hyprland/window"
     ];
     modules-center = [
       "clock"
     ];
     modules-right = [
+    	"keyboard-state"
       "pulseaudio"
       "backlight"
       "memory"
@@ -21,6 +24,17 @@
     ];
 
     output = ["DP-3"];
+    
+    "hyprland/workspaces" = {
+    	"format" = "{icon}{id}";
+    	"on-scroll-up" = "hyprctl dispatch workspace e+1";
+      "on-scroll-down" = "hyprctl dispatch workspace e-1";
+    };
+    
+    "hyprland/window" = {
+    	
+    };
+    
     keyboard-state = {
       numlock = true;
       capslock = true;
