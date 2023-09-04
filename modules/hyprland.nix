@@ -21,4 +21,7 @@
 	  inotify-tools
     killall
   ];
+  
+  # enable file choser on gtk apps
+  xdg.portal.gtkUsePortal = true;
 }

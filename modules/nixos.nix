@@ -38,7 +38,7 @@ in {
   # only for a flake system
   system.autoUpgrade = {
     enable = true;
-    flake = toString ./.. ;
+    flake = "/nixos-config" ;
     flags = [
       "--update-input"
       "nixpkgs"

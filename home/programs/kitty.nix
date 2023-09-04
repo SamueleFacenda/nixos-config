@@ -18,7 +18,7 @@
 			foreground = "#98b0d3";
 			background_opacity = "0.3";
 			#background_blur = "30"; # not supported on wayland
-			window_padding_width = "20";
+			window_padding_width = "10";
 			dynamic_background_opacity = "yes";
 			active_border_color ="#3d59a1";
 			inactive_border_color ="#101014";
