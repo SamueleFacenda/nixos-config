@@ -1,5 +1,5 @@
 {config, pkgs, self, ...}:{
-	home.file.".config/hypr/hyprpaper.conf" = {
+	xdg.configFile."hypr/hyprpaper.conf" = {
 		text = ''
 		  preload = ${self.outPath}/assets/bg1.png
 		  #preload = ${self.outPath}/assets/bg2.png
