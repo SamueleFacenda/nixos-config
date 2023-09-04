@@ -64,5 +64,17 @@
 
     # auto mount usb drives
     udiskie.enable = true;
+    udiskie.settings.program_options = {
+    	file_manager = "${pkgs.xdg-utils}/bin/xdg-open";
+    	# tray = false;
+    };
   };
+  
+  # fix udiskie problem
+  systemd.user.targets.tray = {
+		Unit = {
+			Description = "Home Manager System Tray";
+			Requires = [ "graphical-session-pre.target" ];
+		};
+	};
 }
