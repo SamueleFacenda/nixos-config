@@ -7,11 +7,16 @@
     "$mod, C, killactive,"
     "$mod, M, exit,"
     "$mod, R, exec, rofi -show drun"
+    "$mod, right, movetoworkspace, +1"
+    "$mod, left, movetoworkspace, -1"
+		",mouse_left, workspace, r-1"
+		",mouse_right, workspace, r+1"
+
   ];
 
   bindm = [
     "$mod, mouse:272, movewindow"
-    "$mod, mouse:273, resizewindow"        
+    "$mod, mouse:273, resizewindow"   
   ];
   
   bindl = [
