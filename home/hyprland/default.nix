@@ -5,6 +5,7 @@
     ./waybar
     ./rofi
     ./hyprpaper.nix
+    ./shana.nix
   ];
 
   home.packages = with pkgs; [
