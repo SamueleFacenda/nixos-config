@@ -20,6 +20,7 @@
   environment.systemPackages = with pkgs; [
 	  inotify-tools
     killall
+    (callPackage ../packages/xdg-desktop-portal-shana.nix {})
   ];
   
   # enable file choser on gtk apps

@@ -1,7 +1,6 @@
 {config, pkgs, ...}:{
 
-  home.packages = [
-    (callPackage ../../packages/xdg-desktop-portal-shana.nix {})
+  home.packages = with pkgs; [
   ];
   
   xdg.configFile."xdg-desktop-portal-shana/config.toml".text = ''
