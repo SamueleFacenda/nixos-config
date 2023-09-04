@@ -44,6 +44,7 @@
   		pycryptodome
   		pwntools
   		ropper
+  		tqdm
   	]))
   ];
 
