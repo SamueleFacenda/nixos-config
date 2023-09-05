@@ -32,8 +32,8 @@
   };
 
   # system.activationScripts.repairButtons = ''
-  #  /run/current-system/sw/bin/modprobe -r soc_button_array
-  #  /run/current-system/sw/bin/modprobe soc_button_array
+  #  ${pkgs.kmod}/bin/modprobe -r soc_button_array
+  #  ${pkgs.kmod}/bin/modprobe soc_button_array
   # ''; # bad fix
 
   # or
