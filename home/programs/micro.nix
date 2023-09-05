@@ -6,13 +6,13 @@
       autosu = true;
       clipboard = "terminal";
       diffgutter = true;
-      eofnewline = false;
+      eofnewline = true;
       keepautoindent = true;
       mkparents = true;
       savecursor = true;
       saveundo = true;
       smartpaste = true;
-      tabtospaces = true;
+      tabstospaces = true;
       tabmovement = true;
 
       "*.nix" = {

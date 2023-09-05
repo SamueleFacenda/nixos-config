@@ -46,12 +46,5 @@ stdenv.mkDerivation rec {
 		hash = "sha256-KNHOK/qg4vPDsQSnrI1/40aWdbPiLLr3VsUFuRuGwVs=";
 	};
 	
-	# This in not executed
-	#  rustPlatform.fetchCargoTarball {
-	#		inherit src;
-	#		sourceRoot = "tools/shanatest";
-	#		hash = lib.fakeHash;
-	#	}
-	
-	mesonBuildType = "debug";
+	mesonBuildType = "release";
 }

@@ -15,6 +15,7 @@
     tree
     wakatime
     spotify-tui
+    editorconfig-core-c
     
     # productivity
     obsidian
