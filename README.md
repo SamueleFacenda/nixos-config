@@ -30,6 +30,7 @@ TODOS:
 - [x] remote build with nixbuild.net
 - [ ] home server containers
 - [ ] rofi :construction:
+- [ ] wofi, replace rofi
 - [ ] waybar :construction:
 - [ ] dunst :construction:
 - [x] xdg-desktop-portal-shana
