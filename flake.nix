@@ -32,9 +32,9 @@
         specialArgs = inputs;
         modules = with inputs; [
           ./host/surface
+          
           agenix.nixosModules.default
           nixos-hardware.nixosModules.microsoft-surface-pro-intel
-
 
           home-manager.nixosModules.home-manager
           {

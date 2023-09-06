@@ -23,7 +23,7 @@
       "tray"
     ];
 
-    output = ["DP-3"];
+    output = ["DP-3" "eDP-1"];
     
     "hyprland/workspaces" = {
     	"format" = "{icon}{id}";

@@ -45,6 +45,7 @@
   		pwntools
   		ropper
   		tqdm
+  		gmpy2
   	]))
   ];
 

@@ -27,6 +27,9 @@
 	  pwn = "shell ${self.outPath}#pwn";
     shutdown = "sudo systemctl stop iptsd && shutdown";
     reboot = "sudo systemctl stop iptsd && reboot";
+    
+    bat = "cat /sys/class/power_supply/BAT1/capacity";
+    batt = "upower -i /org/freedesktop/UPower/devices/battery_BAT1";
 	};
 
 	history = {
