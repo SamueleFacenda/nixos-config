@@ -13,6 +13,8 @@
   	swayidle
   	swaylock-effects
   	hyprpaper
+  	slurp
+  	grim
   ];
 
   wayland.windowManager.hyprland = {
