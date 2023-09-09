@@ -2,19 +2,19 @@
   description = "Samuele's NixOS Flake";
 
   nixConfig = {
-	  experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [ "nix-command" "flakes" ];
   };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    
+
     spicetify-nix.url = github:the-argus/spicetify-nix;
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -32,7 +32,7 @@
         specialArgs = inputs;
         modules = with inputs; [
           ./host/surface
-          
+
           agenix.nixosModules.default
           nixos-hardware.nixosModules.microsoft-surface-pro-intel
 
@@ -49,7 +49,7 @@
     };
 
     devShells."${system}" = import ./shells/make-shells.nix {
-    	pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = nixpkgs.legacyPackages.${system};
     };
   };
 }

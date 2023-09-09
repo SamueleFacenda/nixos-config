@@ -1,4 +1,4 @@
 {config, pkgs, ...}:{
-	programs.waybar.style = ''
-	'';
+  programs.waybar.style = ''
+  '';
 }

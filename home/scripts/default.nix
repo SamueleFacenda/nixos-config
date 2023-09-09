@@ -1,7 +1,7 @@
 {config, pkgs, ...}:{
 
-	imports = [
-		./waybar.nix
-		./sleep.nix
-	];
+  imports = [
+    ./waybar.nix
+    ./sleep.nix
+  ];
 }

@@ -20,15 +20,15 @@
 
   # https://github.com/linux-surface/linux-surface/issues/652 shoud remove the IPTSD shutdown block (not always work)
   boot.kernelParams = [
-  	"intel_iommu=off"
+    "intel_iommu=off"
   ];
 
   networking.hostName = "surface"; # Define your hostname.
 
   # enable surface stylus and touch, and surface control tool
   microsoft-surface = {
-  	ipts.enable = true;# lib.mkForce false; # problem at shutdown
-  	surface-control.enable = true;
+    ipts.enable = true;# lib.mkForce false; # problem at shutdown
+    surface-control.enable = true;
   };
 
   # system.activationScripts.repairButtons = ''
@@ -47,9 +47,9 @@
   }];
 
   environment.systemPackages = with pkgs; [
-  	microcodeIntel
-  	libwacom-surface
-  	libcamera
+    microcodeIntel
+    libwacom-surface
+    libcamera
   ];
 
   # Configure network proxy if necessary

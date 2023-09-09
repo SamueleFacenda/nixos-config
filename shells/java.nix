@@ -1,8 +1,8 @@
 { pkgs, ... }: pkgs.mkShell {
 
   packages = with pkgs; [
-  	jdk17
-  	gradle
+    jdk17
+    gradle
   ];
   
   shellHook = ''

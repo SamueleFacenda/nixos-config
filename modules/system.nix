@@ -76,40 +76,40 @@
 
   environment.systemPackages = with pkgs; [
     wget
-		micro
-		git
-		curl
-		neofetch
-		ranger
-		trashy
-		networkmanager
-		wakatime
-		linux-firmware
-		gnumake
-		wireguard-tools
+    micro
+    git
+    curl
+    neofetch
+    ranger
+    trashy
+    networkmanager
+    wakatime
+    linux-firmware
+    gnumake
+    wireguard-tools
 
-		# Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
-	    (let base = pkgs.appimageTools.defaultFhsEnvArgs; in
-	      pkgs.buildFHSUserEnv (base // {
-	      name = "fhs";
-	      targetPkgs = pkgs: (
-	        (base.targetPkgs pkgs) ++ (with pkgs; [
-	          pkg-config
-	          ncurses
-	          libseccomp
-	          glibc
-	          glib
-	        ])
-	      );
-	      profile = "export FHS=1";
-	      runScript = "zsh";
-	      extraOutputsToInstall = ["dev"];
-	    }))
+    # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
+      (let base = pkgs.appimageTools.defaultFhsEnvArgs; in
+        pkgs.buildFHSUserEnv (base // {
+        name = "fhs";
+        targetPkgs = pkgs: (
+          (base.targetPkgs pkgs) ++ (with pkgs; [
+            pkg-config
+            ncurses
+            libseccomp
+            glibc
+            glib
+          ])
+        );
+        profile = "export FHS=1";
+        runScript = "zsh";
+        extraOutputsToInstall = ["dev"];
+      }))
   ];
 
   environment.variables = {
-  	EDITOR = "micro";
-  	VISUAL = "micro";
+    EDITOR = "micro";
+    VISUAL = "micro";
   };
 
   # for vscode in wayland
@@ -164,7 +164,7 @@
 
   # burp suite certificate
   security.pki.certificateFiles = [
-  	../assets/burpsuiteca.pem
+    ../assets/burpsuiteca.pem
   ];
 
   # enable plymouth

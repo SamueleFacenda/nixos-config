@@ -10,11 +10,11 @@
     ./dconf.nix
     ./spotify.nix
     ./kitty.nix
-	./tmux.nix
-	./vscode.nix
-	./idea.nix
-	./desktop-entries.nix
-	./wakatime.nix
-	./micro.nix
+  ./tmux.nix
+  ./vscode.nix
+  ./idea.nix
+  ./desktop-entries.nix
+  ./wakatime.nix
+  ./micro.nix
   ];
 }

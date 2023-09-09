@@ -21,7 +21,7 @@
   # secrets config
   age.secrets = {
     github-token = {
-  	  file = ./github-token.age;
+      file = ./github-token.age;
     };
 
     wakatime-key = {

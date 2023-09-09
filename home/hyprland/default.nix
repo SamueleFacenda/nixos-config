@@ -9,12 +9,12 @@
   ];
 
   home.packages = with pkgs; [
-  	gtk3
-  	swayidle
-  	swaylock-effects
-  	hyprpaper
-  	slurp
-  	grim
+    gtk3
+    swayidle
+    swaylock-effects
+    hyprpaper
+    slurp
+    grim
   ];
 
   wayland.windowManager.hyprland = {

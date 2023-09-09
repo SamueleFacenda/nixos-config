@@ -49,14 +49,14 @@
 
   # install extensions
   environment.systemPackages = (with pkgs.gnomeExtensions; [
-  	user-themes
-  	caffeine
-  	# system-monitor-next not working
-  	# tophat
-  	# system-monitor-2
+    user-themes
+    caffeine
+    # system-monitor-next not working
+    # tophat
+    # system-monitor-2
   ]) ++ (with pkgs; [
-  	# libgtop # dependecy of tophat
-  	# gtop
+    # libgtop # dependecy of tophat
+    # gtop
   ]);
 
 }

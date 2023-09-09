@@ -13,7 +13,7 @@
       "clock"
     ];
     modules-right = [
-    	"keyboard-state"
+      "keyboard-state"
       "pulseaudio"
       "backlight"
       "memory"
@@ -26,13 +26,13 @@
     output = ["DP-3" "eDP-1"];
     
     "hyprland/workspaces" = {
-    	"format" = "{icon}{id}";
-    	"on-scroll-up" = "hyprctl dispatch workspace e+1";
+      "format" = "{icon}{id}";
+      "on-scroll-up" = "hyprctl dispatch workspace e+1";
       "on-scroll-down" = "hyprctl dispatch workspace e-1";
     };
     
     "hyprland/window" = {
-    	
+      
     };
     
     keyboard-state = {

@@ -15,7 +15,7 @@
   };
 
   animations = {
-  	enabled = true;
+    enabled = true;
   };
 
   dwindle = {
@@ -36,15 +36,15 @@
   };
   
   decoration = {
-  	rounding = 19;
-  	blur = {
-  		enabled = true;
-	  	size = 14;
-	  	passes = 3;
-	  	new_optimizations = true;
-	  };
-  	drop_shadow = true;
-  	shadow_range = 15;
+    rounding = 19;
+    blur = {
+      enabled = true;
+      size = 14;
+      passes = 3;
+      new_optimizations = true;
+    };
+    drop_shadow = true;
+    shadow_range = 15;
     "col.shadow" = "0xffa7caff";
     "col.shadow_inactive" = "0x50000000";
   };
