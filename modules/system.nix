@@ -87,7 +87,6 @@
 		linux-firmware
 		gnumake
 		wireguard-tools
-		wireguard
 
 		# Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
 	    (let base = pkgs.appimageTools.defaultFhsEnvArgs; in
@@ -118,7 +117,7 @@
 
   # Enable Flakes and the new command-line tool (already defined in flake.nix)
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+
   # add nixos to user agent string
   nix.settings.user-agent-suffix = "NixOS unstable";
 
@@ -167,10 +166,7 @@
   security.pki.certificateFiles = [
   	../assets/burpsuiteca.pem
   ];
-  
+
   # enable plymouth
   boot.plymouth.enable = true;
-  
-  # wireguard kernel module
-  boot.extraModulePackages = [ config.boot.kernelPackages.wireguard ];
 }
