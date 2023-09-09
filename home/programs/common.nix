@@ -22,6 +22,16 @@
 
     # web
     brave
+    
+    # games
+    #(superTuxKart.overrideAttrs (finalAttrs: previousAttrs: {
+   #   assets = fetchsvn {
+  #        url = "https://svn.code.sf.net/p/supertuxkart/code/stk-assets";
+ #         rev = "18587";
+  #        sha256 = "WNavCyf3yFtFIgTkk+IBjNY8W3Sv5+ZBiBOKTIWLPhA=";
+  #        name = "stk-assets";
+   #     };
+    #}))
 
 	# code
     (python3.withPackages(ps: with ps; [
