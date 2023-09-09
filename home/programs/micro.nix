@@ -2,7 +2,7 @@
   programs.micro = {
     enable = true;
     settings = {
-      autosave = 5;
+      autosave = 0;
       autosu = true;
       clipboard = "terminal";
       diffgutter = true;
