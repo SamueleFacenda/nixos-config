@@ -116,8 +116,11 @@
   # for vscode in wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # Enable Flakes and the new command-line tool
+  # Enable Flakes and the new command-line tool (already defined in flake.nix)
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
+  # add nixos to user agent string
+  nix.settings.user-agent-suffix = "NixOS unstable";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

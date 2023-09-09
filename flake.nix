@@ -2,7 +2,7 @@
   description = "Samuele's NixOS Flake";
 
   nixConfig = {
-	experimental-features = [ "nix-command" "flakes" ];
+	  experimental-features = [ "nix-command" "flakes" ];
   };
 
   inputs = {
