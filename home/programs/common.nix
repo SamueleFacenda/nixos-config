@@ -19,6 +19,7 @@
 
     # productivity
     obsidian
+    xournalpp
 
     # web
     brave

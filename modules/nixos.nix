@@ -1,8 +1,10 @@
-{ lib, pkgs, self, ... }:
+{ lib, pkgs, nixpkgs, self, ... }:
 
 {
   # Enable Flakes and the new command-line tool (already defined in flake.nix)
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
     substituters = [

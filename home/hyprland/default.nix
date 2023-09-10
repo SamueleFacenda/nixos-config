@@ -20,7 +20,6 @@
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [
-      
     ];
     settings =
       import ./bindings.nix //
@@ -35,6 +34,6 @@
         #"dunst"
       ];
     };
-    
+
   };
 }
