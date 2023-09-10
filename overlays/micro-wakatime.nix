@@ -12,6 +12,8 @@
     };
     patchPhase = ''
       sed -i "s/    checkCli()//g" wakatime.lua
+      sed -i "s/micro.InfoBar():Message(\"WakaTime initialized\")//g" wakatime.lua
+      sed -i "s/micro.InfoBar():Message(\"WakaTime initializing...\")//g" wakatime.lua
     '';
     installPhase = ''
       mkdir -p $out
