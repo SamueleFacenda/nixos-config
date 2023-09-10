@@ -8,7 +8,7 @@
       auth include login
     '';
   };
-  
+
   # LidSwitch and PowerButton actions
   services.logind = {
     powerKey = "suspend";
@@ -16,16 +16,16 @@
     lidSwitchDocked = "ignore";
     lidSwitch = "suspend";
   };
-  
+
   environment.systemPackages = with pkgs; [
     inotify-tools
     killall
   ];
-  
+
   # enable file choser on gtk apps
   #xdg.portal.gtkUsePortal = true;
-  
-  xdg.portal.extraPortals = [
-    (pkgs.callPackage ../packages/xdg-desktop-portal-shana.nix {})
+
+  xdg.portal.extraPortals = with pkgs; [
+    xdg-desktop-portal-shana
   ];
 }
