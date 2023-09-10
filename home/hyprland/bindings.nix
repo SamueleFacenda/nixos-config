@@ -13,7 +13,7 @@
   ];
 
   bindr = [
-    ",$mod, exec, rofi -show drun"
+    "$mod,super_l, exec, rofi -show drun"
   ];
 
   bindm = [
