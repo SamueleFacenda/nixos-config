@@ -20,6 +20,8 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    hyprgrass.url = "github:horriblename/hyprgrass"; # it uses the hyprland flake
   };
 
   outputs = { self, nixpkgs, ... }@inputs: let

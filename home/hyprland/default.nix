@@ -1,4 +1,4 @@
-{config, pkgs, ...}:{
+{config, pkgs, hyprgrass, ...}:{
 
   imports = [
     ./dunst.nix
@@ -20,6 +20,11 @@
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [
+      (
+        hyprgrass.packages."${pkgs.system}".default.override {
+          inherit (pkgs) hyprland;
+        }
+      )
     ];
     settings =
       import ./bindings.nix //
