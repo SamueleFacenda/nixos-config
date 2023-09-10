@@ -2,12 +2,19 @@
 
 {
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.samu = {
+    isNormalUser = true;
+    description = "Samuele Facenda";
+    hashedPassword = "$y$j9T$uT/2s7MBr3VdlbSg9VOly.$01sbSx0zeTs2axvuJZOdpEs3Xreti2XMaPm.RSuaj/7";
+    extraGroups = [ "networkmanager" "wheel" "surface-control"];
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+    # change default shell
+    shell = pkgs.zsh;
+  };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Rome";
@@ -57,22 +64,11 @@
     efi.canTouchEfiVariables = true;
   };
 
+  # enable plymouth
+  boot.plymouth.enable = true;
+
   # enable zsh system-wide
   programs.zsh.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.samu = {
-    isNormalUser = true;
-    description = "Samuele Facenda";
-    hashedPassword = "$y$j9T$uT/2s7MBr3VdlbSg9VOly.$01sbSx0zeTs2axvuJZOdpEs3Xreti2XMaPm.RSuaj/7";
-    extraGroups = [ "networkmanager" "wheel" "surface-control"];
-
-    # change default shell
-    shell = pkgs.zsh;
-  };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     wget
@@ -96,7 +92,6 @@
           (base.targetPkgs pkgs) ++ (with pkgs; [
             pkg-config
             ncurses
-            libseccomp
             glibc
             glib
           ])
@@ -115,9 +110,6 @@
   # for vscode in wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # Enable Flakes and the new command-line tool (already defined in flake.nix)
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   # add nixos to user agent string
   nix.settings.user-agent-suffix = "NixOS unstable";
 
@@ -126,6 +118,18 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  # burp suite certificate
+  security.pki.certificateFiles = [
+    ../assets/burpsuiteca.pem
+  ];
 
   fonts = {
    fonts = with pkgs; [
@@ -155,18 +159,11 @@
    };
  };
 
-  # Make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
-  nix.registry.nixpkgs.flake = nixpkgs;
-
-  # Make `nix repl '<nixpkgs>'` use the same nixpkgs as the one used by this flake.
-  environment.etc."nix/inputs/nixpkgs".source = "${nixpkgs}";
-  nix.nixPath = ["/etc/nix/inputs"];
-
-  # burp suite certificate
-  security.pki.certificateFiles = [
-    ../assets/burpsuiteca.pem
-  ];
-
-  # enable plymouth
-  boot.plymouth.enable = true;
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "23.05"; # Did you read the comment?
 }

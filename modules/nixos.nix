@@ -1,18 +1,14 @@
-# Delete all historical versions older than 7 days
-# sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system
-
-# Run garbage collection after wiping history
-# sudo nix store gc --debug
-
 { lib, pkgs, self, ... }:
-let
-  inherit (builtins) toString;
-in {
+
+{
+  # Enable Flakes and the new command-line tool (already defined in flake.nix)
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   nix.settings = {
     substituters = [
       "https://cache.nixos.org/"
     ];
-    
+
     # nix community`s cache server
     extra-substituters = [
       "https://nix-community.cachix.org"
@@ -45,7 +41,7 @@ in {
       "--commit-lock-file"
       "-L" # print build logs
     ];
-    
+
     dates = "weekly";
     randomizedDelaySec = "20min";
     persistent = true; # so I don't miss the update if the system is down
@@ -57,4 +53,11 @@ in {
   # Refer to the following link for more details:
   # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
   nix.settings.auto-optimise-store = true;
+
+  # Make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
+  nix.registry.nixpkgs.flake = nixpkgs;
+
+  # Make `nix repl '<nixpkgs>'` use the same nixpkgs as the one used by this flake.
+  environment.etc."nix/inputs/nixpkgs".source = "${nixpkgs}";
+  nix.nixPath = ["/etc/nix/inputs"];
 }
