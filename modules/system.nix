@@ -140,6 +140,7 @@
 
      # nerdfonts
      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Monofur"]; })
+     monofurx
   ];
 
    # use fonts specified by user rather than default ones
