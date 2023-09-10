@@ -3,15 +3,15 @@
     # function imports and static definitions
     inherit (builtins) traceVal elemAt baseNameOf filter readDir split map listToAttrs toString trace;
     inherit (pkgs.lib.attrsets) filterAttrs nameValuePair mapAttrsToList;
-    
-    filename = "make-shell.nix";
+
+    filename = "default.nix";
     toPath = x: ./. + "/${x}";
   in
-    let 
+    let
       dirEntries = readDir ./. ;
       filesSet = filterAttrs (n: v: v == "regular" && n != filename) dirEntries;
       files = mapAttrsToList (n: v: n) filesSet; # set to list of file names
-    
+
       getName = x: elemAt (split ".nix" x) 0; # remove final ".nix" from a string
       mkEntry = args: sh: { # get name-value couple with shell derivation in value
         name = getName sh;

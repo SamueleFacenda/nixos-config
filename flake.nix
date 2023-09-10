@@ -50,7 +50,7 @@
       };
     };
 
-    devShells."${system}" = import ./shells/make-shells.nix {
+    devShells."${system}" = import ./shells {
       pkgs = nixpkgs.legacyPackages.${system};
     };
   };
