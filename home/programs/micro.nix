@@ -1,4 +1,4 @@
-{config, pkgs, micro-wakatime, ...}:{
+{config, pkgs, ...}:{
   programs.micro = {
     enable = true;
     settings = {
@@ -24,6 +24,22 @@
   xdg.configFile."micro/plug/wakatime" = {
     enable = true;
     recursive = true;
-    source = "${micro-wakatime}";
+    source = pkgs.stdenv.mkDerivation rec {
+      name = "micro-wakatime";
+      version = "1.0.6";
+      src = pkgs.fetchFromGitHub {
+        owner = "wakatime";
+        repo = "micro-wakatime";
+        rev = version;
+        sha256 = "2NzEqKg6Bw2uF5Zee6Aa/WmvSHk8I0cx5P5cE8a7vJM=";
+      };
+      patchPhase = ''
+        sed -i "s/    checkCli()//g" wakatime.lua
+      '';
+      installPhase = ''
+        mkdir -p $out
+        mv * $out
+      '';
+    };
   };
 }
