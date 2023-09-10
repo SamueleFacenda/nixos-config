@@ -9,6 +9,7 @@
     htop
     mdcat
     xclip
+    rpl
 
     # misc
     xdg-utils

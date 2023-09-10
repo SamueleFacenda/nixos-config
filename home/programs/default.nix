@@ -16,6 +16,5 @@
     ./desktop-entries.nix
     ./wakatime.nix
     ./micro.nix
-    ./rpl.nix
   ];
 }
