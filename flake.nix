@@ -20,6 +20,9 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    micro-wakatime.url = "github:wakatime/micro-wakatime";
+    micro-wakatime.flake = false;
   };
 
   outputs = { self, nixpkgs, ... }@inputs: let

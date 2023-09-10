@@ -103,6 +103,22 @@
         "type": "github"
       }
     },
+    "micro-wakatime": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1673858999,
+        "narHash": "sha256-2NzEqKg6Bw2uF5Zee6Aa/WmvSHk8I0cx5P5cE8a7vJM=",
+        "owner": "wakatime",
+        "repo": "micro-wakatime",
+        "rev": "885fd753318ea4ab458110f15882d2ccdf1ba3f3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wakatime",
+        "repo": "micro-wakatime",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1693718952,
@@ -139,6 +155,7 @@
       "inputs": {
         "agenix": "agenix",
         "home-manager": "home-manager_2",
+        "micro-wakatime": "micro-wakatime",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "spicetify-nix": "spicetify-nix"

@@ -1,4 +1,4 @@
-{config, pkgs, ...}:{
+{config, pkgs, micro-wakatime, ...}:{
   programs.micro = {
     enable = true;
     settings = {
@@ -19,5 +19,11 @@
         tabsize = 2;
       };
     };
+  };
+
+  xdg.configFile."micro/plug/wakatime" = {
+    enable = true;
+    recursive = true;
+    source = "${micro-wakatime}";
   };
 }
