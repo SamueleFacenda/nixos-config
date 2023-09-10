@@ -10,10 +10,12 @@
       rev = version;
       sha256 = "2NzEqKg6Bw2uF5Zee6Aa/WmvSHk8I0cx5P5cE8a7vJM=";
     };
+    # remove check for new versions and infobar log printing at startup
     patchPhase = ''
-      sed -i "s/    checkCli()//g" wakatime.lua
-      sed -i "s/micro.InfoBar():Message(\"WakaTime initialized\")//g" wakatime.lua
-      sed -i "s/micro.InfoBar():Message(\"WakaTime initializing...\")//g" wakatime.lua
+      substituteInPlace wakatime.lua \
+        --replace "    checkCli()" "" \
+        --replace "micro.InfoBar():Message(\"WakaTime initialized\")" "" \
+        --replace "micro.InfoBar():Message(\"WakaTime initializing...\")" ""
     '';
     installPhase = ''
       mkdir -p $out

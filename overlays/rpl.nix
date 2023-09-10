@@ -13,7 +13,9 @@
     format = "pyproject";
     doCheck = false;
     postPatch = ''
-      sed -i "s/importlib.metadata.version('rpl')/'1.15.5'/g" rpl/__init__.py
+      # brute replace of error
+      substituteInPlace rpl/__init__.py \
+        --replace "importlib.metadata.version('rpl')" ${version}
     '';
     installPhase = "";
 
