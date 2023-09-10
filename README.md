@@ -37,3 +37,12 @@ TODOS:
 
 
 :construction: mean work in progress
+
+
+Overlays (custom packages and other):
+- hyprgrass (use nixpkgs hyprland instead of flake)
+- micro-wakatime (faster loading)
+- nerdfonts (use monofur with patched bullet point)
+- rpl (new pkg)
+- xdg-desktop-point-shana (new pkg)
+- monofurx (new pkg)
