@@ -22,14 +22,14 @@
         "intellij-nix-shell.desktop"
       ];
 
-    # enable the extensions for the user. "gnome-extensions list" to get the full name
+      # enable the extensions for the user. "gnome-extensions list" to get the full name
       disable-user-extensions = false;
       enabled-extensions = [
-    "user-theme@gnome-shell-extensions.gcampax.github.com"
-    "caffeine@patapon.info"
-    # "system-monitor-next@paradoxxx.zero.gmail.com"
-    # "tophat@fflewddur.github.io"
-    # "System_Monitor@bghome.gmail.com"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "caffeine@patapon.info"
+        # "system-monitor-next@paradoxxx.zero.gmail.com"
+        # "tophat@fflewddur.github.io"
+        # "System_Monitor@bghome.gmail.com"
       ];
     };
   };

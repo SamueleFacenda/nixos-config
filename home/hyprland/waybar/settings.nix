@@ -1,4 +1,4 @@
-{config, pkgs, ...}:{
+{ config, pkgs, ... }: {
   programs.waybar.settings = [{
     layer = "top";
     position = "top";
@@ -24,7 +24,7 @@
       "tray"
     ];
 
-    output = ["DP-3" "eDP-1"];
+    output = [ "DP-3" "eDP-1" ];
 
     "hyprland/workspaces" = {
       "format" = "{icon}{id}";
@@ -32,14 +32,12 @@
       "on-scroll-down" = "hyprctl dispatch workspace e-1";
     };
 
-    "hyprland/window" = {
-
-    };
+    "hyprland/window" = { };
 
     keyboard-state = {
       numlock = true;
       capslock = true;
-      format =  "{name} {icon}";
+      format = "{name} {icon}";
       format-icons = {
         locked = "";
         unlocked = "";
@@ -105,11 +103,11 @@
       spacing = 5;
     };
 
-  	battery = {
+    battery = {
       states = {
-          "good" = 90;
-          "warning" = 30;
-          "critical" = 15;
+        "good" = 90;
+        "warning" = 30;
+        "critical" = 15;
       };
       format = "{icon}  {capacity}%";
       format-charging = "{capacity}% 󱐋";
@@ -117,7 +115,7 @@
       format-alt = "{icon} {time}";
       # format-good = ""; // An empty format will hide the module
       # format-full = "";
-      format-icons = ["" "" "" "" ""];
+      format-icons = [ "" "" "" "" "" ];
     };
 
   }];

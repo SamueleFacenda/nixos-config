@@ -1,4 +1,4 @@
-{config, pkgs, lib, ...}:{
+{ config, pkgs, lib, ... }: {
 
   networking.networkmanager.enable = false;
   networking.wireless = {

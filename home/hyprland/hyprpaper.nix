@@ -1,4 +1,4 @@
-{config, pkgs, self, ...}:{
+{ config, pkgs, self, ... }: {
   xdg.configFile."hypr/hyprpaper.conf" = {
     text = ''
       preload = ${self.outPath}/assets/bg1.png

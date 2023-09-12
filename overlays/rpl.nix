@@ -1,4 +1,4 @@
-{lib, ...}:
+{ lib, ... }:
 
 (self: super: {
   rpl = super.rpl.overrideAttrs (finalAttrs: previousAttrs: rec {
@@ -9,7 +9,7 @@
       sha256 = "W9fbu4p2sMzD+1dMM8o45S/Q765qh7hvpYDZFZdyrtA=";
     };
     version = "1.15.5";
-    patches = [];
+    patches = [ ];
     format = "pyproject";
     doCheck = false;
     postPatch = ''
@@ -37,7 +37,7 @@
         }
       )
       (
-         python3.pkgs.buildPythonPackage rec {
+        python3.pkgs.buildPythonPackage rec {
           pname = "chainstream";
           version = "1.0.1";
           src = fetchPypi {

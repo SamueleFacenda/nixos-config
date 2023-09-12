@@ -1,11 +1,11 @@
-{config, pkgs, ...}: {
+{ config, pkgs, ... }: {
   systemd.timers."empty-trash" = {
     wantedBy = [ "timers.target" ];
-      timerConfig = {
-        OnCalendar = "weekly";
-        Persistent = true;
-        Unit = "empty-trash.service";
-      };
+    timerConfig = {
+      OnCalendar = "weekly";
+      Persistent = true;
+      Unit = "empty-trash.service";
+    };
   };
 
   systemd.services."empty-trash" = {

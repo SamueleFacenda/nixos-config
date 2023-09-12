@@ -1,4 +1,4 @@
-{config, pkgs, agenix, ...}:{
+{ config, pkgs, agenix, ... }: {
 
   imports = [
     # get the fillPlacehodersFiles option for secrets
@@ -28,7 +28,7 @@
       file = ./wakatime-key.age;
       owner = "samu";
       group = "users";
-      fillPlaceholdersFiles = ["/home/samu/.wakatime.cfg"];
+      fillPlaceholdersFiles = [ "/home/samu/.wakatime.cfg" ];
     };
 
     network-keys = {

@@ -1,4 +1,4 @@
-{hyprgrass, ...}:
+{ hyprgrass, ... }:
 
 (self: super: {
   hyprgrass = hyprgrass.packages."${self.system}".default.override {

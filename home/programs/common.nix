@@ -1,4 +1,4 @@
-{pkgs, lib, ...}: {
+{ pkgs, lib, ... }: {
   home.packages = with pkgs; [
     # archives
     zip
@@ -25,7 +25,7 @@
     brave
 
     # code
-    (python3.withPackages(ps: with ps; [
+    (python3.withPackages (ps: with ps; [
       pillow # for ranger kitty image preview
       # ranger deps
       chardet
@@ -55,8 +55,8 @@
   ];
 
   programs = {
-    btop.enable = true;  # replacement of htop/nmon
-    eza.enable = true;   # A modern replacement for ‘ls’
+    btop.enable = true; # replacement of htop/nmon
+    eza.enable = true; # A modern replacement for ‘ls’
     ssh.enable = true;
   };
 

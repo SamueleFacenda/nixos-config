@@ -1,4 +1,4 @@
-{config, pkgrs, ...}:{
+{ config, pkgrs, ... }: {
   programs.ssh.extraConfig = ''
     Host eu.nixbuild.net
       PubkeyAcceptedKeyTypes ssh-ed25519
@@ -17,7 +17,8 @@
   nix = {
     distributedBuilds = true;
     buildMachines = [
-      { hostName = "eu.nixbuild.net";
+      {
+        hostName = "eu.nixbuild.net";
         system = "x86_64-linux";
         maxJobs = 100;
         supportedFeatures = [ "benchmark" "big-parallel" ];

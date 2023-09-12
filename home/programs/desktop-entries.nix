@@ -1,4 +1,4 @@
-{config, pkgs, self, ...}:{
+{ config, pkgs, self, ... }: {
   xdg.desktopEntries = {
     intellij-nix-shell = {
       name = "Intellij with nix-shell";
@@ -9,6 +9,6 @@
       terminal = false;
       categories = [ "Development" ];
     };
-    
+
   };
 }

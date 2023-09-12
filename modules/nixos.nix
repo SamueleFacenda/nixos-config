@@ -36,7 +36,7 @@
   # only for a flake system
   system.autoUpgrade = {
     enable = true;
-    flake = "/nixos-config" ;
+    flake = "/nixos-config";
     flags = [
       "--update-input"
       "nixpkgs"
@@ -61,5 +61,5 @@
 
   # Make `nix repl '<nixpkgs>'` use the same nixpkgs as the one used by this flake.
   environment.etc."nix/inputs/nixpkgs".source = "${nixpkgs}";
-  nix.nixPath = ["/etc/nix/inputs"];
+  nix.nixPath = [ "/etc/nix/inputs" ];
 }

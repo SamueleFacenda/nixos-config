@@ -33,7 +33,7 @@
 
   # enable surface stylus and touch, and surface control tool
   microsoft-surface = {
-    ipts.enable = true;# lib.mkForce false; # problem at shutdown
+    ipts.enable = true; # lib.mkForce false; # problem at shutdown
     surface-control.enable = true;
   };
 
@@ -43,7 +43,7 @@
   # ''; # bad fix
 
   # or
-  boot.kernelPatches = [ {
+  boot.kernelPatches = [{
     name = "fix-surface-buttons";
     patch = null;
     extraConfig = ''

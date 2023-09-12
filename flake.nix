@@ -24,30 +24,36 @@
     hyprgrass.url = "github:horriblename/hyprgrass"; # it uses the hyprland flake
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: let
-    system = "x86_64-linux";
-  in {
-    nixosConfigurations = {
-      "surface" = nixpkgs.lib.nixosSystem {
-        inherit system;
-
-        specialArgs = inputs;
-        modules = with inputs; [
-          ./host/surface
-
-          home-manager.nixosModules.home-manager{
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.extraSpecialArgs = inputs;
-            home-manager.users.samu = import ./home;
-          }
-        ];
-      };
-    };
-
-    devShells."${system}" = import ./shells {
+  outputs = { self, nixpkgs, ... }@inputs:
+    let
+      system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      nixosConfigurations = {
+        "surface" = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          specialArgs = inputs;
+          modules = with inputs; [
+            ./host/surface
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              home-manager.extraSpecialArgs = inputs;
+              home-manager.users.samu = import ./home;
+            }
+          ];
+        };
+      };
+
+      devShells."${system}" = import ./shells {
+        inherit pkgs;
+      };
+
+      formatter."${system}" = pkgs.nixpkgs-fmt;
     };
-  };
 }

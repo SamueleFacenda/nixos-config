@@ -1,14 +1,15 @@
-{config, pkgs, lib, ...}:
+{ config, pkgs, lib, ... }:
 let
   writeable = true;
-in if writeable
+in
+if writeable
 then {
   home.activation = {
-    wakatimeCfg = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    wakatimeCfg = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       if test ! -f ''${HOME}/.wakatime.cfg; then
         $DRY_RUN_CMD printf "[settings]\napi_key = @wakatime-key@" > ''${HOME}/.wakatime.cfg
       fi
-    '';      
+    '';
   };
 }
 else {

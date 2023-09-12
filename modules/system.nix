@@ -7,7 +7,7 @@
     isNormalUser = true;
     description = "Samuele Facenda";
     hashedPassword = "$y$j9T$uT/2s7MBr3VdlbSg9VOly.$01sbSx0zeTs2axvuJZOdpEs3Xreti2XMaPm.RSuaj/7";
-    extraGroups = [ "networkmanager" "network" "surface-control" "wheel"];
+    extraGroups = [ "networkmanager" "network" "surface-control" "wheel" ];
 
     # change default shell
     shell = pkgs.zsh;
@@ -86,8 +86,9 @@
     wpa_supplicant_gui
 
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
-      (let base = pkgs.appimageTools.defaultFhsEnvArgs; in
-        pkgs.buildFHSUserEnv (base // {
+    (
+      let base = pkgs.appimageTools.defaultFhsEnvArgs; in
+      pkgs.buildFHSUserEnv (base // {
         name = "fhs";
         targetPkgs = pkgs: (
           (base.targetPkgs pkgs) ++ (with pkgs; [
@@ -99,8 +100,9 @@
         );
         profile = "export FHS=1";
         runScript = "zsh";
-        extraOutputsToInstall = ["dev"];
-      }))
+        extraOutputsToInstall = [ "dev" ];
+      })
+    )
   ];
 
   environment.variables = {
@@ -133,33 +135,33 @@
   ];
 
   fonts = {
-   packages = with pkgs; [
-     # icon fonts
-     material-design-icons
+    packages = with pkgs; [
+      # icon fonts
+      material-design-icons
 
-     # normal fonts
-     noto-fonts
-     noto-fonts-cjk
-     noto-fonts-emoji
+      # normal fonts
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
 
-     # nerdfonts
-     (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Monofur"]; })
-     monofurx
-  ];
+      # nerdfonts
+      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Monofur" ]; })
+      monofurx
+    ];
 
-   # use fonts specified by user rather than default ones
-   enableDefaultPackages = false;
+    # use fonts specified by user rather than default ones
+    enableDefaultPackages = false;
 
-   # user defined fonts
-   # the reason there's Noto Color Emoji everywhere is to override DejaVu's
-   # B&W emojis that would sometimes show instead of some Color emojis
-   fontconfig.defaultFonts = {
-     serif = [ "Noto Serif" "Noto Color Emoji" ];
-     sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
-     monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
-     emoji = [ "Noto Color Emoji" ];
-   };
- };
+    # user defined fonts
+    # the reason there's Noto Color Emoji everywhere is to override DejaVu's
+    # B&W emojis that would sometimes show instead of some Color emojis
+    fontconfig.defaultFonts = {
+      serif = [ "Noto Serif" "Noto Color Emoji" ];
+      sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
+      monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
+      emoji = [ "Noto Color Emoji" ];
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

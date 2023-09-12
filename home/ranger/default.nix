@@ -1,4 +1,4 @@
-{config, pkgs, ...}:{
+{ config, pkgs, ... }: {
   xdg.configFile.ranger = {
     source = ./config;
     recursive = true;
