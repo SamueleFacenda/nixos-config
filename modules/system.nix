@@ -7,10 +7,13 @@
     isNormalUser = true;
     description = "Samuele Facenda";
     hashedPassword = "$y$j9T$uT/2s7MBr3VdlbSg9VOly.$01sbSx0zeTs2axvuJZOdpEs3Xreti2XMaPm.RSuaj/7";
-    extraGroups = [ "networkmanager" "wheel" "surface-control"];
+    extraGroups = [ "networkmanager" "network" "surface-control"];
 
     # change default shell
     shell = pkgs.zsh;
+  };
+  users.groups = {
+    network = { };
   };
 
   # Set your time zone.
@@ -80,6 +83,7 @@
     linux-firmware
     gnumake
     wireguard-tools
+    wpa_supplicant_gui
 
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
       (let base = pkgs.appimageTools.defaultFhsEnvArgs; in

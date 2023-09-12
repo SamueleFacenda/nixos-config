@@ -4,6 +4,7 @@
   networking.wireless = {
     enable = true;
     userControlled.enable = true;
+    userControlled.group = "network";
 
     environmentFile = config.age.secrets.network-keys.path;
     networks = {

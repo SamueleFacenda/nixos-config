@@ -36,7 +36,8 @@ TODOS:
 - [x] xdg-desktop-portal-shana
 - [ ] known nets
 - [ ] hyprland gnome indipendence
-- [ ] system update time
+- [ ] tablet mode
+
 
 :construction: mean work in progress
 
