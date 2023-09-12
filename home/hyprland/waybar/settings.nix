@@ -26,12 +26,6 @@
 
     output = [ "DP-3" "eDP-1" ];
 
-    "hyprland/workspaces" = {
-      "format" = "{icon}{id}";
-      "on-scroll-up" = "hyprctl dispatch workspace e+1";
-      "on-scroll-down" = "hyprctl dispatch workspace e-1";
-    };
-
     "hyprland/window" = { };
 
     keyboard-state = {
@@ -118,5 +112,20 @@
       format-icons = [ "" "" "" "" "" ];
     };
 
+  	"hyprland/workspaces" = {
+      active-only = false;
+      all-outputs = true;
+      disable-scroll = false;
+      on-scroll-up = "hyprctl dispatch workspace -1";
+      on-scroll-down = "hyprctl dispatch workspace +1";
+  		format = "{icon}{id}";
+  		on-click = "activate";
+  		format-icons = {
+  			urgent = "";
+  			active = "";
+  			default = "󰧞";
+  		};
+      sort-by-number = true;
+    };
   }];
 }
