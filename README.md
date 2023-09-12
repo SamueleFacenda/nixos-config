@@ -37,7 +37,8 @@ TODOS:
 - [ ] known nets
 - [ ] hyprland gnome indipendence
 - [ ] tablet mode
-
+- [ ] power profiles daemon
+- [ ] remap surface pen button
 
 :construction: mean work in progress
 
