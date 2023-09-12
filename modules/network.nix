@@ -8,16 +8,20 @@
     environmentFile = config.age.secrets.network-keys.path;
     networks = {
       fazzenda = {
-        priority = 10;
+        priority = 5;
         psk = "@FAZZENDA_PSW@";
       };
       unitn-x = {
-        priority = 9;
+        priority = 7;
         auth = ''
           eap=PEAP
           identity="samuele.facenda@unitn.it"
-          password="@UNITN-PSW@"
+          password="@UNITN_PSW@"
         '';
+      };
+      nenephone = {
+        priority = 10;
+        psk = "@HOTSPOT_PSW@";
       };
     };
   };
