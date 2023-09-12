@@ -6,14 +6,14 @@
       IPQoS throughput
       IdentityFile /home/samu/.ssh/nixbuild
   '';
-  
+
   programs.ssh.knownHosts = {
     nixbuild = {
       hostNames = [ "eu.nixbuild.net" ];
       publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
     };
   };
-  
+
   nix = {
     distributedBuilds = true;
     buildMachines = [
@@ -21,9 +21,10 @@
         system = "x86_64-linux";
         maxJobs = 100;
         supportedFeatures = [ "benchmark" "big-parallel" ];
+        speedFactor = 100;
       }
     ];
-    
+
     settings.builders-use-substitutes = true;
   };
 }

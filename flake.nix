@@ -35,13 +35,7 @@
         modules = with inputs; [
           ./host/surface
 
-          agenix.nixosModules.default
-          nixos-hardware.nixosModules.microsoft-surface-pro-intel
-
-          (args: { nixpkgs.overlays = import ./overlays args; })
-
-          home-manager.nixosModules.home-manager
-          {
+          home-manager.nixosModules.home-manager{
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
 

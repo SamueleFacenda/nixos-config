@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, agenix, nixos-hardware, ... }:
 
 {
   imports =
@@ -16,6 +16,11 @@
       ../../secrets
 
       ./hardware-configuration.nix
+      nixos-hardware.nixosModules.microsoft-surface-pro-intel
+
+      agenix.nixosModules.default
+
+      (args: { nixpkgs.overlays = import ../../overlays args; })
     ];
 
   # https://github.com/linux-surface/linux-surface/issues/652 shoud remove the IPTSD shutdown block (not always work)
