@@ -12,7 +12,7 @@
     gnupg
     pinentry
   ];
-  
+
   programs.gnupg.agent = {
     enable = true;
     pinentryFlavor = "gtk2";
@@ -30,9 +30,13 @@
       group = "users";
       fillPlaceholdersFiles = ["/home/samu/.wakatime.cfg"];
     };
+
+    network-keys = {
+      file = ./network-keys.age;
+    };
   };
 
-  age.identityPaths = [ 
+  age.identityPaths = [
     "/home/samu/.ssh/id_rsa"
     "/home/samu/.ssh/id_ed25519"
   ];
