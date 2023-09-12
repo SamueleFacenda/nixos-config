@@ -6,7 +6,6 @@
     p7zip
 
     # utils
-    htop
     mdcat
     xclip
     rpl

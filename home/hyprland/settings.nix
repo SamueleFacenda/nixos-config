@@ -1,15 +1,16 @@
 {
   monitor = [
-    "eDP-1,2736x1824,1440x1050,2" # builtin
+    # "eDP-1,2736x1824,1440x1050,2" # builtin
+    "eDP-1,2736x1824,0x900,2" # builtin
     "DP-3,1680x1050,1440x0,1" # big fujitsu
     "DP-4,1440x900,0x0,1" # small asus
   ];
-  
+
   input = {
     follow_mouse = 1;
     touchpad.natural_scroll = true;
   };
-  
+
   general = {
     layout = "dwindle";
   };
@@ -34,7 +35,7 @@
   misc = {
     force_hypr_chan = false;
   };
-  
+
   decoration = {
     rounding = 19;
     blur = {
@@ -48,6 +49,6 @@
     "col.shadow" = "0xffa7caff";
     "col.shadow_inactive" = "0x50000000";
   };
-  
+
   blurls = "waybar";
 }

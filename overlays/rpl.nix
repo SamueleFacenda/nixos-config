@@ -1,7 +1,7 @@
 {lib, ...}:
 
 (self: super: {
-  rpl = super.rpl.overrideAttrs (finalAttrs: previousAttrs:{
+  rpl = super.rpl.overrideAttrs (finalAttrs: previousAttrs: rec {
     src = super.fetchFromGitHub {
       owner = "rrthomas";
       repo = "rpl";
@@ -15,7 +15,7 @@
     postPatch = ''
       # brute replace of error
       substituteInPlace rpl/__init__.py \
-        --replace "importlib.metadata.version('rpl')" ${version}
+        --replace "importlib.metadata.version('rpl')" "'${version}'"
     '';
     installPhase = "";
 
