@@ -12,12 +12,12 @@
     free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
     code = "codium --password-store=\"gnome\"";
     # rm = "trash put";
-    
-    ls = "exa --icons --group-directories-first";
-    ll = "exa --icons --long --group --git --group-directories-first";
-    la = "exa --icons --long --group --git --all --group-directories-first";
-    tree = "exa --icons --tree";
-    
+
+    ls = "eza --icons --group-directories-first";
+    ll = "eza --icons --long --group --git --group-directories-first";
+    la = "eza --icons --long --group --git --all --group-directories-first";
+    tree = "eza --icons --tree";
+
     c = "clear";
     q = "exit";
     rl = "omz reload";
@@ -27,7 +27,7 @@
     pwn = "shell ${self.outPath}#pwn";
     shutdown = "sudo systemctl stop iptsd && shutdown";
     reboot = "sudo systemctl stop iptsd && reboot";
-    
+
     bat = "cat /sys/class/power_supply/BAT1/capacity";
     batt = "upower -i /org/freedesktop/UPower/devices/battery_BAT1";
     screenshot = "grim -g \"$(slurp)\"";
@@ -41,9 +41,9 @@
   # plugins with oh-my-zsh
   oh-my-zsh = {
     enable = true;
-    plugins = [ 
+    plugins = [
       "git"
-    "sudo" 
+    "sudo"
     "z"
     ];
     # theme = "robbyrussell";
@@ -73,7 +73,7 @@
   ];
 
   # enable p10k instant prompt
-  initExtraFirst = 
+  initExtraFirst =
     ''
         if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
           source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
