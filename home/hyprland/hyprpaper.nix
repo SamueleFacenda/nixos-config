@@ -9,6 +9,7 @@
       wallpaper = DP-3, ${self.outPath}/assets/bg1.png
       wallpaper = DP-4, ${self.outPath}/assets/bg1.png
       wallpaper = eDP-1, ${self.outPath}/assets/bg1.png
+      wallpaper = DP-6, ${self.outPath}/assets/bg1.png
 
       ipc = off
     '';

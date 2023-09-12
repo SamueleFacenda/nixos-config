@@ -4,6 +4,7 @@
     "eDP-1,2736x1824,0x900,2" # builtin
     "DP-3,1680x1050,1440x0,1" # big fujitsu
     "DP-4,1440x900,0x0,1" # small asus
+    "DP-6,1440x900,0x0,1" # small asus
   ];
 
   input = {

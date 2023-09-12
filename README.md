@@ -34,7 +34,9 @@ TODOS:
 - [ ] waybar :construction:
 - [ ] dunst :construction:
 - [x] xdg-desktop-portal-shana
-
+- [ ] known nets
+- [ ] hyprland gnome indipendence
+- [ ] system update time
 
 :construction: mean work in progress
 

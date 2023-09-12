@@ -44,7 +44,7 @@
       "-L" # print build logs
     ];
 
-    dates = "weekly";
+    dates = "Sun *-*-* 00:00:00";
     randomizedDelaySec = "20min";
     persistent = true; # so I don't miss the update if the system is down
   };
