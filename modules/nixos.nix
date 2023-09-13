@@ -9,6 +9,12 @@
   nix.settings = {
     substituters = [
       "https://cache.nixos.org/"
+      "https://nixpkgs-wayland.cachix.org"
+    ];
+
+    trusted-public-keys = [
+      "nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
+      "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
     ];
 
     # nix community`s cache server

@@ -22,6 +22,9 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprgrass.url = "github:horriblename/hyprgrass"; # it uses the hyprland flake
+
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    # nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
@@ -57,5 +60,7 @@
       };
 
       formatter."${system}" = pkgs.nixpkgs-fmt;
+
+      nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
     };
 }

@@ -42,6 +42,7 @@ TODOS:
 - [x] wpa supplicant config
 - [ ] nordic like teme (blue dark)
 - [ ] make suspend, screen off and sleep work
+- [ ] stylix
 
 :construction: mean work in progress
 

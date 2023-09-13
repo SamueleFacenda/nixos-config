@@ -9,6 +9,7 @@
     mdcat
     xclip
     rpl
+    statix
 
     # misc
     xdg-utils
