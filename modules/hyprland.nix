@@ -12,9 +12,9 @@
   # LidSwitch and PowerButton actions
   services.logind = {
     powerKey = "suspend";
-    lidSwitchExternalPower = "suspend";
+    lidSwitchExternalPower = "ignore";
     lidSwitchDocked = "ignore";
-    lidSwitch = "suspend";
+    lidSwitch = "ignore";
   };
 
   environment.systemPackages = with pkgs; [
