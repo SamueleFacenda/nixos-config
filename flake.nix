@@ -15,7 +15,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    spicetify-nix.url = github:the-argus/spicetify-nix;
+    spicetify-nix.url = "github:the-argus/spicetify-nix";
     spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
@@ -40,11 +40,13 @@
 
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
 
-              home-manager.extraSpecialArgs = inputs;
-              home-manager.users.samu = import ./home;
+                extraSpecialArgs = inputs;
+                users.samu = import ./home;
+              };
             }
           ];
         };

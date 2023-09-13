@@ -6,7 +6,7 @@
     curl
     git
     jdk17
-    ngrok
+    # ngrok
     docker
     docker-compose
 

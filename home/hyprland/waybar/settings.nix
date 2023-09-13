@@ -14,9 +14,8 @@
     ];
     modules-right = [
       "tray"
-      "keyboard-state"
       "pulseaudio"
-      #"backlight"
+      # "backlight"
       "memory"
       "cpu"
       "battery"
@@ -27,16 +26,6 @@
     output = [ "DP-3" "eDP-1" ];
 
     "hyprland/window" = { };
-
-    keyboard-state = {
-      numlock = true;
-      capslock = true;
-      format = "{name} {icon}";
-      format-icons = {
-        locked = "";
-        unlocked = "";
-      };
-    };
 
     "custom/launcher" = {
       format = " ";
@@ -81,7 +70,7 @@
       format-disconnected = "󰯡 Disconnected";
       format-ethernet = "󰒢 Connected!";
       format-linked = "󰖪 {essid} (No IP)";
-      format-wifi = "󰖩 {essid}";
+      format-wifi = "󰖩  {essid}";
       interval = 1;
       tooltip = false;
     };
@@ -118,7 +107,7 @@
       disable-scroll = false;
       on-scroll-up = "hyprctl dispatch workspace -1";
       on-scroll-down = "hyprctl dispatch workspace +1";
-  		format = "{icon}{id}";
+  		format = "{icon}";
   		on-click = "activate";
   		format-icons = {
   			urgent = "";

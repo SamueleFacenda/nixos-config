@@ -1,4 +1,4 @@
-{ ... }:
+_:
 
 (self: super: {
   micro-wakatime = super.stdenv.mkDerivation rec {

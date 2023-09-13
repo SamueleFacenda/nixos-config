@@ -6,8 +6,9 @@ let
 
   filename = "default.nix";
   toPath = x: ./. + "/${x}";
-in
-let
+
+  # script body
+
   dirEntries = readDir ./.;
   filesSet = filterAttrs (n: v: v == "regular" && n != filename) dirEntries;
   files = mapAttrsToList (n: v: n) filesSet; # set to list of file names
