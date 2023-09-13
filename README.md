@@ -29,12 +29,11 @@ TODOS:
 - [x] kitty
 - [x] remote build with nixbuild.net
 - [ ] home server containers
-- [ ] rofi :construction:
-- [ ] wofi, replace rofi
+- [ ] wofi :construction:
 - [ ] waybar :construction:
 - [ ] dunst :construction:
 - [x] xdg-desktop-portal-shana
-- [ ] known nets
+- [x] known nets
 - [ ] hyprland gnome indipendence
 - [ ] tablet mode
 - [ ] power profiles daemon

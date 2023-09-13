@@ -1,5 +1,5 @@
 { config, pkgs, ... }: {
-  programs.rofi = {
+  programs.wofi = {
     enable = true;
   };
 }

@@ -3,7 +3,7 @@
   imports = [
     ./dunst.nix
     ./waybar
-    ./rofi
+    ./wofi
     ./hyprpaper.nix
     ./shana.nix
   ];
