@@ -39,6 +39,9 @@ TODOS:
 - [ ] tablet mode
 - [ ] power profiles daemon
 - [ ] remap surface pen button
+- [x] wpa supplicant config
+- [ ] "dark breeze" like teme (blue dark)
+- [ ] make suspend, screen off and sleep work
 
 :construction: mean work in progress
 
