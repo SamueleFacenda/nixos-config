@@ -16,6 +16,7 @@
         priority = 7;
         auth = ''
           eap=PEAP
+          key_mgmt=WPA-EAP
           identity="samuele.facenda@unitn.it"
           password="@UNITN_PSW@"
         '';
