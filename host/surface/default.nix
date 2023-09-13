@@ -25,9 +25,9 @@
     ];
 
   # https://github.com/linux-surface/linux-surface/issues/652 shoud remove the IPTSD shutdown block (not always work)
-  boot.kernelParams = [
-    "intel_iommu=off"
-  ];
+  #boot.kernelParams = [
+  #  "intel_iommu=off"
+  #];
 
   networking.hostName = "surface"; # Define your hostname.
 
