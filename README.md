@@ -18,7 +18,7 @@ TODOS:
 - [x] fonts
 - [x] cache cleanup
 - [ ] rice
-- [ ] wallaper(s)
+- [x] wallaper(s)
 - [x] wakatime
 - [x] cli trash bin with clean up
 - [x] spotify with spicetify
