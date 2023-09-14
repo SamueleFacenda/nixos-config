@@ -1,9 +1,7 @@
-{ config, pkgs, lib, ... }@args:
-let
-  inputs = builtins.removeAttrs args [ "pkgs" "options" "config" "lib" "modulesPath" "specialArgs" ];
-in
+{ config, pkgs, lib, specialArgs, ... }:
+# specialArgs are inputs
 {
-  imports = with inputs;
+  imports = with specialArgs;
     [
       ../../modules/system.nix
       ../../modules/nixos.nix
@@ -27,7 +25,7 @@ in
           useGlobalPkgs = true;
           useUserPackages = true;
 
-          extraSpecialArgs = inputs;
+          extraSpecialArgs = specialArgs;
           users.samu = import ../../home;
         };
       }
