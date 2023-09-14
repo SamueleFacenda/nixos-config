@@ -1,11 +1,9 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, agenix, nixos-hardware, ... }:
-
+{ config, pkgs, lib, ... }@args:
+let
+  inputs = builtins.removeAttrs args [ "pkgs" "options" "config" "lib" "modulesPath" "specialArgs" ];
+in
 {
-  imports =
+  imports = with inputs;
     [
       ../../modules/system.nix
       ../../modules/nixos.nix
@@ -22,6 +20,17 @@
       agenix.nixosModules.default
 
       (args: { nixpkgs.overlays = import ../../overlays args; })
+
+      home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+
+          extraSpecialArgs = inputs;
+          users.samu = import ../../home;
+        };
+      }
     ];
 
   # https://github.com/linux-surface/linux-surface/issues/652 shoud remove the IPTSD shutdown block (not always work)

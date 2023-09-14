@@ -101,19 +101,19 @@
       format-icons = [ "" "" "" "" "" ];
     };
 
-  	"hyprland/workspaces" = {
+    "hyprland/workspaces" = {
       active-only = false;
       all-outputs = true;
       disable-scroll = false;
       on-scroll-up = "hyprctl dispatch workspace -1";
       on-scroll-down = "hyprctl dispatch workspace +1";
-  		format = "{icon}";
-  		on-click = "activate";
-  		format-icons = {
-  			urgent = "";
-  			active = "";
-  			default = "󰧞";
-  		};
+      format = "{icon}";
+      on-click = "activate";
+      format-icons = {
+        urgent = "";
+        active = "";
+        default = "󰧞";
+      };
       sort-by-number = true;
     };
   }];

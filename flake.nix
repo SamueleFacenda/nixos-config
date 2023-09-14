@@ -25,6 +25,9 @@
 
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     # nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
+
+    stylix.url = "github:danth/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
@@ -38,19 +41,8 @@
           inherit system;
 
           specialArgs = inputs;
-          modules = with inputs; [
+          modules = [
             ./host/surface
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-
-                extraSpecialArgs = inputs;
-                users.samu = import ./home;
-              };
-            }
           ];
         };
       };
