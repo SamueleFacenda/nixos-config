@@ -15,5 +15,6 @@
     ./desktop-entries.nix
     ./wakatime.nix
     ./micro.nix
+    ./stylix.nix
   ];
 }
