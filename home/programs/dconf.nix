@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   # ...
@@ -6,7 +6,7 @@
   # https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/#setting-gnome-options
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
+      color-scheme = lib.mkDefault "prefer-dark";
     };
     "org/gnome/shell" = {
       favorite-apps = [

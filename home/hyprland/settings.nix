@@ -47,7 +47,7 @@
     };
     drop_shadow = true;
     shadow_range = 15;
-    "col.shadow" = "0xffa7caff";
+    "col.shadow" = lib.mkDefault "0xffa7caff";
     "col.shadow_inactive" = "0x50000000";
   };
 

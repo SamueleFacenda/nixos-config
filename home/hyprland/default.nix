@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
 
   imports = [
     ./dunst.nix
@@ -6,6 +6,9 @@
     ./wofi
     ./hyprpaper.nix
     ./shana.nix
+
+    ./settings.nix
+    ./style.nix
   ];
 
   home.packages = with pkgs; [

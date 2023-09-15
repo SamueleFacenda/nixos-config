@@ -9,6 +9,7 @@
       ../../modules/remote-build.nix
       ../../modules/hyprland.nix
       ../../modules/network.nix
+      #../../modules/stylix.nix
       ../../timers/empty-trash.nix
       ../../secrets
 

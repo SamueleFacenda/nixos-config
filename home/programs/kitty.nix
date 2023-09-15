@@ -1,8 +1,8 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
   programs.kitty = {
     enable = true;
-    font.name = "Monofur Nerd Font Mono"; # "JetBrainsMono Nerd Font";#"monofurx Nerd Font";#
-    font.size = 15;
+    font.name = lib.mkForce "Monofur Nerd Font Mono"; # "JetBrainsMono Nerd Font";#"monofurx Nerd Font";#
+    font.size = lib.mkForce 15;
     # theme = "Adwaita dark";
     # theme = "GitHub Dark";
     environment = {
@@ -16,7 +16,7 @@
       # font_features = "MonofurNF "
       background = "#14151e";
       foreground = "#98b0d3";
-      background_opacity = "0.3";
+      background_opacity = lib.mkDefault "0.3";
       #background_blur = "30"; # not supported on wayland
       window_padding_width = "10";
       dynamic_background_opacity = "yes";
