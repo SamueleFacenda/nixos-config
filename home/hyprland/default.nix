@@ -6,9 +6,6 @@
     ./wofi
     ./hyprpaper.nix
     ./shana.nix
-
-    ./settings.nix
-    ./style.nix
   ];
 
   home.packages = with pkgs; [
@@ -27,7 +24,7 @@
     ];
     settings =
       import ./bindings.nix //
-      import ./settings.nix // {
+      import ./settings.nix lib // {
 
         exec-once = [
           "/home/samu/.scripts/waybar.sh" # waybar auto-reload

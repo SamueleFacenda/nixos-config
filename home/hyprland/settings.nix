@@ -1,3 +1,4 @@
+lib :
 {
   monitor = [
     # "eDP-1,2736x1824,1440x1050,2" # builtin
