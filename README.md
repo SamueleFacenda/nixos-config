@@ -42,6 +42,7 @@ TODOS:
 - [ ] nordic like teme (blue dark)
 - [ ] make suspend, screen off and sleep work
 - [ ] stylix
+- [ ] phone integration (kde connect)
 
 :construction: mean work in progress
 
