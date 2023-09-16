@@ -43,6 +43,7 @@ TODOS:
 - [ ] make suspend, screen off and sleep work
 - [ ] stylix
 - [ ] phone integration (kde connect)
+- [ ] waydroid
 
 :construction: mean work in progress
 
