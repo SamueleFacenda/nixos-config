@@ -11,7 +11,7 @@ let
 in
   mapAttrs'
     (n: v: {
-      name = head (splitString "." n);
+      name = head (splitString "." n); # rec value.pname alternative
       value = callPackage (import (./. + "/${n}")) {};
     })
     (readDir ./.)

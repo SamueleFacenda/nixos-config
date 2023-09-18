@@ -18,7 +18,7 @@
 
       agenix.nixosModules.default
 
-      (args: { nixpkgs.overlays = import ../../overlays (lib.trace (builtins.attrNames args) args); })
+      (args: { nixpkgs.overlays = import ../../overlays args; })
 
       home-manager.nixosModules.home-manager
       {
