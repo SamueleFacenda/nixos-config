@@ -17,6 +17,13 @@
     lidSwitch = "ignore";
   };
 
+  powerManagement.powerDownCommands = ''
+    for usb in $(ls /sys/bus/usb/devices/*/power/wakeup)
+    do
+      echo enabled > $usb
+    done
+  '';
+
   environment.systemPackages = with pkgs; [
     inotify-tools
     killall
