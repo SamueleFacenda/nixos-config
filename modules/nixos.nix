@@ -41,8 +41,8 @@
 
   # only for a flake system
   system.autoUpgrade = {
-    enable = true;
-    flake = "/nixos-config";
+    enable = false;
+    flake = "/nixos-config"; # !!!!!!!
     flags = [
       "--update-input"
       "nixpkgs"

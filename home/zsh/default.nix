@@ -7,7 +7,8 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      update = "sudo nixos-rebuild switch --flake /nixos-config";
+      up = "sudo nixos-rebuild switch --flake /nixos-config"; # !!!!!!
+      fup = "sudo nixos-rebuild switch --flake /nixos-config --fast"; # !!!!!!
       shell = "NIXPKGS_ALLOW_UNFREE=1 nix develop --impure";
       free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
       code = "codium --password-store=\"gnome\"";
