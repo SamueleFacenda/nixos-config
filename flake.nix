@@ -39,7 +39,6 @@
       nixosConfigurations = {
         "surface" = nixpkgs.lib.nixosSystem {
           inherit system;
-
           specialArgs = inputs;
           modules = [
             ./host/surface
@@ -53,6 +52,9 @@
 
       formatter."${system}" = pkgs.nixpkgs-fmt;
 
+      # use updated wayland packages
       nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
+
+      packages."${system}" = import ./packages pkgs;
     };
 }

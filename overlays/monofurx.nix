@@ -1,5 +1,5 @@
-_:
+{ self, ... }:
 
-(self: super: {
-  monofurx = super.callPackage ../packages/monofurx.nix { };
+(final: prev: {
+  monofurx = self.packages."${prev.system}".monofurx;
 })

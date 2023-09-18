@@ -1,5 +1,5 @@
-_:
+{ self, ... }:
 
-(self: super: {
-  xdg-desktop-portal-shana = super.callPackage ../packages/xdg-desktop-portal-shana.nix { };
+(final: prev: {
+  xdg-desktop-portal-shana = self.packages."${prev.system}".xdg-desktop-portal-shana;
 })
