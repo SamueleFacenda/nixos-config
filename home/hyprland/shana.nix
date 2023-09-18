@@ -4,10 +4,10 @@
   ];
 
   xdg.configFile."xdg-desktop-portal-shana/config.toml".text = ''
-    open_file = "Gnome"
+    open_file = "Gtk"
     save_file = "Gtk"
-    
+
     [tips]
-    open_file_when_folder = "Gnome"
+    open_file_when_folder = "Gtk"
   '';
 }
