@@ -38,4 +38,8 @@
       };
     };
   };
+
+  networking.resolvconf.extraConfig = ''
+    name_servers="1.1.1.1"
+  '';
 }
