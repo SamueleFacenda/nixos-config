@@ -14,7 +14,7 @@
     powerKey = "suspend";
     lidSwitchExternalPower = "ignore";
     lidSwitchDocked = "ignore";
-    lidSwitch = "ignore";
+    lidSwitch = "suspend";
   };
 
   powerManagement.powerDownCommands = ''

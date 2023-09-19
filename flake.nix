@@ -22,6 +22,7 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprgrass.url = "github:horriblename/hyprgrass"; # it uses the hyprland flake
+    #hyprgrass.inputs.hyprland.follows = "nixpkgs";
 
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     # nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";

@@ -26,6 +26,7 @@
       find = "find -L";
 
       pwn = "shell ${self.outPath}#pwn";
+      cpp = "nix develop ${self.outPath}#cpp";
       shutdown = "sudo systemctl stop iptsd && shutdown";
       reboot = "sudo systemctl stop iptsd && reboot";
 
