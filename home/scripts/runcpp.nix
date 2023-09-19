@@ -4,8 +4,8 @@
     text = ''
       #!${pkgs.bash}/bin/bash
 
-      RED='\033[0;31m'
-      GREEN='\033[0;32m'
+      RED='\033[1;31m'
+      GREEN='\033[1;32m'
       NC='\033[0m' # No Color
 
       if [ 0 -ge $# ]
@@ -16,7 +16,7 @@
 
       if [ ! -f $1 ]
       then
-        printf "$RED File $1 not exists$NC \n"
+        printf "$RED File $1 does not exists$NC \n"
         exit 3
       fi
 
