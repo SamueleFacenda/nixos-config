@@ -1,13 +1,13 @@
 { config, options, pkgs, lib, ... }:
 with lib;
 let
-  inherit (attrsets) mapAttrs filterAttrs nameValuePair mapAttrsToList;
-  inherit (builtins) replaceStrings listToAttrs concatLists;
+  inherit (attrsets) mapAttrsToList;
+  inherit (builtins) replaceStrings listToAttrs concatLists map;
 
 
   cfg = config.age.secrets;
 
-  fillPlaceholders = { name, config, ... }: {
+  fillPlaceholdersOption = { name, config, ... }: {
     options.fillPlaceholdersFiles = mkOption {
       default = [ ];
       type = with types; listOf str;
@@ -16,27 +16,30 @@ let
     };
   };
 
-
-  genFlatScriptAttrset = set: listToAttrs (concatLists (mapAttrsToList genFromOptions set));
-
-  genFromOptions = name: options: map (mkEntry name) options.fillPlaceholdersFiles;
-
-  mkEntry = name: path: {
-    name = "${name}${replaceStrings ["/" "."] ["-" ""] path}";
-    value = makeScript name path;
-  };
-
-  makeScript = secretName: path: ''
-    secret=$(cat "${config.age.secrets."${secretName}".path}")
-    configFile=${path}
-    ${pkgs.gnused}/bin/sed -i "s#@${secretName}@#$secret#" "$configFile"
-  '';
+  scripts = listToAttrs
+    # list of name-value couples of scripts
+    (concatLists
+      # map every secret to a list of name-value couples (one per file to replace)
+      (mapAttrsToList
+        # map every file path to a name-value couple
+        (secret: v:
+          map
+            (path: {
+              name = "${secret}${replaceStrings ["/" "."] ["-" ""] path}";
+              value = ''
+                secret=$(cat "${config.age.secrets."${secret}".path}")
+                configFile=${path}
+                ${pkgs.gnused}/bin/sed -i "s#@${secret}@#$secret#" "$configFile"
+              '';
+            })
+            v.fillPlaceholdersFiles)
+        cfg));
 
 in
 {
   options.age.secrets = mkOption {
-    type = types.attrsOf (types.submodule fillPlaceholders);
+    type = types.attrsOf (types.submodule fillPlaceholdersOption);
   };
 
-  config.system.activationScripts = genFlatScriptAttrset cfg;
+  config.system.activationScripts = scripts;
 }
