@@ -47,9 +47,7 @@
         };
       };
 
-      devShells."${system}" = import ./shells {
-        inherit pkgs;
-      };
+      devShells."${system}" = import ./shells { inherit pkgs; };
 
       formatter."${system}" = pkgs.nixpkgs-fmt;
 

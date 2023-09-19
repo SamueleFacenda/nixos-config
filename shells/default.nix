@@ -1,25 +1,17 @@
 { pkgs, ... }@args:
 let
-  # function imports and static definitions
-  inherit (builtins) traceVal elemAt baseNameOf filter readDir split map listToAttrs toString trace;
-  inherit (pkgs.lib.attrsets) filterAttrs nameValuePair mapAttrsToList;
-
-  filename = "default.nix";
-  toPath = x: ./. + "/${x}";
-
-  # script body
-
-  dirEntries = readDir ./.;
-  filesSet = filterAttrs (n: v: v == "regular" && n != filename) dirEntries;
-  files = mapAttrsToList (n: v: n) filesSet; # set to list of file names
-
-  getName = x: elemAt (split ".nix" x) 0; # remove final ".nix" from a string
-  mkEntry = args: sh: {
-    # get name-value couple with shell derivation in value
-    name = getName sh;
-    value = import (toPath sh) args;
-  };
-  mkShellsList = files: args: map (mkEntry args) files;
-  shells = listToAttrs (mkShellsList files args); # convert list of name-value couples to attrset
+  inherit (builtins) head readDir;
+  inherit (pkgs.lib.strings) splitString;
+  inherit (pkgs.lib.attrsets) filterAttrs mapAttrs';
 in
-shells
+
+# import all the file/folders in this directory
+# and call them with all the arguments of a module
+# (create an attrsets of shells)
+mapAttrs'
+  (n: v: {
+    name = head (splitString "." n);
+    value = import (./. + "/${n}") args; })
+  (filterAttrs
+    (n: v: n != "default.nix")
+    (readDir ./.))
