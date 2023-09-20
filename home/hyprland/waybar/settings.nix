@@ -5,7 +5,6 @@
 
     modules-left = [
       "custom/launcher"
-      "temperature"
       "hyprland/workspaces"
       "hyprland/window"
     ];
@@ -13,13 +12,13 @@
       "clock"
     ];
     modules-right = [
-      "tray"
-      "pulseaudio"
-      # "backlight"
+      "temperature"
       "memory"
       "cpu"
-      "battery"
       "network"
+      "pulseaudio"
+      "battery"
+      "tray"
       "custom/powermenu"
     ];
 
@@ -29,9 +28,7 @@
 
     "custom/launcher" = {
       format = " ";
-      on-click = "pkill rofi || rofi2";
-      on-click-middle = "exec default_wall";
-      on-click-right = "exec wallpaper_random";
+      on-click = "pkill .wofi-wrapper || wofi_menu";
       tooltip = false;
     };
 
@@ -64,6 +61,9 @@
     cpu = {
       interval = 1;
       format = "󰍛 {usage}%";
+      states = {
+        warning = 95;
+      };
     };
 
     network = {

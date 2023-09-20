@@ -36,6 +36,8 @@ lib :
 
   misc = {
     force_hypr_chan = false;
+    disable_splash_rendering = true;
+    disable_hyprland_logo = true;
   };
 
   decoration = {
@@ -50,7 +52,14 @@ lib :
     shadow_range = 15;
     "col.shadow" = lib.mkDefault "0xffa7caff";
     "col.shadow_inactive" = "0x50000000";
+
+    active_opacity = 1.0;
+    inactive_opacity = 0.97;
+    blurls = [
+      "waybar"
+      "lockscreen"
+    ];
+
   };
 
-  blurls = "waybar";
 }

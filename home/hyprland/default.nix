@@ -16,6 +16,7 @@
     hyprpaper
     slurp
     grim
+    pamixer
   ];
 
   wayland.windowManager.hyprland = {

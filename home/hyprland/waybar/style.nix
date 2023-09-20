@@ -11,7 +11,7 @@
       min-height: 0;
     }
     window#waybar {
-      background: rgba(30, 30, 46, 0.5);
+      background: rgba(30, 30, 46, 0);
       border-bottom: 1px solid #282828;
       color: #f4d9e1
     }
@@ -53,17 +53,6 @@
 
     #custom-date {
     	color: #D3869B;
-    }
-
-    #custom-power {
-    	color: #24283b;
-    	background-color: #db4b4b;
-    	border-radius: 5px;
-    	margin-right: 10px;
-    	margin-top: 5px;
-    	margin-bottom: 5px;
-    	margin-left: 0px;
-    	padding: 5px 10px;
     }
 
     #tray {
