@@ -34,6 +34,12 @@
     LC_TIME = "it_IT.UTF-8";
   };
 
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "us,it";
+    xkbOptions = "grp:win_space_toggle,caps:escape_shifted_capslock";
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
