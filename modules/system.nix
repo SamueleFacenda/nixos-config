@@ -109,6 +109,7 @@
     EDITOR = "micro";
     VISUAL = "micro";
   };
+  environment.localBinInPath = true;
 
   # for vscode in wayland
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

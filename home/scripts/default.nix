@@ -7,7 +7,7 @@ in
 
   home.file = mapAttrs'
     (n: v: {
-      name = ".scripts/${n}";
+      name = ".local/bin/${n}";
       value = {
         executable = true;
         source = ./. + "/${n}";

@@ -29,7 +29,7 @@
       import ./settings.nix lib // {
 
         exec-once = [
-          "/home/samu/.scripts/waybar.sh" # waybar auto-reload
+          "/home/samu/.local/bin/waybar-loop" # waybar auto-reload
           "brave"
           "kitty"
           "hyprpaper"

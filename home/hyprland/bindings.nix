@@ -6,7 +6,7 @@
     "$mod, Q, exec, kitty"
     "$mod, C, killactive,"
     "$mod, M, exit,"
-    "$mod, B, exec, /home/samu/.scripts/black.sh"
+    "$mod, B, exec, black"
     "$mod, right, movetoworkspace, +1"
     "$mod, left, movetoworkspace, -1"
     ",mouse_left, workspace, r-1"

@@ -24,7 +24,6 @@
       rl = "omz reload";
       search = "nix search nixpkgs";
       find = "find -L";
-      run = "/home/samu/.scripts/runcpp.sh";
 
       pwn = "shell ${self.outPath}#pwn";
       cpp = "nix develop ${self.outPath}#cpp";
