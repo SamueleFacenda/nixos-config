@@ -50,7 +50,7 @@
     # transmission-qt
     exiftool
     odt2txt
-    # fontforge
+    fontforge
     # openscad
     # drawio
   ];
