@@ -7,6 +7,7 @@
       "custom/launcher"
       "hyprland/workspaces"
       "hyprland/window"
+      "hyprland/language"
     ];
     modules-center = [
       "clock"
@@ -115,6 +116,13 @@
         default = "󰧞";
       };
       sort-by-number = true;
+    };
+
+    "hyprland/language" = {
+        format = "{}";
+        format-en = "🇺🇸🦅";
+        format-it = "🤌🇮🇹";
+        keyboard-name = "microsoft-surface-type-cover-keyboard";
     };
   }];
 }
