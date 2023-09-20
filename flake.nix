@@ -29,17 +29,19 @@
 
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
+
+    systems.url = "github:nix-systems/default";
   };
 
   outputs = { nixpkgs, ... }@inputs:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      eachSystem = nixpkgs.lib.genAttrs (import inputs.systems);
+      pk = system: nixpkgs.legacyPackages."${system}";
     in
     {
       nixosConfigurations = {
         "surface" = nixpkgs.lib.nixosSystem {
-          inherit system;
+          system = "x86_64-linux";
           specialArgs = inputs;
           modules = [
             ./host/surface
@@ -47,13 +49,13 @@
         };
       };
 
-      devShells."${system}" = import ./shells { inherit pkgs; };
+      devShells = eachSystem (system: import ./shells { pkgs = pk system; });
 
-      formatter."${system}" = pkgs.nixpkgs-fmt;
+      formatter = eachSystem  (system: (pk system).nixpkgs-fmt);
 
       # use updated wayland packages
       nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
 
-      packages."${system}" = import ./packages pkgs;
+      packages = eachSystem (system: import ./packages (pk system));
     };
 }
