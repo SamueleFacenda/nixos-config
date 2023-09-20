@@ -6,6 +6,7 @@
     ./wofi
     ./hyprpaper.nix
     ./shana.nix
+    ./swayidle.nix
   ];
 
   home.packages = with pkgs; [
@@ -30,7 +31,6 @@
           "/home/samu/.scripts/waybar.sh" # waybar auto-reload
           "brave"
           "kitty"
-          "/home/samu/.scripts/sleep.sh" # auto suspend
           "hyprpaper"
           #"dunst"
         ];
