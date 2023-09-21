@@ -17,6 +17,12 @@ lib :
 
     repeat_rate = 25;
     repeat_delay = 500;
+
+  };
+
+  "device:ipts-stylus" = {
+    transform = 0;
+    output = "eDP-1";
   };
 
   general = {
@@ -42,6 +48,7 @@ lib :
 
   misc = {
     force_hypr_chan = false;
+    #disable_hypr_chan = true; does not work
     disable_splash_rendering = true;
     disable_hyprland_logo = true;
   };
