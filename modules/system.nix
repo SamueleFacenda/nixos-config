@@ -170,6 +170,31 @@
     };
   };
 
+  console = {
+    packages = with pkgs; [
+      powerline-fonts
+    ];
+    font = "ter-powerline-v32n.psf.gz";
+    colors = [ # onedark scheme
+      "282c34"
+      "353b45"
+      "3e4451"
+      "545862"
+      "565c64"
+      "abb2bf"
+      "b6bdca"
+      "c8ccd4"
+      "e06c75"
+      "d19a66"
+      "e5c07b"
+      "98c379"
+      "56b6c2"
+      "61afef"
+      "c678dd"
+      "be5046"
+    ];
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
