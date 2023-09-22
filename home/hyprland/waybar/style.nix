@@ -13,7 +13,7 @@
     window#waybar {
       background: rgba(30, 30, 46, 0);
       border-bottom: 1px solid #282828;
-      color: #f4d9e1
+      color: #88c0d0
     }
 
     #workspaces {
@@ -28,11 +28,11 @@
     #workspaces button {
       padding: 0px 5px;
       border-radius: 16px;
-      color: #928374;
+      color: #88c0d0;
     }
 
     #workspaces button.active {
-      color: #f4d9e1;
+      color: #88c0d0;
       background-color: transparent;
       border-radius: 16px;
     }
@@ -52,7 +52,7 @@
     }
 
     #custom-date {
-    	color: #D3869B;
+    	color: #88c0d0;
     }
 
     #tray {
@@ -64,7 +64,7 @@
     }
 
     #clock {
-      color: #E6B9C6;
+      color: #88c0d0;
       background-color: #282828;
       border-radius: 0px 0px 0px 24px;
       padding-left: 13px;
@@ -94,7 +94,7 @@
 
     #backlight {
       background-color: #24283b;
-      color: #db4b4b;
+      color: #88c0d0;
       border-radius: 0px 0px 0px 0px;
       margin: 5px;
       margin-left: 0px;
@@ -103,20 +103,20 @@
     }
 
     #network {
-      color: #f4d9e1;
+      color: #88c0d0;
       border-radius: 8px;
       margin-right: 5px;
     }
 
     #pulseaudio {
-      color: #f4d9e1;
+      color: #88c0d0;
       border-radius: 8px;
       margin-left: 0px;
     }
 
     #pulseaudio.muted {
       background: transparent;
-      color: #928374;
+      color: #88c0d0;
       border-radius: 8px;
       margin-left: 0px;
     }
@@ -128,7 +128,7 @@
     }
 
     #custom-launcher {
-      color: #e5809e;
+      color: #88c0d0;
       background-color: #282828;
       border-radius: 0px 24px 0px 0px;
       margin: 0px 0px 0px 0px;
