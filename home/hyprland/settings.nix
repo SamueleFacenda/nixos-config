@@ -9,7 +9,6 @@ lib :
   ];
 
   input = {
-    follow_mouse = 1;
     touchpad.natural_scroll = true;
 
     kb_layout = "us,it";
@@ -18,9 +17,16 @@ lib :
     repeat_rate = 25;
     repeat_delay = 500;
 
+    follow_mouse = 2; # keyboard focus don't change until click on window
   };
 
   "device:ipts-stylus" = {
+    transform = 0;
+    output = "eDP-1";
+  };
+
+
+  "device:ipts-touch" = {
     transform = 0;
     output = "eDP-1";
   };
