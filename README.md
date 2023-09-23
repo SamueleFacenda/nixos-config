@@ -65,7 +65,7 @@ TODOS:
 - [ ] dunst :construction:
 - [x] xdg-desktop-portal-shana
 - [x] known nets
-- [ ] hyprland gnome indipendence
+- [x] hyprland gnome indipendence
 - [ ] tablet mode
 - [ ] power profiles daemon
 - [ ] remap surface pen button
