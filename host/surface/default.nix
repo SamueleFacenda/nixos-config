@@ -5,7 +5,7 @@
     [
       ../../modules/system.nix
       ../../modules/nixos.nix
-      ../../modules/gnome.nix
+      # ../../modules/gnome.nix
       ../../modules/remote-build.nix
       ../../modules/hyprland.nix
       ../../modules/network.nix

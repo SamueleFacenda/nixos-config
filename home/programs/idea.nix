@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, self, ... }: {
 
   home.packages = with pkgs; [
     jetbrains-toolbox

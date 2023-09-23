@@ -52,7 +52,8 @@
             --time \
             --asterisks \
             --user-menu \
-            --cmd Hyprland
+            --cmd Hyprland \
+            --width 50
         '';
         # XDG_SESSION_TYPE=wayland dbus-run-session gnome-session
         user = "greeter";
