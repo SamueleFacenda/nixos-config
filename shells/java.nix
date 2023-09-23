@@ -3,6 +3,7 @@
   packages = with pkgs; [
     jdk17
     gradle
+    maven
   ];
 
   shellHook = ''

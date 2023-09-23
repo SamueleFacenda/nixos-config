@@ -5,6 +5,7 @@
   bind = [
     "$mod, Q, exec, kitty"
     "$mod, C, killactive,"
+    "$mod, F, togglefloating,"
     "$mod, M, exit,"
     "$mod, B, exec, /home/samu/.local/bin/black"
     "$mod, right, movetoworkspace, +1"

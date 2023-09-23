@@ -75,6 +75,7 @@ TODOS:
 - [ ] stylix
 - [ ] phone integration (kde connect)
 - [ ] waydroid
+- [ ] more custom kernel (I already have to build it from source)
 
 :construction: means work in progress
 

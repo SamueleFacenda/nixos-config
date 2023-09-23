@@ -12,7 +12,6 @@
     ./tmux.nix
     ./vscode.nix
     ./idea.nix
-    ./desktop-entries.nix
     ./wakatime.nix
     ./micro.nix
     ./stylix.nix
