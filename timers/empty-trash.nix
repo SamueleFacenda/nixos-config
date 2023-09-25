@@ -10,7 +10,7 @@
   };
 
   systemd.services."empty-trash" = {
-    script = "${pkgs.trashy}/bin/trash empty --older-than 1week --force";
+    script = "${pkgs.trashy}/bin/trash empty --older-than 1month --force";
     serviceConfig = {
       Type = "oneshot";
       User = "samu";
