@@ -10,6 +10,8 @@
     xclip
     rpl
     statix
+    nixd
+    nixpkgs-fmt
 
     # misc
     xdg-utils

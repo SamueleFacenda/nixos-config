@@ -1,7 +1,10 @@
 { config, pkgs, ... }: {
   programs.vscode = {
+
     enable = true;
-    package = pkgs.vscodium;
+    package = pkgs.vscodium.fhsWithPackages (ps: with ps;[
+      # extension specific dependencies
+    ]);
     extensions = with pkgs.vscode-extensions; [
       # github.copilot
       wakatime.vscode-wakatime
@@ -22,13 +25,25 @@
       }
     ];
 
+
     userSettings = {
       "editor.fontFamily" = "'Jetbrains Mono Nerd Fonts'";
       "editor.fontLigatures" = true;
       "[nix]"."editor.tabSize" = 2;
-      "files.autoSave" = "on";
+      "files.autoSave" = "onFocusChange";
       "workbench.iconTheme" = "vscode-icons";
       "vsicons.dontShowNewVersionMessage" = true;
+      "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
+      "nix.serverSettings".nixd = {
+        formatting.command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+        options = {
+          enable = true;
+          target = {
+            installable = "<flakeref>#nixosConfigurations.<name>.options";
+          };
+        };
+      };
     };
   };
 }

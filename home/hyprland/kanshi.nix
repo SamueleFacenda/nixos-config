@@ -1,6 +1,6 @@
 { config, pkgs, ... }:{
   services.kanshi = {
-    enable = false;
+    enable = true;
     systemdTarget = "hyprland-session.target";
     profiles = {
       undocked.outputs = [
@@ -8,15 +8,15 @@
           criteria = "eDP-1";
           mode = "2736x1824@60";
           position = "0x0";
-          scale = "2";
+          scale = 2.0;
         }
       ];
-      docked.outpus = [
+      docked.outputs = [
         {
           criteria = "eDP-1";
           mode = "2736x1824";
           position = "0x900";
-          scale = "2";
+          scale = 2.0;
           status = "disable";
         }
         {
@@ -35,7 +35,7 @@
           criteria = "eDP-1";
           mode = "2736x1824@60";
           position = "0x0";
-          scale = "2";
+          scale = 2.0;
         }
         {
           criteria = "*";
