@@ -9,7 +9,6 @@
           mode = "2736x1824@60";
           position = "0x0";
           scale = "2";
-          adaptiveSync  true;
         }
       ];
       docked.outpus = [
@@ -21,12 +20,12 @@
           status = "disable";
         }
         {
-          criteria = "DP-3";
+          criteria = "Fujitsu Siemens Computers GmbH E22W-5 YV2C027320";
           mode = "1680x1050";
           position = "1440x0";
         }
         {
-          criteria = "DP-4";
+          criteria = "Ancor Communications Inc ASUS VW199 DCLMTF153087";
           mode = "1440x900";
           position = "0x0";
         }
@@ -37,7 +36,6 @@
           mode = "2736x1824@60";
           position = "0x0";
           scale = "2";
-          adaptiveSync  true;
         }
         {
           criteria = "*";

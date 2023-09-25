@@ -32,10 +32,10 @@
       import ./settings.nix lib // {
 
         exec-once = [
+          "hyprpaper"
           "/home/samu/.local/bin/waybar-loop" # waybar auto-reload
           "brave"
           "kitty"
-          "hyprpaper"
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           #"dunst"
         ];

@@ -1,16 +1,18 @@
-{ config, pkgs, self, ... }: {
+{ config, pkgs, self, ... }:
+let
+  bg = "${self.outPath}/assets/bg2.png";
+in
+{
   xdg.configFile."hypr/hyprpaper.conf" = {
     text = ''
-      preload = ${self.outPath}/assets/bg1.png
-      #preload = ${self.outPath}/assets/bg2.png
-      #preload = ${self.outPath}/assets/bg3.png
-      #preload = ${self.outPath}/assets/bg4.png
+      preload = ${bg}
 
-      wallpaper = DP-3, ${self.outPath}/assets/bg1.png
-      wallpaper = DP-4, ${self.outPath}/assets/bg1.png
-      wallpaper = eDP-1, ${self.outPath}/assets/bg1.png
-      wallpaper = DP-6, ${self.outPath}/assets/bg1.png
-      # wallpaper = DP-5, ${self.outPath}/assets/bg1.png
+      wallpaper = desc:Fujitsu Siemens Computers GmbH E22W-5 YV2C027320, ${bg}
+      wallpaper = desc:Ancor Communications Inc ASUS VW199 DCLMTF153087, ${bg}
+      wallpaper = eDP-1, ${bg}
+
+      # fallback
+      wallpaper = , ${bg}
 
       ipc = off
     '';
