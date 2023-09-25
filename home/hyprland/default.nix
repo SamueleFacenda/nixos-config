@@ -7,6 +7,7 @@
     ./hyprpaper.nix
     ./shana.nix
     ./swayidle.nix
+    ./kanshi.nix
   ];
 
   home.packages = with pkgs; [
