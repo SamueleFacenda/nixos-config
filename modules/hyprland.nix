@@ -30,6 +30,7 @@
 
   xdg.portal.extraPortals = with pkgs; [
     xdg-desktop-portal-shana
+    xdg-desktop-portal-gtk
   ];
 
   security.polkit.enable = true;

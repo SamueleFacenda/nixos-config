@@ -17,6 +17,8 @@
     slurp
     grim
     pamixer
+    gnome.nautilus
+    gnome.eog
   ];
 
   wayland.windowManager.hyprland = {
