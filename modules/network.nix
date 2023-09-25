@@ -42,8 +42,4 @@
   networking.resolvconf.extraConfig = ''
     name_servers="1.1.1.1"
   '';
-
-  networking.supplicant."wlp1s0" = {
-    userControlled = true;
-  };
 }
