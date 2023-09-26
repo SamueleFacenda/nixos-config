@@ -37,7 +37,7 @@
   #  "intel_iommu=off"
   #];
 
-  networking.hostName = "surface"; # Define your hostname.
+  networking.hostName = "surface";
 
   # enable surface stylus and touch, and surface control tool
   microsoft-surface = {

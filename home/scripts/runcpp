@@ -16,8 +16,8 @@ then
     exit 3
 fi
 
-out="/tmp/$(md5sum $1 | awk '{print $1}')"
-mkdir $out 2> /dev/null
+out="/tmp/runcpp/$(md5sum $1 | awk '{print $1}')"
+mkdir -p $out 2> /dev/null
 
 out="${out}/out"
 
@@ -26,7 +26,7 @@ then
     printf "${GREEN}File cached $NC \n\n"
 else
     g++ -o "$out" $1
-    echo "${GREEN}Out file is $out $NC \n\n"
+    printf "${GREEN}Out file is $out $NC \n\n"
     chmod +x "$out"
 fi
 

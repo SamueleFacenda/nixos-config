@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, self, ... }: {
   programs.vscode = {
 
     enable = true;
@@ -40,7 +40,8 @@
         options = {
           enable = true;
           target = {
-            installable = "<flakeref>#nixosConfigurations.<name>.options";
+            installable = "${self.outPath}#nixosConfigurations.surface.options";
+            #installable = "${self.outPath}#homeConfigurations.samu.options";
           };
         };
       };
