@@ -23,7 +23,7 @@
       "custom/powermenu"
     ];
 
-    output = [ "DP-3" "eDP-1" ];
+    output = [ "DP-3" "eDP-1" "DP-5" ];
 
     "hyprland/window" = { };
 

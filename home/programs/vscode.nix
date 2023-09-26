@@ -2,9 +2,7 @@
   programs.vscode = {
 
     enable = true;
-    package = pkgs.vscodium.fhsWithPackages (ps: with ps;[
-      # extension specific dependencies
-    ]);
+    package = pkgs.vscodium.fhs;
     extensions = with pkgs.vscode-extensions; [
       # github.copilot
       wakatime.vscode-wakatime
@@ -37,6 +35,7 @@
       "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
       "nix.serverSettings".nixd = {
         formatting.command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
+        eval.target.installable = "${self.outPath}#nixosConfigurations.surface.config.system.build.toplevel";
         options = {
           enable = true;
           target = {
