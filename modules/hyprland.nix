@@ -46,6 +46,7 @@
   services.xserver.displayManager.gdm.enable = lib.mkForce false;
   services.greetd = {
     enable = true;
+    vt = 2; # clean login screen, no startup logs
     settings = {
       default_session = {
         command = ''
