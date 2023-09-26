@@ -76,6 +76,8 @@ TODOS:
 - [ ] phone integration (kde connect)
 - [ ] waydroid
 - [ ] more custom kernel (I already have to build it from source)
+- [x] kanshi dynamic monitor config
+- [ ] nixd language server
 
 :construction: means work in progress
 
