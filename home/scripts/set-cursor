@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-hyprctl setcursor Adwaita 24
-gsettings set org.gnome.desktop.interface cursor-theme 'Adwaita'
-gsettings set org.gnome.desktop.interface cursor-size '24'
