@@ -19,6 +19,7 @@
     wakatime
     spotify-tui
     editorconfig-core-c
+    gnome.adwaita-icon-theme
 
     # productivity
     obsidian

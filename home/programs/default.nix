@@ -15,5 +15,6 @@
     ./wakatime.nix
     ./micro.nix
     ./stylix.nix
+    ./cursor.nix
   ];
 }

@@ -33,6 +33,9 @@
     xdg-desktop-portal-gtk
   ];
 
+  # enable dconf for desktop config
+  programs.dconf.enable = true;
+
   security.polkit.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
