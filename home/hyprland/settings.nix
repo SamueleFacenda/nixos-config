@@ -2,9 +2,9 @@ lib :
 {
   monitor = [
     # "eDP-1,2736x1824,1440x1050,2" # builtin
-    #"eDP-1,highres,0x900,2" # builtin
-    #"desc:Fujitsu Siemens Computers GmbH E22W-5 YV2C027320,highres,1440x0,1" # big fujitsu
-    #"desc:Ancor Communications Inc ASUS VW199 DCLMTF153087,highres,0x0,1" # small asus
+    "eDP-1,highres,0x900,2" # builtin
+    "desc:Fujitsu Siemens Computers GmbH E22W-5 YV2C027320,highres,1440x0,1" # big fujitsu
+    "desc:Ancor Communications Inc ASUS VW199 DCLMTF153087,highres,0x0,1" # small asus
 
     ",preferred,auto,1" # fallback
   ];

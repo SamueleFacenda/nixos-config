@@ -11,9 +11,22 @@
       min-height: 0;
     }
     window#waybar {
-      background: rgba(30, 30, 46, 0);
-      border-bottom: 1px solid #282828;
+      background: rgba(0,0,0,0);
+      border-bottom: 0px solid #000000;
       color: #88c0d0
+    }
+
+    #window {
+      background: rgba(0,0,0,0);
+      padding-left: 15px;
+      padding-right: 15px;
+      border-radius: 16px;
+      /*border-left: solid 1px #282738;*/
+      /*border-right: solid 1px #282738;*/
+      margin-top: 5px;
+      margin-bottom: 5px;
+      font-weight: normal;
+      font-style: normal;
     }
 
     #workspaces {
@@ -163,19 +176,6 @@
     #custom-playerlabel {
       background: transparent;
       padding-left: 10px;
-      padding-right: 15px;
-      border-radius: 16px;
-      /*border-left: solid 1px #282738;*/
-      /*border-right: solid 1px #282738;*/
-      margin-top: 5px;
-      margin-bottom: 5px;
-      font-weight: normal;
-      font-style: normal;
-    }
-
-    #window {
-      background: #282828;
-      padding-left: 15px;
       padding-right: 15px;
       border-radius: 16px;
       /*border-left: solid 1px #282738;*/

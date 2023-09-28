@@ -1,6 +1,6 @@
 { config, pkgs, self, ... }:
 let
-  bg = "${self.outPath}/assets/bg4.png";
+  bg = "${self.outPath}/assets/gnome-bg1.jpg";
 in
 {
   xdg.configFile."hypr/hyprpaper.conf" = {

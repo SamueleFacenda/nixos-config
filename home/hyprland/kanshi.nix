@@ -1,7 +1,7 @@
 { config, pkgs, ... }:{
   systemd.user.services.kanshi.Service.ExecReload = "${pkgs.kanshi}/bin/kanshictl reload";
   services.kanshi = {
-    enable = true;
+    enable = false;
     systemdTarget = "hyprland-session.target";
     profiles = {
       undocked.exec = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";

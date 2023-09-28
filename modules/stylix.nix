@@ -17,15 +17,15 @@
       base04 = "D8DEE9"; # light gray
       base05 = "E5E9F0"; # middle gray (title text)
       base06 = "ECEFF4"; # light dirty white
-      base07 = "8FBCBB"; # green/blue light (text light)
+      base07 = "8FBCBB"; # green/blue light (text light micro?)
       base08 = "BF616A"; # red
       base09 = "D08770"; # orange
       base0A = "EBCB8B"; # yellow border & details
       base0B = "A3BE8C"; # green
-      base0C = "88C0D0"; # frozen light blue
-      base0D = "81A1C1"; # cyan pastello
-      base0E = "B48EAD"; # purple (dark pink warning)
-      base0F = "5E81AC"; # blue
+      base0C = "88C0D0"; # frozen light blue (official cyan)
+      base0D = "81A1C1"; # cyan pastello (official blue)
+      base0E = "B48EAD"; # purple (dark pink warning) (magenta offiacial)
+      base0F = "5E81AC"; # blue (offial brown)
     };
 
     opacity = {
