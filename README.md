@@ -38,7 +38,6 @@ and home manager to configure my programs and desktop.
 My goal is to have a good looking hyprland config.
  
 TODOS:
-- [ ] sway
 - [x] zsh
 - [x] powerlevel10k
 - [ ] neovim + copilot
@@ -70,9 +69,9 @@ TODOS:
 - [ ] power profiles daemon
 - [ ] remap surface pen button
 - [x] wpa supplicant config
-- [ ] nordic like theme (blue dark)
-- [ ] make suspend, screen off and sleep work
-- [ ] stylix
+- [x] nordic like theme (blue dark) :construction:
+- [x] make suspend, screen off and sleep work
+- [ ] stylix :construction:
 - [ ] phone integration (kde connect)
 - [ ] waydroid
 - [ ] more custom kernel (I already have to build it from source)
