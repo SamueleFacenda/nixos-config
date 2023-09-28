@@ -15,10 +15,10 @@
       disable_ligatures = "cursor";
       # font_features = "MonofurNF "
       background = "${base02}";
-      foreground = "${base05}";
-      background_opacity = lib.mkDefault "0.3";
+      foreground = "${base06}";
+      background_opacity = lib.mkDefault "0.5";
       #background_blur = "30"; # not supported on wayland
-      window_padding_width = "10";
+      window_padding_width = "7";
       dynamic_background_opacity = "yes";
       active_border_color = "${orange}";
       inactive_border_color = "${brown}";
@@ -29,7 +29,7 @@
       active_tab_foreground = "${base05}";
       active_tab_background = "${base02}";
       active_tab_font_style = "bold";
-      inactive_tab_foreground = "${base06}";
+      inactive_tab_foreground = "${base04}";
       inactive_tab_background = "${base00}";
       inactive_tab_font_style = "normal";
       tab_bar_background = "${base00}";
@@ -39,6 +39,24 @@
       visual_bell_duration = "0.0";
 
       wayland_titlebar_color = "system";
+/*
+      color0 = "${base00}";
+      color1 = "${red}";
+      color2 = "${green}";
+      color3 = "${yellow}";
+      color4 = "${blue}";
+      color5 = "${magenta}";
+      color6 = "${cyan}";
+      color7 = "${base05}";
+      color8 = "${base03}";
+      color9 = "${base03}";
+      color10 = "${red}";
+      color11 = "${green}";
+      color12 = "${yellow}";
+      color13 = "${blue}";
+      color14 = "${magenta}";
+      color15 = "${cyan}";
+      color16 = "${base07}";*/
     };
   };
 }

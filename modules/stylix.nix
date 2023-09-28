@@ -13,7 +13,7 @@
       base00 = "323436"; # darker main
       base01 = "404246"; # ligher than main
       base02 = "4C4C52"; # even lighter
-      base03 = "515663"; # dark grey blue, even lighter but dark
+      base03 = "515663"; # dark grey, even lighter but dark
       base04 = "D8DEE9"; # light gray
       base05 = "E5E9F0"; # middle gray (title text)
       base06 = "ECEFF4"; # light dirty white
