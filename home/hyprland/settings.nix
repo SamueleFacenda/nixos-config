@@ -55,9 +55,11 @@ lib :
 
   misc = {
     force_hypr_chan = false;
-    #disable_hypr_chan = true; does not work
+    #disable_hypr_chan = true;# does not work
     disable_splash_rendering = true;
     disable_hyprland_logo = true;
+    mouse_move_enables_dpms = true;
+    key_press_enables_dpms = true;
   };
 
   decoration = {
@@ -67,6 +69,7 @@ lib :
       size = 14;
       passes = 3;
       new_optimizations = true;
+      ignore_opacity = true;
     };
     drop_shadow = true;
     shadow_range = 15;
@@ -74,7 +77,7 @@ lib :
     "col.shadow_inactive" = "0x50000000";
 
     active_opacity = 1.0;
-    inactive_opacity = 0.97;
+    inactive_opacity = 0.75;
     blurls = [
       # "waybar"
       "lockscreen"
