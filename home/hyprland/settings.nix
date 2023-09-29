@@ -60,6 +60,7 @@ lib :
     disable_hyprland_logo = true;
     mouse_move_enables_dpms = true;
     key_press_enables_dpms = true;
+    suppress_portal_warnings = true;
   };
 
   decoration = {

@@ -23,7 +23,7 @@
     }
 
     /* Dark background, cyan text, pill shape */
-    #cpu, #memory, #temperature, #custom-powermenu, #workspaces, #tray{
+    #cpu, #memory, #temperature, #custom-powermenu, #workspaces{
     	background: ${base01};
     	margin: 5px 5px 5px 5px;
       padding: 0px 5px 0px 5px;
@@ -84,8 +84,6 @@
       padding: 0px 10px 0px 10px;
       font-weight: bold;
     }
-
-    #tray {}
 
     #network {}
 

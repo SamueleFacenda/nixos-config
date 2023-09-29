@@ -18,7 +18,6 @@
       "network"
       "pulseaudio"
       "battery"
-      "tray"
       "custom/powermenu"
     ];
 
