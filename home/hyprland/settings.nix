@@ -76,7 +76,7 @@ lib :
     active_opacity = 1.0;
     inactive_opacity = 0.97;
     blurls = [
-      "waybar"
+      # "waybar"
       "lockscreen"
     ];
 

@@ -16,7 +16,7 @@
       # font_features = "MonofurNF "
       background = "${base02}";
       foreground = "${base06}";
-      background_opacity = lib.mkDefault "0.5";
+      background_opacity = lib.mkDefault "0.8";
       #background_blur = "30"; # not supported on wayland
       window_padding_width = "7";
       dynamic_background_opacity = "yes";

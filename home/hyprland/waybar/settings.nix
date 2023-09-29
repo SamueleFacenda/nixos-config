@@ -6,7 +6,6 @@
     modules-left = [
       "custom/launcher"
       "hyprland/workspaces"
-      "hyprland/window"
       "hyprland/language"
     ];
     modules-center = [
@@ -24,8 +23,6 @@
     ];
 
     output = [ "DP-3" "eDP-1" "DP-5" ];
-
-    "hyprland/window" = { };
 
     "custom/launcher" = {
       format = " ";

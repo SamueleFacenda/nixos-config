@@ -11,22 +11,9 @@
       min-height: 0;
     }
     window#waybar {
-      background: rgba(200,200,200,0.3);
+      background: transparent;
       border-bottom: 0px solid #000000;
       color: ${cyan}
-    }
-
-    #window {
-      background: ${base00};
-      padding-left: 15px;
-      padding-right: 15px;
-      border-radius: 16px;
-      /*border-left: solid 1px #282738;*/
-      /*border-right: solid 1px #282738;*/
-      margin-top: 5px;
-      margin-bottom: 5px;
-      font-weight: normal;
-      font-style: normal;
     }
 
     #workspaces {
