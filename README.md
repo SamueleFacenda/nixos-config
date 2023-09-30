@@ -69,7 +69,7 @@ TODOS:
 - [ ] power profiles daemon
 - [ ] remap surface pen button
 - [x] wpa supplicant config
-- [x] nordic like theme (blue dark) :construction:
+- [x] nordic like theme (blue dark)
 - [x] make suspend, screen off and sleep work
 - [ ] stylix :construction:
 - [ ] phone integration (kde connect)

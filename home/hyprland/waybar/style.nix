@@ -26,7 +26,7 @@
     #cpu, #memory, #temperature, #custom-powermenu, #workspaces, #battery{
     	background: ${base01};
     	margin: 5px 5px 5px 5px;
-      padding: 0px 5px 0px 5px;
+      padding: 0px 10px 0px 10px;
     	border-radius: 16px;
     }
 
@@ -81,7 +81,6 @@
     }
 
     #cpu, #memory ,#temperature{
-      padding: 0px 10px 0px 10px;
       font-weight: bold;
     }
 
