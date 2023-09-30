@@ -71,7 +71,7 @@
     udiskie.enable = true;
     udiskie.settings.program_options = {
       file_manager = "${pkgs.xdg-utils}/bin/xdg-open";
-      # tray = false;
+      tray = false;
     };
   };
 

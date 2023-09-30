@@ -16,14 +16,14 @@
     }
 
     /* Transparent background, light text */
-    #battery, #pulseaudio, #network, #language{
+    #pulseaudio, #network, #language{
     	background: transparent;
     	padding: 5px 5px 5px 5px;
     	margin: 5px 5px 5px 5px;
     }
 
     /* Dark background, cyan text, pill shape */
-    #cpu, #memory, #temperature, #custom-powermenu, #workspaces{
+    #cpu, #memory, #temperature, #custom-powermenu, #workspaces, #battery{
     	background: ${base01};
     	margin: 5px 5px 5px 5px;
       padding: 0px 5px 0px 5px;
@@ -93,17 +93,24 @@
       color: ${blue};
     }
 
-    #battery {
-      color: ${base07};
-    }
+    #battery {}
 
     #battery.charging {
       color: ${green};
     }
 
-    #battery.warning:not(.charging) {
+    #battery.full {
+
+    }
+
+    #battery.critical:not(.charging) {
       background-color: ${red};
-      color: ${base00};
+      color: ${base06};
+    }
+
+    #battery.warning:not(.charging) {
+      background-color: ${orange};
+      color: ${base06};
     }
 
     #custom-powermenu {
