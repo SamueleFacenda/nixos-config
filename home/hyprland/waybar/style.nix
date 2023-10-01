@@ -84,6 +84,20 @@
       font-weight: bold;
     }
 
+    #temperature {
+      border-radius: 16px 0px 0px 16px;
+      margin-right: 0px;
+    }
+    #memory {
+      border-radius: 0px;
+      margin-right: 0px;
+      margin-left: 0px;
+    }
+    #cpu {
+      border-radius: 0px 16px 16px 0px;
+      margin-left: 0px;
+    }
+
     #network {}
 
     #pulseaudio {}
@@ -95,11 +109,11 @@
     #battery {}
 
     #battery.charging {
-      color: ${green};
+      background-color: ${green};
     }
 
     #battery.full {
-
+      color: ${green};
     }
 
     #battery.critical:not(.charging) {
