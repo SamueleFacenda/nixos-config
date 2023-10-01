@@ -16,17 +16,17 @@
     }
 
     /* Transparent background, light text */
-    #pulseaudio, #network, #language{
+    /*{
     	background: transparent;
     	padding: 5px 5px 5px 5px;
     	margin: 5px 5px 5px 5px;
-    }
+    }*/
 
     /* Dark background, cyan text, pill shape */
-    #cpu, #memory, #temperature, #custom-powermenu, #workspaces, #battery{
+    #cpu, #memory, #temperature, #custom-powermenu, #workspaces, #battery, #pulseaudio, #network, #language{
     	background: ${base01};
     	margin: 5px 5px 5px 5px;
-      padding: 0px 10px 0px 10px;
+      padding: 5px 10px 5px 10px;
     	border-radius: 16px;
     }
 
@@ -57,7 +57,7 @@
       color: ${blue};
     }
 
-    /* Does this works?(seems to be overwritten in child labe) */
+    /* Does this works?(seems to be overwritten in child label) */
     #workspaces button.active {
       color: ${red};
       background-color: transparent;
@@ -84,29 +84,28 @@
       font-weight: bold;
     }
 
-    #temperature {
+    /* LEFT  MODULES */
+    #temperature, #network {
       border-radius: 16px 0px 0px 16px;
       margin-right: 0px;
     }
-    #memory {
+
+    /* CENTER MODULES */
+    #memory, #pulseaudio, #battery{
       border-radius: 0px;
       margin-right: 0px;
       margin-left: 0px;
     }
-    #cpu {
+
+    /* RIGHT MODULES */
+    #cpu, #language {
       border-radius: 0px 16px 16px 0px;
       margin-left: 0px;
     }
 
-    #network {}
-
-    #pulseaudio {}
-
     #pulseaudio.muted {
       color: ${blue};
     }
-
-    #battery {}
 
     #battery.charging {
       background-color: ${green};
@@ -127,8 +126,8 @@
     }
 
     #custom-powermenu {
-      /*padding: 0px 13px 0px 10px;*/
-      padding: 0px 30px 0px 30px;
+      padding: 0px 13px 0px 10px;
+      /*padding: 0px 30px 0px 30px;*/
     }
   '';
 }
