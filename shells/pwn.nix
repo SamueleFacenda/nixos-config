@@ -23,7 +23,7 @@
 
     # web
     burpsuite
-    postman
+    # postman
 
     # software
     ht
@@ -35,7 +35,7 @@
     one_gadget
     # seccomp-tools
     ghidra
-    rocgdb
+    gdb
 
     # crypto
     # sage

@@ -5,7 +5,7 @@
     gnome.enable = false;
     kitty.enable = false;
     waybar.enable = false;
-    #vscode.enable = false;
+    vscode.enable = false;
 
   };
 }

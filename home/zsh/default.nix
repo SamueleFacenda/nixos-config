@@ -11,7 +11,7 @@
       fup = "sudo nixos-rebuild switch --flake /nixos-config --fast --builders ''"; # !!!!!!
       shell = "NIXPKGS_ALLOW_UNFREE=1 nix develop --impure";
       free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
-      code = "codium --password-store=\"gnome\"";
+      # code = "codium --password-store=\"gnome\"";
       # rm = "trash put";
 
       ls = "eza --icons --group-directories-first";
