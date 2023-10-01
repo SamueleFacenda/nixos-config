@@ -46,6 +46,8 @@
       ropper
       tqdm
       gmpy2
+      sympy
+      pip
     ]))
   ];
 
