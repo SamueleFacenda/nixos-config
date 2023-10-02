@@ -49,6 +49,7 @@
 
     #workspaces {
       margin: 5px 40px;
+      padding: 0pc 5px 0px 5px;
     }
 
     #workspaces button {
