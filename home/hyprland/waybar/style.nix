@@ -88,7 +88,7 @@
     #temperature, #network {
       border-radius: 16px 0px 0px 16px;
       margin-right: 0px;
-      padding: 5px 0px 5px 10px;
+      padding: 5px 3px 5px 10px;
     }
 
     /* CENTER MODULES */
@@ -96,22 +96,41 @@
       border-radius: 0px;
       margin-right: 0px;
       margin-left: 0px;
-      padding: 5px 0px 5px 7px;
+      padding: 5px 3px 5px 3px;
     }
 
     /* RIGHT MODULES */
     #cpu, #language {
       border-radius: 0px 16px 16px 0px;
       margin-left: 0px;
-      padding: 5px 10px 5px 7px;
+      padding: 5px 10px 5px 3px;
     }
 
     #pulseaudio.muted {
       color: ${blue};
     }
 
+    @keyframes charging {
+      from { color: ${base03}; }
+      to { color: ${green}; }
+    }
+
+    @keyframes warning {
+      from { background-color: ${base01}; }
+      to { background: radial-gradient(ellipse closest-side at center, ${orange} 50%, ${base01} 100%); }
+    }
+
+    @keyframes critical {
+      from { background-color: ${base01}; }
+      to { background: radial-gradient(ellipse closest-side at center, ${red} 50%, ${base01} 100%); }
+    }
+
     #battery.charging {
-      background-color: ${green};
+      animation-name: charging;
+      animation-duration: 2s;
+      animation-direction: alternate;
+      animation-timing-function: cubic-bezier(.59,.23,.25,.91);
+      animation-iteration-count: infinite;
     }
 
     #battery.full {
@@ -119,12 +138,20 @@
     }
 
     #battery.critical:not(.charging) {
-      background-color: ${red};
+      animation-name: critical;
+      animation-duration: 2s;
+      animation-direction: alternate;
+      animation-timing-function: cubic-bezier(.59,.23,.25,.91);
+      animation-iteration-count: infinite;
       color: ${base06};
     }
 
     #battery.warning:not(.charging) {
-      background-color: ${orange};
+      animation-name: warning;
+      animation-duration: 2s;
+      animation-direction: alternate;
+      animation-timing-function: cubic-bezier(.59,.23,.25,.91);
+      animation-iteration-count: infinite;
       color: ${base06};
     }
 
