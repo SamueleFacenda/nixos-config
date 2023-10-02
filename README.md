@@ -79,6 +79,7 @@ TODOS:
 - [x] nixd language server
 - [x] swayosd (on screen display)
 - [ ] eww widgets
+- [ ] flameshot
 
 :construction: means work in progress
 

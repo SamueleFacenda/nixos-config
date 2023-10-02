@@ -14,13 +14,20 @@
     gtk3
     swaylock-effects
     hyprpaper
+
+    # screenshots tools
     slurp
     grim
     # pamixer
+
+    #utilities
     gnome.nautilus
     gnome.eog
     gnome.file-roller
-    lollypop
+    lollypop # gnome audio player
+
+    # screen recorder via xdg-desktop-portal
+    kooha
   ];
 
   wayland.windowManager.hyprland = {
@@ -48,4 +55,12 @@
 
   services.swayosd.enable = true;
   services.swayosd.maxVolume = 150;
+
+  services.flameshot.enable = false;
+  services.flameshot.settings = with config.lib.stylix.colors.withHashtag; {
+    General = {
+      uiColor = "${brown}";
+      contrastUiColor = "${base07}";
+    };
+  };
 }
