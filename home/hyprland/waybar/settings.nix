@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let
 base_config = {
   layer = "top";
@@ -122,25 +122,14 @@ base_config = {
 };
 in
 {
-  programs.waybar.settings = builtins.map (x: base_config // x) [
+  programs.waybar.settings = builtins.map (x: lib.attrsets.recursiveUpdate base_config x) [
     ## OUTPUT SPECIFIC CONFIG
     {
       output = "eDP-1";
-      "hyprland/language" = {
-        format = "{}";
-        format-en = "us🇺🇸";
-        format-it = "it🇮🇹";
-        keyboard-name = "microsoft-surface-type-cover-keyboard";
-      };
     }
     {
       output = [ "DP-3" "DP-5" ];
-      "hyprland/language" = {
-        format = "{}";
-        format-en = "us🇺🇸";
-        format-it = "it🇮🇹";
-        keyboard-name = "keychron-keychron-k3-pro";
-      };
+      "hyprland/language".keyboard-name = "keychron-keychron-k3-pro";
     }
   ];
 }
