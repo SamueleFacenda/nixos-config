@@ -35,7 +35,7 @@ base_config = {
     format-icons = {
       default = [ "" "" "" ];
     };
-    on-click = "pamixer -t";
+    on-click = "swayosd-client --output-volume mute-toggle";
     tooltip = false;
   };
 

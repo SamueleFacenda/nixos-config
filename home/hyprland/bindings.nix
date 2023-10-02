@@ -37,8 +37,8 @@
   ];
 
   bindle = [
-    # volume keys
-    ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.2 @DEFAULT_AUDIO_SINK@ 5%+"
-    ", XF86AudioLowerVolume, exec, wpctl set-volume -l 1.2 @DEFAULT_AUDIO_SINK@ 5%-"
+    # volume keys, max is configured in default.nix
+    ", XF86AudioRaiseVolume, exec, swayosd --output-volume +5"
+    ", XF86AudioLowerVolume, exec, swayosd --output-volume -5"
   ];
 }

@@ -12,12 +12,11 @@
 
   home.packages = with pkgs; [
     gtk3
-    swayidle
     swaylock-effects
     hyprpaper
     slurp
     grim
-    pamixer
+    # pamixer
     gnome.nautilus
     gnome.eog
   ];
@@ -46,4 +45,5 @@
   };
 
   services.swayosd.enable = true;
+  services.swayosd.maxVolume = 150;
 }
