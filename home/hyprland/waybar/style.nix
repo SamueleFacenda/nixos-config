@@ -88,6 +88,7 @@
     #temperature, #network {
       border-radius: 16px 0px 0px 16px;
       margin-right: 0px;
+      padding: 5px 0px 5px 10px;
     }
 
     /* CENTER MODULES */
@@ -95,12 +96,14 @@
       border-radius: 0px;
       margin-right: 0px;
       margin-left: 0px;
+      padding: 5px 0px 5px 7px;
     }
 
     /* RIGHT MODULES */
     #cpu, #language {
       border-radius: 0px 16px 16px 0px;
       margin-left: 0px;
+      padding: 5px 10px 5px 7px;
     }
 
     #pulseaudio.muted {
