@@ -77,6 +77,7 @@ TODOS:
 - [ ] more custom kernel (I already have to build it from source)
 - [x] kanshi dynamic monitor config (crash on change, hyprland problem)
 - [x] nixd language server
+- [ ] swayosd :construction:
 
 :construction: means work in progress
 
