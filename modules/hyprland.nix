@@ -23,10 +23,8 @@
     killall
     greetd.tuigreet
     polkit_gnome
+    swayosd
   ];
-
-  # enable file choser on gtk apps
-  #xdg.portal.gtkUsePortal = true;
 
   xdg.portal.extraPortals = with pkgs; [
     xdg-desktop-portal-shana
