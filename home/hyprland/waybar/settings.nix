@@ -43,7 +43,7 @@ base_config = {
     interval = 1;
     format = "{:%R  %A %b %d}";
     tooltip = true;
-    tooltip-format = "{:%A; %d %B %Y}\n<tt>{calendar}</tt>";
+    tooltip-format = "<tt>{calendar}</tt>";
   };
 
   memory = {
