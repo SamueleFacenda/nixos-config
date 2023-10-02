@@ -10,8 +10,10 @@
     "$mod, B, exec, hyprctl dispatch dpms off"
     "$mod, right, movetoworkspace, +1"
     "$mod, left, movetoworkspace, -1"
-    ",mouse_left, workspace, r-1"
-    ",mouse_right, workspace, r+1"
+
+    # Windows bindings (they are recorded on the mouse)
+    "CTRL_SUPER, left, workspace, r-1"
+    "CTRL_SUPER, right, workspace, r+1"
   ];
 
   bindr = [
