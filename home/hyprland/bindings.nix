@@ -43,5 +43,8 @@
     ", XF86AudioRaiseVolume, exec, swayosd --output-volume +5"
     ", XF86AudioLowerVolume, exec, swayosd --output-volume -5"
     ", XF86AudioMute, exec, swayosd --output-volume mute-toggle"
+    ", XF86MonBrightnessUp, exec, swayosd --brightness raise 200"
+    ", XF86MonBrightnessDown, exec, swayosd --brightness lower 200"
+    ", print, exec, grim -g \"$(slurp)\" "
   ];
 }
