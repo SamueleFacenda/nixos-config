@@ -53,14 +53,14 @@ TODOS:
 - [x] cli trash bin with clean up
 - [x] spotify with spicetify
 - [x] ranger with kitty image preview
-- [ ] hyprland :construction:
+- [x] hyprland
 - [x] agenix
 - [x] dev and pwn shells
 - [x] kitty
 - [x] remote build with nixbuild.net
 - [ ] home server containers
 - [ ] wofi :construction:
-- [ ] waybar :construction:
+- [x] waybar
 - [ ] dunst :construction:
 - [x] xdg-desktop-portal-shana
 - [x] known nets
@@ -71,13 +71,14 @@ TODOS:
 - [x] wpa supplicant config
 - [x] nordic like theme (blue dark)
 - [x] make suspend, screen off and sleep work
-- [ ] stylix :construction:
+- [x] stylix
 - [ ] phone integration (kde connect)
 - [ ] waydroid
 - [ ] more custom kernel (I already have to build it from source)
 - [x] kanshi dynamic monitor config (crash on change, hyprland problem)
 - [x] nixd language server
-- [ ] swayosd :construction:
+- [x] swayosd
+- [ ] eww widgets
 
 :construction: means work in progress
 
