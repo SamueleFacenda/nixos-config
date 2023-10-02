@@ -7,7 +7,7 @@
     isNormalUser = true;
     description = "Samuele Facenda";
     hashedPassword = "$y$j9T$uT/2s7MBr3VdlbSg9VOly.$01sbSx0zeTs2axvuJZOdpEs3Xreti2XMaPm.RSuaj/7";
-    extraGroups = [ "networkmanager" "network" "surface-control" "wheel" ];
+    extraGroups = [ "networkmanager" "network" "surface-control" "wheel" "video" ];
 
     # change default shell
     shell = pkgs.zsh;

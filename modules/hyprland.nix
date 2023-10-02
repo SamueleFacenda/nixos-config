@@ -43,6 +43,9 @@
   security.pam.services.greetd.enableGnomeKeyring = true;
   security.pam.services.greetd.gnupg.enable = true;
 
+  services.udev.packages = with pkgs; [
+    swayosd
+  ];
 
   services.xserver.displayManager.gdm.enable = lib.mkForce false;
   services.greetd = {

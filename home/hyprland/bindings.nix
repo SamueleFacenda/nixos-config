@@ -40,5 +40,6 @@
     # volume keys, max is configured in default.nix
     ", XF86AudioRaiseVolume, exec, swayosd --output-volume +5"
     ", XF86AudioLowerVolume, exec, swayosd --output-volume -5"
+    ", XF86AudioMute, exec, swayosd --output-volume mute-toggle"
   ];
 }
