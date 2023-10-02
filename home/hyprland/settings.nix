@@ -67,7 +67,7 @@ lib :
     rounding = 19;
     blur = {
       enabled = true;
-      size = 14;
+      size = 7;
       passes = 3;
       new_optimizations = true;
       ignore_opacity = true;
