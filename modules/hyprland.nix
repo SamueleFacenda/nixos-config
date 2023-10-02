@@ -44,12 +44,8 @@
   security.pam.services.greetd.gnupg.enable = true;
 
   # Install swayosd udev rules and service (libinput listener)
-  services.udev.packages = with pkgs; [
-    swayosd
-  ];
-  systemd.packages = with pkgs; [
-    swayosd
-  ];
+  services.udev.packages = [ pkgs.swayosd ];
+  systemd.packages = [ pkgs.swayosd ];
 
   services.xserver.displayManager.gdm.enable = lib.mkForce false;
   services.greetd = {

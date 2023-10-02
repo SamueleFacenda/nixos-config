@@ -140,11 +140,11 @@
 
     #battery.critical:not(.charging) {
       animation-name: critical;
-      animation-duration: 2s;
+      animation-duration: 1s;
       animation-direction: alternate;
       animation-timing-function: cubic-bezier(.59,.23,.25,.91);
       animation-iteration-count: infinite;
-      color: ${base06};
+      color: ${red};
     }
 
     #battery.warning:not(.charging) {
@@ -153,7 +153,15 @@
       animation-direction: alternate;
       animation-timing-function: cubic-bezier(.59,.23,.25,.91);
       animation-iteration-count: infinite;
-      color: ${base06};
+      color: ${red};
+    }
+
+    /* !!!! During a transition(battery blinking) the background is shown. This sets the background of the
+    battery parent (a widget) to something different from transparent. Using the css selector E:has() is a better
+    way to do that, but it is not supported in gtk3. (the battery is the 6th node of the right elements) */
+    box.modules-right > widget:nth-child(6) {
+    	background: content-box ${base01};
+    	padding: 5px 0px;
     }
 
     #custom-powermenu {
