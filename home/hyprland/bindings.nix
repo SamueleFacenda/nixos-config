@@ -7,7 +7,7 @@
     "$mod, C, killactive,"
     "$mod, F, togglefloating,"
     "$mod, M, exit,"
-    "$mod, B, exec, /home/samu/.local/bin/black"
+    "$mod, B, exec, hyprctl dispatch dpms off"
     "$mod, right, movetoworkspace, +1"
     "$mod, left, movetoworkspace, -1"
     ",mouse_left, workspace, r-1"
