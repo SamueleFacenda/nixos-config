@@ -72,12 +72,12 @@ TODOS:
 - [x] nordic like theme (blue dark)
 - [x] make suspend, screen off and sleep work
 - [x] stylix
-- [ ] phone integration (kde connect)
+- [ ] phone integration (kde connect/gsconnects)
 - [ ] waydroid
 - [ ] more custom kernel (I already have to build it from source)
 - [x] kanshi dynamic monitor config (crash on change, hyprland problem)
 - [x] nixd language server
-- [x] swayosd
+- [x] swayosd (on screen display)
 - [ ] eww widgets
 
 :construction: means work in progress

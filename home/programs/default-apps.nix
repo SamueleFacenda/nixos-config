@@ -4,17 +4,19 @@
     configFile."mimeapps.list".force = true;
     mimeApps = {
       enable = true;
+      # ls /etc/profiles/per-user/samu/share/applications for home-manager apps
+      # ls /run/current-system/sw/share/applications for system wide apps
       defaultApplications = {
-        "text/plain" = "micro.desktop";
-        #"application/zip" = "org.gnome.FileRoller.desktop";
-        #"application/rar" = "org.gnome.FileRoller.desktop";
-        #"application/7z" = "org.gnome.FileRoller.desktop";
-        #"application/*tar" = "org.gnome.FileRoller.desktop";
+        "text/plain" = "codium.desktop";
+        "application/zip" = "org.gnome.FileRoller.desktop";
+        "application/rar" = "org.gnome.FileRoller.desktop";
+        "application/7z" = "org.gnome.FileRoller.desktop";
+        "application/*tar" = "org.gnome.FileRoller.desktop";
         "inode/directory" = "org.gnome.Nautilus.desktop";
-        #"application/pdf" = "okularApplication_pdf.desktop";
-        #"image/*" = "imv-folder.desktop";
-        #"video/*" = "umpv.desktop";
-        #"audio/*" = "org.gnome.Lollypop.desktop";
+        "application/pdf" = "com.github.xournalpp.xournalpp.desktop";
+        "image/*" = "org.gnome.eog.desktop";
+        "video/*" = "org.gnome.eog.desktop";
+        "audio/*" = "org.gnome.Lollypop.desktop";
         #"x-scheme-handler/tg" = "telegramdesktop.desktop";
         "text/html" = "brave-browser.desktop";
         "x-scheme-handler/http" = "brave-browser.desktop";

@@ -19,6 +19,8 @@
     # pamixer
     gnome.nautilus
     gnome.eog
+    gnome.file-roller
+    lollypop
   ];
 
   wayland.windowManager.hyprland = {
