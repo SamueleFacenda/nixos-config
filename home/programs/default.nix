@@ -16,5 +16,6 @@
     ./micro.nix
     ./stylix.nix
     ./cursor.nix
+    ./flameshot.nix
   ];
 }
