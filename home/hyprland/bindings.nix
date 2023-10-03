@@ -17,7 +17,7 @@
   ];
 
   bindr = [
-    "$mod,super_l, exec, wofi --show drun"
+    "$mod,super_l, exec, /home/samu/.local/bin/wofi-toggle"
   ];
 
   bindm = [

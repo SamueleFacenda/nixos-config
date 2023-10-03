@@ -13,6 +13,7 @@
     gtk3
     swaylock-effects
     hyprpaper
+    wofi
 
     # screenshots tools
     slurp
@@ -55,6 +56,9 @@
   services.swayosd.enable = true;
   services.swayosd.maxVolume = 150;
 
-  programs.eww.enable = true;
-  programs.eww.configDir = ./eww;
+  programs.eww = {
+    enable = true;
+    package = pkgs.eww-wayland;
+    configDir = ./eww;
+  };
 }
