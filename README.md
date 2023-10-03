@@ -59,7 +59,6 @@ TODOS:
 - [x] kitty
 - [x] remote build with nixbuild.net
 - [ ] home server containers
-- [ ] wofi :construction:
 - [x] waybar
 - [ ] dunst :construction:
 - [x] xdg-desktop-portal-shana

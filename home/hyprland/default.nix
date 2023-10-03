@@ -3,7 +3,6 @@
   imports = [
     ./dunst.nix
     ./waybar
-    ./wofi
     ./hyprpaper.nix
     ./shana.nix
     ./swayidle.nix
@@ -55,4 +54,7 @@
 
   services.swayosd.enable = true;
   services.swayosd.maxVolume = 150;
+
+  programs.eww.enable = true;
+  programs.eww.configDir = ./eww;
 }
