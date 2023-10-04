@@ -64,6 +64,8 @@
   # services.xserver.libinput.enable = true;
   services.udisks2.enable = true;
 
+  services.power-profiles-daemon.enable = true;
+
   # Bootloader
   boot.loader = {
     systemd-boot.enable = true;
@@ -93,6 +95,7 @@
     gnumake
     wireguard-tools
     wpa_supplicant_gui
+    power-profiles-daemon
 
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
     (
