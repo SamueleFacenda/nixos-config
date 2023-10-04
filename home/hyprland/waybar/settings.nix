@@ -83,6 +83,7 @@ base_config = {
   };
 
   battery = {
+    interval = 10;
     states = {
       "good" = 90;
       "warning" = 30;
