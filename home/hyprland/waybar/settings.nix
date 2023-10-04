@@ -89,11 +89,9 @@ base_config = {
       "critical" = 15;
     };
     format = "{icon}   {capacity}%";
-    format-charging = "{capacity}% 󱐋";
-    format-plugged = "{capacity}% ";
-    format-alt = "{icon} {time}";
-    # format-good = ""; // An empty format will hide the module
-    # format-full = "";
+    format-charging = "󱐋 {capacity}%";
+    format-plugged = " {capacity}%";
+    # format-full = ""; // An empty format will hide the module
     format-icons = [ "" "" "" "" "" ];
   };
 

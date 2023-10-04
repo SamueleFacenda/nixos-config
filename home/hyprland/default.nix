@@ -46,6 +46,7 @@
           "kitty"
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "hyprctl setcursor Adwaita 24"
+          "eww daemon"
           # https://github.com/hyprwm/Hyprland/issues/2586
           # "${pkgs.systemd}/bin/systemctl --user try-reload-or-restart  kanshi.service"
           #"dunst"
