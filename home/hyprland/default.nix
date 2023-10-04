@@ -1,4 +1,7 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+let
+  usr_bin_dir = "/home/samu/.local/bin/";
+in {
 
   imports = [
     ./dunst.nix
@@ -41,12 +44,12 @@
 
         exec-once = [
           "hyprpaper"
-          "/home/samu/.local/bin/waybar-loop" # waybar auto-reload
+          "${usr_bin_dir}waybar-loop" # waybar auto-reload
           "brave"
           "kitty"
           "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
           "hyprctl setcursor Adwaita 24"
-          "eww daemon"
+          "${usr_bin_dir}init_eww"
           # https://github.com/hyprwm/Hyprland/issues/2586
           # "${pkgs.systemd}/bin/systemctl --user try-reload-or-restart  kanshi.service"
           #"dunst"

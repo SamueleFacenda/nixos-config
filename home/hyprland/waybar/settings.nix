@@ -84,6 +84,7 @@ base_config = {
 
   battery = {
     interval = 10;
+    on-click = "eww open powerprofile";
     states = {
       "good" = 90;
       "warning" = 30;

@@ -1,0 +1,22 @@
+(defwindow powerprofile
+  :stacking "fg"
+  :monitor 0
+  :windowtype "normal"
+  :wm-ignore true
+  :geometry (geometry
+              :width "5%"
+              :height "5%")
+  (powerprofile-layout))
+
+(defvar current-powerprofile "-- currentprofile --")
+
+
+(defwidget powerprofile-layout []
+    (box
+        (combo-box-text
+            :items "[performance,balanced,power-saver]"
+            :onchange "eww close powerprofile; eww update current-powerprofile={}; powerprofilesctl set {}"
+                (label :text current-powerprofile)
+        )
+    )
+)

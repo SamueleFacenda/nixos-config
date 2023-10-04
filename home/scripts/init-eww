@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+eww daemon --logs &
+
+eww update current-powerprofile=$(powerprofilesctl get)
