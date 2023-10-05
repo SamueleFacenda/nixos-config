@@ -4,8 +4,11 @@
   :windowtype "normal"
   :wm-ignore true
   :geometry (geometry
-              :width "5%"
-              :height "5%")
+              :anchor "top right"
+              :width "10%"
+              :height "3%"
+              :x "4%"
+              :y "0%")
   (powerprofile-layout))
 
 (defvar current-powerprofile "-- currentprofile --")
@@ -13,6 +16,7 @@
 
 (defwidget powerprofile-layout []
     (box
+        :class "powerprofile-box"
         (combo-box-text
             :items "[performance,balanced,power-saver]"
             :onchange "eww close powerprofile; eww update current-powerprofile={}; powerprofilesctl set {}"

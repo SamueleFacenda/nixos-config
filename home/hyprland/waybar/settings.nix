@@ -95,6 +95,7 @@ base_config = {
     format-plugged = " {capacity}%";
     # format-full = ""; // An empty format will hide the module
     format-icons = [ "" "" "" "" "" ];
+    tooltip = false;
   };
 
   "hyprland/workspaces" = {
