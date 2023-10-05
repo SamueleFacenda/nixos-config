@@ -2,4 +2,10 @@
 
 eww daemon --logs &
 
+# wait for initialization
+while [ $(eww ping) != "pong" ]
+do
+    sleep 0.2
+done
+
 eww update current-powerprofile=$(powerprofilesctl get)

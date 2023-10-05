@@ -15,6 +15,12 @@
       border-bottom: 0px solid #000000;
     }
 
+    tooltip {
+      background-color: ${base00};
+      color: ${cyan};
+      border-radius: 16px;
+    }
+
     /* Transparent background, light text */
     /*{
     	background: transparent;
