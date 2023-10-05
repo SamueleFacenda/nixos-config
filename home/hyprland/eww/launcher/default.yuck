@@ -15,17 +15,17 @@
     (box
         :orientation "vertical"
         (button
-            :onclick "shutdown now &"
+            :onclick "shutdown now"
             "")
         (button
-            :onclick "reboot &"
+            :onclick "reboot"
             "󰑥")
         (button
-            :onclick "systemctl suspend &"
+            :onclick "systemctl suspend"
             "󰤄")
         (button
-            :onclick "swaylock -f --screenshot --effect-blur 10x7 --fade-in 5 &"
+            :onclick "swaylock -f --screenshot --effect-blur 10x7 --fade-in 5"
             "")
         (button
-            :onclick "hyprctl dispatch exit &"
+            :onclick "hyprctl dispatch exit"
             "󰍃")))

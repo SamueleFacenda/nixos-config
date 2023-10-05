@@ -171,8 +171,8 @@
     }
 
     #custom-powermenu {
-      /*padding: 0px 13px 0px 10px;*/
-      padding: 0px 30px 0px 30px;
+      padding: 0px 13px 0px 10px;
+      /*padding: 0px 30px 0px 30px;*/
     }
   '';
 }
