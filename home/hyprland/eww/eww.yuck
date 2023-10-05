@@ -1,1 +1,2 @@
 (include "./power-profile/default.yuck")
+(include "./power-menu/default.yuck")

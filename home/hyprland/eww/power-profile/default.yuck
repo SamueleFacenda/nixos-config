@@ -16,7 +16,6 @@
 
 (defwidget powerprofile-layout []
     (box
-        :class "powerprofile-box"
         (combo-box-text
             :items "[performance,balanced,power-saver]"
             :onchange "eww close powerprofile; eww update current-powerprofile={}; powerprofilesctl set {}"

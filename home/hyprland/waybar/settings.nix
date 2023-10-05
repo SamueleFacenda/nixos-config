@@ -73,8 +73,8 @@ base_config = {
 
   "custom/powermenu" = {
     format = "";
-    on-click = "pkill rofi || ~/.config/rofi/powermenu/type-3/powermenu.sh";
     tooltip = false;
+    on-click = "eww open --toggle powermenu";
   };
 
   tray = {
