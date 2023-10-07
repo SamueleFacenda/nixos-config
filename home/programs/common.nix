@@ -31,6 +31,7 @@
     # code
     (python3.withPackages (ps: with ps; [
       pillow # for ranger kitty image preview
+      icecream
       # ranger deps
       chardet
       python-bidi
