@@ -1,5 +1,7 @@
 # My nixos Flake:snowflake:
 
+![hyprland screenshot](assets/screenshot1.png)
+
 This is more than my config, it's a flake. There are a couple packages and some devshells.
 ### Packages:
 - xdg-desktop-portal-shana (the portal of portals)
@@ -10,7 +12,7 @@ This is more than my config, it's a flake. There are a couple packages and some 
 - cpp (developement in c++)
 - java (jdk 17 env)
 
-If you want to use this packages in your config:
+If you want to use that packages in your config:
 ```
 inputs.nixos-samu.url = "github:SamueleFacenda/nixos-config";
 # only if you understand what you are doing
