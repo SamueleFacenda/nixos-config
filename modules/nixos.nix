@@ -28,6 +28,17 @@
     ];
   };
 
+  nix.registry.samu = {
+    from = {
+      id = "samu";
+      type = "indirect";
+    };
+    to = {
+      path = "/nixos-config";
+      type = "path";
+    };
+  };
+
   # Limit the number of generations to keep
   boot.loader.systemd-boot.configurationLimit = 8;
   # boot.loader.grub.configurationLimit = 10;
@@ -42,7 +53,7 @@
   # only for a flake system
   system.autoUpgrade = {
     enable = false;
-    flake = "/nixos-config"; # !!!!!!!
+    flake = "samu";
     flags = [
       "--update-input"
       "nixpkgs"
