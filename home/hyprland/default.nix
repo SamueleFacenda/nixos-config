@@ -36,7 +36,7 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = with pkgs; [
-      #hyprgrass
+      hyprgrass
     ];
     settings =
       import ./bindings.nix //
