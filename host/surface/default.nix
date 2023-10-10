@@ -51,14 +51,14 @@
   # ''; # bad fix
 
   # or
-  boot.kernelPatches = [{
-    name = "fix-surface-buttons";
-    patch = null;
-    extraConfig = ''
-      PINCTRL_INTEL y
-      PINCTRL_SUNRISEPOINT y
-    '';
-  }];
+#  boot.kernelPatches = [{
+#    name = "fix-surface-buttons";
+#    patch = null;
+#    extraConfig = ''
+#      PINCTRL_INTEL y
+#      PINCTRL_SUNRISEPOINT y
+#    '';
+#  }];
 
   environment.systemPackages = with pkgs; [
     microcodeIntel
