@@ -38,7 +38,16 @@ I use flakes instead of the standard configuration.nix
 and home manager to configure my programs and desktop.
 
 My goal is to have a good looking hyprland config.
+
+
+### Note for surface devices
+
+At the moment that I'm writing (2023 10 10) the porting to nixos of the surface kernel is not working.
+I've made my own fork of nixos-hardware in order to fix it and I use it in my config. 
+You can find in [here](https://github.com/SamueleFacenda/nixos-hardware)
  
+ 
+
 TODOS:
 - [x] zsh
 - [x] powerlevel10k
