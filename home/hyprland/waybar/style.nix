@@ -29,7 +29,7 @@
     }*/
 
     /* Dark background, cyan text, pill shape */
-    #cpu, #memory, #temperature, #custom-powermenu, #workspaces, #battery, #pulseaudio, #network, #language{
+    #cpu, #memory, #temperature, #custom-powermenu, #workspaces, #battery, #pulseaudio, #network, #language, #idle_inhibitor{
     	background: ${base01};
     	margin: 5px 5px 5px 5px;
       padding: 5px 10px 5px 10px;
