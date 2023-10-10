@@ -4,7 +4,7 @@
 }: {
   imports = [
     ./git.nix
-    ./default-apps.nix
+    ./xdg.nix
     ./common.nix
     ./dconf.nix
     ./spotify.nix

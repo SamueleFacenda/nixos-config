@@ -1,6 +1,15 @@
 { config, pkgs, ... }: {
   xdg = {
     enable = true;
+
+    userDirs = {
+      createDirectories = false;
+      desktop = "${config.home.homeDirectory}/.Desktop";
+      music = "${config.home.homeDirectory}/.Music";
+      templates = "${config.home.homeDirectory}/.Templates";
+      # templates = "${config.home.homeDirectory}/.Videos";
+    };
+
     configFile."mimeapps.list".force = true;
     mimeApps = {
       enable = true;
