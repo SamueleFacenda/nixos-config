@@ -99,7 +99,7 @@
     }
 
     /* CENTER MODULES */
-    #memory, #pulseaudio, #battery{
+    #memory, #pulseaudio, #battery, #idle_inhibitor{
       border-radius: 0px;
       margin-right: 0px;
       margin-left: 0px;

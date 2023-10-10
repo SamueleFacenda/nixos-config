@@ -18,6 +18,7 @@ base_config = {
     "network"
     "pulseaudio"
     "battery"
+    "idle_inhibitor"
     "hyprland/language"
     "custom/powermenu"
   ];
@@ -96,6 +97,14 @@ base_config = {
     # format-full = ""; // An empty format will hide the module
     format-icons = [ "" "" "" "" "" ];
     tooltip = false;
+  };
+
+  idle_inhibitor = {
+    format = "{icon}";
+    format-icons = {
+      activated = "󰒳";
+      deactivated = "󰒲";
+    };
   };
 
   "hyprland/workspaces" = {
