@@ -12,6 +12,7 @@
     statix
     nixd
     nixpkgs-fmt
+    ffmpeg
 
     # misc
     xdg-utils

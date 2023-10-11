@@ -4,8 +4,13 @@ set -e
 
 video_sink_camera="/dev/video40"
 video_sink_screen="/dev/video41"
+video_sink_phone="/dev/video42"
 front='\\\_SB_.PCI0.I2C2.CAMF'
 back='\\\_SB_.PCI0.I2C3.CAMR'
+# not short but easy readable
+port_regex='((6553[0-5])|(655[0-2][0-9])|(65[0-4][0-9]{2})|(6[0-4][0-9]{3})|([1-5][0-9]{4})|([0-9]{1,4}))'
+ip_port_regex="^(?:(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])(\.(?!:)|:${port_regex}\$)){4}\$"
+
 
 stop_cam () {
     pkill .gst-launch-1.0
@@ -104,11 +109,45 @@ screen)
     esac
     ;;
 
+net)
+    case $2 in
+    start)
+        if [[ -z $3 ]]
+        then
+            echo "Network address (ip:port) not provided, exiting..." 1>&2
+            exit 1
+        fi
+        if echo "$3" | grep --invert-match -qP $ip_port_regex
+            then
+                echo "Network address is not a valid ip:port" 1>&2
+                exit 1
+            fi
+        ffmpeg -i "http://${3}/video" -vf format=yuv420p -f v4l2 $video_sink_phone \
+            > /dev/null 2>&1 & disown
+        ;;
+    stop)
+        pkill ffmpeg
+        if [ $? -eq 0 ]
+        then
+            echo "Network cast stopped succesfully"
+        else
+            echo "Error stopping the network cast, fail" 1>&2
+            exit 1
+        fi
+        ;;
+    *)
+        echo "Invalid option: '$2'. Choose from ['stop' 'start ip:port']."
+        ;;
+    esac
+
+    ;;
+
 --help|-h|help)
     echo "Loopcam, an utility for streaming videos to v4l2loopback sinks."
     echo "Available options: "
-    echo "cam [front back get stop] --> start, switch or stop the cast of a surface camera to the sink"
-    echo "screen [all region stop]  --> start or stop the casting of the fullscreen or a region to the other sink"
+    echo "cam [front back get stop]  --> start, switch or stop the cast of a surface camera to the sink"
+    echo "screen [all region stop]   --> start or stop the casting of the fullscreen or a region to the other sink"
+    echo "net [start <ip:port> stop] --> start or stop the cast of a network stream"
     ;;
 
 *)
