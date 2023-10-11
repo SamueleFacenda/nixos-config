@@ -45,20 +45,25 @@
     surface-control.enable = lib.mkForce false;
   };
 
+  systemd.services.iptsd.serviceConfig = {
+    ExecStop = "${pkgs.util-linux}/bin/kill -TERM -$MAINPID";
+    Restart = "always";
+  };
+
   # system.activationScripts.repairButtons = ''
   #  ${pkgs.kmod}/bin/modprobe -r soc_button_array
   #  ${pkgs.kmod}/bin/modprobe soc_button_array
   # ''; # bad fix
 
   # or
-#  boot.kernelPatches = [{
-#    name = "fix-surface-buttons";
-#    patch = null;
-#    extraConfig = ''
-#      PINCTRL_INTEL y
-#      PINCTRL_SUNRISEPOINT y
-#    '';
-#  }];
+  boot.kernelPatches = [{
+    name = "fix-surface-buttons";
+    patch = null;
+    extraConfig = ''
+      PINCTRL_INTEL y
+      PINCTRL_SUNRISEPOINT y
+    '';
+  }];
 
   environment.systemPackages = with pkgs; [
     microcodeIntel
