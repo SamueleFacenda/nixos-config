@@ -20,6 +20,7 @@
     spotify-tui
     editorconfig-core-c
     gnome.adwaita-icon-theme
+    wf-recorder
 
     # productivity
     obsidian

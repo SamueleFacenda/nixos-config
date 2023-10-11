@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+
+set -e
+
+video_sink_camera="/dev/video40"
+video_sink_screen="/dev/video41"
+front='\\\_SB_.PCI0.I2C2.CAMF'
+back='\\\_SB_.PCI0.I2C3.CAMR'
+
+stop_cam () {
+    pkill .gst-launch-1.0
+    if [ $? -eq 0 ]
+    then
+        echo "Camera stopped successfully"
+    else
+        echo "Error stopping the camera, fail" 1>&2
+        exit 1
+    fi
+}
+
+loopback_camera () {
+    cam=`get_camera`
+    
+    if [[ "$cam" == "$1" ]]
+    then
+        echo "Camera already started"
+        return 0
+    fi
+    
+    if [[ ! -z $cam ]]
+    then
+        stop_cam > /dev/null
+    fi
+
+    gst-launch-1.0 libcamerasrc camera-name=$1 \
+        ! videoconvert ! v4l2sink device=$video_sink_camera \
+        > /dev/null 2>&1 & disown
+}
+
+get_camera () {
+    ps -aux | \
+        grep "gst-launch-1.0\s" | \
+        awk '{print $13}' | \
+        cut -d "=" -f 2
+}
+
+case $1 in
+cam)
+    case $2 in
+    back)
+        loopback_camera $back
+        ;;
+    front)
+        loopback_camera $front
+        ;;
+    stop)
+        stop_cam  
+        ;;
+    get)
+        camera=$(get_camera)
+        case $camera in
+        "$back")
+            echo "back camera running"
+            ;;
+        "$front")
+            echo "front camera running"
+            ;;
+        *)
+            echo "unknown camera running: '$camera'"
+            ;;
+        esac
+        ;;
+    *)
+        echo "Invalid camera option: '$2'. Choose from ['front' 'back' 'stop' 'get']"
+        exit 1
+        ;;
+    esac
+    ;;
+
+screen)
+    case $2 in
+    all|"")
+        wf-recorder --muxer=v4l2 --codec=rawvideo --file=$video_sink_screen -x yuv420p \
+            > /dev/null 2>&1 & disown
+        ;;
+    region)
+        wf-recorder -g "$(slurp)" --muxer=v4l2 --codec=rawvideo --file=$video_sink_screen -x yuv420p \
+            > /dev/null 2>&1 & disown
+        ;;
+    stop)
+        pkill wf-recorder
+        if [ $? -eq 0 ]
+        then
+            echo "Screen cast stopped succesfully"
+        else
+            echo "Error stopping the screen cast, fail" 1>&2
+            exit 1
+        fi
+        ;;
+    *)
+        echo "Invalid screen option: '$2'. Choose from ['all' 'region' 'stop']. Empty is equal to 'all'"
+        exit 1
+        ;;
+    esac
+    ;;
+
+--help|-h|help)
+    echo "Loopcam, an utility for streaming videos to v4l2loopback sinks."
+    echo "Available options: "
+    echo "cam [front back get stop] --> start, switch or stop the cast of a surface camera to the sink"
+    echo "screen [all region stop]  --> start or stop the casting of the fullscreen or a region to the other sink"
+    ;;
+
+*)
+    echo "Invalid option: '$1'. Run 'loopcam help' to get all the available options"
+    exit 1
+    ;;
+esac
