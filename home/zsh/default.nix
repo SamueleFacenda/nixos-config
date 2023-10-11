@@ -27,8 +27,8 @@
 
       pwn = "shell ${self.outPath}#pwn";
       cpp = "nix develop ${self.outPath}#cpp";
-      shutdown = "sudo systemctl stop iptsd && shutdown";
-      reboot = "sudo systemctl stop iptsd && reboot";
+      # shutdown = "sudo systemctl stop iptsd && shutdown";
+      # reboot = "sudo systemctl stop iptsd && reboot";
 
       bat = "cat /sys/class/power_supply/BAT1/capacity";
       batt = "upower -i /org/freedesktop/UPower/devices/battery_BAT1";
