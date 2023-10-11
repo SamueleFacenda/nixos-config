@@ -68,6 +68,6 @@
   environment.systemPackages = with pkgs; [
     microcodeIntel
     libwacom-surface
-    libcamera
+    libcamera-surface # custom
   ];
 }
