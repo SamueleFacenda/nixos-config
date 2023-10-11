@@ -9,4 +9,5 @@ then
 else
     touch $flag_file
     wofi --show drun
+    rm $flag_file
 fi
