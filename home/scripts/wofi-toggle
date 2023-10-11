@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
 
-flag_file="/tmp/.hypr-wofi-open"
-
-if [ -e $flag_file ]
+if [[ $(ps -e | grep .wofi-wrapped) ]]
 then
-    rm $flag_file
     pkill .wofi-wrapped
 else
-    touch $flag_file
     wofi --show drun
-    rm $flag_file
 fi
