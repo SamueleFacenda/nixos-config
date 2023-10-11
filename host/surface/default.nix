@@ -42,9 +42,10 @@
   # enable surface stylus and touch, and surface control tool
   microsoft-surface = {
     ipts.enable = true; # lib.mkForce false; # problem at shutdown
-    surface-control.enable = lib.mkForce false;
+    surface-control.enable = lib.mkForce false; # useless, I use power-profiles-daemon
   };
 
+  # fix iptsd shutdown idle problem
   systemd.services.iptsd.serviceConfig = {
     ExecStop = "${pkgs.util-linux}/bin/kill -TERM -$MAINPID";
     Restart = "always";
@@ -69,5 +70,16 @@
     microcodeIntel
     libwacom-surface
     libcamera-surface # custom
+    gst_all_1.gstreamer # for virtual camera support
   ];
+
+  # add camera support to application not supporting libcamera
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
+  boot.kernelModules = [ "v4l2loopback" ];
+  boot.extraModprobeConfig = ''
+    # exclusive_caps: Skype, Zoom, Teams etc. will only show device when actually streaming
+    # card_label: Name of virtual camera, how it'll show up in Skype, Zoom, Teams
+    # https://github.com/umlaeute/v4l2loopback
+    options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+  '';
 }
