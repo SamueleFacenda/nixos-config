@@ -1,12 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, utils, pkgs, lib, ... }:
 {
 
-  # import all the files/directories in the same directories
-  imports = builtins.filter
-      (x: x != ./default.nix)
-      (lib.mapAttrsToList
-        (n: v: ./. + "/${n}")
-        (builtins.readDir ./.));
+  imports = lib.traceVal(utils.listDirPaths ./.);
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

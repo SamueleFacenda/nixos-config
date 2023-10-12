@@ -1,10 +1,6 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, utils, ... }: {
   # import all the files/directories in the same directories
-  imports = builtins.filter
-      (x: x != ./default.nix)
-      (lib.mapAttrsToList
-        (n: v: ./. + "/${n}")
-        (builtins.readDir ./.));
+  imports = utils.listDirPaths ./.;
 
   programs.waybar = {
     enable = true;

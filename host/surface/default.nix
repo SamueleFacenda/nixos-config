@@ -10,6 +10,7 @@
       ../../modules/hyprland.nix
       ../../modules/network.nix
       ../../modules/stylix.nix
+      ../../modules/utils.nix
       ../../timers/empty-trash.nix
       ../../secrets
 
@@ -26,7 +27,7 @@
           useGlobalPkgs = true;
           useUserPackages = true;
 
-          extraSpecialArgs = specialArgs;
+          extraSpecialArgs = specialArgs // { inherit (config.lib) utils; };
           users.samu = import ../../home;
         };
       }

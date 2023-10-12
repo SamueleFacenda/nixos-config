@@ -1,14 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, utils, ... }:
 let
   usr_bin_dir = "/home/samu/.local/bin/";
 in {
 
-  # import all the files/directories in the same directories
-  imports = builtins.filter
-      (x: x != ./default.nix && x != ./eww)
-      (lib.mapAttrsToList
-        (n: v: ./. + "/${n}")
-        (builtins.readDir ./.));
+  imports = utils.listDirPathsExcluding [ "eww" ] ./. ;
 
   home.packages = with pkgs; [
     gtk3
