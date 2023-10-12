@@ -36,8 +36,15 @@ loopback_camera () {
     then
         stop_cam > /dev/null
     fi
+    
+    flip=""
+    if [[ "$2" == "flip" ]]
+    then
+        flip="! videoflip method=horizontal-flip"
+    fi       
 
     gst-launch-1.0 libcamerasrc camera-name=$1 \
+        $flip \
         ! videoconvert ! v4l2sink device=$video_sink_camera \
         > /dev/null 2>&1 & disown
 }
@@ -53,7 +60,7 @@ case $1 in
 cam)
     case $2 in
     back)
-        loopback_camera $back
+        loopback_camera $back "flip"
         ;;
     front)
         loopback_camera $front
