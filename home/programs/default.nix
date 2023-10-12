@@ -1,21 +1,8 @@
-{ config
-, pkgs
-, ...
-}: {
-  imports = [
-    ./git.nix
-    ./xdg.nix
-    ./common.nix
-    ./dconf.nix
-    ./spotify.nix
-    ./kitty.nix
-    ./tmux.nix
-    ./vscode.nix
-    ./idea.nix
-    ./wakatime.nix
-    ./micro.nix
-    ./stylix.nix
-    ./cursor.nix
-    ./flameshot.nix
-  ];
+{ config, pkgs, lib, ...}: {
+  # import all the files/directories in the same directories
+  imports = builtins.filter
+      (x: x != ./default.nix)
+      (lib.mapAttrsToList
+        (n: v: ./. + "/${n}")
+        (builtins.readDir ./.));
 }

@@ -3,14 +3,12 @@ let
   usr_bin_dir = "/home/samu/.local/bin/";
 in {
 
-  imports = [
-    ./dunst.nix
-    ./waybar
-    ./hyprpaper.nix
-    ./shana.nix
-    ./swayidle.nix
-    ./kanshi.nix
-  ];
+  # import all the files/directories in the same directories
+  imports = builtins.filter
+      (x: x != ./default.nix && x != ./eww)
+      (lib.mapAttrsToList
+        (n: v: ./. + "/${n}")
+        (builtins.readDir ./.));
 
   home.packages = with pkgs; [
     gtk3
@@ -38,9 +36,7 @@ in {
     plugins = with pkgs; [
       hyprgrass
     ];
-    settings =
-      import ./bindings.nix //
-      import ./settings.nix lib // {
+    settings = {
 
         exec-once = [
           "hyprpaper"

@@ -1,14 +1,12 @@
 { config, lib, pkgs, ... }:
-
 {
 
-  imports = [
-    ./zsh
-    ./programs
-    ./ranger
-    ./hyprland
-    ./scripts
-  ];
+  # import all the files/directories in the same directories
+  imports = builtins.filter
+      (x: x != ./default.nix)
+      (lib.mapAttrsToList
+        (n: v: ./. + "/${n}")
+        (builtins.readDir ./.));
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
