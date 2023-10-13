@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 let
   inherit (builtins) filter readDir;
-  inherit (lib) mapAttrsToList filterAttrs any;
-in {
+  inherit (lib) mapAttrsToList filterAttrs any all;
+in rec {
 
   config.lib.utils = rec {
 
@@ -17,4 +17,5 @@ in {
     contains = (element: list: any (x: x == element) list);
     not_contains = (element: list: all (x: x != element) list);
   };
+  config.home-manager.users.samu.lib.utils = config.lib.utils;
 }

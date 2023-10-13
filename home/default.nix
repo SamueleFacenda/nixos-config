@@ -1,7 +1,7 @@
-{ config, utils, pkgs, lib, ... }:
+{ config, pkgs, utils, lib, ... }:
 {
 
-  imports = lib.traceVal(utils.listDirPaths ./.);
+  imports = utils.listDirPaths ./.;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
