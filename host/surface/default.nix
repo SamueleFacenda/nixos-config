@@ -67,10 +67,19 @@
     '';
   }];
 
+  services.udev.packages = with pkgs; [ libwacom-surface ];
+
+  environment.etc."iptsd.conf".text = ''
+    [Touch]
+    DisableOnPalm = true
+    DisableOnStylus = true
+  '';
+
   environment.systemPackages = with pkgs; [
     microcodeIntel
     libwacom-surface
     libcamera-surface # custom
+    iptsd
 
     # Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
     gst_all_1.gstreamer
