@@ -22,6 +22,7 @@
     editorconfig-core-c
     gnome.adwaita-icon-theme
     wf-recorder
+    fonttools
 
     # productivity
     obsidian
