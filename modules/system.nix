@@ -158,7 +158,7 @@
       noto-fonts-emoji
 
       # nerdfonts
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Monofur" ]; })
+      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Monofur" "AnonymousPro" ]; })
       monofurx
     ];
 

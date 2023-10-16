@@ -22,7 +22,7 @@
     editorconfig-core-c
     gnome.adwaita-icon-theme
     wf-recorder
-    fonttools
+    # fonttools
 
     # productivity
     obsidian
@@ -35,6 +35,7 @@
     (python3.withPackages (ps: with ps; [
       pillow # for ranger kitty image preview
       icecream
+      # fonttools
       # ranger deps
       chardet
       python-bidi

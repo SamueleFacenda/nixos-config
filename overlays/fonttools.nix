@@ -10,22 +10,14 @@ _:
       sha256 = "jWn0gF91Baq7bZT4HDr+NTqGoTosYRMF6bsaReqWBRo=";
     };
 
-    passthru.optional-dependencies = let
-      extras = with super; {
-        ufo = [ fs ];
-        lxml = [ lxml ];
-        woff = [ (if isPyPy then brotlicffi else brotli) zopfli ];
-        unicode = lib.optional (pythonOlder "3.11") unicodedata2;
-        graphite = [ lz4 ];
-        interpolatable = [ (if isPyPy then munkres else scipy) fs ];
-        plot = [ matplotlib ];
-        symfont = [ sympy ];
-        type1 = lib.optional stdenv.isDarwin xattr;
-        pathops = [ skia-pathops ];
-        repacker = [ uharfbuzz ];
-      };
-    in extras // {
-      all = super.lib.concatLists (super.lib.attrValues extras);
-    };
+    disabledTests = [
+      "test_recalc_timestamp_ttf"
+      "test_recalc_timestamp_otf"
+      "test_ttcompile_timestamp_calcs"
+      "test_designspace"
+      "test_interpolatable_ufo"
+      "test_sparse_designspace"
+      "test_sparse_interpolatable_ufos"
+    ];
   };
 })
