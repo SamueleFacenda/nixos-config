@@ -12,16 +12,20 @@
   :namespace "launcher"
   :exclusive false
   :geometry (geometry
-              :anchor "top left"
-              :width "20%"
+              :anchor "center"
+              :width "100%"
               :height "100%")
   (launcher-layout))
 
 (defwidget launcher-layout []
     (box
-        :width 300
-        :height 200
+        :width 80
+        :height 100
         :orientation "horizontal"
+        :hexpand false
+        :vexpand false
+        :valign "center"
+        :halign "center"
         (app-launcher
             :halign "start"
             :width 100
