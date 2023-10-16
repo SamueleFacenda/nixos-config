@@ -6,7 +6,7 @@ This is more than my config, it's a flake. There are a couple packages and some 
 ### Packages:
 - xdg-desktop-portal-shana (the portal of portals)
 - monofurx (patched version of the original monofur)
-- libcamera-surface (see the file for credits, update o version 0.1.0)
+- libcamera-surface (see the file for credits, update to version 0.1.0)
 
 ### Shells:
 - pwn (all the package needed for a ctf)
@@ -98,7 +98,7 @@ TODOS:
 ### Overlays (custom packages and other):
 - hyprgrass (use hyprland from nixpkgs instead of the hyprland.org flake)
 - micro-wakatime (faster loading)
-- nerdfonts (use monofur with patched bullet point)
+- nerdfonts (use monofur with bullet point character from anonymicePro)
 - rpl (update version)
 - xdg-desktop-portal-shana (new pkg)
 - monofurx (new pkg)
