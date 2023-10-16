@@ -1,0 +1,2 @@
+(defwidget status []
+    "status")

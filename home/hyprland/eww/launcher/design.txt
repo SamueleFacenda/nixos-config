@@ -1,0 +1,22 @@
+Cosa voglio:
+
+volume + brightness control 
+power profile control (slider with menu)
+powermenu buttons
+utilities (screenshot video + photo + choose window)
+audio player ? maybe other widget
+app launcher
+
+--------------------------------------------
+|                 |                         |
+|                 |      power buttons      |
+|                 |-------------------------|
+|                 |            |            |
+|                 |            |  utilities |
+|   App launcher  |            |            |
+|                 |  sliders   |------------|
+|                 |            |            |
+|                 |            | status/rice|
+|                 |            |            |
+|                 |            |            |
+--------------------------------------------

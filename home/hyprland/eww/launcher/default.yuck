@@ -1,31 +1,43 @@
-(defwindow powermenu
+(include "launcher/power-buttons.yuck")
+(include "launcher/sliders.yuck")
+(include "launcher/utilities.yuck")
+(include "launcher/app-launcher.yuck")
+(include "launcher/status.yuck")
+
+
+(defwindow launcher
   :stacking "fg"
   :monitor 0
   :windowtype "normal"
-  :wm-ignore true
+  :namespace "launcher"
+  :exclusive false
   :geometry (geometry
-              :anchor "top right"
-              :width "4%"
-              :height "20%"
-              :x "5px"
-              :y "0px")
-  (powermenu-layout))
+              :anchor "top left"
+              :width "20%"
+              :height "100%")
+  (launcher-layout))
 
-(defwidget powermenu-layout []
+(defwidget launcher-layout []
     (box
-        :orientation "vertical"
-        (button
-            :onclick "shutdown now"
-            "")
-        (button
-            :onclick "reboot"
-            "󰑥")
-        (button
-            :onclick "systemctl suspend"
-            "󰤄")
-        (button
-            :onclick "swaylock -f --screenshot --effect-blur 10x7 --fade-in 5"
-            "")
-        (button
-            :onclick "hyprctl dispatch exit"
-            "󰍃")))
+        :width 300
+        :height 200
+        :orientation "horizontal"
+        (app-launcher
+            :halign "start"
+            :width 100
+            :valign "fill")
+        (box
+            :halign "end"
+            :width 200
+            :valign "fill"
+            :orientation "vertical"
+            (power-buttons)
+            (box
+                :orientation "horizontal"
+                (sliders)
+                (box
+                    :orientation "vertical"
+                    (utilities)
+                    (status))
+            ))
+    ))

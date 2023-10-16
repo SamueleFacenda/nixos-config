@@ -25,7 +25,7 @@ base_config = {
 
   "custom/launcher" = {
     format = " ";
-    on-click = "pkill .wofi-wrapper || wofi_menu";
+    on-click = "wofi-toggle";
     tooltip = false;
   };
 

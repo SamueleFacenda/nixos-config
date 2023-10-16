@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-eww daemon --logs &
+eww daemon --logs --config /nixos-config/home/hyprland/eww &
 
 # wait for initialization
 while [ $(eww ping) != "pong" ]
