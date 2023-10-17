@@ -1,9 +1,38 @@
 .launcher {
     background: transparent;
-    > * {
-        * {
-            border: 1px solid red;
-            background-color:  unquote("@theme_bg_color");
-        }
-    }
+}
+
+
+.big-selector {
+    background-color:  unquote("@theme_bg_color");
+    border-radius: 15px;
+    margin: 3px;
+}
+
+.status {
+    background-color:  unquote("@theme_bg_color");
+    border-radius: 15px;
+    margin: 3px;
+
+}
+
+.sliders {
+    background-color:  unquote("@theme_bg_color");
+    border-radius: 15px;
+    margin: 3px;
+
+}
+
+.utilities {
+    background-color:  unquote("@theme_bg_color");
+    border-radius: 15px;
+    margin: 3px;
+
+}
+
+.power-buttons {
+    background-color:  unquote("@theme_bg_color");
+    border-radius: 15px;
+    margin: 3px;
+
 }

@@ -1,2 +1,4 @@
 (defwidget status []
-    "status")
+    (box 
+        :class "status"
+        "status"))

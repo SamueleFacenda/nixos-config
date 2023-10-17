@@ -1,7 +1,7 @@
 (include "launcher/power-buttons.yuck")
 (include "launcher/sliders.yuck")
 (include "launcher/utilities.yuck")
-(include "launcher/app-launcher.yuck")
+(include "launcher/big-selector.yuck")
 (include "launcher/status.yuck")
 
 
@@ -12,8 +12,8 @@
   :namespace "launcher"
   :exclusive false
   :geometry (geometry
-              :anchor "top right"
-              :width "50%"
+              :anchor "center"
+              :width "100%"
               :height "100%")
   (launcher-layout))
 
@@ -21,20 +21,18 @@
     (eventbox
         :onclick "eww close launcher --config /nixos-config/home/hyprland/eww"
         (box
-            :width 80
-            :height 100
+            :width 800
+            :height 400
             :orientation "horizontal"
             :hexpand false
             :vexpand false
             :valign "center"
             :halign "center"
-            (app-launcher
-                :halign "start"
+            (big-selector
                 :width 100
                 :valign "fill")
             (box
                 :halign "end"
-                :width 200
                 :valign "fill"
                 :orientation "vertical"
                 (power-buttons)

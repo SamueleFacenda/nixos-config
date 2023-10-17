@@ -1,2 +1,4 @@
 (defwidget power-buttons []
-    "power-buttons")
+    (box 
+        :class "power-buttons"
+        "power-buttons"))

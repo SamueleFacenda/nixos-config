@@ -1,2 +1,4 @@
 (defwidget sliders []
-    "sliders")
+    (box 
+        :class "sliders"
+        "sliders"))

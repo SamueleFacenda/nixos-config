@@ -6,14 +6,18 @@ powermenu buttons
 utilities (screenshot video + photo + choose window)
 audio player ? maybe other widget
 app launcher
+bluetooth
+wifi
 
+
+App launcher: tre tendine per app, bluetooth e wifi
 --------------------------------------------
 |                 |                         |
 |                 |      power buttons      |
 |                 |-------------------------|
 |                 |            |            |
 |                 |            |  utilities |
-|   App launcher  |            |            |
+|   big selector  |            |            |
 |                 |  sliders   |------------|
 |                 |            |            |
 |                 |            | status/rice|
