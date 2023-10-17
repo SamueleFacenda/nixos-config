@@ -1,6 +1,9 @@
 .launcher {
     background: transparent;
-    * {
-        border: 1px solid red;
+    > * {
+        * {
+            border: 1px solid red;
+            background-color:  unquote("@theme_bg_color");
+        }
     }
 }

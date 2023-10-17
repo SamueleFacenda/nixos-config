@@ -12,36 +12,38 @@
   :namespace "launcher"
   :exclusive false
   :geometry (geometry
-              :anchor "center"
-              :width "100%"
+              :anchor "top right"
+              :width "50%"
               :height "100%")
   (launcher-layout))
 
 (defwidget launcher-layout []
-    (box
-        :width 80
-        :height 100
-        :orientation "horizontal"
-        :hexpand false
-        :vexpand false
-        :valign "center"
-        :halign "center"
-        (app-launcher
-            :halign "start"
-            :width 100
-            :valign "fill")
+    (eventbox
+        :onclick "eww close launcher --config /nixos-config/home/hyprland/eww"
         (box
-            :halign "end"
-            :width 200
-            :valign "fill"
-            :orientation "vertical"
-            (power-buttons)
+            :width 80
+            :height 100
+            :orientation "horizontal"
+            :hexpand false
+            :vexpand false
+            :valign "center"
+            :halign "center"
+            (app-launcher
+                :halign "start"
+                :width 100
+                :valign "fill")
             (box
-                :orientation "horizontal"
-                (sliders)
+                :halign "end"
+                :width 200
+                :valign "fill"
+                :orientation "vertical"
+                (power-buttons)
                 (box
-                    :orientation "vertical"
-                    (utilities)
-                    (status))
-            ))
-    ))
+                    :orientation "horizontal"
+                    (sliders)
+                    (box
+                        :orientation "vertical"
+                        (utilities)
+                        (status))
+                ))
+        )))
