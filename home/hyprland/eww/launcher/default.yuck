@@ -12,8 +12,8 @@
   :namespace "launcher"
   :exclusive false
   :geometry (geometry
-              :anchor "center"
-              :width "100%"
+              :anchor "top right"
+              :width "50%"
               :height "100%")
   (launcher-layout))
 
@@ -24,20 +24,23 @@
             :width 800
             :height 400
             :orientation "horizontal"
-            :hexpand false
-            :vexpand false
-            :valign "center"
-            :halign "center"
+            :vexpand false   :hexpand true
+            :valign "center" :halign "center"
+            :space-evenly false
             (big-selector
-                :width 100
+                :width 300
+                :hexpand false
+                :halign "start"
                 :valign "fill")
             (box
+                :hexpand true
                 :halign "end"
                 :valign "fill"
                 :orientation "vertical"
                 (power-buttons)
                 (box
                     :orientation "horizontal"
+                    :hexpand true
                     (sliders)
                     (box
                         :orientation "vertical"

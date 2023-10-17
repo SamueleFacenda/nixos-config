@@ -1,4 +1,5 @@
 (defwidget power-buttons []
     (box 
         :class "power-buttons"
+        :hexpand true
         "power-buttons"))
