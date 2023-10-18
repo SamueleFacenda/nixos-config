@@ -91,6 +91,12 @@ TODOS:
 - [x] swayosd (on screen display)
 - [ ] eww widgets
 - [ ] flameshot
+- [ ] hyprdim
+- [ ] iio-hyprland
+- [ ] nwg-drawer
+- [ ] nwg-panel
+- [ ] nwg-dock-hyprland
+- [ ] hyprfocus
 
 :construction: means work in progress
 
