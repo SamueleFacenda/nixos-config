@@ -7,6 +7,8 @@
       desktop = "${config.home.homeDirectory}/.Desktop";
       music = "${config.home.homeDirectory}/.Music";
       templates = "${config.home.homeDirectory}/.Templates";
+      downloads = "${config.home.homeDirectory}/downloads";
+      documents = "${config.home.homeDirectory}/documents";
       # templates = "${config.home.homeDirectory}/.Videos";
     };
 

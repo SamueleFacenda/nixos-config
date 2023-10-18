@@ -65,7 +65,14 @@
 
   programs = {
     btop.enable = true; # replacement of htop/nmon
-    eza.enable = true; # A modern replacement for ‘ls’
+    eza = {
+      enable = true; # A modern replacement for ‘ls’
+      icons = true;
+      extraOptions = [
+        "--group-directories-first"
+      ];
+      enableAliases = true;
+    }
     ssh.enable = true;
   };
 

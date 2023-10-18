@@ -14,10 +14,7 @@
       # code = "codium --password-store=\"gnome\"";
       # rm = "trash put";
 
-      ls = "eza --icons --group-directories-first";
-      ll = "eza --icons --long --group --git --group-directories-first";
-      la = "eza --icons --long --group --git --all --group-directories-first";
-      tree = "eza --icons --tree --group-directories-first";
+      tree = "eza  --tree";
 
       c = "clear";
       q = "exit";
