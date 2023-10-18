@@ -19,6 +19,7 @@ base_config = {
     "pulseaudio"
     "battery"
     "idle_inhibitor"
+    "custom/osk"
     "hyprland/language"
     "custom/powermenu"
   ];
@@ -71,6 +72,16 @@ base_config = {
     interval = 1;
     tooltip = false;
   };
+
+  "custom/osk" = let
+    keyboard = "wvkbd-mobintl";
+    flags = "--landscape-layers simple,special,emoji -L 200 ";
+    in {
+      format-alt = "󰌐";
+      format = "󰌌";
+      tooltip = false;
+      on-click = "if ps -e | grep ${keyboard}; then pkill ${keyboard}; else ${keyboard} ${flags}; fi";
+    };
 
   "custom/powermenu" = {
     format = "";

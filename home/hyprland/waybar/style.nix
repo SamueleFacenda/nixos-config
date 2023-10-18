@@ -29,7 +29,7 @@
     }*/
 
     /* Dark background, cyan text, pill shape */
-    #cpu, #memory, #temperature, #custom-powermenu, #workspaces, #battery, #pulseaudio, #network, #language, #idle_inhibitor{
+    #cpu, #memory, #temperature, #custom-powermenu, #custom-osk, #workspaces, #battery, #pulseaudio, #network, #language, #idle_inhibitor{
     	background: ${base01};
     	margin: 5px 5px 5px 5px;
       padding: 5px 10px 5px 10px;
@@ -99,7 +99,7 @@
     }
 
     /* CENTER MODULES */
-    #memory, #pulseaudio, #battery, #idle_inhibitor{
+    #memory, #pulseaudio, #battery, #idle_inhibitor, #custom-osk{
       border-radius: 0px;
       margin-right: 0px;
       margin-left: 0px;

@@ -83,6 +83,8 @@
       blurls = [
         # "waybar"
         "lockscreen"
+        #"wlroots"
+        "launcher"
         # "swayosd"
       ];
 
