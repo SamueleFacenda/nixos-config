@@ -14,6 +14,7 @@
     nixpkgs-fmt
     ffmpeg
     flameshot
+    jq
 
     # misc
     xdg-utils

@@ -11,6 +11,7 @@ in {
     hyprpaper
     wofi
     wvkbd
+    libinput
 
     # screenshots tools
     slurp

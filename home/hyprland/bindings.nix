@@ -1,4 +1,8 @@
-{config, pkgs, ...} :{
+{config, pkgs, ...} :
+let
+  usr_bin_dir = "/home/samu/.local/bin/";
+in
+{
   wayland.windowManager.hyprland.settings = {
 
     "$mod" = "SUPER";
@@ -19,7 +23,7 @@
     ];
 
     bindr = [
-      "$mod,super_l, exec, /home/samu/.local/bin/wofi-toggle"
+      "$mod,super_l, exec, ${usr_bin_dir}wofi-toggle"
     ];
 
     bindm = [
@@ -31,11 +35,12 @@
       # Lid switch settings
       #",switch:Lid Switch,exec,swaylock"
 
-      ",switch:off:Lid Switch,exec,hyprctl keyword monitor \"eDP-1,2736x1824,1440x1050,2\""
+      # ",switch:off:Lid Switch,exec,hyprctl keyword monitor \"eDP-1,2736x1824,1440x1050,2\""
+      ",switch:off:Lid Switch,exec, ${usr_bin_dir}wake"
       #",switch:on:Lid Switch,exec,hyprctl keyword monitor \"DP-3,1680x1050,1440x0,1\""
       #",switch:on:Lid Switch,exec,hyprctl keyword monitor \"DP-4,1440x900,0x0,1\""
 
-      ",switch:on:Lid Switch,exec,hyprctl keyword monitor \"eDP-1, disable\""
+      ",switch:on:Lid Switch,exec, ${usr_bin_dir}suspend"
       #",switch:off:Lid Switch,exec,hyprctl keyword monitor \"DP-3, disable\""
       #",switch:off:Lid Switch,exec,hyprctl keyword monitor \"DP-4, disable\""
     ];
