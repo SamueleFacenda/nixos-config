@@ -72,7 +72,7 @@
         "--group-directories-first"
       ];
       enableAliases = true;
-    }
+    };
     ssh.enable = true;
   };
 
