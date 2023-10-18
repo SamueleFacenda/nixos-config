@@ -97,6 +97,7 @@ TODOS:
 - [ ] nwg-panel
 - [ ] nwg-dock-hyprland
 - [ ] hyprfocus
+- [ ] libinput gestures
 
 :construction: means work in progress
 

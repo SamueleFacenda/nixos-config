@@ -11,6 +11,7 @@
       "$mod, B, exec, hyprctl dispatch dpms off"
       "$mod, right, movetoworkspace, +1"
       "$mod, left, movetoworkspace, -1"
+      "$mod, space, exec, echo keyboard_change" # keyboard change, configured in settings
 
       # Windows bindings (they are recorded on the mouse)
       "CTRL_SUPER, left, workspace, r-1"
