@@ -10,6 +10,7 @@ in {
     swaylock-effects
     hyprpaper
     wofi
+    wvkbd
 
     # screenshots tools
     slurp

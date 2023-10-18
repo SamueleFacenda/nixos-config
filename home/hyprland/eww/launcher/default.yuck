@@ -24,23 +24,24 @@
             :width 800
             :height 400
             :orientation "horizontal"
-            :vexpand false   :hexpand true
+            :vexpand false   :hexpand false
             :valign "center" :halign "center"
             :space-evenly false
             (big-selector
-                :width 300
-                :hexpand false
+                :width 200
                 :halign "start"
                 :valign "fill")
             (box
-                :hexpand true
-                :halign "end"
+                :halign "start"
+                :width 400
                 :valign "fill"
                 :orientation "vertical"
-                (power-buttons)
+                (power-buttons
+                    :hexpand true
+                    :halign "fill")
                 (box
                     :orientation "horizontal"
-                    :hexpand true
+                    :halign "fill"
                     (sliders)
                     (box
                         :orientation "vertical"

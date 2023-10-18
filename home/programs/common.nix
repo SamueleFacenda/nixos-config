@@ -13,6 +13,7 @@
     nixd
     nixpkgs-fmt
     ffmpeg
+    flameshot
 
     # misc
     xdg-utils
