@@ -76,7 +76,7 @@ TODOS:
 - [x] xdg-desktop-portal-shana
 - [x] known nets
 - [x] hyprland gnome indipendence
-- [ ] tablet mode
+- [ ] tablet mode (hyprgrass)
 - [x] power profiles daemon
 - [ ] remap surface pen button
 - [x] wpa supplicant config
