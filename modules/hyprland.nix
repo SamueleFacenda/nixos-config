@@ -5,7 +5,7 @@
   # LidSwitch and PowerButton actions
   services.logind = {
     powerKey = "suspend";
-    lidSwitchExternalPower = "ignore";
+    lidSwitchExternalPower = "suspend";
     lidSwitchDocked = "ignore";
     lidSwitch = "suspend";
   };

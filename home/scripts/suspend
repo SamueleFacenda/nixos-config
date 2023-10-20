@@ -10,5 +10,5 @@ else
     echo "suspend and lock"
     # swaylock -f --screenshot --effect-blur 10x7
     hyprctl dispatch dpms off
-    systemctl suspend
+    # systemctl suspend
 fi
