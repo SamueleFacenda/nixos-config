@@ -13,6 +13,7 @@
       free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
       # code = "codium --password-store=\"gnome\"";
       # rm = "trash put";
+      xcodium = "codium --enable-features=UseOzonePlatform --ozone-platform=x11";
 
       tree = "eza  --tree";
 
