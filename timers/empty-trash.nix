@@ -2,7 +2,7 @@
   systemd.timers."empty-trash" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnCalendar = "weekly";
+      OnCalendar = "daily";
       Persistent = true;
       Unit = "empty-trash.service";
       RandomizedDelaySec = "10min";

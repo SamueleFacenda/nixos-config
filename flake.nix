@@ -30,6 +30,9 @@
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
     systems.url = "github:nix-systems/default";
+
+    trashy.url = "github:oberblastmeister/trashy";
+    trashy.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { nixpkgs, ... }@inputs:
