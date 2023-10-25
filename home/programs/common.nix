@@ -37,10 +37,12 @@
     (python3.withPackages (ps: with ps; [
       pillow # for ranger kitty image preview
       icecream
+      requests
       # fonttools
       # ranger deps
       chardet
       python-bidi
+      beautifulsoup4
     ]))
 
     # ranger dependencies
