@@ -4,7 +4,7 @@ _:
 (self: super:
 let
   getFile = font: "${font}NerdFontMono-Regular.ttf";
-  source = getFile "AnonymicePro";
+  source = getFile "BlexMono";
   dest = getFile "Monofur";
   script = ../assets/character-replace.py;
 in

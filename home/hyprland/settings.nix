@@ -35,6 +35,7 @@
 
     general = {
       layout = "dwindle";
+      "col.active_border" = lib.mkForce "0x00000000";
     };
 
     animations = {

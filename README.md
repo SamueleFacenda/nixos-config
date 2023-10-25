@@ -1,5 +1,9 @@
 # My nixos Flake:snowflake:
 
+<!-- 
+find ./ "" -type f 2>/dev/null | grep -v -E ".git|.png|.age|.jpg|.pem|.lock" | xargs cat | wc -l 
+-->
+
 ![hyprland screenshot](assets/screenshot1.png)
 
 This is more than my config, it's a flake. There are a couple packages and some devshells.

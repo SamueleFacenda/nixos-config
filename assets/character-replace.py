@@ -12,7 +12,8 @@ source_font = TTFont(source)
 dest_font = TTFont(dest)
 
 for target in sys.argv[3:]:
-    tmp = source_font['glyf'][target]
-    dest_font['glyf'][target] = tmp
+    dest_font['glyf'][target] = source_font['glyf'][target]
+    # add also to the hmtx table
+    dest_font['hmtx'][target] = source_font['hmtx'][target]
 
-source_font.save('out.ttf')
+dest_font.save(dest)
