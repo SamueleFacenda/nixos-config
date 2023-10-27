@@ -33,8 +33,9 @@
 
 
     userSettings = {
-      "editor.fontFamily" = "'Jetbrains Mono Nerd Fonts'";
+      "editor.fontFamily" = "'JetBrainsMono Nerd Font Mono'";
       "editor.fontLigatures" = true;
+      "terminal.integrated.fontFamily" = "'JetbrainsMono Nerd Font Mono'";
       "[nix]"."editor.tabSize" = 2;
       "files.autoSave" = "onFocusChange";
       "workbench.iconTheme" = "vscode-icons";
