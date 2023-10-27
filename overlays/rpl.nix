@@ -32,7 +32,7 @@
           };
           doCheck = false;
           propagatedBuildInputs = [
-            python310Packages.toml
+            python3Packages.toml
           ];
         }
       )
@@ -47,7 +47,7 @@
           format = "pyproject";
           doCheck = false;
           propagatedBuildInputs = [
-            python310Packages.setuptools
+            python3Packages.setuptools
           ];
         }
       )

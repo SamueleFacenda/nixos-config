@@ -3,7 +3,10 @@ let
   usr_bin_dir = "/home/samu/.local/bin/";
 in
 {
-  wayland.windowManager.hyprland.settings = {
+  wayland.windowManager.hyprland.settings =  let
+    keyboard = "wvkbd-mobintl";
+    flags = "--landscape-layers simple,special,emoji -L 200 ";
+    in {
 
     "$mod" = "SUPER";
 
@@ -20,6 +23,10 @@ in
       # Windows bindings (they are recorded on the mouse)
       "CTRL_SUPER, left, workspace, r-1"
       "CTRL_SUPER, right, workspace, r+1"
+
+      ", edge:r:l, workspace, +1"
+      ", edge:l:r, workspace, -1"
+      ", edge:d:u, exec, if ps -e | grep ${keyboard}; then pkill ${keyboard}; else ${keyboard} ${flags}; fi"
     ];
 
     bindr = [

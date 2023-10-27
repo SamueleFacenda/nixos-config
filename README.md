@@ -98,7 +98,6 @@ TODOS:
 - [ ] hyprdim
 - [ ] iio-hyprland
 - [ ] nwg-drawer
-- [ ] nwg-panel
 - [ ] nwg-dock-hyprland
 - [ ] hyprfocus
 - [ ] libinput gestures
