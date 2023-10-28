@@ -4,7 +4,8 @@ n_monitors=`hyprctl monitors -j | jq '. | length'`
 
 if (( n_monitors > 1 ))
 then
-    position='1440x1050'
+    # position='1440x1050'
+    position='0x1050'
 else
     position='0x0'
 fi
