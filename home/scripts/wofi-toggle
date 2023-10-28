@@ -4,5 +4,5 @@ if [[ $(ps -e | grep .wofi-wrapped) ]]
 then
     pkill .wofi-wrapped
 else
-    wofi --show drun
+    wofi -n --show drun
 fi
