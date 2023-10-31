@@ -9,13 +9,14 @@
       # github.copilot
       wakatime.vscode-wakatime
       yzhang.markdown-all-in-one
-      # ms-python.python
+      ms-python.python
       ms-vscode.live-server
       ms-vscode-remote.remote-ssh
       vscode-icons-team.vscode-icons
       formulahendry.auto-rename-tag
       jnoortheen.nix-ide
       editorconfig.editorconfig
+      ms-vscode.cpptools
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "copilot";
@@ -53,6 +54,10 @@
           };
         };
       };
+      "C_Cpp.default.compilerPath" = "${pkgs.gnat}/bin/g++";
+      "C_Cpp.codeAnalysis.runAutomatically" = true;
+      "C_Cpp.codeAnalysis.clangTidy.enabled" = true;
+      "C_Cpp.intelliSenseUpdateDelay" = 500;
     };
   };
 }

@@ -39,8 +39,10 @@
 
     # crypto
     # sage
+    z3
 
     (python3.withPackages (ps: with ps; [
+      pillow
       pycryptodome
       pwntools
       ropper
@@ -48,6 +50,7 @@
       gmpy2
       sympy
       pip
+      z3
     ]))
   ];
 
