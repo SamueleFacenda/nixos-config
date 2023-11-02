@@ -101,6 +101,7 @@ TODOS:
 - [ ] nwg-dock-hyprland
 - [ ] hyprfocus
 - [ ] libinput gestures
+- [x] spotifyd, spotify-tui (need to be repaced with psotofy-player)
 
 :construction: means work in progress
 
