@@ -59,6 +59,10 @@ in
       ", XF86AudioMute, exec, swayosd --output-volume mute-toggle"
       ", XF86MonBrightnessUp, exec, swayosd --brightness raise 200"
       ", XF86MonBrightnessDown, exec, swayosd --brightness lower 200"
+      ", XF86AudioPlay, exec, playerctl play-pause"
+      ", XF86AudioStop, exec, playerctl play-pause"
+      ", XF86AudioPrev, exec, playerctl previous"
+      ", XF86AudioNext, exec, playerctl next"
       ", print, exec, grim -g \"$(slurp)\" "
     ];
   };

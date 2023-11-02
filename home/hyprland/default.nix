@@ -16,7 +16,10 @@ in {
     # screenshots tools
     slurp
     grim
-    # pamixer
+
+    # audio video
+    pamixer
+    playerctl
 
     #utilities
     gnome.nautilus

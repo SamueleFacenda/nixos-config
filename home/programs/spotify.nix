@@ -36,6 +36,7 @@ in
         password_cmd = "cat ${secrets.spotify.path}";
         use_mpris = true; # global controls
         device_name = "spotifyd_surfacenene";
+        device_type = "computer";
       };
     };
   };
