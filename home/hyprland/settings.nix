@@ -65,12 +65,11 @@
 
     misc = {
       force_hypr_chan = false;
-      #disable_hypr_chan = true;# does not work
-      disable_splash_rendering = true;
+      disable_splash_rendering = false;
       disable_hyprland_logo = true;
       mouse_move_enables_dpms = true;
       key_press_enables_dpms = true;
-      #suppress_portal_warnings = true; # does not work
+      # suppress_portal_warnings = true; # documented but does not exists
     };
 
     decoration = {

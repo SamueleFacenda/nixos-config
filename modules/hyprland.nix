@@ -24,6 +24,7 @@
     greetd.tuigreet
     polkit_gnome
     swayosd
+    bluetuith
   ];
 
   xdg.portal.extraPortals = with pkgs; [
@@ -70,4 +71,9 @@
   environment.etc."greetd/environments".text = ''
     Hyprland
   '';
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+  };
 }
