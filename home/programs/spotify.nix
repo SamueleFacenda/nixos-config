@@ -1,4 +1,4 @@
-{ pkgs, lib, spicetify-nix, ... }:
+{ pkgs, lib, spicetify-nix, secrets, ... }:
 let
   spicePkgs = spicetify-nix.packages.${pkgs.system}.default;
 in
@@ -27,4 +27,16 @@ in
         history
       ];
     };
+
+  services.spotifyd = {
+    enable = true;
+    settings = {
+      global = {
+        username = "2pxqknxvfuz2yuigiqd4wazlt";
+        password_cmd = "cat ${secrets.spotify.path}";
+        use_mpris = true; # global controls
+        device_name = "spotifyd_surfacenene";
+      };
+    };
+  };
 }

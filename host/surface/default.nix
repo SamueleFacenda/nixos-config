@@ -27,7 +27,10 @@
           useGlobalPkgs = true;
           useUserPackages = true;
 
-          extraSpecialArgs = specialArgs // { inherit (config.lib) utils; };
+          extraSpecialArgs = specialArgs // {
+            inherit (config.lib) utils;
+            inherit (config.age) secrets;
+          };
           users.samu = import ../../home;
         };
       }

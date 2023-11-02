@@ -34,6 +34,12 @@
     network-keys = {
       file = ./network-keys.age;
     };
+
+    spotify = {
+      file = ./spotify.age;
+      owner = "samu"; # TODO make group for spotifyd
+      group = "users";
+    };
   };
 
   age.identityPaths = [
