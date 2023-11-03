@@ -182,12 +182,10 @@
 #      "e06c75" "d19a66" "e5c07b" "98c379"
 #      "56b6c2" "61afef" "c678dd" "be5046"
 #    ];
-    colors = let
-      getColor = n: config.lib.stylix.colors."base${lib.fixedWidthString 2 "0" (lib.toHexString n)}";
-      createColorsList = (n: if n<16 then
-        ((createColorsList (n+1)) ++ [(getColor n)])
-        else []);
-      in lib.traceVal (createColorsList 0);
+#    colors = let
+#      getColor = n: config.lib.stylix.colors."base${lib.fixedWidthString 2 "0" (lib.toHexString n)}";
+#      in lib.traceVal (builtins.genList getColor 16);
+# the colors are set by stylix
   };
 
   # This value determines the NixOS release from which the default
