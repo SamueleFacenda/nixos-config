@@ -120,8 +120,8 @@
   };
   environment.localBinInPath = true;
 
-  # for vscode in wayland
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # for electron (e.g. vscode) in wayland, currenty broken
+  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # add nixos to user agent string
   nix.settings.user-agent-suffix = "NixOS unstable";
