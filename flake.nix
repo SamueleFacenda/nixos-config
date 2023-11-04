@@ -59,5 +59,7 @@
       nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
 
       packages = eachSystem (system: import ./packages (pk system));
+
+      templates = import ./templates;
     };
 }
