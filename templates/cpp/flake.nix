@@ -63,9 +63,9 @@
           nativeBuildInputs = with nixpkgsFor.${system}; [
             gcc
           ];
-          shellHook = ''
-            exec zsh
-          '';
+          #shellHook = ''
+          #  exec zsh
+          #'';
         };
 
       });
