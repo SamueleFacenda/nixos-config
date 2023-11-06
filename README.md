@@ -60,7 +60,7 @@ TODOS:
 - [ ] secure boot
 - [x] surface kernel
 - [x] IPTS (surface pen)
-- [ ] ~~libwacom overlay~~
+- [x] ~~libwacom overlay~~
 - [x] fonts
 - [x] cache cleanup
 - [ ] rice :construction:
@@ -76,7 +76,7 @@ TODOS:
 - [x] remote build with nixbuild.net
 - [ ] home server containers
 - [x] waybar
-- [ ] dunst :construction:
+- [ ] dunst
 - [x] xdg-desktop-portal-shana
 - [x] known nets
 - [x] hyprland gnome indipendence
@@ -101,9 +101,11 @@ TODOS:
 - [ ] nwg-dock-hyprland
 - [ ] hyprfocus
 - [ ] libinput gestures
-- [x] spotifyd, spotify-tui (need to be repaced with psotofy-player)
+- [x] spotifyd, spotify-tui (need to be repaced with spotify-player)
 - [x] flake templates
 - [ ] waybar mpris, taskbar, drawers for brightness
+- [ ] waycorner
+- [ ] lid switch power off
 
 :construction: means work in progress
 
