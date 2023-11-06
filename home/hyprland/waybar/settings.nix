@@ -17,7 +17,7 @@ base_config = {
     "memory"
     "cpu"
     "network"
-    "pulseaudio"
+    "wireplumber"
     "battery"
     "idle_inhibitor"
     "custom/osk"
@@ -42,14 +42,14 @@ base_config = {
       ];
   };
 
-  pulseaudio = {
+  wireplumber = {
     scroll-step = 1;
     format = "{icon} {volume}%";
-    format-muted = "󰖁 Muted";
+    format-muted = "󰖁 0%";
     format-icons = {
       default = [ "" "" "" ];
     };
-    on-click = "swayosd-client --output-volume mute-toggle";
+    on-click = "swayosd --output-volume mute-toggle";
     tooltip = false;
   };
 
