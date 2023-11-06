@@ -22,11 +22,11 @@
     }
 
     /* Transparent background, light text */
-    /*{
+    taskbar {
     	background: transparent;
     	padding: 5px 5px 5px 5px;
     	margin: 5px 5px 5px 5px;
-    }*/
+    }
 
     /* Dark background, cyan text, pill shape */
     #cpu, #memory, #temperature, #custom-powermenu, #custom-osk, #workspaces, #battery, #pulseaudio, #network, #language, #idle_inhibitor{
@@ -51,6 +51,10 @@
       border-radius: 8px;
       margin-right: -5px;
       margin-left: 10px;
+    }
+
+    #taskbar {
+      margin: 5px;
     }
 
     #workspaces {

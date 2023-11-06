@@ -6,6 +6,7 @@ base_config = {
 
   modules-left = [
     "custom/launcher"
+    "wlr/taskbar"
     "hyprland/workspaces"
   ];
   modules-center = [
@@ -28,6 +29,17 @@ base_config = {
     format = " ";
     on-click = "wofi-toggle";
     tooltip = false;
+  };
+
+  "wlr/taskbar" = {
+      format = "{icon}";
+      icon-size = 14;
+      tooltip = false;
+      on-click = "activate";
+      on-click-middle = "close";
+      ignore-list = [
+         # "kitty"
+      ];
   };
 
   pulseaudio = {
@@ -96,6 +108,7 @@ base_config = {
 
   battery = {
     interval = 10;
+    full-at = 99;
     on-click = "eww open --toggle powerprofile";
     states = {
       "good" = 90;
