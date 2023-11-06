@@ -6,8 +6,8 @@
   services.logind = {
     powerKey = "suspend";
     lidSwitchExternalPower = "suspend";
-    lidSwitchDocked = "ignore";
     lidSwitch = "suspend";
+    lidSwitchDocked = "ignore";
   };
 
   # enable all the keyboard for system resume
