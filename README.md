@@ -102,6 +102,8 @@ TODOS:
 - [ ] hyprfocus
 - [ ] libinput gestures
 - [x] spotifyd, spotify-tui (need to be repaced with psotofy-player)
+- [x] flake templates
+- [ ] waybar mpris, taskbar, drawers for brightness
 
 :construction: means work in progress
 
@@ -109,7 +111,7 @@ TODOS:
 ### Overlays (custom packages and other):
 - hyprgrass (use hyprland from nixpkgs instead of the hyprland.org flake)
 - micro-wakatime (faster loading)
-- nerdfonts (use monofur with bullet point character from anonymicePro)
+- nerdfonts (use monofur with bullet point character from blexmono)
 - rpl (update version)
 - xdg-desktop-portal-shana (new pkg)
 - monofurx (new pkg)
