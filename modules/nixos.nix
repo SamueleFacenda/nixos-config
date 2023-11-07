@@ -28,14 +28,26 @@
     ];
   };
 
-  nix.registry.samu = {
-    from = {
-      id = "samu";
-      type = "indirect";
+  nix.registry = {
+    samu = {
+      from = {
+        id = "samu";
+        type = "indirect";
+      };
+      to = {
+        path = "/nixos-config";
+        type = "path";
+      };
     };
-    to = {
-      path = "/nixos-config";
-      type = "path";
+    templates = {
+      from = {
+        id = "templates";
+        type = "indirect";
+      };
+      to = {
+        id = "samu";
+        type = "indirect";
+      };
     };
   };
 
