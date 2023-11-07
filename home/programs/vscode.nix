@@ -58,6 +58,12 @@
       "C_Cpp.codeAnalysis.runAutomatically" = true;
       "C_Cpp.codeAnalysis.clangTidy.enabled" = true;
       "C_Cpp.intelliSenseUpdateDelay" = 500;
+      "github.copilot.enable" = {
+        "*" = false;
+        plaintext = false;
+        markdown = false;
+        scminput = false;
+      };
     };
   };
 }

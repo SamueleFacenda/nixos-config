@@ -32,4 +32,5 @@ else
     chmod +x "$out"
 fi
 
-$out
+shift
+$out $@
