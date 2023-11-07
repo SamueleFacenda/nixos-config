@@ -7,7 +7,8 @@
       font-size: 14px;
       font-style: normal;
       min-height: 0;
-      color: ${cyan}
+      color: ${cyan};
+      font-family: 'NomeSbagliato DejaVuSansM Nerd Font Mono';
     }
 
     window#waybar {

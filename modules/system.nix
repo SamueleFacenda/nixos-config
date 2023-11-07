@@ -144,48 +144,9 @@
     ../assets/burpsuiteca.pem
   ];
 
-  fonts = {
-    packages = with pkgs; [
-      # icon fonts
-      material-design-icons
-
-      # normal fonts
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-
-      # nerdfonts
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Monofur" "IBMPlexMono" ]; })
-      monofurx
-    ];
-
-    # use fonts specified by user rather than default ones
-    enableDefaultPackages = false;
-
-    # user defined fonts
-    # the reason there's Noto Color Emoji everywhere is to override DejaVu's
-    # B&W emojis that would sometimes show instead of some Color emojis
-    fontconfig.defaultFonts = {
-      serif = [ "Noto Serif" "Noto Color Emoji" ];
-      sansSerif = [ "Noto Sans" "Noto Color Emoji" ];
-      monospace = [ "JetBrainsMono Nerd Font" "Noto Color Emoji" ];
-      emoji = [ "Noto Color Emoji" ];
-    };
-  };
-
   console = {
-    packages = with pkgs; [ powerline-fonts ];
+    packages = [ pkgs.powerline-fonts ];
     font = "ter-powerline-v32n.psf.gz";
-#    colors = [ # onedark scheme
-#      "282c34" "353b45" "3e4451" "545862"
-#      "565c64" "abb2bf" "b6bdca" "c8ccd4"
-#      "e06c75" "d19a66" "e5c07b" "98c379"
-#      "56b6c2" "61afef" "c678dd" "be5046"
-#    ];
-#    colors = let
-#      getColor = n: config.lib.stylix.colors."base${lib.fixedWidthString 2 "0" (lib.toHexString n)}";
-#      in lib.traceVal (builtins.genList getColor 16);
-# the colors are set by stylix
   };
 
   # This value determines the NixOS release from which the default
