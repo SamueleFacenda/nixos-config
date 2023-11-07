@@ -8,4 +8,10 @@
     vscode.enable = false;
 
   };
+
+  stylix.cursor = {
+    name = "Adwaita";
+    size = 24;
+    package = pkgs.gnome.adwaita-icon-theme;
+  };
 }

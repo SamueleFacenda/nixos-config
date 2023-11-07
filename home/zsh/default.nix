@@ -22,6 +22,7 @@
       rl = "omz reload";
       search = "nix search nixpkgs";
       find = "find -L";
+      open = "xdg-open";
 
       pwn = "shell ${self.outPath}#pwn";
       cpp = "nix develop ${self.outPath}#cpp";

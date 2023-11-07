@@ -5,7 +5,7 @@
   stylix = {
 
     autoEnable = true;
-    image = ../assets/bg2.png;
+    image = ../assets/bg7.png;
     polarity = "dark";
 
     base16Scheme = {
