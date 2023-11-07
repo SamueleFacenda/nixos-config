@@ -15,6 +15,7 @@
     ffmpeg
     flameshot
     jq
+    python312
 
     # misc
     xdg-utils
@@ -32,18 +33,6 @@
 
     # web
     brave
-
-    # code
-    (python3.withPackages (ps: with ps; [
-      pillow # for ranger kitty image preview
-      icecream
-      requests
-      # fonttools
-      # ranger deps
-      chardet
-      python-bidi
-      beautifulsoup4
-    ]))
 
     # ranger dependencies
     file
@@ -81,8 +70,6 @@
   };
 
   services = {
-    # syncthing.enable = true;
-
     # auto mount usb drives
     udiskie.enable = true;
     udiskie.settings.program_options = {
