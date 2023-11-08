@@ -28,8 +28,9 @@
   ];
 
   xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-shana
-    xdg-desktop-portal-gtk
+    #xdg-desktop-portal-shana
+    #xdg-desktop-portal-gtk
+    xdg-desktop-portal-termfilechooser
   ];
 
   # enable dconf for desktop config
