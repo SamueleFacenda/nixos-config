@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+nix shell --impure --expr \
+"with getFlake \"nixpkgs\"; (getAttr currentSystem legacyPackages).python3.withPackages (ps: with ps; [ $@ ])"

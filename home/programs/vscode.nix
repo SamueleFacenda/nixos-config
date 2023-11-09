@@ -59,7 +59,7 @@
       "C_Cpp.codeAnalysis.clangTidy.enabled" = true;
       "C_Cpp.intelliSenseUpdateDelay" = 500;
       "github.copilot.enable" = {
-        "*" = false;
+        "*" = true;
         plaintext = false;
         markdown = false;
         scminput = false;

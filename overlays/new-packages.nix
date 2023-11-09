@@ -1,16 +1,16 @@
-{ trashy, hyprgrass, ... }:
+{ trashy, hyprgrass, self, ... }:
 
-(self: super:{
+(final: prev:{
 
-  trashy = trashy.defaultPackage."${super.system}";
+  trashy = trashy.defaultPackage."${prev.system}";
 
-  inherit (self.packages."${super.system}")
+  inherit (self.packages."${prev.system}")
     monofurx
     libcamera-surface
     xdg-desktop-portal-termfilechooser
     xdg-desktop-portal-shana;
 
   # override to use hyprland from my nixpkgs instead of the flake one
-  hyprgrass = hyprgrass.packages."${self.system}".default.override { inherit (self) hyprland; };
+  hyprgrass = hyprgrass.packages."${prev.system}".default.override { inherit (prev) hyprland; };
 
 })
