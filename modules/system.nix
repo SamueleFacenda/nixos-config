@@ -86,7 +86,6 @@
     neofetch
     ranger
     trashy
-    networkmanager
     wakatime
     linux-firmware
     gnumake
