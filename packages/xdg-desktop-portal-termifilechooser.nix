@@ -38,6 +38,7 @@ stdenv.mkDerivation {
   # Add hyprland support
   patchPhase = ''
     sed -i '/pantheon/ s/$/;Hyprland/' termfilechooser.portal
+
     substituteInPlace contrib/ranger-wrapper.sh \
       --replace /usr/bin/ranger ${ranger}/bin/ranger \
       --replace /usr/bin/kitty ${kitty}/bin/kitty
