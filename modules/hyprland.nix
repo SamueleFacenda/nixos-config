@@ -33,6 +33,10 @@
     xdg-desktop-portal-termfilechooser
   ];
 
+  environment.sessionVariables = {
+    TERMCMD = "${pkgs.kitty}/bin/kitty --class=file_chooser"; # used by termfilechooser
+  };
+
   # enable dconf for desktop config
   programs.dconf.enable = true;
 

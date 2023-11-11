@@ -10,6 +10,12 @@
       ",preferred,auto,1" # fallback
     ];
 
+    windowrule = [
+      "float,^(file_chooser)$"
+      "size 800 500,^(file_chooser)$"
+      "center,^(file_chooser)$"
+    ];
+
     input = {
       touchpad.natural_scroll = true;
 

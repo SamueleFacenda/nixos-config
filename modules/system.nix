@@ -113,10 +113,9 @@
     )
   ];
 
-  environment.variables = {
+  environment.sessionVariables = {
     EDITOR = "micro";
     VISUAL = "micro";
-    TERMCMD = "${pkgs.kitty}/bin/kitty";
   };
   environment.localBinInPath = true;
 

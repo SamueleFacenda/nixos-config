@@ -10,6 +10,7 @@
 , systemd
 , ranger
 , kitty
+, coreutils
 }:
 stdenv.mkDerivation {
   pname = "xdg-desktop-portal-termfilechooser";
@@ -41,7 +42,9 @@ stdenv.mkDerivation {
 
     substituteInPlace contrib/ranger-wrapper.sh \
       --replace /usr/bin/ranger ${ranger}/bin/ranger \
-      --replace /usr/bin/kitty ${kitty}/bin/kitty
+      --replace /usr/bin/kitty '"${kitty}/bin/kitty --class=file_chooser"' \
+      --replace '"$termcmd"' '$termcmd' \
+      --replace 'rm "' '${coreutils}/bin/rm "'
   '';
 
   mesonFlags = [
