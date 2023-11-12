@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "my-package"
+name = "my_package"
 version = "1.0.0"
 description = "My first Python package"
 requires-python = ">=3.8"
@@ -16,4 +16,4 @@ dependencies = [
 ]
 
 [project.scripts]
-my-script = "my_package:main"
+my-script = "my_package.__main__:main"
