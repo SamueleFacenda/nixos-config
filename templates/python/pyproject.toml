@@ -16,4 +16,4 @@ dependencies = [
 ]
 
 [project.scripts]
-my-script = "my_package.__main__:main"
+my-script = "my_package:main"
