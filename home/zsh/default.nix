@@ -23,6 +23,7 @@
       search = "nix search nixpkgs";
       find = "find -L";
       open = "xdg-open";
+      readme = "mdcat README.md";
 
       pwn = "shell ${self.outPath}#pwn";
       cpp = "nix develop ${self.outPath}#cpp";

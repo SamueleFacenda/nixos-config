@@ -7,6 +7,15 @@
   nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
+    use-xdg-base-directories = true;
+    warn-dirty = false;
+    auto-optimise-store = true;
+    # trusted-users = [ "@wheel" ];
+    pure-eval = true;
+    max-jobs = "auto";
+    log-lines = 20;
+    # keep-going = true;
+
     substituters = [
       "https://cache.nixos.org/"
       "https://nixpkgs-wayland.cachix.org"
@@ -77,9 +86,6 @@
     randomizedDelaySec = "20min";
     persistent = true; # so I don't miss the update if the system is down
   };
-
-  # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-auto-optimise-store
-  nix.settings.auto-optimise-store = true;
 
   # Make `nix run nixpkgs#nixpkgs` use the same nixpkgs as the one used by this flake.
   nix.registry.nixpkgs.flake = nixpkgs;
