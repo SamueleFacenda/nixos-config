@@ -43,7 +43,8 @@
 
             installPhase = ''
               mkdir -p $out/bin
-              cp a.out $out/bin
+              find . -type f ! -iregex ".*\.\(c\|cpp\|cc\|nix\|lock\|envrc\|txt\)$" \
+                -exec mv -t "''${out}/bin" "{}" +
             '';
           };
         });
