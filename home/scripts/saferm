@@ -11,4 +11,4 @@ then
     fi  
 fi
 
-trashy put $1
+trashy put "$1"
