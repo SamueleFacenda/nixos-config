@@ -1,7 +1,7 @@
-{ config, pkgs, utils, lib, ... }:
+{ config, pkgs, utils, lib, disabledFiles, ... }:
 {
 
-  imports = utils.listDirPaths ./.;
+  imports = utils.listDirPathsExcluding disabledFiles  ./.;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

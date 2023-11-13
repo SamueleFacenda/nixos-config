@@ -1,9 +1,9 @@
-{ config, pkgs, lib, utils, ... }:
+{ config, pkgs, lib, utils, disabledFiles, ... }:
 let
   usr_bin_dir = "/home/samu/.local/bin/";
 in {
 
-  imports = utils.listDirPathsExcluding [ "eww" ] ./. ;
+  imports = utils.listDirPathsExcluding ([ "eww" ] ++ disabledFiles) ./. ;
 
   home.packages = with pkgs; [
     gtk3

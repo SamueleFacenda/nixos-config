@@ -30,22 +30,18 @@
           extraSpecialArgs = specialArgs // {
             inherit (config.lib) utils;
             inherit (config.age) secrets;
+            disabledFiles = [];
           };
           users.samu = import ../../home;
         };
       }
     ];
 
-  # https://github.com/linux-surface/linux-surface/issues/652 shoud remove the IPTSD shutdown block (not always work)
-  #boot.kernelParams = [
-  #  "intel_iommu=off"
-  #];
-
   networking.hostName = "surface";
 
-  # enable surface stylus and touch, and surface control tool
+  # enable surface stylus and touch, disable surface control tool
   microsoft-surface = {
-    ipts.enable = true; # lib.mkForce false; # problem at shutdown
+    ipts.enable = true; # lib.mkForce false;
     surface-control.enable = lib.mkForce false; # useless, I use power-profiles-daemon
   };
 

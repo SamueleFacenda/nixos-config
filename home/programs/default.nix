@@ -1,3 +1,3 @@
-{ utils, ...}: {
-  imports = utils.listDirPaths ./. ;
+{ utils, disabledFiles, ...}: {
+  imports = utils.listDirPathsExcluding disabledFiles ./. ;
 }
