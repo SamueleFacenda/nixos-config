@@ -10,6 +10,7 @@
       wakatime.vscode-wakatime
       yzhang.markdown-all-in-one
       ms-python.python
+      ms-python.vscode-pylance
       ms-vscode.live-server
       ms-vscode-remote.remote-ssh
       vscode-icons-team.vscode-icons
@@ -58,6 +59,7 @@
       "C_Cpp.codeAnalysis.runAutomatically" = true;
       "C_Cpp.codeAnalysis.clangTidy.enabled" = true;
       "C_Cpp.intelliSenseUpdateDelay" = 500;
+      "python.analysis.typeCheckingMode" = "basic";
       "github.copilot.enable" = {
         "*" = true;
         plaintext = false;
