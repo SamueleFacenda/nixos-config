@@ -6,7 +6,10 @@
 
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
-  outputs = { self, nixpkgs, flake-utils }:
+  inputs.pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+  inputs.pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
+
+  outputs = { self, nixpkgs, flake-utils, pre-commit-hooks }:
     let
 
       # to work with older version of flakes
@@ -61,10 +64,21 @@
               ]))
             ];
 
-            #shellHook = ''
-            #  exec zsh
-            #'';
+            inherit (self.checks.${system}.pre-commit-check) shellHook;
 
+
+          };
+
+        checks = {
+            pre-commit-check = pre-commit-hooks.lib.${system}.run {
+              src = ./.;
+              hooks = {
+                nixpkgs-fmt.enable = true;
+                shellcheck.enable = true;
+                mypy.enable = true;
+                pylint.enable = true;
+              };
+            };
           };
 
         };

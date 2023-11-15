@@ -6,7 +6,10 @@
 
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
-  outputs = { self, nixpkgs, flake-utils }:
+  inputs.pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+  inputs.pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
+
+  outputs = { self, nixpkgs, flake-utils, pre-commit-hooks }:
     let
 
       # to work with older version of flakes
@@ -15,9 +18,8 @@
       # Generate a user-friendly version number.
       version = builtins.substring 0 8 lastModifiedDate;
 
-      overlay = final: prev: {
+      overlay = final: prev: {};
 
-      };
     in
 
     flake-utils.lib.eachDefaultSystem (system:
@@ -52,21 +54,29 @@
           };
 
         devShells = {
-          default = pkgs.mkShell {
-            packages = with pkgs; [
+            default = pkgs.mkShell {
+              packages = with pkgs; [
 
-              (python3.withPackages (ps: with ps; [
+                (python3.withPackages (ps: with ps; [
 
-              ]))
-            ];
+                ]))
+              ];
 
-            #shellHook = ''
-            #  exec zsh
-            #'';
+              inherit (self.checks.${system}.pre-commit-check) shellHook;
+
+            };
 
           };
 
-        };
+        checks = {
+            pre-commit-check = pre-commit-hooks.lib.${system}.run {
+              src = ./.;
+              hooks = {
+                nixpkgs-fmt.enable = true;
+                shellcheck.enable = true;
+              };
+            };
+          };
       }
     );
 }

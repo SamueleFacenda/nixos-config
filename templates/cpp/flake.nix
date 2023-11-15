@@ -1,10 +1,14 @@
 {
   description = "An over-engineered Hello World in C";
 
-  # Nixpkgs / NixOS version to use.
   inputs.nixpkgs.url = "nixpkgs/nixos-23.05";
 
-  outputs = { self, nixpkgs }:
+  inputs.flake-utils.url = "github:numtide/flake-utils";
+
+  inputs.pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+  inputs.pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
+
+  outputs = { self, nixpkgs, flake-utils, pre-commit-hooks }:
     let
 
       # to work with older version of flakes
@@ -13,27 +17,21 @@
       # Generate a user-friendly version number.
       version = builtins.substring 0 8 lastModifiedDate;
 
-      # System types to support.
-      supportedSystems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
-
-      # Helper function to generate an attrset '{ x86_64-linux = f "x86_64-linux"; ... }'.
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-
-      # Nixpkgs instantiated for supported system types.
-      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; overlays = [ self.overlay ]; });
+      overlay = final: prev: {};
 
     in
 
+    flake-utils.lib.eachDefaultSystem (system:
+      let pkgs = (nixpkgs.legacyPackages.${system}.extend overlay); in
     {
-      overlay = final: prev: {};
 
-      packages = forAllSystems (system: {
-          myPack = nixpkgsFor.${system}.stdenv.mkDerivation {
+      packages = {
+          myPack = pkgs.stdenv.mkDerivation {
             pname = "myPack";
             src = ./.;
             inherit version;
 
-            nativeBuildInputs = with nixpkgsFor.${system}; [
+            nativeBuildInputs = with pkgs; [
               gcc
             ];
 
@@ -47,29 +45,43 @@
                 -exec mv -t "''${out}/bin" "{}" +
             '';
           };
-        });
+        };
 
-      defaultPackage = forAllSystems (system: self.packages.${system}.myPack);
+      defaultPackage =  self.packages.${system}.myPack;
 
-      apps = forAllSystems (system: {
+      apps = {
           default = {
             type = "app";
             program = "${self.defaultPackage.${system}}/bin/a.out";
           };
-        });
-
-      devShells = forAllSystems (system: {
-
-        default = nixpkgsFor.${system}.mkShell {
-          nativeBuildInputs = with nixpkgsFor.${system}; [
-            gcc
-          ];
-          #shellHook = ''
-          #  exec zsh
-          #'';
         };
 
-      });
+      devShells = {
+          default = pkgs.mkShell {
+            nativeBuildInputs = with pkgs; [
+              gcc
+            ];
 
-    };
+            inherit (self.checks.${system}.pre-commit-check) shellHook;
+
+          };
+
+        };
+
+      checks = {
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              nixpkgs-fmt.enable = true;
+              shellcheck.enable = true;
+              clang-format = {
+                enable = true;
+                types_or = [ "c" "c++" ];
+              };
+              clang-tidy.enable = true;
+            };
+          };
+        };
+
+    });
 }
