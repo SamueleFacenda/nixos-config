@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   writeable = true;
+  toml = pkgs.formats.toml {};
 in
 if writeable
 then {
@@ -13,10 +14,9 @@ then {
   };
 }
 else {
-  home.file.".wakatime.cfg".text =
-    ''
-      [settings]
-      api_key = @wakatime-key@
-    '';
+  home.file.".wakatime.cfg".source = toml.generate ".wakatime.cfg" {
+    settings.api_key = "@wakatime-key@";
+  };
+
   home.file.".wakatime.cfg".force = true;
 }

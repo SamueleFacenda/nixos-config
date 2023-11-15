@@ -73,9 +73,7 @@
     };
   };
 
-  environment.etc."greetd/environments".text = ''
-    Hyprland
-  '';
+  environment.etc."greetd/environments".text = "Hyprland";
 
   hardware.bluetooth = {
     enable = true;
