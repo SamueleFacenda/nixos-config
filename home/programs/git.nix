@@ -9,6 +9,10 @@
     userName = "SamueleFacenda";
     userEmail = "samuele.facenda@gmail.com";
 
+    extraConfig = {
+      pull.ff = "only";
+    };
+
     signing.key = "0DB83F58B2596271";
     signing.signByDefault = true;
 

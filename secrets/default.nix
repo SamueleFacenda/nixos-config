@@ -40,6 +40,10 @@
       owner = "samu"; # TODO make group for spotifyd
       group = "users";
     };
+
+#    nix-access-tokens = {
+#      file = ./nix-access-tokens.age;
+#    }
   };
 
   age.identityPaths = [

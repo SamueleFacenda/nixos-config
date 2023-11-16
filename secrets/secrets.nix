@@ -11,4 +11,5 @@ in
   "wakatime-key.age".publicKeys = systems;
   "network-keys.age".publicKeys = systems;
   "spotify.age".publicKeys = systems;
+  "nix-access-tokens.age".publicKeys = systems;
 }

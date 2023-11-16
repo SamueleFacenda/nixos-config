@@ -37,6 +37,10 @@
     ];
   };
 
+  nix.extraOptions = ''
+    !include ${config.age.secrets.nix-access-tokens.path}
+  '';
+
   nix.registry = {
     samu = {
       from = {
