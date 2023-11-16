@@ -13,6 +13,7 @@
     settings = with config.lib.stylix.colors.withHashtag; {
       clipboard_control = "write-clipboard write-primary read-clipboard read-primary";
       disable_ligatures = "cursor";
+      close_on_child_death = "yes";
       # font_features = "MonofurNF "
       background = "${base02}";
       foreground = "${base06}";

@@ -1,4 +1,4 @@
-{ lib, pkgs, nixpkgs, self, ... }:
+{ lib, config, pkgs, nixpkgs, self, ... }:
 
 {
   # Enable Flakes and the new command-line tool (already defined in flake.nix)
@@ -37,9 +37,9 @@
     ];
   };
 
-  nix.extraOptions = ''
-    !include ${config.age.secrets.nix-access-tokens.path}
-  '';
+#  nix.extraOptions = ''
+#    !include ${config.age.secrets.nix-access-tokens.path}
+#  '';
 
   nix.registry = {
     samu = {
