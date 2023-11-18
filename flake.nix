@@ -33,6 +33,9 @@
 
     trashy.url = "github:oberblastmeister/trashy";
     trashy.inputs.nixpkgs.follows = "nixpkgs";
+
+    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { nixpkgs, ... }@inputs:
@@ -53,7 +56,7 @@
 
       devShells = eachSystem (system: import ./shells { pkgs = pk system; });
 
-      formatter = eachSystem  (system: (pk system).nixpkgs-fmt);
+      formatter = eachSystem (system: (pk system).nixpkgs-fmt);
 
       # use updated wayland packages
       nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
@@ -61,5 +64,15 @@
       packages = eachSystem (system: import ./packages (pk system));
 
       templates = import ./templates;
+
+      checks = eachSystem (system: {
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            nixpkgs-fmt.enable = true;
+            shellcheck.enable = false;
+          };
+        };
+      });
     };
 }

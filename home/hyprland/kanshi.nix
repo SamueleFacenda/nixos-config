@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:{
+{ config, pkgs, ... }: {
   systemd.user.services.kanshi.Service.ExecReload = "${pkgs.kanshi}/bin/kanshictl reload";
   services.kanshi = {
     enable = false;

@@ -1,6 +1,6 @@
 _:
 
-(self: super:{
+(self: super: {
   fonttools = super.python310Packages.fonttools.overrideAttrs rec {
     version = "4.43.1";
     src = super.fetchFromGitHub {

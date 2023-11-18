@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   writeable = true;
-  toml = pkgs.formats.toml {};
+  toml = pkgs.formats.toml { };
 in
 if writeable
 then {

@@ -11,7 +11,8 @@ in
       value = {
         executable = true;
         source = ./. + "/${n}";
-      };})
+      };
+    })
     (filterAttrs
       (n: v: n != "default.nix")
       (readDir ./.));

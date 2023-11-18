@@ -1,6 +1,6 @@
 _:
 
-(self: super:{
+(self: super: {
   #!!!!! 😡😡😡😤😤 overridePythonAttrs, >5h lost here because of nixpkgs docs
   ranger = super.ranger.overridePythonAttrs (previousAttrs: {
     version = "unstable-1.9.3";
@@ -8,7 +8,7 @@ _:
       owner = "ranger";
       repo = "ranger";
       rev = "136416c7e2ecc27315fe2354ecadfe09202df7dd";
-      sha256= "nW4KlatugmPRPXl+XvV0/mo+DE5o8FLRrsJuiKbFGyY=";
+      sha256 = "nW4KlatugmPRPXl+XvV0/mo+DE5o8FLRrsJuiKbFGyY=";
     };
 
     buildInputs = with super; [

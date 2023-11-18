@@ -1,4 +1,4 @@
-{config, pkgs, stylix, ...}: {
+{ config, pkgs, stylix, ... }: {
   imports = [
     stylix.nixosModules.stylix
   ];

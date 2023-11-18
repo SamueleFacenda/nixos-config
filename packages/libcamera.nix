@@ -20,7 +20,7 @@
 , qt5
 , libjpeg
 , SDL2
-} :
+}:
 
 # thanks https://github.com/damianoognissanti/libcamera-surface
 stdenv.mkDerivation rec {
@@ -94,7 +94,7 @@ stdenv.mkDerivation rec {
   NIX_CFLAGS_COMPILE = "-Wno-error=deprecated-declarations";
 
   # Silence fontconfig warnings about missing config
-  FONTCONFIG_FILE = makeFontsConf { fontDirectories = []; };
+  FONTCONFIG_FILE = makeFontsConf { fontDirectories = [ ]; };
 
   # libcamera signs the IPA module libraries at install time, but they are then
   # modified by stripping and RPATH fixup. Therefore, we need to generate the

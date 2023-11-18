@@ -18,7 +18,7 @@
       # Generate a user-friendly version number.
       version = builtins.substring 0 8 lastModifiedDate;
 
-      overlay = final: prev: {};
+      overlay = final: prev: { };
 
     in
 
@@ -27,56 +27,56 @@
       {
 
         packages = {
-            myPack = pkgs.stdenv.mkDerivation {
-              pname = "myPack";
-              src = ./.;
-              inherit version;
+          myPack = pkgs.stdenv.mkDerivation {
+            pname = "myPack";
+            src = ./.;
+            inherit version;
 
-              nativeBuildInputs = with pkgs; [];
+            nativeBuildInputs = with pkgs; [ ];
 
-              buildPhase = ''
+            buildPhase = ''
               '';
 
-              installPhase = ''
-                mkdir -p $out/bin
-                cp * $out
-              '';
-            };
+            installPhase = ''
+              mkdir -p $out/bin
+              cp * $out
+            '';
           };
+        };
 
         defaultPackage = self.packages.${system}.myPack;
 
         apps = {
-            default = {
-              type = "app";
-              program = "${self.defaultPackage.${system}}/bin/executable";
-            };
+          default = {
+            type = "app";
+            program = "${self.defaultPackage.${system}}/bin/executable";
           };
+        };
 
         devShells = {
-            default = pkgs.mkShell {
-              packages = with pkgs; [
+          default = pkgs.mkShell {
+            packages = with pkgs; [
 
-                (python3.withPackages (ps: with ps; [
+              (python3.withPackages (ps: with ps; [
 
-                ]))
-              ];
+              ]))
+            ];
 
-              inherit (self.checks.${system}.pre-commit-check) shellHook;
-
-            };
+            inherit (self.checks.${system}.pre-commit-check) shellHook;
 
           };
+
+        };
 
         checks = {
-            pre-commit-check = pre-commit-hooks.lib.${system}.run {
-              src = ./.;
-              hooks = {
-                nixpkgs-fmt.enable = true;
-                shellcheck.enable = true;
-              };
+          pre-commit-check = pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              nixpkgs-fmt.enable = true;
+              shellcheck.enable = true;
             };
           };
+        };
       }
     );
 }

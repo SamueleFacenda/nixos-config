@@ -9,11 +9,11 @@ let
   inherit (builtins) readDir head;
   inherit (pkgs) callPackage;
 in
-  mapAttrs'
-    (n: v: rec {
-      name = value.pname; # rec value.pname alternative
-      value = callPackage (import (./. + "/${n}")) {};
-    })
-    (filterAttrs
-      (n: v: n != "default.nix")
-      (readDir ./.))
+mapAttrs'
+  (n: v: rec {
+    name = value.pname; # rec value.pname alternative
+    value = callPackage (import (./. + "/${n}")) { };
+  })
+  (filterAttrs
+    (n: v: n != "default.nix")
+    (readDir ./.))

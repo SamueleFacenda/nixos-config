@@ -4,7 +4,8 @@
 let
   sys = prev.system;
   pk = self.packages.${sys};
-in {
+in
+{
 
   trashy = trashy.defaultPackage."${prev.system}";
 

@@ -17,15 +17,15 @@
       # Generate a user-friendly version number.
       version = builtins.substring 0 8 lastModifiedDate;
 
-      overlay = final: prev: {};
+      overlay = final: prev: { };
 
     in
 
     flake-utils.lib.eachDefaultSystem (system:
       let pkgs = (nixpkgs.legacyPackages.${system}.extend overlay); in
-    {
+      {
 
-      packages = {
+        packages = {
           myPack = pkgs.stdenv.mkDerivation {
             pname = "myPack";
             src = ./.;
@@ -47,16 +47,16 @@
           };
         };
 
-      defaultPackage =  self.packages.${system}.myPack;
+        defaultPackage = self.packages.${system}.myPack;
 
-      apps = {
+        apps = {
           default = {
             type = "app";
             program = "${self.defaultPackage.${system}}/bin/a.out";
           };
         };
 
-      devShells = {
+        devShells = {
           default = pkgs.mkShell {
             nativeBuildInputs = with pkgs; [
               gcc
@@ -68,7 +68,7 @@
 
         };
 
-      checks = {
+        checks = {
           pre-commit-check = pre-commit-hooks.lib.${system}.run {
             src = ./.;
             hooks = {
@@ -83,5 +83,5 @@
           };
         };
 
-    });
+      });
 }

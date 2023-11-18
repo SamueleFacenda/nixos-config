@@ -1,8 +1,9 @@
 { config, pkgs, lib, specialArgs, ... }:
 # specialArgs are inputs
 let
-  toml = pkgs.formats.toml {};
-in {
+  toml = pkgs.formats.toml { };
+in
+{
   imports = with specialArgs;
     [
       ../../modules/system.nix
@@ -32,7 +33,7 @@ in {
           extraSpecialArgs = specialArgs // {
             inherit (config.lib) utils;
             inherit (config.age) secrets;
-            disabledFiles = [];
+            disabledFiles = [ ];
           };
           users.samu = import ../../home;
         };

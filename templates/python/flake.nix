@@ -18,9 +18,7 @@
       # Generate a user-friendly version number.
       version = builtins.substring 0 8 lastModifiedDate;
 
-      overlay = final: prev: {
-
-      };
+      overlay = final: prev: { };
     in
 
     flake-utils.lib.eachDefaultSystem (system:
@@ -28,32 +26,32 @@
       {
 
         packages = {
-            myPack = pkgs.python3.pkgs.buildPythonApplication {
-              pname = "myPack";
-              src = ./.;
-              inherit version;
-              pyproject = true;
-              format = "pyproject";
+          myPack = pkgs.python3.pkgs.buildPythonApplication {
+            pname = "myPack";
+            src = ./.;
+            inherit version;
+            pyproject = true;
+            format = "pyproject";
 
-              propagatedBuildInputs = with pkgs.python3.pkgs; [
+            propagatedBuildInputs = with pkgs.python3.pkgs; [
 
-              ];
+            ];
 
-              nativeBuildInputs = with pkgs; [
-                python3.pkgs.setuptools
-              ];
+            nativeBuildInputs = with pkgs; [
+              python3.pkgs.setuptools
+            ];
 
-            };
           };
+        };
 
         defaultPackage = self.packages.${system}.myPack;
 
         apps = {
-            default = {
-              type = "app";
-              program = "${self.defaultPackage.${system}}/bin/my-script";
-            };
+          default = {
+            type = "app";
+            program = "${self.defaultPackage.${system}}/bin/my-script";
           };
+        };
 
         devShells = {
           default = pkgs.mkShell {
@@ -69,7 +67,7 @@
 
           };
 
-        checks = {
+          checks = {
             pre-commit-check = pre-commit-hooks.lib.${system}.run {
               src = ./.;
               hooks = {

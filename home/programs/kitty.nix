@@ -40,7 +40,7 @@
       visual_bell_duration = "0.0";
 
       wayland_titlebar_color = "system";
-/*
+      /*
       color0 = "${base00}";
       color1 = "${red}";
       color2 = "${green}";

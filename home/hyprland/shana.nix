@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 let
-  toml = pkgs.formats.toml {};
-in {
+  toml = pkgs.formats.toml { };
+in
+{
 
   xdg.configFile."xdg-desktop-portal-shana/config.toml".source = toml.generate "config.toml" {
     open_file = "Gtk";
