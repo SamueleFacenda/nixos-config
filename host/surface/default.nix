@@ -82,6 +82,7 @@ in {
     libwacom-surface
     libcamera-surface # custom
     iptsd
+    power-profiles-daemon
 
     # Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
     gst_all_1.gstreamer

@@ -89,7 +89,6 @@
     gnumake
     wireguard-tools
     wpa_supplicant_gui
-    power-profiles-daemon
 
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
     (

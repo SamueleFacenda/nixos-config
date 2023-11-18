@@ -65,7 +65,7 @@
   };
 
   # Limit the number of generations to keep
-  boot.loader.systemd-boot.configurationLimit = 8;
+  boot.loader.systemd-boot.configurationLimit = 12;
   # boot.loader.grub.configurationLimit = 10;
 
   # Perform garbage collection weekly to maintain low disk usage
