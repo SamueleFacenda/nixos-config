@@ -38,7 +38,7 @@
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       eachSystem = nixpkgs.lib.genAttrs (import inputs.systems);
       pk = system: nixpkgs.legacyPackages."${system}";
@@ -54,7 +54,10 @@
         };
       };
 
-      devShells = eachSystem (system: import ./shells { pkgs = pk system; });
+      devShells = eachSystem (system:
+        (import ./shells { pkgs = pk system; }) //
+        { default = (pk system).mkShell { inherit (self.checks.${system}.pre-commit-check) shellHook; }; }
+      );
 
       formatter = eachSystem (system: (pk system).nixpkgs-fmt);
 
