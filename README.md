@@ -106,6 +106,7 @@ TODOS:
 - [ ] waybar mpris, taskbar, drawers for brightness
 - [ ] waycorner
 - [ ] lid switch power off
+- [ ] adjust nixpkgs wayland overlay
 
 :construction: means work in progress
 
