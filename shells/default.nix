@@ -1,7 +1,7 @@
 { pkgs, ... }@args:
 let
   inherit (builtins) head readDir;
-  inherit (pkgs.lib.strings) splitString;
+  inherit (pkgs.lib.strings) removeSuffix;
   inherit (pkgs.lib.attrsets) filterAttrs mapAttrs';
 in
 
@@ -10,7 +10,7 @@ in
   # (create an attrsets of shells)
 mapAttrs'
   (n: v: {
-    name = head (splitString "." n);
+    name = removeSuffix ".nix" n;
     value = import (./. + "/${n}") args;
   })
   (filterAttrs
