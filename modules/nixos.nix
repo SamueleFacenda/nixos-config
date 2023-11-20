@@ -10,13 +10,13 @@
     use-xdg-base-directories = true;
     warn-dirty = false;
     auto-optimise-store = true;
-    # trusted-users = [ "@wheel" ];
+    trusted-users = [ "@wheel" ];
     pure-eval = true;
     max-jobs = "auto";
     log-lines = 20;
     # keep-going = true;
 
-    substituters = [
+    trusted-substituters = [
       "https://cache.nixos.org/"
       "https://nixpkgs-wayland.cachix.org"
     ];
@@ -27,7 +27,7 @@
     ];
 
     # nix community`s cache server
-    extra-substituters = [
+    extra-trusted-substituters = [
       "https://nix-community.cachix.org"
       "https://hyprland.cachix.org"
     ];

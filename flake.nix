@@ -61,9 +61,6 @@
 
       formatter = eachSystem (system: (pk system).nixpkgs-fmt);
 
-      # use updated wayland packages
-      nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
-
       packages = eachSystem (system: import ./packages (pk system));
 
       templates = import ./templates;

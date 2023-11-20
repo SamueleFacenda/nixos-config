@@ -1,6 +1,10 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, nixpkgs-wayland, ... }: {
 
   programs.hyprland.enable = true;
+
+  # use updated wayland packages
+  nixpkgs.overlays = [ nixpkgs-wayland.overlay ];
+
 
   # LidSwitch and PowerButton actions
   services.logind = {
