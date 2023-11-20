@@ -21,7 +21,7 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprgrass.url = "github:horriblename/hyprgrass"; # it uses the hyprland flake
-    hyprgrass.inputs.hyprland.follows = "hyprland";
+    # hyprgrass.inputs.hyprland.follows = "hyprland";
 
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     # nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs"; # no cache
@@ -36,9 +36,6 @@
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
-
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs"; # no cache, but wayland-overlay break it anyway
   };
 
   outputs = { self, nixpkgs, ... }@inputs:

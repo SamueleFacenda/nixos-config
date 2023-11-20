@@ -2,10 +2,6 @@
 
   programs.hyprland.enable = true;
 
-  # use updated wayland packages
-  nixpkgs.overlays = [ nixpkgs-wayland.overlay ];
-
-
   # LidSwitch and PowerButton actions
   services.logind = {
     powerKey = "suspend";

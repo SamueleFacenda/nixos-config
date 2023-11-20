@@ -22,7 +22,11 @@ in
 
       agenix.nixosModules.default
 
-      (args: { nixpkgs.overlays = import ../../overlays args; })
+      (args: {
+        nixpkgs.overlays =
+          [ nixpkgs-wayland.overlay ] ++
+          (import ../../overlays args);
+      })
 
       home-manager.nixosModules.home-manager
       {

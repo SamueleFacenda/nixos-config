@@ -109,6 +109,8 @@ TODOS:
 - [ ] lid switch power off
 - [x] adjust nixpkgs wayland overlay
 - [x] termfilechooser portal
+- [ ] removePrefix
+- [ ] defaultPackage migration
 
 :construction: means work in progress
 

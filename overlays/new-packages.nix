@@ -18,7 +18,6 @@ in
   xdg-desktop-portal-termfilechooser = pk.xdg-desktop-portal-termfilechooser.override { inherit (final) ranger; };
 
   # override to use hyprland from my nixpkgs instead of the flake one
-  # hyprgrass = hyprgrass.packages."${prev.system}".default.override { inherit (prev) hyprland; };
-  hyprgrass = hyprgrass.packages."${prev.system}".default;
-
+  hyprgrass = hyprgrass.packages."${prev.system}".default.override { inherit (final) hyprland; };
+  # hyprgrass = hyprgrass.packages."${prev.system}".default;
 })
