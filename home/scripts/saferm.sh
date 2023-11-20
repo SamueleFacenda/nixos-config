@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 #### Only work for one file/argument
-if [ -d $1 ]
+if [ -d "$1" ]
 then
-    read -p "The target is a directory, are you sure?[y/*]" confirm
-    if [ $confirm != "y" ]
+    read -r -p "The target is a directory, are you sure?[y/*]" confirm
+    if [ "$confirm" != "y" ]
     then
         echo "Aborting"
         exit 1

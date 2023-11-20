@@ -13,8 +13,7 @@ ip_port_regex="^(?:(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])(\.(?!:)|:$
 
 
 stop_cam () {
-    pkill .gst-launch-1.0
-    if [ $? -eq 0 ]
+    if pkill .gst-launch-1.0
     then
         echo "Camera stopped successfully"
     else
@@ -24,7 +23,7 @@ stop_cam () {
 }
 
 loopback_camera () {
-    cam=`get_camera`
+    cam="$(get_camera)"
     
     if [[ "$cam" == "$1" ]]
     then
@@ -32,7 +31,7 @@ loopback_camera () {
         return 0
     fi
     
-    if [[ ! -z $cam ]]
+    if [[ -n "$cam" ]]
     then
         stop_cam > /dev/null
     fi
@@ -43,16 +42,15 @@ loopback_camera () {
         flip="! videoflip method=horizontal-flip"
     fi       
 
-    gst-launch-1.0 libcamerasrc camera-name=$1 \
-        $flip \
-        ! videoconvert ! v4l2sink device=$video_sink_camera \
+    gst-launch-1.0 libcamerasrc camera-name="$1" \
+        "$flip" \
+        ! videoconvert ! v4l2sink "device=$video_sink_camera" \
         > /dev/null 2>&1 & disown
 }
 
 get_camera () {
-    ps -aux | \
-        grep "gst-launch-1.0\s" | \
-        awk '{print $13}' | \
+    pgrep -a "gst-launch-1.0" | \
+        awk '{print $4}' | \
         cut -d "=" -f 2
 }
 
@@ -60,10 +58,10 @@ case $1 in
 cam)
     case $2 in
     back)
-        loopback_camera $back "flip"
+        loopback_camera "$back" "flip"
         ;;
     front)
-        loopback_camera $front
+        loopback_camera "$front"
         ;;
     stop)
         stop_cam  
@@ -100,8 +98,7 @@ screen)
             > /dev/null 2>&1 & disown
         ;;
     stop)
-        pkill wf-recorder
-        if [ $? -eq 0 ]
+        if pkill wf-recorder
         then
             echo "Screen cast stopped succesfully"
         else
@@ -124,7 +121,7 @@ net)
             echo "Network address (ip:port) not provided, exiting..." 1>&2
             exit 1
         fi
-        if echo "$3" | grep --invert-match -qP $ip_port_regex
+        if echo "$3" | grep --invert-match -qP "$ip_port_regex"
             then
                 echo "Network address is not a valid ip:port" 1>&2
                 exit 1
@@ -133,8 +130,7 @@ net)
             > /dev/null 2>&1 & disown
         ;;
     stop)
-        pkill ffmpeg
-        if [ $? -eq 0 ]
+        if pkill ffmpeg
         then
             echo "Network cast stopped succesfully"
         else

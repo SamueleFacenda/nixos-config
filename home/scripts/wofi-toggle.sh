@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ $(ps -e | grep .wofi-wrapped) ]]
+if pgrep .wofi-wrapped
 then
     pkill .wofi-wrapped
 else

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-n_monitors=`hyprctl monitors -j | jq '. | length'`
+n_monitors="$(hyprctl monitors -j | jq '. | length')"
 
 if (( n_monitors > 1 ))
 then
