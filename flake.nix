@@ -9,7 +9,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs"; # no cache
 
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-hardware.url = "github:SamueleFacenda/nixos-hardware/master"; # My personal fork
@@ -21,10 +21,10 @@
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprgrass.url = "github:horriblename/hyprgrass"; # it uses the hyprland flake
-    #hyprgrass.inputs.hyprland.follows = "nixpkgs";
+    hyprgrass.inputs.hyprland.follows = "hyprland";
 
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-    # nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
+    # nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs"; # no cache
 
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
@@ -36,6 +36,9 @@
 
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs"; # no cache, but wayland-overlay break it anyway
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
