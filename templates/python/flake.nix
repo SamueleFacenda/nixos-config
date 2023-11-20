@@ -25,7 +25,8 @@
       let pkgs = (nixpkgs.legacyPackages.${system}.extend overlay); in
       {
 
-        packages = {
+        packages = rec {
+          default = myPack;
           myPack = pkgs.python3.pkgs.buildPythonApplication {
             pname = "myPack";
             src = ./.;
@@ -43,8 +44,6 @@
 
           };
         };
-
-        defaultPackage = self.packages.${system}.myPack;
 
         apps = {
           default = {
