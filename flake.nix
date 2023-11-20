@@ -73,7 +73,10 @@
           src = ./.;
           hooks = {
             nixpkgs-fmt.enable = true;
-            shellcheck.enable = false;
+            shellcheck = {
+              enable = true;
+              excludes = [ "p10k.zsh" "scope.sh" ];
+            };
           };
         };
       });
