@@ -37,9 +37,8 @@
     xdg-desktop-portal-termfilechooser
   ];
 
-  environment.sessionVariables = {
-    TERMCMD = "${pkgs.kitty}/bin/kitty --class=file_chooser"; # used by termfilechooser
-  };
+  # needed by termfilechooser portal
+  environment.sessionVariables.TERMCMD = "${pkgs.kitty}/bin/kitty --class=file_chooser --override background_opacity=1";
 
   # enable dconf for desktop config
   programs.dconf.enable = true;

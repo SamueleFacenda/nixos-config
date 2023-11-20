@@ -3,7 +3,6 @@ let
   toml = pkgs.formats.toml { };
 in
 {
-
   #  xdg.configFile."xdg-desktop-portal-termfilechooser/Hyprland".text = ''
   xdg.configFile."xdg-desktop-portal-termfilechooser/config".source = toml.generate "config" {
     filechooser = {

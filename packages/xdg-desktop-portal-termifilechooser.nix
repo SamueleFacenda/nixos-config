@@ -42,7 +42,7 @@ stdenv.mkDerivation {
 
     substituteInPlace contrib/ranger-wrapper.sh \
       --replace /usr/bin/ranger ${ranger}/bin/ranger \
-      --replace /usr/bin/kitty '"${kitty}/bin/kitty --class=file_chooser"' \
+      --replace /usr/bin/kitty ${kitty}/bin/kitty \
       --replace '"$termcmd"' '$termcmd' \
       --replace 'rm "' '${coreutils}/bin/rm "'
   '';
