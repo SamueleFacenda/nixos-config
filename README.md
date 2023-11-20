@@ -9,6 +9,7 @@ find ./ "" -type f 2>/dev/null | grep -v -E ".git|.png|.age|.jpg|.pem|.lock" | x
 This is more than my config, it's a flake. There are a couple packages and some devshells.
 ### Packages:
 - xdg-desktop-portal-shana (the portal of portals)
+- xdg-desktop-portal-termfilechooser (use ranger instead of gui file manager)
 - monofurx (patched version of the original monofur)
 - libcamera-surface (see the file for credits, update to version 0.1.0)
 
@@ -107,7 +108,7 @@ TODOS:
 - [ ] waycorner
 - [ ] lid switch power off
 - [x] adjust nixpkgs wayland overlay
-- [ ] termfilechooser portal (with opque bg)
+- [x] termfilechooser portal
 
 :construction: means work in progress
 
@@ -120,3 +121,5 @@ TODOS:
 - xdg-desktop-portal-shana (new pkg)
 - monofurx (new pkg)
 - libcamera-surface (new pkg)
+- xdg-desktop-portal-termfilechooser (new pkg)
+ 
