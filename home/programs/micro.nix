@@ -54,8 +54,8 @@
     color-link diff-added "${green}"
     color-link diff-modified "${yellow}"
     color-link diff-deleted "${orange}"
-    color-link gutter-error "#CB4B16,#282828"
-    color-link gutter-warning "#E6DB74,#282828"
+    color-link gutter-error "${red}"
+    color-link gutter-warning "${orange}"
     color-link cursor-line "${base02}"
     color-link color-column "#323232"
     #No extended types; Plain brackets.
@@ -64,5 +64,9 @@
     color-link symbol.operator "${red}"
     color-link symbol.tag "${orange}"
     color-link identifier.var "${blue}"
+    color-link constant.string.char "bold ${orange}"
+    color-link constant.specialChar "bold ${orange}"
+
+
   '';
 }
