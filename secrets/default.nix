@@ -41,9 +41,11 @@
       group = "users";
     };
 
-    #    nix-access-tokens = {
-    #      file = ./nix-access-tokens.age;
-    #    }
+    nix-access-tokens = {
+      file = ./nix-access-tokens.age;
+      owner = "samu";
+      group = "users";
+    };
   };
 
   age.identityPaths = [
