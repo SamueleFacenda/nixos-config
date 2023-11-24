@@ -14,8 +14,11 @@
     # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nixos-hardware.url = "github:SamueleFacenda/nixos-hardware/master"; # My personal fork
 
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
-    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
+    spicetify-nix = {
+      url = "github:the-argus/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
@@ -26,16 +29,30 @@
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     # nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs"; # no cache
 
-    stylix.url = "github:danth/stylix";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
 
     systems.url = "github:nix-systems/default";
 
-    trashy.url = "github:oberblastmeister/trashy";
-    trashy.inputs.nixpkgs.follows = "nixpkgs";
+    trashy = {
+      url = "github:oberblastmeister/trashy";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
 
-    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
