@@ -60,6 +60,10 @@
       "C_Cpp.codeAnalysis.clangTidy.enabled" = true;
       "C_Cpp.intelliSenseUpdateDelay" = 500;
       "python.analysis.typeCheckingMode" = "basic";
+      "python.analysis.autoFormatStrings" = true;
+      "python.analysis.autoImportCompletions" = true;
+      "python.analysis.callArgumentNames" = true;
+
       "github.copilot.enable" = {
         "*" = true;
         plaintext = false;
