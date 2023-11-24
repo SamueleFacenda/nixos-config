@@ -20,10 +20,11 @@
       c = "clear";
       q = "exit";
       rl = "omz reload";
-      search = "nix search nixpkgs";
+      search = "nix search --offline nixpkgs";
       find = "find -L";
       open = "xdg-open";
       readme = "mdcat README.md";
+      whr = "grep -R --exclude-dir .direnv";
 
       pwn = "shell ${self.outPath}#pwn";
       cpp = "nix develop ${self.outPath}#cpp";

@@ -11,7 +11,7 @@
     warn-dirty = false;
     auto-optimise-store = true;
     trusted-users = [ "@wheel" ];
-    pure-eval = true;
+    #pure-eval = true;
     max-jobs = "auto";
     log-lines = 20;
     # keep-going = true;
@@ -71,7 +71,7 @@
   # Perform garbage collection weekly to maintain low disk usage
   nix.gc = {
     automatic = true;
-    dates = "weekly";
+    dates = "daily";
     options = "--delete-older-than 7d";
   };
 

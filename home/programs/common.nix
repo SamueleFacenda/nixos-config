@@ -16,6 +16,7 @@
     flameshot
     jq
     python312
+    python3Packages.howdoi
 
     # misc
     xdg-utils

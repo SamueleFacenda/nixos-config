@@ -36,6 +36,10 @@
         priority = 100;
         psk = "@HOTSPOT_PSW@";
       };
+      FASTWEB-B2219F = {
+        priority = 30;
+        psk = "@WHITE_HOUSE_PSW@";
+      };
     };
   };
 
