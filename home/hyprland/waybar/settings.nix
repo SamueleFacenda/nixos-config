@@ -62,6 +62,13 @@ let
       tooltip-format = "<tt>{calendar}</tt>";
     };
 
+    temperature = {
+      thermal-zone = 5;
+      critical-threshold = 120;
+      format-icons = [ "" "" "" "" "" "󰸁" ];
+      format = "{icon} {temperatureC}󰔄";
+    };
+
     memory = {
       interval = 1;
       format = "󰻠 {percentage}%";
