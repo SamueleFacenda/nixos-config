@@ -118,6 +118,10 @@
       padding: 5px 10px 5px 3px;
     }
 
+    #idle_inhibitor, #custom-osk {
+      padding-right: 5px;
+    }
+
     #wireplumber.muted {
       color: ${blue};
     }
