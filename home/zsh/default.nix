@@ -88,6 +88,11 @@
     localVariables = {
       # remove the right side 1 char padding
       ZLE_RPROMPT_INDENT = "0";
+      # some pasting problems, like slowness
+      DISABLE_MAGIC_FUNCTIONS = "true";
+      ZSH_AUTOSUGGEST_HISTORY_IGNORE = "cd *";
+      # TODO find a way to use some other keybinding
+      #ZSH_AUTOSUGGEST_ACCEPT_WIDGETS = "forward-char end-of-line vi-forward-char vi-end-of-line vi-add-eol";
     };
   };
 

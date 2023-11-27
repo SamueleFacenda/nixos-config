@@ -1,7 +1,8 @@
 # My nixos Flake:snowflake:
 
 <!-- 
-find ./ "" -type f 2>/dev/null | grep -v -E ".git|.png|.age|.jpg|.pem|.lock" | xargs cat | wc -l 
+to count the lines that I've written
+find ./ "" -type f 2>/dev/null -not -path '*/.*' | grep -v -E ".git|.png|.age|.jpg|.pem|.lock|.zsh|.py|.conf" | xargs cat | wc -l 
 -->
 
 ![hyprland screenshot](assets/screenshot1.png)
