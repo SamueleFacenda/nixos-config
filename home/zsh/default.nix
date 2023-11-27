@@ -25,6 +25,8 @@
       open = "xdg-open";
       readme = "mdcat README.md";
       whr = "grep -R --exclude-dir .direnv";
+      bright = "swayosd --brightness 20";
+      dark = "swayosd --brightness -20";
 
       pwn = "shell ${self.outPath}#pwn";
       cpp = "nix develop ${self.outPath}#cpp";

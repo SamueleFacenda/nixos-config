@@ -64,7 +64,7 @@ let
 
     temperature = {
       thermal-zone = 5;
-      critical-threshold = 120;
+      critical-threshold = 100;
       interval = 5;
       format-icons = [ "" "" "" "" "" "󰸁" ];
       format = "{icon} {temperatureC}󰔄";
