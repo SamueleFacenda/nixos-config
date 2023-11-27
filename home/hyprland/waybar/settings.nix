@@ -65,13 +65,14 @@ let
     temperature = {
       thermal-zone = 5;
       critical-threshold = 120;
+      interval = 5;
       format-icons = [ "" "" "" "" "" "󰸁" ];
       format = "{icon} {temperatureC}󰔄";
     };
 
     memory = {
       interval = 1;
-      format = "󰻠 {percentage}%";
+      format = "󰻠 {percentage:02}%";
       states = {
         warning = 85;
       };
@@ -79,7 +80,7 @@ let
 
     cpu = {
       interval = 1;
-      format = "󰍛 {usage}%";
+      format = "󰍛 {usage:02}%";
       states = {
         warning = 95;
       };
