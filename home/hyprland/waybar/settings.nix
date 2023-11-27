@@ -72,7 +72,7 @@ let
 
     memory = {
       interval = 1;
-      format = "󰻠 {percentage:02}%";
+      format = "󰍛 {percentage:02}%";
       states = {
         warning = 85;
       };
@@ -80,7 +80,7 @@ let
 
     cpu = {
       interval = 1;
-      format = "󰍛 {usage:02}%";
+      format = "󰻠 {usage:02}%";
       states = {
         warning = 95;
       };
