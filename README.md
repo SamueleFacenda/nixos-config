@@ -110,7 +110,9 @@ TODOS:
 - [ ] lid switch power off
 - [x] adjust nixpkgs wayland overlay
 - [x] termfilechooser portal
-- [ ] removePrefix
+- [ ] spotofy-player or ncspot
+- [ ] discocss (discord)
+- [ ] nix index database
 
 :construction: means work in progress
 
