@@ -1,7 +1,7 @@
 { config, pkgs, lib, specialArgs, ... }:
 # specialArgs are inputs
 let
-  toml = pkgs.formats.toml { };
+  format = pkgs.formats.ini { };
 in
 {
   imports = with specialArgs;
@@ -75,7 +75,7 @@ in
 
   services.udev.packages = with pkgs; [ libwacom-surface ];
 
-  environment.etc."iptsd.conf".source = toml.generate "iptsd.conf" {
+  environment.etc."iptsd.conf".source = format.generate "iptsd.conf" {
     Touch = {
       DisableOnPalm = true;
       DisableOnStylus = true;

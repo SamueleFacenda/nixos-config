@@ -113,6 +113,7 @@ TODOS:
 - [ ] spotofy-player or ncspot
 - [ ] discocss (discord)
 - [ ] nix index database
+- [ ] tinyproxy wakapi
 
 :construction: means work in progress
 
