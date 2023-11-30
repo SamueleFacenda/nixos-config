@@ -2,19 +2,19 @@
 
 set -e
 
-RED='\033[1;31m'
-GREEN='\033[1;32m'
-NC='\033[0m' # No Color
+RED="\033[1;31m"
+GREEN="\033[1;32m"
+NC="\033[0m" # No Color
 
 if [ 0 -ge $# ]
 then
-    printf "%sNo argument provided%s\n" "$RED" "$NC"
+    printf "%bNo argument provided%b\n" "$RED" "$NC"
     exit 2
 fi
 
 if [ ! -f "$1" ]
 then
-    printf "%sFile %s does not exists%s\n" "$RED" "$1" "$NC"
+    printf "%bFile %s does not exists%b\n" "$RED" "$1" "$NC"
     exit 3
 fi
 
@@ -25,10 +25,10 @@ out="${out}/out"
 
 if [ -e "$out" ]
 then
-    printf "%sFile cached %s \n\n" "$GREEN" "$NC"
+    printf "%bFile cached %b\n\n" "$GREEN" "$NC"
 else
     g++ -Wall -o "$out" "$1"
-    printf "%sOut file is %s %s\n\n" "%GREEN" "$out" "$NC"
+    printf "%bOut file is %s %b\n\n" "$GREEN" "$out" "$NC"
     chmod +x "$out"
 fi
 
