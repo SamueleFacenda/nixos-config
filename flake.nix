@@ -1,3 +1,4 @@
+# first line for filetype recognition in micro
 {
   description = "Samuele's NixOS Flake";
 
