@@ -1,3 +1,4 @@
+# nix comment
 {
   description = "An over-engineered Hello World in C";
 

@@ -1,3 +1,4 @@
+# nix comments
 {
   description = "An full-optional flake template";
 
