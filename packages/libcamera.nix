@@ -57,7 +57,7 @@ stdenv.mkDerivation rec {
     gtest
     libjpeg
     SDL2
-    qt5.qtwayland
+    # qt5.qtwayland
   ];
 
   nativeBuildInputs = [
@@ -68,11 +68,9 @@ stdenv.mkDerivation rec {
     python3Packages.jinja2
     python3Packages.pyyaml
     python3Packages.ply
-    python3Packages.sphinx
     graphviz
-    doxygen
     openssl
-    qt5.wrapQtAppsHook
+    # qt5.wrapQtAppsHook
   ];
 
   mesonFlags = [
@@ -81,12 +79,17 @@ stdenv.mkDerivation rec {
     # "-Dprefix=/usr" # cannot set on nixos
     "-Dgstreamer=enabled"
     "-Dv4l2=true"
-    # "-Dqcam=disabled"
+    "-Dqcam=disabled"
+    "-Ddocumentation=disabled" # sphinx errors
     # "-Dlc-compliance=disabled" # tries unconditionally to download gtest when enabled
     # Avoid blanket -Werror to evade build failures on less
     # tested compilers.
     # "-Dwerror=false"
   ];
+
+  preBuild = ''
+    export XDG_CACHE_HOME="$(mktemp -d)"
+  '';
 
   mesonBuildType = "release";
 
