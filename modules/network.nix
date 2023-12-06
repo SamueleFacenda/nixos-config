@@ -40,6 +40,10 @@
         priority = 30;
         psk = "@WHITE_HOUSE_PSW@";
       };
+      TIM-20569857 = {
+        priority = 31;
+        psk = "@CASA_ALESSANDRO@";
+      };
     };
   };
 

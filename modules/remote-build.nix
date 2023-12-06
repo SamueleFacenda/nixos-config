@@ -22,7 +22,7 @@
         system = "x86_64-linux";
         maxJobs = 100;
         supportedFeatures = [ "benchmark" "big-parallel" ];
-        speedFactor = 100;
+        speedFactor = 1;
       }
     ];
 
