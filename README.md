@@ -114,6 +114,7 @@ TODOS:
 - [ ] discocss (discord)
 - [ ] nix index database
 - [ ] tinyproxy wakapi
+- [ ] nix install this flake setup hook
 
 :construction: means work in progress
 
