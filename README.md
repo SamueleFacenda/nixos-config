@@ -1,4 +1,4 @@
-# My nixos Flake:snowflake:
+# My nixos Flake :snowflake:
 
 <!-- 
 to count the lines that I've written
