@@ -54,7 +54,7 @@
     odt2txt
     fontforge
     # openscad
-    # drawio
+    drawio-headless
   ];
 
   programs = {

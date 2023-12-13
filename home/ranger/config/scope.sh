@@ -254,7 +254,7 @@ handle_image() {
     #     mv "${TMPPNG}" "${IMAGE_CACHE_PATH}"
     # }
 
-    # case "${FILE_EXTENSION_LOWER}" in
+    case "${FILE_EXTENSION_LOWER}" in
     #     ## 3D models
     #     ## OpenSCAD only supports png image output, and ${IMAGE_CACHE_PATH}
     #     ## is hardcoded as jpeg. So we make a tempfile.png and just
@@ -266,7 +266,11 @@ handle_image() {
     #     3mf|amf|dxf|off|stl)
     #         openscad_image <(echo "import(\"${FILE_PATH}\");") && exit 6
     #         ;;
-    # esac
+           drawio)
+               drawio -x "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" \
+                   --width "${DEFAULT_SIZE%x*}" && exit 6
+               exit 1;;
+    esac
 }
 
 handle_mime() {
