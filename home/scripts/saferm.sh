@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
 
 #### Only work for one file/argument
-if [ -d "$1" ]
-then
-    read -r -p "The target is a directory, are you sure?[y/*]" confirm
-    if [ "$confirm" != "y" ]
+for var in "$@"
+do
+    if [ -d "$dir" ]
     then
-        echo "Aborting"
-        exit 1
-    fi  
-fi
+        read -r -p "The target ($dir) is a directory, are you sure?[y/*]" confirm
+        if [ "$confirm" != "y" ]
+        then
+            echo "Aborting"
+            exit 1
+        fi  
+    fi
+done
 
-trashy put "$1"
+
+trashy put $@
