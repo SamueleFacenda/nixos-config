@@ -267,7 +267,8 @@ handle_image() {
     #         openscad_image <(echo "import(\"${FILE_PATH}\");") && exit 6
     #         ;;
            drawio)
-               drawio -x "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" \
+               # !!! Wayland problem for headless
+               env NIXOS_OZONE_WL='' drawio -x "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" \
                    --width "${DEFAULT_SIZE%x*}" && exit 6
                exit 1;;
     esac

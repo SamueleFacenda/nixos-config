@@ -34,27 +34,6 @@
 
     # web
     brave
-
-    # ranger dependencies
-    file
-    libcaca
-    imagemagick
-    librsvg
-    ffmpegthumbnailer
-    highlight
-    atool
-    libarchive
-    unrar
-    lynx
-    poppler_utils
-    # djvulibre
-    # calibre
-    # transmission-qt
-    exiftool
-    odt2txt
-    fontforge
-    # openscad
-    drawio-headless
   ];
 
   programs = {
