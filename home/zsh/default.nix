@@ -10,7 +10,7 @@
       up = "sudo nixos-rebuild switch --flake samu";
       fup = "sudo nixos-rebuild switch --flake samu --fast --builders ''";
       shell = "NIXPKGS_ALLOW_UNFREE=1 nix develop --impure";
-      free-space = "sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
+      free-space = "home-manager expire-generations '-7 days' && sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
       # code = "codium --password-store=\"gnome\"";
       srm = "saferm";
       xcodium = "codium --enable-features=UseOzonePlatform --ozone-platform=x11";
@@ -25,6 +25,7 @@
       open = "xdg-open";
       readme = "mdcat README.md";
       whr = "grep -R --exclude-dir .direnv";
+      ggr = "git grep";
       bright = "swayosd --brightness 20";
       dark = "swayosd --brightness -20";
 

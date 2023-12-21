@@ -59,6 +59,7 @@
       "C_Cpp.codeAnalysis.runAutomatically" = true;
       "C_Cpp.codeAnalysis.clangTidy.enabled" = true;
       "C_Cpp.intelliSenseUpdateDelay" = 500;
+      "C_Cpp.intelliSenseCacheSize" = 100;
       "python.analysis.typeCheckingMode" = "basic";
       "python.analysis.autoFormatStrings" = true;
       "python.analysis.autoImportCompletions" = true;

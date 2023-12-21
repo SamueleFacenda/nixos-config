@@ -76,8 +76,9 @@
   # Perform garbage collection weekly to maintain low disk usage
   nix.gc = {
     automatic = true;
-    dates = "daily";
+    dates = "weekly";
     options = "--delete-older-than 7d";
+    randomizedDelaySec = "15min";
   };
 
   # only for a flake system
