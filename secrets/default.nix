@@ -17,7 +17,7 @@
     enable = true;
     pinentryFlavor = "gtk2";
     settings = {
-      allow-preset-passphrase = true;
+      allow-preset-passphrase = "";
     };
   };
 
