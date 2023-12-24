@@ -28,6 +28,7 @@
       ggr = "git grep";
       bright = "swayosd --brightness 20";
       dark = "swayosd --brightness -20";
+      img = "kitty +kitten icat";
 
       pwn = "shell samu#pwn";
       cpp = "nix develop samu#cpp";

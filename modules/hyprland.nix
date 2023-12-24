@@ -39,9 +39,8 @@
   # enable dconf for desktop config
   programs.dconf.enable = true;
 
-
   services.gnome.gnome-keyring.enable = true;
-  security {
+  security = {
     polkit.enable = true;
 
     pam.services = {

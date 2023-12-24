@@ -18,7 +18,8 @@
     flameshot
     jq
     python312
-    python3Packages.howdoi
+    python310Packages.howdoi
+    gnome.seahorse
 
     # misc
     xdg-utils
