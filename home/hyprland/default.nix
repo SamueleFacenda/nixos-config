@@ -42,7 +42,8 @@ in
       exec-once = [
         "hyprpaper"
         "hyprctl setcursor Adwaita 24"
-        "${usr_bin_dir}waybar-loop" # waybar auto-reload
+        #"${usr_bin_dir}waybar-loop" # waybar auto-reload
+        "waybar" #normal waybar, I'm not working with the config right now
         "brave"
         "kitty"
         "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"

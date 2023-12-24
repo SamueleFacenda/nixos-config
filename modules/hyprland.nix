@@ -44,8 +44,8 @@
     polkit.enable = true;
 
     pam.services = {
-      login.enableGnomeKeyring = true;
-      login.gnupg.enable = true;
+      # login.enableGnomeKeyring = true;
+      # login.gnupg.enable = true;
       swaylock.unixAuth = true;
       swaylock.enableGnomeKeyring = true;
       swaylock.gnupg.enable = true;
@@ -82,6 +82,7 @@
 
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = false;
+    powerOnBoot = true;
+    settings.Policy.AutoEnable = true;
   };
 }
