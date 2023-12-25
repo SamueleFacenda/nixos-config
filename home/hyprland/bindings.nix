@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  usr_bin_dir = "/home/samu/.local/bin/";
+  usr_bin_dir = "${config.home.homeDirectory}/.local/bin/";
 in
 {
   wayland.windowManager.hyprland.settings =
@@ -29,6 +29,19 @@ in
         ", edge:r:l, workspace, +1"
         ", edge:l:r, workspace, -1"
         ", edge:d:u, exec, if ps -e | grep ${keyboard}; then pkill ${keyboard}; else ${keyboard} ${flags}; fi"
+
+        #### windows navigation and arrangement ####
+        # move to window around of monitors
+        "CTRL_SHIFT, L, movewindow, mon:r"
+        "CTRL_SHIFT, H, movewindow, mon:l"
+        "CTRL_SHIFT, J, movewindow, mon:d"
+        "CTRL_SHIFT, K, movewindow, mon:u"
+        # focus a window in direction
+        "CTRL, L, movefocus, r"
+        "CTRL, H, movefocus, l"
+        "CTRL, J, movefocus, d"
+        "CTRL, K, movefocus, u"
+
       ];
 
       bindr = [

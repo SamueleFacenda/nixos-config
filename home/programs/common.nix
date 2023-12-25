@@ -18,12 +18,10 @@
     flameshot
     jq
     python312
-    python310Packages.howdoi
     gnome.seahorse
 
     # misc
     xdg-utils
-    tree
     wakatime
     spotify-tui
     editorconfig-core-c
