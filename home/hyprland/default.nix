@@ -22,7 +22,7 @@ in
     pamixer
     playerctl
 
-    #utilities
+    # utilities
     gnome.nautilus
     gnome.eog
     gnome.file-roller
@@ -30,6 +30,8 @@ in
 
     # screen recorder via xdg-desktop-portal
     kooha
+
+    # hyprland utils and plugins
   ];
 
   wayland.windowManager.hyprland = {

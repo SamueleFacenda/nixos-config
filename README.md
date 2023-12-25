@@ -97,7 +97,7 @@ TODOS:
 - [x] swayosd (on screen display)
 - [ ] eww widgets
 - [ ] flameshot
-- [ ] hyprdim
+- [x] hyprdim (not enabled, it's not what I wanted)
 - [ ] iio-hyprland
 - [ ] nwg-drawer
 - [ ] nwg-dock-hyprland
