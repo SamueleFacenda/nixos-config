@@ -44,6 +44,10 @@
       icons = true;
       extraOptions = [
         "--group-directories-first"
+        "--git-ignore"
+        "--header"
+        "--group"
+        # "--total-size"
       ];
       enableAliases = true;
     };
