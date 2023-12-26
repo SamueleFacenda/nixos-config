@@ -15,7 +15,7 @@
 
   programs.gnupg.agent = {
     enable = true;
-    pinentryFlavor = "gtk2";
+    pinentryFlavor = "gnome3";
     settings = {
       allow-preset-passphrase = "";
     };
