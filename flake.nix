@@ -2,9 +2,46 @@
 {
   description = "Samuele's NixOS Flake";
 
-  nixConfig = {
-    experimental-features = [ "nix-command" "flakes" ];
-  };
+  outputs = { self, nixpkgs, ... }@inputs:
+    let
+      eachSystem = nixpkgs.lib.genAttrs (import inputs.systems);
+      pk = system: nixpkgs.legacyPackages."${system}";
+    in
+    {
+      nixosConfigurations = {
+        "surface" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = inputs;
+          modules = [
+            ./host/surface
+          ];
+        };
+      };
+
+      devShells = eachSystem (system:
+        (import ./shells { pkgs = pk system; }) //
+        { default = (pk system).mkShell { inherit (self.checks.${system}.pre-commit-check) shellHook; }; }
+      );
+
+      formatter = eachSystem (system: (pk system).nixpkgs-fmt);
+
+      packages = eachSystem (system: import ./packages (pk system));
+
+      templates = import ./templates;
+
+      checks = eachSystem (system: {
+        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            nixpkgs-fmt.enable = true;
+            shellcheck = {
+              enable = true;
+              excludes = [ "p10k.zsh" "scope.sh" ];
+            };
+          };
+        };
+      });
+    };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -55,45 +92,4 @@
       inputs.systems.follows = "systems";
     };
   };
-
-  outputs = { self, nixpkgs, ... }@inputs:
-    let
-      eachSystem = nixpkgs.lib.genAttrs (import inputs.systems);
-      pk = system: nixpkgs.legacyPackages."${system}";
-    in
-    {
-      nixosConfigurations = {
-        "surface" = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = inputs;
-          modules = [
-            ./host/surface
-          ];
-        };
-      };
-
-      devShells = eachSystem (system:
-        (import ./shells { pkgs = pk system; }) //
-        { default = (pk system).mkShell { inherit (self.checks.${system}.pre-commit-check) shellHook; }; }
-      );
-
-      formatter = eachSystem (system: (pk system).nixpkgs-fmt);
-
-      packages = eachSystem (system: import ./packages (pk system));
-
-      templates = import ./templates;
-
-      checks = eachSystem (system: {
-        pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            nixpkgs-fmt.enable = true;
-            shellcheck = {
-              enable = true;
-              excludes = [ "p10k.zsh" "scope.sh" ];
-            };
-          };
-        };
-      });
-    };
 }
