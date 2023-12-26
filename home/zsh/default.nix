@@ -1,4 +1,4 @@
-{ config, lib, pkgs, self, ... }: {
+{ config, lib, pkgs, secrets, self, ... }: {
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -16,6 +16,7 @@
       xcodium = "codium --enable-features=UseOzonePlatform --ozone-platform=x11";
 
       tree = "eza  --tree";
+      ls = lib.mkForce "eza --git-ignore";
 
       c = "clear";
       q = "exit";
@@ -29,6 +30,7 @@
       bright = "swayosd --brightness 20";
       dark = "swayosd --brightness -20";
       img = "kitty +kitten icat";
+      logh = "sudo cat ${secrets.github-token.path} | gh auth login --with-token";
 
       pwn = "shell samu#pwn";
       cpp = "nix develop samu#cpp";

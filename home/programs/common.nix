@@ -44,7 +44,7 @@
       icons = true;
       extraOptions = [
         "--group-directories-first"
-        "--git-ignore"
+        # "--git-ignore"
         "--header"
         "--group"
         # "--total-size"

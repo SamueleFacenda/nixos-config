@@ -25,4 +25,12 @@
   };
 
   programs.git-credential-oauth.enable = false;
+
+  programs.gh = {
+    enable = true;
+    settings = {
+      git_protocol = "ssh";
+      version = 1;
+    };
+  };
 }
