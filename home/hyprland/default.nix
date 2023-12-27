@@ -30,8 +30,6 @@ in
 
     # screen recorder via xdg-desktop-portal
     kooha
-
-    # hyprland utils and plugins
   ];
 
   wayland.windowManager.hyprland = {
@@ -56,6 +54,8 @@ in
       ];
     };
   };
+
+  services.gnome-keyring.enable = true;
 
   services.swayosd.enable = true;
   services.swayosd.maxVolume = 150;

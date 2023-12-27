@@ -48,9 +48,7 @@
       # login.gnupg.enable = true;
       swaylock.unixAuth = true;
       swaylock.enableGnomeKeyring = true;
-      swaylock.gnupg.enable = true;
       greetd.enableGnomeKeyring = true;
-      greetd.gnupg.enable = true;
     };
   };
 
