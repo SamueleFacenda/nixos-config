@@ -3,7 +3,8 @@
     enable = true;
 
     userDirs = {
-      createDirectories = false;
+      enable = true;
+      createDirectories = true;
       desktop = "${config.home.homeDirectory}/.Desktop";
       music = "${config.home.homeDirectory}/.Music";
       templates = "${config.home.homeDirectory}/.Templates";
