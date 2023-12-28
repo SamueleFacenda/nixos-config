@@ -4,13 +4,15 @@
 pkgs:
 # execute and import all packages files in the current directory with the given args
 let
-  inherit (pkgs.lib.attrsets) mapAttrs' filterAttrs;
-  inherit (builtins) readDir;
+  inherit (pkgs.lib.attrsets) mapAttrs' filterAttrs attrByPath;
+  inherit (builtins) readDir head;
   inherit (pkgs) callPackage;
+  inherit (pkgs.lib.strings) splitString;
 in
 mapAttrs'
   (n: v: rec {
-    name = value.pname;
+    # derivation pname or file/directory name
+    name = attrByPath ["pname"] (head (splitString ".nix" n)) value;
     value = callPackage (import (./. + "/${n}")) { };
   })
   (filterAttrs

@@ -29,6 +29,9 @@
 
       templates = import ./templates;
 
+      # flake installer, clone himself and do stuff
+      apps = eachSystem (system: {default = {type="app"; program=self.packages.${system}.installer + "/bin/installer";};});
+
       checks = eachSystem (system: {
         pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
           src = ./.;
