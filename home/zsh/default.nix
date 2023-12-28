@@ -60,6 +60,7 @@
 
     # manual plugins
     plugins = [
+      # note for everyone: running `function print(){ echo "$1" }` will break powerlevel10k and zsh-z (and other tools maybe), very hard to revert
       {
         name = "powerlevel10k";
         src = pkgs.zsh-powerlevel10k;

@@ -7,23 +7,28 @@ find ./ "" -type f 2>/dev/null -not -path '*/.*' | grep -v -E ".git|.png|.age|.j
 
 ![hyprland screenshot](assets/screenshot1.png)
 
-This is more than my config, it's a flake. There are a couple packages and some devshells.
+This is more than my config, it's a flake. There are a couple packages, flake templates and overlays.
 ### Packages:
 - xdg-desktop-portal-shana (the portal of portals)
 - xdg-desktop-portal-termfilechooser (use ranger instead of gui file manager)
 - monofurx (patched version of the original monofur)
 - libcamera-surface (see the file for credits, update to version 0.1.0)
 
-### Shells:
-- pwn (all the package needed for a ctf)
-- cpp (developement in c++)
-- java (jdk 17 env)
+
+### Setup
+
+#### Nixos setup
+
+I've made a wizard for setupping this config on a new nixos machine.
+Just run `nix run github:SamueleFacenda/nixos-config` and follow the instructions.
+Be careful with the secrets, you need to setup agenix (explained in the wizard).
+
+#### Flake setup
 
 If you want to use that packages in your config:
 ```
 inputs.nixos-samu.url = "github:SamueleFacenda/nixos-config";
-# only if you understand what you are doing
-# inputs.nixos-samu.inputs.nixpkgs.follows = "nixpkgs";
+inputs.nixos-samu.inputs.nixpkgs.follows = "nixpkgs";
 
 # configuration.nix
 
@@ -40,7 +45,7 @@ inputs.nixos-samu.url = "github:SamueleFacenda/nixos-config";
 ```
 
 ### Configuration
-My nixos configuration. It aim to work well under the hood and also be good to see. 
+My nixos configuration. It aims to work well under the hood and also be good to see. 
 I use flakes instead of the standard configuration.nix
 and home manager to configure my programs and desktop.
 
@@ -97,7 +102,6 @@ TODOS:
 - [x] swayosd (on screen display)
 - [ ] eww widgets
 - [ ] flameshot
-- [x] hyprdim (not enabled, it's not what I wanted)
 - [ ] iio-hyprland
 - [ ] nwg-drawer
 - [ ] nwg-dock-hyprland
@@ -110,11 +114,12 @@ TODOS:
 - [ ] lid switch power off
 - [x] adjust nixpkgs wayland overlay
 - [x] termfilechooser portal
-- [ ] spotofy-player or ncspot
+- [ ] spotify-player or ncspot
 - [ ] discocss (discord)
 - [ ] nix index database
 - [ ] tinyproxy wakapi
-- [ ] nix install this flake setup hook
+- [x] flake installer wizard with nix run
+- [x] on screen keyboard for tablet mode
 
 :construction: means work in progress
 
@@ -128,4 +133,4 @@ TODOS:
 - monofurx (new pkg)
 - libcamera-surface (new pkg)
 - xdg-desktop-portal-termfilechooser (new pkg)
- 
+- eza (add some icons mapping)

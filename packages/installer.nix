@@ -43,7 +43,7 @@ writeShellApplication {
       then
         mkdir -p "$configdir"
       else
-        echo "Not enough permission"
+        echo "Not enough permission, using sudo"
         sudo mkdir -p "$configdir"
         sudo chown "$(id -nu):$(id -ng)" "$configdir"
         # chmod 774 "$configdir"
