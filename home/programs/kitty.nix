@@ -10,6 +10,10 @@
       TERMINAL = "kitty";
     };
 
+    keybindings = {
+      "ctrl+shift+o" = "next_layout";
+    };
+
     settings = with config.lib.stylix.colors.withHashtag; {
       clipboard_control = "write-clipboard write-primary read-clipboard read-primary";
       disable_ligatures = "cursor";
