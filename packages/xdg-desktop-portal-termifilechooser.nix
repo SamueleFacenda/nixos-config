@@ -36,7 +36,7 @@ stdenv.mkDerivation {
     systemd
   ];
 
-  # Add hyprland support
+  # Add hyprland support and set multiple directory and upload a directory false as default
   patchPhase = ''
     sed -i '/pantheon/ s/$/;Hyprland/' termfilechooser.portal
 
@@ -45,6 +45,9 @@ stdenv.mkDerivation {
       --replace /usr/bin/kitty ${kitty}/bin/kitty \
       --replace '"$termcmd"' '$termcmd' \
       --replace 'rm "' '${coreutils}/bin/rm "'
+
+    substituteInPlace src/filechooser/filechooser.c \
+      --replace 'multiple, directory;' 'multiple=false, directory=false;'
   '';
 
   mesonFlags = [

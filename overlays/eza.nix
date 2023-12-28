@@ -8,7 +8,7 @@ _:
       runHook prePatch
 
       sed -i '129 i "downloads"           => '"'"'\\u{f024d}'"'"',' src/output/icons.rs
-      sed -i '129 i ".desktop"            => '"'"'\\u{f108}'"'"','  src/output/icons.rs
+      sed -i '129 i ".Desktop"            => '"'"'\\u{f108}'"'"','  src/output/icons.rs
       sed -i '129 i "repos"               => '"'"'\\u{e5fd}'"'"','  src/output/icons.rs
       sed -i '129 i "documents"           => '"'"'\\u{f19f6}'"'"',' src/output/icons.rs
       sed -i '129 i "IdeaProjects"        => '"'"'\\u{e7b5}'"'"','  src/output/icons.rs
