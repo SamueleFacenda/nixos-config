@@ -3,8 +3,6 @@
 
   imports = utils.listDirPathsExcluding disabledFiles ./.;
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
   home = {
     username = "samu";
     homeDirectory = "/home/samu";
@@ -21,5 +19,5 @@
   };
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs.home-manager.enable = true; # (useless if on nixos)
 }

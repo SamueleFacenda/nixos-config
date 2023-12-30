@@ -145,6 +145,7 @@
   console = {
     packages = [ pkgs.powerline-fonts ];
     font = "ter-powerline-v32n.psf.gz";
+    useXkbConfig = true;
   };
 
   # This value determines the NixOS release from which the default
