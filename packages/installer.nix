@@ -70,7 +70,10 @@ writeShellApplication {
 
     If you are not me, just remove all my public keys from secrets/secrets.nix'\
     ', add yours, delete the secrets (*.age) and recreate them with you secrets.
-    Instructions for the secret files format are in secrets/secrets.nix'
+    Instructions for the secret files format are in secrets/secrets.nix
+
+    Also, create a host copying one of mine and editing the'\
+    'hardware config.nix using the one created during the installation!'
 
     if gum confirm "Activate the config now?"
     then
