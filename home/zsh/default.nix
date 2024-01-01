@@ -31,6 +31,7 @@
       dark = "swayosd --brightness -20";
       img = "kitty +kitten icat";
       logh = "sudo cat ${secrets.github-token.path} | gh auth login --with-token";
+      rlkitty = "kitty --directory /home/samu --detach; exit";
 
       pwn = "shell samu#pwn";
       cpp = "nix develop samu#cpp";
