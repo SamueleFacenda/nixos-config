@@ -10,11 +10,11 @@
       ../../modules/utils.nix
       ../../timers/empty-trash.nix
       ../../secrets
+      ../../overlays
 
       #./hardware-configuration.nix
       agenix.nixosModules.default
 
-      (args: { nixpkgs.overlays = import ../../overlays args; })
 
       home-manager.nixosModules.home-manager
       {
