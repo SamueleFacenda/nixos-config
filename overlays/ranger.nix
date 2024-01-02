@@ -1,6 +1,4 @@
-_:
-
-(self: super: {
+self: super: {
   #!!!!! 😡😡😡😤😤 overridePythonAttrs, >5h lost here because of nixpkgs docs
   ranger = super.ranger.overridePythonAttrs (previousAttrs: {
     version = "unstable-1.9.3";
@@ -19,4 +17,4 @@ _:
       shellcheck
     ];
   });
-})
+}

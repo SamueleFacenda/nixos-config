@@ -1,6 +1,4 @@
-_:
-
-(self: super: {
+self: super: {
   micro-wakatime = super.stdenv.mkDerivation rec {
     name = "micro-wakatime";
     version = "1.0.6";
@@ -22,4 +20,4 @@ _:
       mv * $out
     '';
   };
-})
+}

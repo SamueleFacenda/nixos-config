@@ -1,6 +1,4 @@
-_:
-
-(self: super: {
+self: super: {
   surface-control = super.surface-control.overrideAttrs (finalAttrs: previousAttrs: {
     version = "${previousAttrs.version}-patched";
 
@@ -11,4 +9,3 @@ _:
     '';
   });
 }
-)

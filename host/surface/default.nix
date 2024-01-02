@@ -23,7 +23,7 @@ in
       ../../secrets
 
       { nixpkgs.overlays = [ nixpkgs-wayland.overlay ]; }
-      (args: { nixpkgs.overlays = (import ../../overlays args); })
+      ../../overlays
 
       home-manager.nixosModules.home-manager
       {

@@ -1,7 +1,5 @@
-_:
 # font patched with bullet point right (not an animal paw like the original one)
-
-(self: super:
+self: super:
 let
   getFile = font: "${font}NerdFontMono-Regular.ttf";
   source = getFile "BlexMono";
@@ -20,4 +18,4 @@ in
     '';
     nativeBuildInputs = [ super.python3Packages.fonttools ];
   });
-})
+}

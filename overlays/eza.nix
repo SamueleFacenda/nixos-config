@@ -1,7 +1,5 @@
-_:
 # Change the name of some icons directories (they are hardcoded in the source) and add some new ones
-
-(self: super: {
+self: super: {
   eza = super.eza.overrideAttrs (finalAttrs: previousAttrs: {
     version = "${previousAttrs.version}-patched";
     patchPhase = ''
@@ -17,4 +15,4 @@ _:
       runHook postPatch
     '';
   });
-})
+}

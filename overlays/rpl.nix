@@ -1,6 +1,4 @@
-{ lib, ... }:
-
-(self: super: {
+self: super: {
   rpl = super.rpl.overrideAttrs (finalAttrs: previousAttrs: rec {
     src = super.fetchFromGitHub {
       owner = "rrthomas";
@@ -53,4 +51,4 @@
       )
     ];
   });
-})
+}
