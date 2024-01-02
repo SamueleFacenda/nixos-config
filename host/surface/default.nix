@@ -15,18 +15,15 @@ in
       ../../modules/stylix.nix
       ../../modules/utils.nix
       ../../timers/empty-trash.nix
-      ../../secrets
 
       ./hardware-configuration.nix
       nixos-hardware.nixosModules.microsoft-surface-pro-intel
 
       agenix.nixosModules.default
+      ../../secrets
 
-      (args: {
-        nixpkgs.overlays =
-          [ nixpkgs-wayland.overlay ] ++
-          (import ../../overlays args);
-      })
+      { nixpkgs.overlays = [ nixpkgs-wayland.overlay ]; }
+      (args: { nixpkgs.overlays = (import ../../overlays args); })
 
       home-manager.nixosModules.home-manager
       {
@@ -40,6 +37,7 @@ in
             disabledFiles = [ ];
           };
           users.samu = import ../../home;
+          backupFileExtension = "bak";
         };
       }
     ];
