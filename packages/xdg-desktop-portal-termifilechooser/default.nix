@@ -8,10 +8,8 @@
 , pkgconf
 , inih
 , systemd
-, ranger
-, kitty
-, coreutils
 }:
+
 stdenv.mkDerivation {
   pname = "xdg-desktop-portal-termfilechooser";
   version = "0.1";

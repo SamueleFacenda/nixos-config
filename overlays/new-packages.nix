@@ -12,10 +12,8 @@ in
   inherit (pk)
     monofurx
     libcamera-surface
-    xdg-desktop-portal-shana;
-
-  # use the overwritten ranger
-  xdg-desktop-portal-termfilechooser = pk.xdg-desktop-portal-termfilechooser.override { inherit (final) ranger; };
+    xdg-desktop-portal-shana
+    xdg-desktop-portal-termfilechooser;
 
   # override to use hyprland from my nixpkgs instead of the flake one
   hyprgrass = hyprgrass.packages."${prev.system}".default.override { inherit (final) hyprland; };
