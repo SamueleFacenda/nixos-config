@@ -1,0 +1,94 @@
+diff --git a/contrib/ranger-wrapper.sh b/contrib/ranger-wrapper.sh
+index 88bc697..218de58 100755
+--- a/contrib/ranger-wrapper.sh
++++ b/contrib/ranger-wrapper.sh
+@@ -1,4 +1,5 @@
+-#!/bin/sh
++#!/usr/bin/env bash
++
+ # This wrapper script is invoked by xdg-desktop-portal-termfilechooser.
+ #
+ # Inputs:
+@@ -25,12 +26,11 @@ save="$3"
+ path="$4"
+ out="$5"
+ 
+-cmd="/usr/bin/ranger"
+-termcmd="${TERMCMD:-/usr/bin/kitty}"
+-
+-if [ "$save" = "1" ]; then
+-    set -- --choosefile="$out" --cmd='echo Select save path (see tutorial in preview pane; try pressing zv or zp if no preview)' "$path"
+-    printf '%s' 'xdg-desktop-portal-termfilechooser saving files tutorial
++cmd="$(command -v ranger)"
++termcmd="${TERMCMD:-$(command -v kitty)}"
++info=$(
++    cat <<EOF
++xdg-desktop-portal-termfilechooser saving files tutorial
+ 
+ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ !!!                 === WARNING! ===                 !!!
+@@ -50,16 +50,23 @@ Notes:
+    that, for example.
+ 2) If you quit ranger without opening a file, this file
+    will be removed and the save operation aborted.
+-' > "$path"
++EOF
++)
++
++if [ "$save" = "1" ]; then
++    set -- --choosefile="$out" --cmd='echo Select save path (see tutorial in preview pane; try pressing zv or zp if no preview)' "$path"
++    if [ ! -e "$path" ]; then
++        printf '%s' "$info" > "$path"
++    fi
+ elif [ "$directory" = "1" ]; then
+-    set -- --choosedir="$out" --show-only-dirs --cmd="echo Select directory (quit in dir to select it)"
++    set -- --choosedir="$out" --show-only-dirs --cmd="echo Select directory ('Q'quit in dir to select it), 'q' to cancel selection" --cmd="map Q chain shell echo %d > \"$out\" ; quitall"
+ elif [ "$multiple" = "1" ]; then
+     set -- --choosefiles="$out" --cmd="echo Select file(s) (open file to select it; <Space> to select multiple)"
+ else
+     set -- --choosefile="$out" --cmd="echo Select file (open file to select it)"
+ fi
+ 
+-"$termcmd" -- $cmd "$@"
++$termcmd -- $cmd "$@"
+ if [ "$save" = "1" ] && [ ! -s "$out" ]; then
+     rm "$path"
+ fi
+diff --git a/src/filechooser/filechooser.c b/src/filechooser/filechooser.c
+index 6cecec6..b82b6b6 100644
+--- a/src/filechooser/filechooser.c
++++ b/src/filechooser/filechooser.c
+@@ -49,13 +49,12 @@ static int exec_filechooser(void *data, bool writing, bool multiple, bool direct
+     }
+ 
+     size_t num_lines = 0;
+-    char cr;
++    int cr;
+     do {
+         cr = getc(fp);
+         if (cr == '\n') {
+             num_lines++;
+         }
+-        cr = getc(fp);
+         if (ferror(fp)) {
+             return 1;
+         }
+@@ -110,7 +109,7 @@ static int method_open_file(sd_bus_message *msg, void *data, sd_bus_error *ret_e
+     }
+     char *key;
+     int inner_ret = 0;
+-    int multiple, directory;
++    int multiple=false, directory=false;
+     while ((ret = sd_bus_message_enter_container(msg, 'e', "sv")) > 0) {
+         inner_ret = sd_bus_message_read(msg, "s", &key);
+         if (inner_ret < 0) {
+diff --git a/termfilechooser.portal b/termfilechooser.portal
+index f072ba0..92cb012 100644
+--- a/termfilechooser.portal
++++ b/termfilechooser.portal
+@@ -1,4 +1,4 @@
+ [portal]
+ DBusName=org.freedesktop.impl.portal.desktop.termfilechooser
+ Interfaces=org.freedesktop.impl.portal.FileChooser;
+-UseIn=i3;wlroots;sway;Wayfire;river;mate;lxde;openbox;unity;pantheon
++UseIn=i3;wlroots;sway;Wayfire;river;mate;lxde;openbox;unity;pantheon;Hyprland
