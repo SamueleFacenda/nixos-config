@@ -30,6 +30,7 @@
           identity="samuele.facenda@unitn.it"
           password="@UNITN_PSW@"
           ca_cert="/etc/ssl/certs/ca-bundle.crt"
+          phase2="auth=MSCHAPV2"
         '';
       };
       nenephone = {
@@ -46,6 +47,10 @@
       TIM-20569857 = {
         priority = 31;
         psk = "@CASA_ALESSANDRO@";
+      };
+      chia = {
+        priority = 120;
+        psk = "@HOTSPOT_CHIA@";
       };
     };
   };
