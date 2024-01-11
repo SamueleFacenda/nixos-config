@@ -44,6 +44,13 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  # services.printing.cups-pdf.enable = true;
+  # auto-discover
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Enable sound with pipewire.
   security.rtkit.enable = true;
