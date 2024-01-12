@@ -120,5 +120,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
     };
+
+    hyprfocus = {
+      url = "github:VortexCoyote/hyprfocus";
+      inputs.hyprland.follows = "hyprland";
+    };
   };
 }

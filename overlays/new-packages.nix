@@ -1,4 +1,4 @@
-{ trashy, hyprgrass, self, ... }:
+{ trashy, hyprgrass, hyprfocus, hyprland, self, ... }:
 
 (final: prev:
 let
@@ -7,7 +7,7 @@ let
 in
 {
 
-  trashy = trashy.defaultPackage."${prev.system}";
+  trashy = trashy.defaultPackage.${prev.system};
 
   inherit (pk)
     monofurx
@@ -15,7 +15,10 @@ in
     xdg-desktop-portal-shana
     xdg-desktop-portal-termfilechooser;
 
-  # override to use hyprland from my nixpkgs instead of the flake one
-  hyprgrass = hyprgrass.packages."${prev.system}".default.override { inherit (final) hyprland; };
+  # override to use hyprland from my nixpkgs instead of the flake one (edit. no, I use the hyprland from the flake)
+  hyprgrass = hyprgrass.packages.${prev.system}.default; # .override { inherit (final) hyprland; };
   # hyprgrass = hyprgrass.packages."${prev.system}".default;
+
+  hyprfocus = hyprfocus.packages.${prev.system}.default;
+  hyprland = hyprland.packages.${prev.system}.hyprland;
 })
