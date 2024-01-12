@@ -34,11 +34,11 @@ inputs.nixos-samu.inputs.nixpkgs.follows = "nixpkgs";
 
 {inputs, pkgs, ...}: {
   xdg.portal.extraPortals = with pkgs; [
-    inputs.nixos-samu.packages."${pkgs.system}".xdg-desktop-portal-shana
+    inputs.nixos-samu.packages.${pkgs.system}.xdg-desktop-portal-shana
   ];
   
   font.packages = [
-    inputs.nixos-samu.packages."${pkgs.system}".monofurx
+    inputs.nixos-samu.packages.${pkgs.system}.monofurx
   ];
 }
 

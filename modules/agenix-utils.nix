@@ -27,7 +27,7 @@ let
             (path: {
               name = "${secret}${replaceStrings ["/" "."] ["-" ""] path}";
               value = ''
-                secret=$(cat "${config.age.secrets."${secret}".path}")
+                secret=$(cat "${config.age.secrets.${secret}.path}")
                 configFile=${path}
                 ${pkgs.gnused}/bin/sed -i "s#@${secret}@#$secret#" "$configFile"
               '';

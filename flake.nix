@@ -5,7 +5,7 @@
   outputs = { self, nixpkgs, ... }@inputs:
     let
       eachSystem = nixpkgs.lib.genAttrs (import inputs.systems);
-      pk = system: nixpkgs.legacyPackages."${system}";
+      pk = system: nixpkgs.legacyPackages.${system};
     in
     {
       nixosConfigurations = {
