@@ -36,23 +36,21 @@ in
     enable = true;
     plugins = with pkgs; [
       hyprgrass
+      hyprfocus
     ];
-    settings = {
-
-      exec-once = [
-        "hyprpaper"
-        "hyprctl setcursor Adwaita 24"
-        #"${usr_bin_dir}waybar-loop" # waybar auto-reload
-        "waybar" #normal waybar, I'm not working with the config right now
-        "brave"
-        "kitty"
-        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-        "${usr_bin_dir}init-eww"
-        # https://github.com/hyprwm/Hyprland/issues/2586
-        # "${pkgs.systemd}/bin/systemctl --user try-reload-or-restart  kanshi.service"
-        #"dunst"
-      ];
-    };
+    settings.exec-once = [
+      "hyprpaper"
+      "hyprctl setcursor Adwaita 24"
+      #"${usr_bin_dir}waybar-loop" # waybar auto-reload
+      "waybar" #normal waybar, I'm not working with the config right now
+      "brave"
+      "kitty"
+      "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+      "${usr_bin_dir}init-eww"
+      # https://github.com/hyprwm/Hyprland/issues/2586
+      # "${pkgs.systemd}/bin/systemctl --user try-reload-or-restart  kanshi.service"
+      #"dunst"
+    ];
   };
 
   services.gnome-keyring.enable = true;

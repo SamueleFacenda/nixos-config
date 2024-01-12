@@ -52,7 +52,7 @@
     };
   };
 
-  # Install swayosd udev rules and service (libinput listener)
+  # Install swayosd udev rules and service (libinput listener), the service is in home-manager
   services.udev.packages = [ pkgs.swayosd ];
   systemd.packages = [ pkgs.swayosd ];
 

@@ -15,6 +15,7 @@
       tabstospaces = true;
       tabmovement = true;
       colorscheme = "custom";
+      tabsize = 2;
 
       "*.nix" = {
         tabsize = 2;
