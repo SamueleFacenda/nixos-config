@@ -11,6 +11,7 @@
     ];
 
     windowrule = [
+      # xdg-desktop-portal-termfilechooser
       "float,^(file_chooser)$"
       "size 800 500,^(file_chooser)$"
       "center,^(file_chooser)$"
