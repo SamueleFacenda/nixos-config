@@ -70,7 +70,7 @@
     "plugin:hyprfocus" = {
       enabled = "yes";
       keyboard_focus_animation = "flash";
-      mouse_focus_animation = "shrink";
+      mouse_focus_animation = "nothing";
       bezier = [ "bezIn, 0.5,0.0,1.0,0.5" "bezOut, 0.0,0.5,0.5,1.0" ];
 
       flash = {
