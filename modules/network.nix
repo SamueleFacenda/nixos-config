@@ -1,61 +1,99 @@
-{ config, pkgs, lib, ... }: {
-
-  networking.networkmanager.enable = false;
-  networking.wireless = {
-    enable = true;
-    userControlled.enable = true;
-    userControlled.group = "network";
-
-    environmentFile = config.age.secrets.network-keys.path;
-    networks = {
-      fazzenda = {
-        priority = 50;
-        psk = "@FAZZENDA_PSW@";
+{ config, pkgs, lib, ... }:
+let
+  # https://people.freedesktop.org/~lkundrak/nm-docs/nm-settings.html
+  mkWifi = {name, priority ? 0, ...}@extra: {
+    ${name} = {
+      connection = {
+        id = name;
+        type = "wifi";
+        autoconnect-priority = priority;
+        # autoconnect = true;
+        # permissions  = "";
+        # read-only = false;
       };
-      unitn-x = {
-        priority = 70;
-        auth = ''
-          eap=PEAP
-          key_mgmt=WPA-EAP
-          identity="samuele.facenda@unitn.it"
-          password="@UNITN_PSW@"
-          ca_cert="/etc/ssl/certs/ca-bundle.crt"
-        '';
+      wifi = {
+        # mode = "infrastructure";
+        ssid = name;
       };
-      eduroam = {
-        priority = 60;
-        auth = ''
-          eap=PEAP
-          key_mgmt=WPA-EAP
-          identity="samuele.facenda@unitn.it"
-          password="@UNITN_PSW@"
-          ca_cert="/etc/ssl/certs/ca-bundle.crt"
-          phase2="auth=MSCHAPV2"
-        '';
+      ipv4.method = "auto";
+      ipv6 = {
+        method = "auto";
+        # addr-gen-mode = "default";
       };
-      nenephone = {
-        priority = 100;
-        psk = "@HOTSPOT_PSW@";
-      };
-      TrentinoWifi = {
-        priority = 10;
-      };
-      FASTWEB-B2219F = {
-        priority = 30;
-        psk = "@WHITE_HOUSE_PSW@";
-      };
-      TIM-20569857 = {
-        priority = 31;
-        psk = "@CASA_ALESSANDRO@";
-      };
-      chia = {
-        priority = 120;
-        psk = "@HOTSPOT_CHIA@";
-      };
-    };
+    } // extra;
   };
 
-  networking.resolvconf.extraConfig = ''
-    name_servers="1.1.1.1"
-  '';
+  mkPeapWifi = {name, identity, password, ...}@extra: mkWifi ({
+    inherit name;
+    wifi-security.key-mgmt = "wpa-eap";
+    802-1x = {
+      eap = "peap";
+      ca-cert = "/etc/ssl/certs/ca-bundle.crt";
+      # phase1-peapver = 1;
+      phase2-auth = "mschapv2";
+      inherit identity  password;
+    };
+  } // extra);
+
+  mkWpaWifi = {name, password, ...}@extra: mkWifi ({
+    inherit name;
+    wifi-security = {
+      auth-alg = "open";
+      key-mgmt = "wpa-psk";
+      psk = password;
+    };
+  } // extra);
+
+in
+
+ {
+  networking.networkmanager = {
+    enable = true;
+
+    appendNameservers = [ "1.1.1.1" "1.0.0.1" ];
+
+    ensureProfiles = {
+      environmentFile = [ config.age.secrets.network-keys.path ];
+      profiles = lib.fold (a: b: a // b) [
+        (mkWpaWifi {
+          name = "fazzenda";
+          password = "$FAZZENDA_PSK";
+          priority = 50;
+        })
+        (mkPeapWifi {
+          name = "unitn-x";
+          identity = "samuele.facenda@unitn.it";
+          password = "$UNITN_PSW";
+          priority = 70;
+        })
+        (mkPeapWifi {
+          name = "eduroam";
+          identity = "samuele.facenda@unitn.it";
+          password = "$UNITN_PSW";
+          priority = 60;
+        })
+        (mkWpaWifi {
+          name = "nenephone";
+          password = "$HOTSPOT_PSW";
+          priority = 100;
+        })
+        (mkWifi {
+          name = "TrentinoWifi";
+          priority = 10;
+          wifi.key-mgmt = "none";
+          wifi.auth-alg = "open";
+        })
+        (mkWpaWifi {
+          name = "chia";
+          priority = 120;
+          password = "$HOTSPOT_CHIA";
+        })
+        (mkWpaWifi {
+          name = "FASTWEB-B2219F";
+          priority = 40;
+          password = "$WHITE_HOUSE_PSW";
+        })
+      ]
+    };
+  };
 }
