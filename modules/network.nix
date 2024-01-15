@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
 let
+
+  removeAttrs = blacklist: lib.filterAttrs (name: v: lib.all (x: x!=name) blacklist);
   # https://people.freedesktop.org/~lkundrak/nm-docs/nm-settings.html
   mkWifi = {name, priority ? 0, ...}@extra: {
     ${name} = {
@@ -20,29 +22,27 @@ let
         method = "auto";
         # addr-gen-mode = "default";
       };
-    } // extra;
+    } // removeAttrs ["name" "priority"] extra;
   };
 
-  mkPeapWifi = {name, identity, password, ...}@extra: mkWifi ({
-    inherit name;
+  mkPeapWifi = {name, identity, password, priority, ...}@extra: mkWifi ({
     wifi-security.key-mgmt = "wpa-eap";
-    802-1x = {
+    "802-1x" = {
       eap = "peap";
       ca-cert = "/etc/ssl/certs/ca-bundle.crt";
       # phase1-peapver = 1;
       phase2-auth = "mschapv2";
       inherit identity  password;
     };
-  } // extra);
+  } // removeAttrs ["identity" "password"] extra);
 
-  mkWpaWifi = {name, password, ...}@extra: mkWifi ({
-    inherit name;
+  mkWpaWifi = {name, password, priority, ...}@extra: mkWifi ({
     wifi-security = {
       auth-alg = "open";
       key-mgmt = "wpa-psk";
       psk = password;
     };
-  } // extra);
+  } // removeAttrs ["password"] extra);
 
 in
 
@@ -53,8 +53,8 @@ in
     appendNameservers = [ "1.1.1.1" "1.0.0.1" ];
 
     ensureProfiles = {
-      environmentFile = [ config.age.secrets.network-keys.path ];
-      profiles = lib.fold (a: b: a // b) [
+      environmentFiles = [ config.age.secrets.network-keys.path ];
+      profiles = lib.fold (a: b: a // b) {} [
         (mkWpaWifi {
           name = "fazzenda";
           password = "$FAZZENDA_PSK";
@@ -93,7 +93,7 @@ in
           priority = 40;
           password = "$WHITE_HOUSE_PSW";
         })
-      ]
+      ];
     };
   };
 }
