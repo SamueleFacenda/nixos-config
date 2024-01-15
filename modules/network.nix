@@ -4,7 +4,7 @@ let
   removeAttrs = blacklist: lib.filterAttrs (name: v: lib.all (x: x!=name) blacklist);
   # https://people.freedesktop.org/~lkundrak/nm-docs/nm-settings.html
   mkWifi = {name, priority ? 0, ...}@extra: {
-    ${name} = {
+    ${name} = lib.recursiveUpdate {
       connection = {
         id = name;
         type = "wifi";
@@ -22,10 +22,10 @@ let
         method = "auto";
         # addr-gen-mode = "default";
       };
-    } // removeAttrs ["name" "priority"] extra;
+    } (removeAttrs ["name" "priority"] extra);
   };
 
-  mkPeapWifi = {name, identity, password, priority, ...}@extra: mkWifi ({
+  mkPeapWifi = {name, identity, password, priority, ...}@extra: mkWifi (lib.recursiveUpdate {
     wifi-security.key-mgmt = "wpa-eap";
     "802-1x" = {
       eap = "peap";
@@ -34,15 +34,15 @@ let
       phase2-auth = "mschapv2";
       inherit identity  password;
     };
-  } // removeAttrs ["identity" "password"] extra);
+  } (removeAttrs ["identity" "password"] extra));
 
-  mkWpaWifi = {name, password, priority, ...}@extra: mkWifi ({
+  mkWpaWifi = {name, password, priority, ...}@extra: mkWifi (lib.recursiveUpdate {
     wifi-security = {
       auth-alg = "open";
       key-mgmt = "wpa-psk";
       psk = password;
     };
-  } // removeAttrs ["password"] extra);
+  } (removeAttrs ["password"] extra));
 
 in
 
@@ -50,14 +50,14 @@ in
   networking.networkmanager = {
     enable = true;
 
-    appendNameservers = [ "1.1.1.1" "1.0.0.1" ];
+    insertNameservers = [ "1.1.1.1" "1.0.0.1" ];
 
     ensureProfiles = {
       environmentFiles = [ config.age.secrets.network-keys.path ];
       profiles = lib.fold (a: b: a // b) {} [
         (mkWpaWifi {
           name = "fazzenda";
-          password = "$FAZZENDA_PSK";
+          password = "$FAZZENDA_PSW";
           priority = 50;
         })
         (mkPeapWifi {

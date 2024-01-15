@@ -7,13 +7,10 @@
     isNormalUser = true;
     description = "Samuele Facenda";
     hashedPassword = "$y$j9T$uT/2s7MBr3VdlbSg9VOly.$01sbSx0zeTs2axvuJZOdpEs3Xreti2XMaPm.RSuaj/7";
-    extraGroups = [ "networkmanager" "network" "wheel" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
 
     # change default shell
     shell = pkgs.zsh;
-  };
-  users.groups = {
-    network = { };
   };
 
   # Set your time zone.
@@ -97,7 +94,7 @@
     linux-firmware
     gnumake
     wireguard-tools
-    wpa_supplicant_gui
+    networkmanager
 
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
     (
@@ -141,8 +138,8 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking (overwritten in modules/network.nix)
-  networking.networkmanager.enable = lib.mkDefault true;
+  # Enable networking
+  networking.networkmanager.enable = true;
 
   # burp suite certificate
   security.pki.certificateFiles = [

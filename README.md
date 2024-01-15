@@ -120,6 +120,7 @@ TODOS:
 - [ ] tinyproxy wakapi
 - [x] flake installer wizard with nix run
 - [x] on screen keyboard for tablet mode
+- [x] networkmanager config
 
 :construction: means work in progress
 
