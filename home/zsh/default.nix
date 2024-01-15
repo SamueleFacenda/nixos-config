@@ -27,8 +27,8 @@
       readme = "mdcat README.md";
       whr = "grep -R --exclude-dir .direnv";
       ggr = "git grep";
-      bright = "swayosd --brightness 20";
-      dark = "swayosd --brightness -20";
+      bright = "swayosd-client --brightness 20";
+      dark = "swayosd-client --brightness -20";
       img = "kitty +kitten icat";
       logh = "sudo cat ${secrets.github-token.path} | gh auth login --with-token";
       rlkitty = "kitty --directory /home/samu --detach; exit";
