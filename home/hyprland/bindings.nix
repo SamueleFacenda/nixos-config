@@ -69,12 +69,12 @@ in
       ];
 
       bindle = [
-        # volume keys, max is configured in default.nix
-        ", XF86AudioRaiseVolume, exec, swayosd --output-volume +5"
-        ", XF86AudioLowerVolume, exec, swayosd --output-volume -5"
-        ", XF86AudioMute, exec, swayosd --output-volume mute-toggle"
-        ", XF86MonBrightnessUp, exec, swayosd --brightness raise 200"
-        ", XF86MonBrightnessDown, exec, swayosd --brightness lower 200"
+        # volume keys
+        ", XF86AudioRaiseVolume, exec, swayosd-client --max-volume 150 --output-volume +5"
+        ", XF86AudioLowerVolume, exec, swayosd-client --output-volume -5"
+        ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
+        ", XF86MonBrightnessUp, exec, swayosd-client --brightness raise 200"
+        ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower 200"
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioStop, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
