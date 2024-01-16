@@ -148,7 +148,7 @@
 
 
   services.kmscon = {
-    enable = true;
+    enable = false; # buggy and not very good looking in multi monitor
     extraConfig = with config.services.xserver.xkb; ''
       xkb-layout=${layout}
       xkb-options=${options}

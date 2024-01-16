@@ -97,6 +97,7 @@
       move_focus_distance = 60;
       enable_alt_release_exit = 1;
       alt_toggle_auto_next = 1;
+      only_active_monitor = 1;
     };
 
     "debug:disable_logs" = false;
