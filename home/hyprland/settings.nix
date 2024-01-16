@@ -90,6 +90,19 @@
       };
     };
 
+    "plugin:hycov" = {
+      enable_hotarea = 0; # disable corner mouse cursor hotarea
+      enable_gesture = 1; # enable gesture (4 fingers up)
+      swipe_fingers = 4;
+      move_focus_distance = 60;
+      enable_alt_release_exit = 1;
+      alt_toggle_auto_next = 1;
+    };
+
+    "debug:disable_logs" = false;
+
+    "debug:enable_stdout_logs" = true;
+
     misc = {
       force_hypr_chan = false;
       disable_splash_rendering = false;

@@ -18,10 +18,13 @@ in
         "$mod, F, togglefloating,"
         "$mod, M, exit,"
         "$mod, B, exec, hyprctl dispatch dpms off"
-        "$mod, right, movetoworkspace, +1"
-        "$mod, left, movetoworkspace, -1"
+        "$mod, right, movetoworkspace, r+1"
+        "$mod, left, movetoworkspace, r-1"
         "$mod, space, exec, echo keyboard_change" # keyboard change, configured in settings
         "$mod, S, fullscreen"
+
+        # hycov (overview)
+        "ALT,tab,hycov:toggleoverview"
 
         # Windows bindings (they are recorded on the mouse)
         "CTRL_SUPER, left, workspace, r-1"

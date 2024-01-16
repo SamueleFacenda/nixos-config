@@ -70,8 +70,8 @@
     };
 
     hyprgrass = {
-      url = "github:horriblename/hyprgrass"; # it uses the hyprland flake
-     inputs.hyprland.follows = "hyprland";
+      url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "hyprland";
     };
 
     nixpkgs-wayland = {
@@ -123,6 +123,11 @@
 
     hyprfocus = {
       url = "github:VortexCoyote/hyprfocus";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    hycov={
+      url = "github:DreamMaoMao/hycov";
       inputs.hyprland.follows = "hyprland";
     };
   };

@@ -38,6 +38,7 @@ in
     plugins = with pkgs; [
       hyprgrass
       hyprfocus
+      hycov
     ];
     settings.exec-once = [
       "hyprctl setcursor Adwaita 24"
