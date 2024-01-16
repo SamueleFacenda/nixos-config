@@ -7,7 +7,6 @@
       kitty.enable = false;
       waybar.enable = false;
       vscode.enable = false;
-
     };
 
     cursor = {

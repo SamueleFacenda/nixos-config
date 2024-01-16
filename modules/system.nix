@@ -146,6 +146,14 @@
     ../assets/burpsuiteca.pem
   ];
 
+
+  services.kmscon = {
+    enable = true;
+    extraConfig = with config.services.xserver.xkb; ''
+      xkb-layout=${layout}
+      xkb-options=${options}
+    '';
+  };
   console = {
     packages = [ pkgs.powerline-fonts ];
     font = "ter-powerline-v32n.psf.gz";

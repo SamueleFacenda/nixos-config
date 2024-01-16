@@ -4,6 +4,8 @@
   ];
   stylix = {
 
+    inherit (config.home-manager.users.samu.stylix) fonts;
+
     autoEnable = true;
     image = ../assets/bg7.png;
     polarity = "dark";

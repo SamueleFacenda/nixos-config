@@ -105,7 +105,7 @@ TODOS:
 - [ ] iio-hyprland
 - [ ] nwg-drawer
 - [ ] nwg-dock-hyprland
-- [ ] hyprfocus
+- [x] hyprfocus
 - [ ] libinput gestures
 - [x] spotifyd, spotify-tui (need to be repaced with spotify-player)
 - [x] flake templates

@@ -15,7 +15,7 @@
       srm = "saferm";
       xcodium = "codium --enable-features=UseOzonePlatform --ozone-platform=x11";
 
-      tree = "eza  --tree";
+      tree = "eza --tree";
       ls = lib.mkForce "eza --git-ignore";
 
       c = "clear";
@@ -34,12 +34,8 @@
       rlkitty = "kitty --directory /home/samu --detach; exit";
 
       pwn = "shell samu#pwn";
-      cpp = "nix develop samu#cpp";
-      # shutdown = "sudo systemctl stop iptsd && shutdown";
-      # reboot = "sudo systemctl stop iptsd && reboot";
 
       bat = "cat /sys/class/power_supply/BAT1/capacity";
-      batt = "upower -i /org/freedesktop/UPower/devices/battery_BAT1";
       screenshot = "grim -g \"$(slurp)\"";
     };
 
