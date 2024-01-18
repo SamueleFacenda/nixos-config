@@ -42,7 +42,7 @@
 
     general = {
       layout = "dwindle";
-      "col.active_border" = lib.mkForce "0x00000000";
+      border_size = 0;
     };
 
     animations = {
@@ -117,8 +117,8 @@
       rounding = 19;
       blur = {
         enabled = true;
-        size = 7;
-        passes = 3;
+        size = 4;
+        passes = 4;
         new_optimizations = true;
         ignore_opacity = true;
       };
