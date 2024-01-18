@@ -46,6 +46,7 @@ in
       "kitty"
       "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
       "${usr_bin_dir}init-eww"
+      "swayosd-server" # waiting for https://github.com/nix-community/home-manager/pull/4881 merge...
     ];
   };
 
