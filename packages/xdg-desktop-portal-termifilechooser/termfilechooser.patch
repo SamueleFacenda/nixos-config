@@ -1,5 +1,5 @@
 diff --git a/contrib/ranger-wrapper.sh b/contrib/ranger-wrapper.sh
-index 88bc697..218de58 100755
+index 88bc697..042dde2 100755
 --- a/contrib/ranger-wrapper.sh
 +++ b/contrib/ranger-wrapper.sh
 @@ -1,4 +1,5 @@
@@ -27,7 +27,7 @@ index 88bc697..218de58 100755
  
  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  !!!                 === WARNING! ===                 !!!
-@@ -50,16 +50,23 @@ Notes:
+@@ -50,16 +50,26 @@ Notes:
     that, for example.
  2) If you quit ranger without opening a file, this file
     will be removed and the save operation aborted.
@@ -35,10 +35,13 @@ index 88bc697..218de58 100755
 +EOF
 +)
 +
++path_wasnt_present=false
++
 +if [ "$save" = "1" ]; then
 +    set -- --choosefile="$out" --cmd='echo Select save path (see tutorial in preview pane; try pressing zv or zp if no preview)' "$path"
 +    if [ ! -e "$path" ]; then
 +        printf '%s' "$info" > "$path"
++        path_wasnt_present=true
 +    fi
  elif [ "$directory" = "1" ]; then
 -    set -- --choosedir="$out" --show-only-dirs --cmd="echo Select directory (quit in dir to select it)"
@@ -50,8 +53,9 @@ index 88bc697..218de58 100755
  fi
  
 -"$termcmd" -- $cmd "$@"
+-if [ "$save" = "1" ] && [ ! -s "$out" ]; then
 +$termcmd -- $cmd "$@"
- if [ "$save" = "1" ] && [ ! -s "$out" ]; then
++if [ "$save" = "1" ] && [ $path_wasnt_present = true ]; then
      rm "$path"
  fi
 diff --git a/src/filechooser/filechooser.c b/src/filechooser/filechooser.c
