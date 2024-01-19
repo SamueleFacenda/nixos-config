@@ -130,5 +130,7 @@
       url = "github:DreamMaoMao/hycov";
       inputs.hyprland.follows = "hyprland";
     };
+
+    nur.url = "github:nix-community/NUR";
   };
 }
