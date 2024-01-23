@@ -103,8 +103,8 @@
     };
 
     debug = {
-      disable_logs = false;
-      enable_stdout_logs = true;
+      #disable_logs = false;
+      #enable_stdout_logs = true;
     };
 
     misc = {
