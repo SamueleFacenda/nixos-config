@@ -29,7 +29,7 @@
 
     wakatime-key = {
       file = ./wakatime-key.age;
-      owner = "samu";
+      owner = config.users.default.name;
       group = "users";
       # fillPlaceholdersFiles = [ "/home/samu/.wakatime.cfg" ];
     };
@@ -40,19 +40,19 @@
 
     spotify = {
       file = ./spotify.age;
-      owner = "samu"; # TODO make group for spotifyd
+      owner = config.users.default.name; # TODO make group for spotifyd
       group = "users";
     };
 
     nix-access-tokens = {
       file = ./nix-access-tokens.age;
-      owner = "samu";
+      owner = config.users.default.name;
       group = "users";
     };
   };
 
   age.identityPaths = [
-    "/home/samu/.ssh/id_rsa"
-    "/home/samu/.ssh/id_ed25519"
+    "/home/${config.users.default.name}/.ssh/id_rsa"
+    "/home/${config.users.default.name}/.ssh/id_ed25519"
   ];
 }

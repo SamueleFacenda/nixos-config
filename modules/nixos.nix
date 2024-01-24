@@ -1,13 +1,13 @@
 { lib, config, pkgs, nixpkgs, self, ... }:
 
 {
-  # Enable Flakes and the new command-line tool (already defined in flake.nix)
+  # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config = {
     permittedInsecurePackages = [
-      "electron-24.8.6"
+      "electron-24.8.6" # waiting for electron fix
     ];
   };
 
@@ -16,7 +16,7 @@
     warn-dirty = false;
     auto-optimise-store = true;
     trusted-users = [ "@wheel" ];
-    #pure-eval = true;
+    # pure-eval = true;
     max-jobs = "auto";
     log-lines = 20;
     # keep-going = true;
@@ -47,6 +47,7 @@
   '';
 
   nix.registry = {
+    # shortcut to this flake
     samu = {
       from = {
         id = "samu";
@@ -83,7 +84,7 @@
 
   # only for a flake system
   system.autoUpgrade = {
-    enable = false;
+    enable = false; # !!
     flake = "samu";
     flags = [
       "--update-input"

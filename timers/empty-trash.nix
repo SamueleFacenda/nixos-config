@@ -13,7 +13,7 @@
     script = "${pkgs.trashy}/bin/trashy empty --older-than 1month --force";
     serviceConfig = {
       Type = "oneshot";
-      User = "samu";
+      User = config.users.default.name;
     };
   };
 }

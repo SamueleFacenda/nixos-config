@@ -1,6 +1,6 @@
 { config, pkgs, lib, utils, disabledFiles, ... }:
 let
-  usr_bin_dir = "/home/samu/.local/bin/";
+  usr_bin_dir = "${config.home.homeDirectory}/.local/bin/";
 in
 {
 

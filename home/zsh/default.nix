@@ -14,6 +14,7 @@
       # code = "codium --password-store=\"gnome\"";
       srm = "saferm";
       xcodium = "codium --enable-features=UseOzonePlatform --ozone-platform=x11";
+      newnixbuildkey = "ssh-keygen -t ed25519 -f $HOME/.ssh/nixbuild && cat $HOME/.ssh/nixbuild.pub";
 
       tree = "eza --tree";
       ls = lib.mkForce "eza --git-ignore";
@@ -31,7 +32,7 @@
       dark = "swayosd-client --brightness -20";
       img = "kitty +kitten icat";
       logh = "sudo cat ${secrets.github-token.path} | gh auth login --with-token";
-      rlkitty = "kitty --directory /home/samu --detach; exit";
+      rlkitty = "kitty --directory $HOME --detach; exit";
 
       pwn = "shell samu#pwn";
 

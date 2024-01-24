@@ -38,11 +38,22 @@ in
             inherit (config.age) secrets;
             disabledFiles = [ ];
           };
-          users.samu = import ../../home;
+
+          users.${config.users.default.name} = {...}:{
+            imports = [ ../../home ];
+            home = {
+              username = config.users.default.name;
+              homeDirectory = "/home/" + config.users.default.name;
+            };
+          };
           backupFileExtension = "bak";
+
         };
       }
     ];
+
+  # override for custom name
+  # users.default.name = "samu";
 
   networking.hostName = "surface";
 

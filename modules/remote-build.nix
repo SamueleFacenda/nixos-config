@@ -1,10 +1,10 @@
-{ config, pkgrs, ... }: {
+{ config, pkgs, ... }: {
   programs.ssh.extraConfig = ''
     Host eu.nixbuild.net
       PubkeyAcceptedKeyTypes ssh-ed25519
       ServerAliveInterval 60
       IPQoS throughput
-      IdentityFile /home/samu/.ssh/nixbuild
+      IdentityFile /home/${config.users.default.name}/.ssh/nixbuild
   '';
 
   programs.ssh.knownHosts = {
