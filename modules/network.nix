@@ -53,7 +53,7 @@ in
     insertNameservers = [ "1.1.1.1" "1.0.0.1" ];
 
     ensureProfiles = {
-      environmentFiles = [ config.age.secrets.network-keys.path ];
+      environmentFiles = lib.mkIf (config.age.secrets ? network-keys) [ config.age.secrets.network-keys.path ];
       profiles = lib.fold (a: b: a // b) {} [
         (mkWpaWifi {
           name = "fazzenda";

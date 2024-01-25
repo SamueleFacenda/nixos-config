@@ -42,7 +42,7 @@
     ];
   };
 
-  nix.extraOptions = ''
+  nix.extraOptions = lib.mkIf (config.age.secrets ? nix-access-tokens) ''
     !include ${config.age.secrets.nix-access-tokens.path}
   '';
 

@@ -33,11 +33,12 @@ in
     settings = {
       global = {
         username = "2pxqknxvfuz2yuigiqd4wazlt";
-        password_cmd = "cat ${secrets.spotify.path}";
         use_mpris = true; # global controls
         device_name = "spotifyd_surfacenene";
         device_type = "computer";
-      };
+      } // (if secrets ? spotify
+      then { password_cmd = "cat ${secrets.spotify.path}"; }
+      else { password = "placeholder"; });
     };
   };
 }
