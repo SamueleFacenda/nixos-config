@@ -26,8 +26,13 @@
       packages = nixpkgs.lib.recursiveUpdate (eachSystem (system: import ./packages (pk system))) {
         # custom images
         x86_64-linux.genericLinux = inputs.nixos-generators.nixosGenerate {
-          modules = [ ./host/genericLinux ];
+          modules = [
+            ./host/genericLinux
+            ({lib, ...}:{ networking.networkmanager.enable = lib.mkForce false;})
+          ];
           format = "install-iso";
+          specialArgs = inputs;
+          system = "x86_64-linux";
         };
       };
 

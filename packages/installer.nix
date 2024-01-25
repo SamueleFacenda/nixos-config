@@ -2,11 +2,12 @@
 , writeShellApplication
 , git
 , gum
+, nixos-install-tools
 }:
 
 writeShellApplication {
   name = "installer";
-  runtimeInputs = [ git gum ];
+  runtimeInputs = [ git gum nixos-install-tools ];
   text = ''
     set -e
     ORIGIN="https://github.com/SamueleFacenda/nixos-config"
@@ -76,7 +77,14 @@ writeShellApplication {
     longname="$(gum input --placeholder 'Samuele Facenda')"
     sed -i "s/Samuele Facenda/$longname/g" "$configdir/host/$hostname/default.nix"
 
+    # generate hardware config
+    tempDir="$(mktemp)"
+    nixos-generate-config --dir "$tempDir"
+    cp "$tempDir/hardware-config.nix" "$configdir/host/$hostname"
 
+
+    # add to git the config (required for flakes)
+    (cd "$configdir"; git add "host/$hostname/*")
 
     gum style \
       --border double \
