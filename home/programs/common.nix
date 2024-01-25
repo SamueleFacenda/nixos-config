@@ -19,6 +19,7 @@
     jq
     python312
     gnome.seahorse
+    mediawriter
 
     # misc
     xdg-utils

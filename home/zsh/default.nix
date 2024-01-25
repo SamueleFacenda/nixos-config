@@ -32,7 +32,7 @@
       dark = "swayosd-client --brightness -20";
       img = "kitty +kitten icat";
       logh = "sudo cat ${secrets.github-token.path} | gh auth login --with-token";
-      rlkitty = "kitty --directory $HOME --detach; exit";
+      rlk = "kitty --directory $HOME --detach; exit";
 
       pwn = "shell samu#pwn";
 

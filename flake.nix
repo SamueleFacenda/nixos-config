@@ -23,13 +23,19 @@
 
       formatter = eachSystem (system: (pk system).nixpkgs-fmt);
 
-      packages = eachSystem (system: import ./packages (pk system));
+      packages = nixpkgs.lib.recursiveUpdate (eachSystem (system: import ./packages (pk system))) {
+        # custom images
+        x86_64-linux.genericLinux = inputs.nixos-generators.nixosGenerate {
+          modules = [ ./host/genericLinux ];
+          format = "install-iso";
+        };
+      };
 
       templates = import ./templates;
 
       apps = eachSystem (system: {
         # flake installer, clone himself and do stuff
-        default = {type="app"; program=self.packages.${system}.installer + "/bin/installer";};
+        default = { type = "app"; program = self.packages.${system}.installer + "/bin/installer"; };
       });
 
       checks = eachSystem (system: {
@@ -132,5 +138,10 @@
     };
 
     nur.url = "github:nix-community/NUR";
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
