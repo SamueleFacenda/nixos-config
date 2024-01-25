@@ -52,32 +52,41 @@ writeShellApplication {
       gum spin --title "Cloning config in $configdir..." \
         git clone "$ORIGIN" "$configdir"
 
+      # patch the flake local path reference
+      # TODO think about relative paths
+      sed -i "s#/nixos-config#$configdir#g" "$configdir/modules/nixos.nix"
+
     else
       echo "Select the configuration directory"
       configdir="$(gum file --directory --file=false)"
     fi
 
+    echo "Enter a hostname for this machine"
+    hostname="$(gum input --placeholder 'config name(hostname)')"
+
+    # generate the host config
+    cp -r "$configdir/host/genericLinux" "$configdir/host/$hostname"
+    sed -i "s/nixos-samu/$hostname/g" "$configdir/host/$hostname/default.nix"
+
+    echo "Enter a username"
+    username="$(gum input --placeholder 'samu')"
+    sed -i "s/samu/$username/g" "$configdir/host/$hostname/default.nix"
+
+    echo "Enter a long name"
+    longname="$(gum input --placeholder 'Samuele Facenda')"
+    sed -i "s/Samuele Facenda/$longname/g" "$configdir/host/$hostname/default.nix"
+
+
+
     gum style \
       --border double \
       --align center --width 50 --margin "1 2" --padding "1 2" \
-    'Now it'"'"'s secrets time! 🗝️
-    Generate a keypary (ssh-keygen) for this machine.
-    If you are me or someone with access to a machine with a private '\
-    'key allowed to edit the secrets, add a public key from this machine to'\
-    'the keys in secrets/secrets.nix in the config.
-    Then run "agenix --rekey <filename>" on all the secrets
-    Important! You must be on a machine with already present keys
-
-    If you are not me, just remove all my public keys from secrets/secrets.nix'\
-    ', add yours, delete the secrets (*.age) and recreate them with you secrets.
-    Instructions for the secret files format are in secrets/secrets.nix
-
-    Also, create a host copying one of mine and editing the'\
-    'hardware config.nix using the one created during the installation!'
+    'The secrets are disable by default. Generate a ssh keypair and do a rekey with that keys, '\
+    'then enable them in the host config (or set the placehorders around the config, '\
+    'just git grep for "placehoder")'
 
     if gum confirm "Activate the config now?"
     then
-      hostname="$(gum input --placeholder 'config name(hostname)')"
       sudo nixos-rebuild switch --flake "$configdir#$hostname"
     fi
 

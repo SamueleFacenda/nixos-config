@@ -19,9 +19,9 @@
 
       # optionals
       ../../timers/empty-trash.nix
-      ../../modules/stylix.nix # needed for home-manager
+      ../../modules/stylix.nix # needed for home-manager, not very optional
 
-      # secrets
+      # secrets (settings are below)
       agenix.nixosModules.default
       ../../secrets
 
@@ -55,8 +55,8 @@
     ];
 
   # override for custom name
-  # users.default.name = "samu";
-  # users.default.longName;
+  users.default.name = "samu";
+  users.default.longName = "Samuele Facenda";
 
   networking.hostName = "nixos-samu";
 
