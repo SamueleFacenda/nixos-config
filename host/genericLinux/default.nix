@@ -59,4 +59,13 @@
   # users.default.longName;
 
   networking.hostName = "nixos-samu";
+
+  # custom options for secrets, fallback placeholder is used
+  secrets = {
+    # spotify.enable = true;
+    # network-keys.enable = true;
+    # wakatime-key.enable = true;
+    # github-token.enable = true;
+    # nix-access-tokens.enable = true;
+  };
 }

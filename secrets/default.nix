@@ -1,4 +1,4 @@
-{ config, pkgs, agenix, ... }: {
+{ config, pkgs, lib, agenix, ... }: {
 
   imports = [
     # get the fillPlacehodersFiles option for secrets
@@ -23,28 +23,28 @@
 
   # secrets config
   age.secrets = {
-    github-token = {
+    github-token = lib.mkIf config.secrets.github-token.enable {
       file = ./github-token.age;
     };
 
-    wakatime-key = {
+    wakatime-key = lib.mkIf config.secrets.wakatime-key.enable {
       file = ./wakatime-key.age;
       owner = config.users.default.name;
       group = "users";
       # fillPlaceholdersFiles = [ "/home/samu/.wakatime.cfg" ];
     };
 
-    network-keys = {
+    network-keys = lib.mkIf config.secrets.network-keys.enable {
       file = ./network-keys.age;
     };
 
-    spotify = {
+    spotify = lib.mkIf config.secrets.spotify.enable {
       file = ./spotify.age;
       owner = config.users.default.name; # TODO make group for spotifyd
       group = "users";
     };
 
-    nix-access-tokens = {
+    nix-access-tokens = lib.mkIf config.secrets.nix-access-tokens.enable {
       file = ./nix-access-tokens.age;
       owner = config.users.default.name;
       group = "users";

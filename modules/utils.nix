@@ -20,6 +20,10 @@ rec {
     };
   };
 
+  options.secrets = lib.genAttrs
+    [ "spotify" "network-keys" "nix-access-tokens" "wakatime-key" "github-token" ]
+    (secret: { enable = lib.mkEnableOption (lib.mdDoc secret); });
+
   config.lib.utils = rec {
 
     listDirPathsExcluding = (exclude: path:

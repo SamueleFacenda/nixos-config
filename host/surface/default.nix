@@ -57,6 +57,15 @@ in
 
   networking.hostName = "surface";
 
+  # custom options for secrets
+  secrets = {
+    spotify.enable = true;
+    network-keys.enable = true;
+    wakatime-key.enable = true;
+    github-token.enable = true;
+    nix-access-tokens.enable = true;
+  };
+
   # enable surface stylus and touch, disable surface control tool
   microsoft-surface = {
     ipts.enable = true; # lib.mkForce false;
