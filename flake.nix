@@ -8,13 +8,13 @@
       pk = system: nixpkgs.legacyPackages.${system};
     in
     {
-      nixosConfigurations = {
-        "surface" = nixpkgs.lib.nixosSystem {
+      nixosConfigurations = builtins.mapAttrs
+        (hostname: type: nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = inputs;
-          modules = [ ./host/surface ];
-        };
-      };
+          modules = [ (./host + "/${hostname}") ];
+        })
+        (builtins.readDir ./host);
 
       devShells = eachSystem (system:
         (import ./shells { pkgs = pk system; }) //
