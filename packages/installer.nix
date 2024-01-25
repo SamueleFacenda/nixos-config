@@ -31,7 +31,7 @@ writeShellApplication {
     if gum confirm "Do you want to clone the configuration?"
     then
       configdir=$(gum input --value "$configdir" \
-        --header="Configuration location (new directory )" )
+        --header="Configuration location (new directory, absolute path please)" )
 
       if [ -e "$configdir" ]
       then
@@ -39,7 +39,6 @@ writeShellApplication {
         exit 1
       fi
 
-      # todo check permissions
       if dir_permission_check "$configdir"
       then
         mkdir -p "$configdir"

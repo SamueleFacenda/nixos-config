@@ -8,6 +8,13 @@ find ./ "" -type f 2>/dev/null -not -path '*/.*' | grep -v -E ".git|.png|.age|.j
 ![hyprland screenshot](assets/screenshot1.png)
 
 This is more than my config, it's a flake. There are a couple packages, flake templates and overlays.
+
+I currently manage it in order to be easy to pick and use for everybody. The main user name is defined in an option
+and secrets are optionals. In [the this default config](host/genericLinux/default.nix) you can 
+find a sample config that shoud easy to tweak. 
+If you want to to a test just use the install wizard (desciption below)
+
+
 ### Packages:
 - xdg-desktop-portal-shana (the portal of portals)
 - xdg-desktop-portal-termfilechooser (use ranger instead of gui file manager)
@@ -21,7 +28,6 @@ This is more than my config, it's a flake. There are a couple packages, flake te
 
 I've made a wizard for setupping this config on a new nixos machine.
 Just run `nix run github:SamueleFacenda/nixos-config` and follow the instructions.
-Be careful with the secrets, you need to setup agenix (explained in the wizard).
 
 #### Flake setup
 
@@ -44,12 +50,21 @@ inputs.nixos-samu.inputs.nixpkgs.follows = "nixpkgs";
 
 ```
 
-### Configuration
-My nixos configuration. It aims to work well under the hood and also be good to see. 
-I use flakes instead of the standard configuration.nix
-and home manager to configure my programs and desktop.
+#### How to configure after install
 
-My goal is to have a good looking hyprland config.
+If you plan to use this on you machine it should be easy to do.
+The process is described above, and you also should:
+- create a new [host](host/genericLinux/default.nix)
+- edit [the git config](home/programs/git)
+- regenerate the [secrets](secrets/README.md)
+- change the [system language](modules/system.nix)
+- change the [wifi settings](modules/network.nix)
+- edit the [wakatime settings](home/programs/wakatime.nix)
+- edit the [spotifyd settings](home/programs/spotify.nix)
+- edit the monitos in [hyprpaper](home/hyprland/hyprpaper.nix),
+[kanshi](home/hyprland/kanshi.nix) and [hyprland conf](home/hyprland/settings.nix)
+- edit the [waybar config](home/hyprland/waybar/settings.nix): the outputs,
+ the keyboards and the temperature thermal zone.
 
 
 ### Note for surface devices
@@ -121,6 +136,7 @@ TODOS:
 - [x] flake installer wizard with nix run
 - [x] on screen keyboard for tablet mode
 - [x] networkmanager config
+- [x] image builder
 
 :construction: means work in progress
 

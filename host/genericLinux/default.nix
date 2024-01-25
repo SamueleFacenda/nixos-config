@@ -3,18 +3,19 @@
 {
   imports = with specialArgs;
     [
+      # mandatory
       ../../modules/system.nix
       ../../modules/nixos.nix
       ../../modules/utils.nix
 
-      # speed up kernel builds
+      # speed up kernel builds (slow down easy build unless overwritten)
       # ../../modules/remote-build.nix
 
       # choose one or both
       # ../../modules/gnome.nix
       ../../modules/hyprland.nix
 
-      # wifi settings
+      # optionals wifi settings (networkmanager is already enable by default)
       ../../modules/network.nix
 
       # optionals
@@ -25,6 +26,7 @@
       agenix.nixosModules.default
       ../../secrets
 
+      # nix user repository
       nur.nixosModules.nur
 
       { nixpkgs.overlays = [ nixpkgs-wayland.overlay ]; }
@@ -35,26 +37,29 @@
         home-manager = {
           useGlobalPkgs = true;
           useUserPackages = true;
+          backupFileExtension = "bak";
 
           extraSpecialArgs = specialArgs // {
             inherit (config.lib) utils;
             inherit (config.age) secrets;
-            disabledFiles = [ ];
+            disabledFiles = [
+              # tex.nix # uncomment for quick test, this is big
+              # common.nix # idem
+            ];
           };
 
-          users.${config.users.default.name} = {...}:{
+          users.${config.users.default.name} = _:{
             imports = [ ../../home ];
             home = {
               username = config.users.default.name;
               homeDirectory = "/home/" + config.users.default.name;
             };
           };
-          backupFileExtension = "bak";
         };
       }
     ];
 
-  # override for custom name
+  # override for custom name (this is also the default value)
   users.default.name = "samu";
   users.default.longName = "Samuele Facenda";
 
