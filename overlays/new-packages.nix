@@ -12,6 +12,7 @@ in
     xdg-desktop-portal-shana
     xdg-desktop-portal-termfilechooser;
 
+  hyprland-virtual-desktops = pk.hyprland-virtual-desktops.override {inherit (hyprland.packages.${sys}) hyprland;};
   hyprgrass = hyprgrass.packages.${sys}.default; # .override { inherit (final) hyprland; };
   hyprfocus = hyprfocus.packages.${sys}.default;
   hyprland = hyprland.packages.${sys}.hyprland;

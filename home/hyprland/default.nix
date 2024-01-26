@@ -39,6 +39,7 @@ in
       hyprgrass
       hyprfocus
       hycov
+      hyprland-virtual-desktops
     ];
     settings.exec-once = [
       "hyprctl setcursor Adwaita 24"

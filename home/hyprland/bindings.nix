@@ -18,20 +18,19 @@ in
         "$mod, F, togglefloating,"
         "$mod, M, exit,"
         "$mod, B, exec, hyprctl dispatch dpms off"
-        "$mod, right, movetoworkspace, r+1"
-        "$mod, left, movetoworkspace, r-1"
-        "$mod, space, exec, echo keyboard_change" # keyboard change, configured in settings
+        "$mod, right, movetodesk, r+1"
+        "$mod, left, movetodesk, r-1"
         "$mod, S, fullscreen"
 
         # hycov (overview)
         "ALT, tab, hycov:toggleoverview, forceallinone"
 
         # Windows bindings (they are recorded on the mouse)
-        "CTRL_SUPER, left, workspace, r-1"
-        "CTRL_SUPER, right, workspace, r+1"
+        "CTRL_SUPER, left, prevdesk"
+        "CTRL_SUPER, right, nextdesk"
 
-        ", edge:r:l, workspace, +1"
-        ", edge:l:r, workspace, -1"
+        ", edge:r:l, nextdesk"
+        ", edge:l:r, prevdesk"
         ", edge:d:u, exec, if ps -e | grep ${keyboard}; then pkill ${keyboard}; else ${keyboard} ${flags}; fi"
 
         #### windows navigation and arrangement ####

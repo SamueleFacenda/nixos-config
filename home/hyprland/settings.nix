@@ -101,6 +101,10 @@
         only_active_monitor = 0;
         click_in_cursor = 1;
       };
+
+      hyprland-virtual-desktops = {
+
+      };
     };
 
     debug = {
