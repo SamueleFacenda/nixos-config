@@ -24,7 +24,7 @@ in
         "$mod, S, fullscreen"
 
         # hycov (overview)
-        "ALT,tab,hycov:toggleoverview"
+        "ALT, tab, hycov:toggleoverview, forceallinone"
 
         # Windows bindings (they are recorded on the mouse)
         "CTRL_SUPER, left, workspace, r-1"
