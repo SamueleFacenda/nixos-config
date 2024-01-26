@@ -65,8 +65,8 @@
       inputs.nixpkgs.follows = "nixpkgs"; # no cache
     };
 
-    # nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixos-hardware.url = "github:SamueleFacenda/nixos-hardware/master"; # My personal fork
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # nixos-hardware.url = "github:SamueleFacenda/nixos-hardware/master"; # My personal fork
 
     spicetify-nix = {
       url = "github:the-argus/spicetify-nix";

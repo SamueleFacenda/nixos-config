@@ -67,14 +67,6 @@ The process is described above, and you also should:
  the keyboards and the temperature thermal zone.
 
 
-### Note for surface devices
-
-At the moment that I'm writing (2023 10 10) the porting to nixos of the surface kernel is not working.
-I've made my own fork of nixos-hardware in order to fix it and I use it in my config. 
-You can find in [here](https://github.com/SamueleFacenda/nixos-hardware)
- 
- 
-
 TODOS:
 - [x] zsh
 - [x] powerlevel10k
@@ -137,6 +129,7 @@ TODOS:
 - [x] on screen keyboard for tablet mode
 - [x] networkmanager config
 - [x] image builder
+- [ ] hyprland-virtual-desktops
 
 :construction: means work in progress
 
