@@ -11,13 +11,13 @@
 }:
 stdenv.mkDerivation rec {
   pname = "xdg-desktop-portal-shana";
-  version = "0.3.5.1";
+  version = "0.3.9";
 
   src = fetchFromGitHub {
     owner = "Decodetalkers";
     repo = "xdg-desktop-portal-shana";
     rev = "v${version}";
-    sha256 = "ujHIJSaUxm3c3/fz9QSQnHEWYYy92etI7ULexRj5UoA=";
+    sha256 = "cgiWlZbM0C47CisR/KlSV0xqfeKgM41QaQihjqSy9CU=";
   };
 
   meta = with lib; {
@@ -43,7 +43,7 @@ stdenv.mkDerivation rec {
 
   cargoDeps = rustPlatform.fetchCargoTarball {
     inherit src;
-    hash = "sha256-KNHOK/qg4vPDsQSnrI1/40aWdbPiLLr3VsUFuRuGwVs=";
+    hash = "sha256-EUcpvOdkvVW8gdRVBfbK1A6JkqnTnt6dO1823Wrz+84=";
   };
 
   mesonBuildType = "release";
