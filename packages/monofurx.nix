@@ -7,12 +7,12 @@
 stdenv.mkDerivation {
   # meta TODO
   pname = "monofurx";
-  version = "5.1";
+  version = "56.0";
   src = fetchFromGitHub {
     owner = "noisnemid";
     repo = "monofurx-the-monospace-font";
-    rev = "636a263faf53108ea813ef10f4e62a4ef2df790a";
-    sha256 = "v1OiWKBgBpN7ptYTbm3lzM7M4Pn0o/vXwj29qGlFsho=";
+    rev = "d29e388e217719a5a7a4d90d3280d61de3798d2f";
+    sha256 = "eCzcApztEiYEpHRMFkr9Zl79/i8fcS9x+P3MxpC+1iE=";
   };
   nativeBuildInputs = [
     nerd-font-patcher

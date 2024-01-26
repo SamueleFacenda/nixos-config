@@ -27,7 +27,7 @@
       open = "xdg-open";
       readme = "mdcat README.md";
       whr = "grep -R --exclude-dir .direnv";
-      ggr = "git grep";
+      ggr = "git grep --ignore-case";
       bright = "swayosd-client --brightness 20";
       dark = "swayosd-client --brightness -20";
       img = "kitty +kitten icat";
