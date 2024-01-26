@@ -97,8 +97,7 @@
         swipe_fingers = 4;
         move_focus_distance = 60;
         enable_alt_release_exit = 1; # alt-tab cycle
-        # auto_next disabled waiting for forceallinone fix
-        alt_toggle_auto_next = 0; # alt-tab-release is cycle
+        alt_toggle_auto_next = 1; # alt-tab-release is cycle
         only_active_monitor = 0;
         click_in_cursor = 1;
       };

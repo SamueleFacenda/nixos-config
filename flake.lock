@@ -298,11 +298,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1706238436,
-        "narHash": "sha256-ffrsIWSVMS/oEeUexlOPBg0nVzNjvBTPHOU1JcexxXI=",
+        "lastModified": 1706262437,
+        "narHash": "sha256-g90CrsZUyNM1ZiF5cYn+9mLZOyMq/aDcVWLWySAuNgQ=",
         "owner": "DreamMaoMao",
         "repo": "hycov",
-        "rev": "8350c45aefe4a8f1be1b34a11f0c736617ccc89b",
+        "rev": "84b9f00c54dd516025eeef3cc3ac13ee398d3e2d",
         "type": "github"
       },
       "original": {
