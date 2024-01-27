@@ -129,7 +129,8 @@ TODOS:
 - [x] on screen keyboard for tablet mode
 - [x] networkmanager config
 - [x] image builder
-- [ ] hyprland-virtual-desktops
+- [x] hyprland-virtual-desktops
+- [ ] syncthing
 
 :construction: means work in progress
 

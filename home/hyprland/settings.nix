@@ -102,8 +102,9 @@
         click_in_cursor = 1;
       };
 
-      hyprland-virtual-desktops = {
-
+      virtual-desktops = {
+        notifyinit = 0;
+        cycleworkspaces = 0;
       };
     };
 

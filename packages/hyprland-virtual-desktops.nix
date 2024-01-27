@@ -1,9 +1,9 @@
-{ gcc13Stdenv
+{ stdenv
 , fetchFromGitHub
 , hyprland
 }:
 
-gcc13Stdenv.mkDerivation rec {
+stdenv.mkDerivation rec {
   pname = "hyprland-virtual-desktops";
   version = "2.0.2";
   src = fetchFromGitHub {
