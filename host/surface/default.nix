@@ -39,7 +39,7 @@ in
             disabledFiles = [ ];
           };
 
-          users.${config.users.default.name} = {...}:{
+          users.${config.users.default.name} = { ... }: {
             imports = [ ../../home ];
             home = {
               username = config.users.default.name;

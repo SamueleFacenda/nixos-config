@@ -31,7 +31,8 @@
       bright = "swayosd-client --brightness 20";
       dark = "swayosd-client --brightness -20";
       img = "kitty +kitten icat";
-      logh = if secrets ? github-token
+      logh =
+        if secrets ? github-token
         then "sudo cat ${secrets.github-token.path} | gh auth login --with-token"
         else "echo No github token secret foun!";
       rlk = "kitty --directory $HOME --detach; exit";

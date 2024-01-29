@@ -9,8 +9,9 @@ stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "levnikmyskin";
     repo = pname;
-    rev = "v${version}";
-    sha256 = "VzOfiw82xLhoOfx8NiEhq/ZWTnQOQ9Uqey/1FHYu3lo=";
+    # rev = "v${version}";
+    rev = "3c75f863473a5bbce306bdcf0150c5a01359dac9";
+    sha256 = "mrczZEXHE/dxIn4FkCdozRQz+CqhfjUbJygSsPmHPZU=";
   };
 
   inherit (hyprland) nativeBuildInputs;

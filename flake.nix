@@ -28,7 +28,7 @@
         x86_64-linux.genericLinux = inputs.nixos-generators.nixosGenerate {
           modules = [
             ./host/genericLinux
-            ({lib, ...}:{ networking.networkmanager.enable = lib.mkForce false;})
+            ({ lib, ... }: { networking.networkmanager.enable = lib.mkForce false; })
           ];
           format = "install-iso";
           specialArgs = inputs;
@@ -137,7 +137,7 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hycov={
+    hycov = {
       url = "github:DreamMaoMao/hycov";
       inputs.hyprland.follows = "hyprland";
     };

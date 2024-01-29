@@ -1,52 +1,57 @@
 { config, pkgs, lib, ... }:
 let
 
-  removeAttrs = blacklist: lib.filterAttrs (name: v: lib.all (x: x!=name) blacklist);
   # https://people.freedesktop.org/~lkundrak/nm-docs/nm-settings.html
-  mkWifi = {name, priority ? 0, ...}@extra: {
-    ${name} = lib.recursiveUpdate {
-      connection = {
-        id = name;
-        type = "wifi";
-        autoconnect-priority = priority;
-        # autoconnect = true;
-        # permissions  = "";
-        # read-only = false;
-      };
-      wifi = {
-        # mode = "infrastructure";
-        ssid = name;
-      };
-      ipv4.method = "auto";
-      ipv6 = {
-        method = "auto";
-        # addr-gen-mode = "default";
-      };
-    } (removeAttrs ["name" "priority"] extra);
+  mkWifi = { name, priority ? 0, ... }@extra: {
+    ${name} = lib.recursiveUpdate
+      {
+        connection = {
+          id = name;
+          type = "wifi";
+          autoconnect-priority = priority;
+          # autoconnect = true;
+          # permissions  = "";
+          # read-only = false;
+        };
+        wifi = {
+          # mode = "infrastructure";
+          ssid = name;
+        };
+        ipv4.method = "auto";
+        ipv6 = {
+          method = "auto";
+          # addr-gen-mode = "default";
+        };
+      }
+      (builtins.removeAttrs extra [ "name" "priority" ]);
   };
 
-  mkPeapWifi = {name, identity, password, priority, ...}@extra: mkWifi (lib.recursiveUpdate {
-    wifi-security.key-mgmt = "wpa-eap";
-    "802-1x" = {
-      eap = "peap";
-      ca-cert = "/etc/ssl/certs/ca-bundle.crt";
-      # phase1-peapver = 1;
-      phase2-auth = "mschapv2";
-      inherit identity  password;
-    };
-  } (removeAttrs ["identity" "password"] extra));
+  mkPeapWifi = { name, identity, password, priority, ... }@extra: mkWifi (lib.recursiveUpdate
+    {
+      wifi-security.key-mgmt = "wpa-eap";
+      "802-1x" = {
+        eap = "peap";
+        ca-cert = "/etc/ssl/certs/ca-bundle.crt";
+        # phase1-peapver = 1;
+        phase2-auth = "mschapv2";
+        inherit identity password;
+      };
+    }
+    (builtins.removeAttrs extra [ "identity" "password" ]));
 
-  mkWpaWifi = {name, password, priority, ...}@extra: mkWifi (lib.recursiveUpdate {
-    wifi-security = {
-      auth-alg = "open";
-      key-mgmt = "wpa-psk";
-      psk = password;
-    };
-  } (removeAttrs ["password"] extra));
+  mkWpaWifi = { name, password, priority, ... }@extra: mkWifi (lib.recursiveUpdate
+    {
+      wifi-security = {
+        auth-alg = "open";
+        key-mgmt = "wpa-psk";
+        psk = password;
+      };
+    }
+    (builtins.removeAttrs extra [ "password" ]));
 
 in
 
- {
+{
   networking.networkmanager = {
     enable = true;
 
@@ -54,7 +59,7 @@ in
 
     ensureProfiles = {
       environmentFiles = lib.mkIf (config.age.secrets ? network-keys) [ config.age.secrets.network-keys.path ];
-      profiles = lib.fold (a: b: a // b) {} [
+      profiles = lib.fold (a: b: a // b) { } [
         (mkWpaWifi {
           name = "fazzenda";
           password = "$FAZZENDA_PSW";

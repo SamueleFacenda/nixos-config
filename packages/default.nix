@@ -12,7 +12,7 @@ in
 mapAttrs'
   (n: v: rec {
     # derivation pname or file/directory name
-    name = attrByPath ["pname"] (removeSuffix ".nix" n) value;
+    name = attrByPath [ "pname" ] (removeSuffix ".nix" n) value;
     value = callPackage (import (./. + "/${n}")) { };
   })
   (filterAttrs

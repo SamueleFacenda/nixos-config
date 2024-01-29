@@ -1,3 +1,3 @@
 final: prev: {
-  obsidian = prev.obsidian.override {electron = final.electron_24;};
+  obsidian = prev.obsidian.override { electron = final.electron_24; };
 }

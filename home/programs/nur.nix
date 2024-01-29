@@ -1,4 +1,4 @@
-{config, pkgs, nur, ...}:{
+{ config, pkgs, nur, ... }: {
   imports = [
     nur.hmModules.nur
   ];

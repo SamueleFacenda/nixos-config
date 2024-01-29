@@ -48,7 +48,7 @@
             ];
           };
 
-          users.${config.users.default.name} = _:{
+          users.${config.users.default.name} = _: {
             imports = [ ../../home ];
             home = {
               username = config.users.default.name;

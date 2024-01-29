@@ -2,5 +2,5 @@
 
   nixpkgs.overlays =
     builtins.map import (config.lib.utils.listDirPathsExcluding [ "new-packages.nix" "README.md" ] ./.) ++
-    [(import ./new-packages.nix specialArgs)];
+    [ (import ./new-packages.nix specialArgs) ];
 }

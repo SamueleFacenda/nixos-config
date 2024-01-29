@@ -1,10 +1,11 @@
 { config, pkgs, lib, ... }:
 let
   format = pkgs.formats.ini { };
-  wrapper = pkgs.runCommand "ranger-wrapper.sh" {
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-    script = "${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/ranger-wrapper.sh";
-  } ''
+  wrapper = pkgs.runCommand "ranger-wrapper.sh"
+    {
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      script = "${pkgs.xdg-desktop-portal-termfilechooser}/share/xdg-desktop-portal-termfilechooser/ranger-wrapper.sh";
+    } ''
     makeWrapper $script $out/wrapper \
       --prefix PATH : ${lib.makeBinPath [ pkgs.kitty pkgs.ranger pkgs.coreutils ]}
   '';
