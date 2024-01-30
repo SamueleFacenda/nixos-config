@@ -20,6 +20,7 @@
     max-jobs = "auto";
     log-lines = 20;
     # keep-going = true;
+    user-agent-suffix = "NixOS unstable";
 
     trusted-substituters = [
       "https://cache.nixos.org/"

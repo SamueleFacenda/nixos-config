@@ -34,7 +34,7 @@
       logh =
         if secrets ? github-token
         then "sudo cat ${secrets.github-token.path} | gh auth login --with-token"
-        else "echo No github token secret foun!";
+        else "gh auth login";
       rlk = "kitty --directory $HOME --detach; exit";
 
       pwn = "shell samu#pwn";

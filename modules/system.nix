@@ -8,9 +8,6 @@
     description = config.users.default.longName;
     hashedPassword = "$y$j9T$uT/2s7MBr3VdlbSg9VOly.$01sbSx0zeTs2axvuJZOdpEs3Xreti2XMaPm.RSuaj/7";
     extraGroups = [ "networkmanager" "wheel" "video" ];
-
-    # change default shell
-    shell = pkgs.zsh;
   };
 
   # Set your time zone.
@@ -79,8 +76,9 @@
     #theme = "breeze";
   };
 
-  # enable zsh system-wide
+  # enable zsh system-wide and set it as default
   programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
 
   environment.systemPackages = with pkgs; [
     wget
@@ -125,9 +123,6 @@
   # for electron (e.g. vscode) in wayland, currenty broken (sometimes)
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # add nixos to user agent string
-  nix.settings.user-agent-suffix = "NixOS unstable";
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -145,7 +140,6 @@
   security.pki.certificateFiles = [
     ../assets/burpsuiteca.pem
   ];
-
 
   services.kmscon = {
     enable = false; # buggy and not very good looking in multi monitor
