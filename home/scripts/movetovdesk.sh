@@ -1,0 +1,27 @@
+#!/usr/bin/env -S bash -e
+
+n_monitors="$(hyprctl -j monitors | jq length)"
+
+active_workspace="$(hyprctl -j activeworkspace | jq .id)"
+
+# ceil division
+current_vdesk=$(((active_workspace+n_monitors-1)/n_monitors))
+
+case "$1" in
+next)
+  hyprctl dispatch movetodesk "$((current_vdesk+1))"
+  ;;
+prev)
+  if [[ $current_vdesk == 1 ]]
+  then
+    exit 0
+  else
+    hyprctl dispatch movetodesk "$((current_vdesk-1))"
+  fi
+  ;;
+  
+*)
+  echo "Unknown argument: '$1'"
+  exit 1
+  ;;
+esac
