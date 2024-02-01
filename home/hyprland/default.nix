@@ -23,6 +23,10 @@ in
     pavucontrol
     playerctl
 
+    # displays
+    wlr-randr
+    nwg-displays
+
     # utilities
     gnome.nautilus
     gnome.eog
