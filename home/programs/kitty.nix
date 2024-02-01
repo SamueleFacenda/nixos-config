@@ -25,7 +25,7 @@
       #background_blur = "30"; # not supported on wayland
       window_padding_width = "7";
       dynamic_background_opacity = "yes";
-      active_border_color = "${orange}";
+      active_border_color = "${cyan}";
       inactive_border_color = "${brown}";
       bell_border_color = "${magenta}";
 

@@ -1,4 +1,4 @@
-{ pkgs, lib, spicetify-nix, secrets, ... }:
+{ config, pkgs, lib, spicetify-nix, secrets, ... }:
 let
   spicePkgs = spicetify-nix.packages.${pkgs.system}.default;
 in
@@ -15,8 +15,27 @@ in
   programs.spicetify =
     {
       enable = true;
-      theme = spicePkgs.themes.DefaultDynamic;
-      # colorScheme = "flamingo";
+      theme = spicePkgs.themes.Onepunch;
+
+      colorScheme = "custom";
+      customColorScheme = with config.lib.stylix.scheme; {
+        text = cyan;
+        subtext = base05;
+        sidebar-text = cyan;
+        main = base00;
+        sidebar = base01;
+        player = base02;
+        card = base02;
+        shadow = base0D;
+        selected-row = base04;
+        button = base06;
+        button-active = cyan;
+        button-disabled = brown;
+        tab-active = base03;
+        notification = yellow;
+        notification-error = red;
+        misc = brown;
+      };
 
       enabledExtensions = with spicePkgs.extensions; [
         fullAppDisplay
@@ -25,6 +44,12 @@ in
         fullAlbumDate
         wikify
         history
+        playlistIcons
+      ];
+
+      enabledCustomApps = with spicePkgs.apps; [
+        new-releases
+        marketplace
       ];
     };
 
