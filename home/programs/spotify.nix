@@ -15,25 +15,28 @@ in
   programs.spicetify =
     {
       enable = true;
-      theme = spicePkgs.themes.Onepunch;
+      theme = spicePkgs.themes.Sleek;
 
       colorScheme = "custom";
+      # https://github.com/spicetify/spicetify-themes/blob/3231c5e4d1a5f2dbae7aec65291364f863eaf9e0/Sleek/color.ini#L323
       customColorScheme = with config.lib.stylix.scheme; {
         text = cyan;
         subtext = base05;
+        nav-active-text = base06;
         sidebar-text = cyan;
         main = base00;
         sidebar = base01;
         player = base02;
         card = base02;
-        shadow = base0D;
-        selected-row = base04;
-        button = base06;
-        button-active = cyan;
-        button-disabled = brown;
         tab-active = base03;
-        notification = yellow;
+        shadow = base0D;
+        button = blue;
+        button-active = base07;
+        button-disabled = brown;
+        button-secondary = blue;
+        notification = brown;
         notification-error = red;
+        playback-bar = cyan;
         misc = brown;
       };
 
