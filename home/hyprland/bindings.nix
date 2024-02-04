@@ -1,7 +1,4 @@
 { config, pkgs, ... }:
-let
-  usr_bin_dir = "${config.home.homeDirectory}/.local/bin/";
-in
 {
   wayland.windowManager.hyprland.settings =
     let
@@ -31,7 +28,7 @@ in
 
         ", edge:r:l, nextdesk"
         ", edge:l:r, prevdesk"
-        ", edge:d:u, exec, if ps -e | grep ${keyboard}; then pkill ${keyboard}; else ${keyboard} ${flags}; fi"
+        ", edge:d:u, exec, toggle ${keyboard} ${flags}"
 
         #### windows navigation and arrangement ####
         # move to window around of monitors
@@ -48,7 +45,7 @@ in
       ];
 
       bindr = [
-        "$mod,super_l, exec, ${usr_bin_dir}wofi-toggle"
+        "$mod,super_l, exec, toggle wofi --show drun"
       ];
 
       bindm = [
@@ -61,11 +58,11 @@ in
         #",switch:Lid Switch,exec,swaylock"
 
         # ",switch:off:Lid Switch,exec,hyprctl keyword monitor \"eDP-1,2736x1824,1440x1050,2\""
-        ",switch:off:Lid Switch,exec, ${usr_bin_dir}wake"
+        ",switch:off:Lid Switch,exec, wake"
         #",switch:on:Lid Switch,exec,hyprctl keyword monitor \"DP-3,1680x1050,1440x0,1\""
         #",switch:on:Lid Switch,exec,hyprctl keyword monitor \"DP-4,1440x900,0x0,1\""
 
-        ",switch:on:Lid Switch,exec, ${usr_bin_dir}suspend"
+        ",switch:on:Lid Switch,exec, suspend"
         #",switch:off:Lid Switch,exec,hyprctl keyword monitor \"DP-3, disable\""
         #",switch:off:Lid Switch,exec,hyprctl keyword monitor \"DP-4, disable\""
       ];

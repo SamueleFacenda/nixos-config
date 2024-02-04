@@ -104,13 +104,13 @@ let
         format-alt = "󰌐";
         format = "󰌌";
         tooltip = false;
-        on-click = "if pgrep ${keyboard}; then pkill ${keyboard}; else ${keyboard} ${flags} & fi";
+        on-click = "toggle ${keyboard} ${flags}";
       };
 
     "custom/powermenu" = {
       format = "";
       tooltip = false;
-      on-click = "if pgrep nwg-bar; then pkill nwk-bar; else ${pkgs.nwg-bar}/bin/nwg-bar & fi";
+      on-click = "toggle nwg-bar";
     };
 
     tray = {
@@ -121,7 +121,7 @@ let
     battery = {
       interval = 10;
       full-at = 99;
-      on-click = "${pkgs.nwg-bar}/bin/nwg-bar -t power.json";
+      on-click = "toggle nwg-bar -t power.json";
       states = {
         "good" = 90;
         "warning" = 30;
@@ -168,7 +168,7 @@ let
   };
 in
 {
-  programs.waybar.settings = builtins.map (x: lib.recursiveUpdate base_config x) [
+  programs.waybar.settings = builtins.map (lib.recursiveUpdate base_config) [
     ## OUTPUT SPECIFIC CONFIG
     {
       output = "eDP-1";

@@ -1,14 +1,10 @@
 { config, pkgs, lib, utils, disabledFiles, ... }:
-let
-  usr_bin_dir = "${config.home.homeDirectory}/.local/bin/";
-in
 {
 
   imports = utils.listDirPathsExcluding disabledFiles ./.;
 
   home.packages = with pkgs; [
-    gtk3
-    swaylock-effects
+
     hyprpaper
     wofi
     wvkbd
