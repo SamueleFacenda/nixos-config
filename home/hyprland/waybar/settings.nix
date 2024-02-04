@@ -121,7 +121,7 @@ let
     battery = {
       interval = 10;
       full-at = 99;
-      # on-click = "toggle powerprofile"; use powerprofilesctl
+      on-click = "${pkgs.nwg-bar}/bin/nwg-bar -t power.json";
       states = {
         "good" = 90;
         "warning" = 30;

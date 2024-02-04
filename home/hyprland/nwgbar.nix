@@ -21,6 +21,26 @@
       icon = "system-shutdown-symbolic";
     }
   ];
+
+  # Power profile choose
+  xdg.configFile."nwg-bar/power.json".text = builtins.toJSON [
+    {
+      label = "Performance";
+      exec = "powerprofilesctl set performance";
+      icon = "power-profile-performance-symbolic";
+    }
+    {
+      label = "Balanced";
+      exec = "powerprofilesctl set balanced";
+      icon = "power-profile-balanced-symbolic";
+    }
+    {
+      label = "Power Saver";
+      exec = "powerprofilesctl set power-saver";
+      icon = "power-profile-power-saver-symbolic";
+    }
+  ];
+
   xdg.configFile."nwg-bar/style.css".text = with config.lib.stylix.colors.withHashtag; ''
     window {
       background-color: transparent;
