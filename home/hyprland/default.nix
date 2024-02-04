@@ -26,6 +26,7 @@ in
     # displays
     wlr-randr
     nwg-displays
+    nwg-bar
 
     # utilities
     gnome.nautilus

@@ -131,6 +131,7 @@ TODOS:
 - [x] image builder
 - [x] hyprland-virtual-desktops
 - [ ] syncthing
+- [x] nwg bar
 
 :construction: means work in progress
 

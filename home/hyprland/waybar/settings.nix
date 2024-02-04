@@ -104,13 +104,13 @@ let
         format-alt = "󰌐";
         format = "󰌌";
         tooltip = false;
-        on-click = "if ps -e | grep ${keyboard}; then pkill ${keyboard}; else ${keyboard} ${flags}; fi";
+        on-click = "if pgrep ${keyboard}; then pkill ${keyboard}; else ${keyboard} ${flags} & fi";
       };
 
     "custom/powermenu" = {
       format = "";
       tooltip = false;
-      on-click = "eww open --toggle powermenu";
+      on-click = "if pgrep nwg-bar; then pkill nwk-bar; else ${pkgs.nwg-bar}/bin/nwg-bar & fi";
     };
 
     tray = {
