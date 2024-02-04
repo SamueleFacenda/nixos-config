@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  gtk.iconTheme = {
+    name = "Adwaita";
+    package = pkgs.gnome.adwaita-icon-theme;
+  };
+
   stylix = {
     targets = {
       gnome.enable = false;

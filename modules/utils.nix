@@ -36,6 +36,10 @@ rec {
     listDirPaths = listDirPathsExcluding [ ];
     contains = (element: list: any (x: x == element) list);
     not_contains = (element: list: all (x: x != element) list);
+
+    getIcon = path: pkgs.gnome.adwaita-icon-theme
+      + "/share/icons/Adwaita/symbolic/" + path;
+    getIconPath = path: "${getIcon path}";
   };
   # config.home-manager.users.samu.lib.utils = config.lib.utils;
 }

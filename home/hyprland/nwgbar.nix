@@ -1,29 +1,30 @@
-{ config, pkgs, ...}:{
+{ config, pkgs, utils, ...}:{
   xdg.configFile."nwg-bar/bar.json".text = builtins.toJSON [
     {
       label = "Lock";
       exec = "${pkgs.swaylock-effects}/bin/swaylock -f --screenshot --effect-blur 10x7";
-      icon = "${pkgs.nwg-bar}/share/nwg-bar/images/system-lock-screen.svg";
+      icon = "system-lock-screen-symbolic";
     }
     {
       label = "Logout";
       exec = "hyprctl dispatch exit";
-      icon = "${pkgs.nwg-bar}/share/nwg-bar/images/system-log-out.svg";
+      icon = "system-log-out-symbolic";
     }
     {
       label = "Reboot";
       exec = "reboot";
-      icon = "${pkgs.nwg-bar}/share/nwg-bar/images/system-reboot.svg";
+      icon = "system-reboot-symbolic";
     }
     {
       label = "Shutdown";
       exec = "shutdown now";
-      icon = "${pkgs.nwg-bar}/share/nwg-bar/images/system-shutdown.svg";
+      icon = "system-shutdown-symbolic";
     }
   ];
   xdg.configFile."nwg-bar/style.css".text = with config.lib.stylix.colors.withHashtag; ''
     window {
-      background-color: transparent
+      background-color: transparent;
+      color: ${base05};
     }
 
     /* Outer bar container, takes all the window width/height */
@@ -55,11 +56,12 @@
     	border-style: solid;
     	border-width: 2px;
     	border-color: transparent;
-    	margin: 5px
+    	margin: 5px;
     }
 
     button:hover {
     	background-color: ${cyan};
+    	color: ${base00}
     }
 
   '';
