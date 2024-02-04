@@ -107,7 +107,6 @@ TODOS:
 - [x] kanshi dynamic monitor config (crash on change, hyprland problem)
 - [x] nixd language server
 - [x] swayosd (on screen display)
-- [ ] eww widgets
 - [ ] flameshot
 - [ ] iio-hyprland
 - [ ] nwg-drawer

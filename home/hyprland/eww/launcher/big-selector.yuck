@@ -1,5 +1,0 @@
-(defwidget big-selector []
-    (box 
-        :class "big-selector"
-        :hexpand true
-        "app-launcher"))

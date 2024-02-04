@@ -25,12 +25,6 @@
         version = "1.105.354"; # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
         sha256 = "sha256-QuZ2Dhy8K2o/9vH+ejvY6ICG8bpzAIa9uq9xvabav/Q="; # pkgs.lib.fakeSha256;
       }
-      {
-        name = "Yuck";
-        publisher = "eww-yuck";
-        version = "0.0.3";
-        sha256 = "DITgLedaO0Ifrttu+ZXkiaVA7Ua5RXc4jXQHPYLqrcM=";
-      }
     ];
 
 

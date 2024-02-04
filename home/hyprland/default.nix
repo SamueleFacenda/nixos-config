@@ -4,7 +4,7 @@ let
 in
 {
 
-  imports = utils.listDirPathsExcluding ([ "eww" ] ++ disabledFiles) ./.;
+  imports = utils.listDirPathsExcluding disabledFiles ./.;
 
   home.packages = with pkgs; [
     gtk3
@@ -51,7 +51,6 @@ in
       "brave"
       "kitty"
       "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-      "${usr_bin_dir}init-eww"
       "swayosd-server" # waiting for https://github.com/nix-community/home-manager/pull/4881 merge...
     ];
   };
@@ -60,10 +59,4 @@ in
 
   services.swayosd.enable = true;
   services.swayosd.maxVolume = 150;
-
-  programs.eww = {
-    enable = true;
-    package = pkgs.eww-wayland;
-    configDir = ./eww;
-  };
 }

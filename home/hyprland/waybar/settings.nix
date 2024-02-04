@@ -121,7 +121,7 @@ let
     battery = {
       interval = 10;
       full-at = 99;
-      on-click = "eww open --toggle powerprofile";
+      # on-click = "toggle powerprofile"; use powerprofilesctl
       states = {
         "good" = 90;
         "warning" = 30;

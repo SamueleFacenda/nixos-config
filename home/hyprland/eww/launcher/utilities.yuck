@@ -1,4 +1,0 @@
-(defwidget utilities []
-    (box 
-        :class "utilities"
-        "utilities"))
