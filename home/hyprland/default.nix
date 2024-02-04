@@ -4,8 +4,6 @@
   imports = utils.listDirPathsExcluding disabledFiles ./.;
 
   home.packages = with pkgs; [
-
-    hyprpaper
     wofi
     wvkbd
     libinput
@@ -37,10 +35,10 @@
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = with pkgs; [
-      hyprgrass
-      hyprfocus
-      hycov
-      hyprland-virtual-desktops
+      hyprgrass # touch gestures
+      hyprfocus # animation on focus change
+      hycov # toggle overview
+      hyprland-virtual-desktops # gnome-like workspaces behaviour
     ];
     settings.exec-once = [
       "hyprctl setcursor Adwaita 24"

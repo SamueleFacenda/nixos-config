@@ -3,7 +3,7 @@ let
   bg = "${self.outPath}/assets/bg7.png";
 in
 {
-  wayland.windowManager.hyprland.settings.exec-once = [ "hyprpaper" ];
+  wayland.windowManager.hyprland.settings.exec-once = [ "${pkgs.hyprpaper}/bin/hyprpaper" ];
   xdg.configFile."hypr/hyprpaper.conf" = {
     text = ''
       preload = ${bg}
