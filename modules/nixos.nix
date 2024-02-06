@@ -25,11 +25,13 @@
     trusted-substituters = [
       "https://cache.nixos.org/"
       "https://nixpkgs-wayland.cachix.org"
+      "https://ros.cachix.org"
     ];
 
     trusted-public-keys = [
       "nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+      "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="
     ];
 
     # nix community`s cache server

@@ -6,6 +6,8 @@
       "eDP-1,highres,0x900,1.9" # builtin
       "desc:Fujitsu Siemens Computers GmbH E22W-5 YV2C027320,highres,1440x0,1" # big fujitsu
       "desc:Ancor Communications Inc ASUS VW199 DCLMTF153087,highres,0x0,1" # small asus
+      # "desc:HSI HiTV 0x00000001,highres,0x1812,1" # projector
+      "desc:Ancor Communications Inc VX279 D5LMRS021367,highres,1441x900,1"
 
       ",preferred,auto,1" # fallback
     ];

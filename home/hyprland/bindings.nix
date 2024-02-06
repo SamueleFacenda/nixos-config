@@ -17,6 +17,7 @@
         "$mod, B, exec, hyprctl dispatch dpms off"
         "$mod, right, movetodesk, r+1"
         "$mod, left, movetodesk, r-1"
+        "$mod, space, exec, echo keyboard_change" # keyboard change, configured in settings (keep to prevent menu spawn)
         "$mod, S, fullscreen"
 
         # hycov (overview)
