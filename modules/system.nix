@@ -7,8 +7,10 @@
     isNormalUser = true;
     description = config.users.default.longName;
     hashedPassword = "$y$j9T$uT/2s7MBr3VdlbSg9VOly.$01sbSx0zeTs2axvuJZOdpEs3Xreti2XMaPm.RSuaj/7";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "input" ];
   };
+
+  users.groups.input = { };
 
   # Set your time zone.
   time.timeZone = "Europe/Rome";
