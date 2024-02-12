@@ -71,7 +71,7 @@
       bindle = [
         # volume keys
         ", XF86AudioRaiseVolume, exec, swayosd-client --max-volume 150 --output-volume +5"
-        ", XF86AudioLowerVolume, exec, swayosd-client --output-volume -5"
+        ", XF86AudioLowerVolume, exec, swayosd-client --max-volume 150 --output-volume -5"
         ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
         ", XF86MonBrightnessUp, exec, swayosd-client --brightness raise 200"
         ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower 200"
