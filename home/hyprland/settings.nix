@@ -9,6 +9,10 @@
       # "desc:HSI HiTV 0x00000001,highres,0x1812,1" # projector
       "desc:Ancor Communications Inc VX279 D5LMRS021367,highres,1441x900,1"
 
+# Monitor DP-2 (ID 1):
+# 	1920x1080@59.94000 at 1441x900
+# 	description: Ancor Communications Inc VX279 D5LMRS021367 (DP-2 via HDMI)
+
       ",preferred,auto,1" # fallback
     ];
 
@@ -109,9 +113,8 @@
     };
 
     misc = {
-      force_hypr_chan = false;
-      disable_splash_rendering = false;
       disable_hyprland_logo = true;
+      disable_splash_rendering = false;
       mouse_move_enables_dpms = true;
       key_press_enables_dpms = true;
       # suppress_portal_warnings = true; # documented but does not exists

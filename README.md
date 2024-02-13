@@ -131,6 +131,10 @@ TODOS:
 - [x] hyprland-virtual-desktops
 - [ ] syncthing
 - [x] nwg bar
+- [ ] work setup:
+  - waybar
+  - reorder monitors layout
+  - gestures
 
 :construction: means work in progress
 

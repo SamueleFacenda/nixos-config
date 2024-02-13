@@ -104,7 +104,8 @@ let
         format-alt = "󰌐";
         format = "󰌌";
         tooltip = false;
-        on-click = "toggle ${keyboard} ${flags}";
+        # https://github.com/Alexays/Waybar/issues/1850
+        on-click = "sleep 0.1 && toggle ${keyboard} ${flags}";
       };
 
     "custom/powermenu" = {
@@ -171,10 +172,10 @@ in
   programs.waybar.settings = builtins.map (lib.recursiveUpdate base_config) [
     ## OUTPUT SPECIFIC CONFIG
     {
-      output = "eDP-1";
+      output = [ "eDP-1" "Ancor Communications Inc VX279 D5LMRS021367" ];
     }
     {
-      output = [ "DP-3" "DP-5" ];
+      output = [ "Fujitsu Siemens Computers GmbH E22W-5 YV2C027320" ];
       "hyprland/language".keyboard-name = "keychron-keychron-k3-pro";
     }
   ];
