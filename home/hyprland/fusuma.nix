@@ -7,7 +7,7 @@
     ];
     settings = {
       threshold = {
-        swipe = 0.1;
+        swipe = 0.2;
       };
       interval = {
         swipe = 1;
@@ -20,23 +20,23 @@
         };
         "4" = {
           # overview
-          begin.command = "hyprctl dispatch hycov:toggleoverview forceallinone ";
-          end.command = "hyprctl dispatch hycov:toggleoverview";
+          begin.command = "hyprctl dispatch hycov:enteroverview forceallinone ";
+          end.command = "hyprctl dispatch hycov:leaveoverview";
           left.update = {
-            command = "hyrctl dispatch hycov:movefocus l";
-            interval = 5;
+            command = "hyprctl dispatch hycov:movefocus l";
+            interval = 4;
           };
           right.update = {
-            command = "hyrctl dispatch hycov:movefocus r";
-            interval = 5;
+            command = "hyprctl dispatch hycov:movefocus r";
+            interval = 4;
           };
           up.update = {
-            command = "hyrctl dispatch hycov:movefocus u";
-            interval = 5;
+            command = "hyprctl dispatch hycov:movefocus u";
+            interval = 4;
           };
           down.update = {
-            command = "hyrctl dispatch hycov:movefocus d";
-            interval = 5;
+            command = "hyprctl dispatch hycov:movefocus d";
+            interval = 4;
           };
         };
       };
