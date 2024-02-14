@@ -52,6 +52,10 @@ let
 in
 
 {
+
+  networking.extraHosts = ''
+    10.0.0.1 leo
+  '';
   networking.networkmanager = {
     enable = true;
 
@@ -97,6 +101,11 @@ in
           name = "FASTWEB-B2219F";
           priority = 40;
           password = "$WHITE_HOUSE_PSW";
+        })
+        (mkWpaWifi {
+          name = "LeoRover-58c0";
+          priority = 80;
+          password = "$LEO_PSW";
         })
       ];
     };

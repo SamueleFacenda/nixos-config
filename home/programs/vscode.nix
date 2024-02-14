@@ -1,10 +1,19 @@
-{ config, pkgs, self, ... }: {
+{ config, pkgs, self, ... }:
+let
+  mkOpenVSXExt = { publisher, name, version, sha256 }: {
+    inherit name publisher version;
+    vsix = builtins.fetchurl {
+      inherit sha256;
+      url = "https://open-vsx.org/api/${publisher}/${name}/${version}/file/${publisher}.${name}-${version}.vsix";
+      name = "${publisher}-${name}.zip";
+    };
+  };
+in
+{
   programs.vscode = {
-
     enable = true;
-    package = pkgs.vscodium.fhsWithPackages (ps: with ps;[
-      curl
-    ]);
+    package = pkgs.vscodium;
+    mutableExtensionsDir = false;
     extensions = with pkgs.vscode-extensions; [
       # github.copilot
       wakatime.vscode-wakatime
@@ -12,7 +21,7 @@
       ms-python.python
       ms-python.vscode-pylance
       ms-vscode.live-server
-      ms-vscode-remote.remote-ssh
+      # ms-vscode-remote.remote-ssh
       vscode-icons-team.vscode-icons
       formulahendry.auto-rename-tag
       jnoortheen.nix-ide
@@ -23,10 +32,21 @@
         name = "copilot";
         publisher = "GitHub";
         version = "1.105.354"; # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
-        sha256 = "sha256-QuZ2Dhy8K2o/9vH+ejvY6ICG8bpzAIa9uq9xvabav/Q="; # pkgs.lib.fakeSha256;
+        sha256 = "QuZ2Dhy8K2o/9vH+ejvY6ICG8bpzAIa9uq9xvabav/Q=";
       }
+      {
+        name = "vscode-ros";
+        publisher = "ms-iot";
+        version = "0.9.6";
+        sha256 = "ZsGBzfLzRFzSWx4vttfXPb6gSrFBy+QUDz9hkAdKMCw=";
+      }
+      (mkOpenVSXExt {
+        name = "open-remote-ssh";
+        publisher = "jeanp413";
+        version = "0.0.45";
+        sha256 = "1qc1qsahfx1nvznq4adplx63w5d94xhafngv76vnqjjbzhv991v2";
+      })
     ];
-
 
     userSettings = {
       "editor.fontFamily" = "'JetBrainsMono Nerd Font Mono'";

@@ -15,8 +15,6 @@
         "$mod, F, togglefloating,"
         "$mod, M, exit,"
         "$mod, B, exec, hyprctl dispatch dpms off"
-        "$mod, right, movetoprevdesk"
-        "$mod, left, movetonextdesk"
         "$mod, space, exec, echo keyboard_change" # keyboard change, configured in settings (keep to prevent menu spawn)
         "$mod, S, fullscreen"
 
@@ -42,6 +40,9 @@
         "CTRL, H, movefocus, l"
         "CTRL, J, movefocus, d"
         "CTRL, K, movefocus, u"
+        # Move window on virtual desktop
+        "$mod, right, movetoprevdesk"
+        "$mod, left, movetonextdesk"
 
       ];
 

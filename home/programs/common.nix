@@ -52,7 +52,6 @@
       ];
       enableAliases = true;
     };
-    ssh.enable = true;
   };
 
   services = {
