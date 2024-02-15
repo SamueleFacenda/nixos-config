@@ -9,14 +9,17 @@ current_vdesk=$(((active_workspace+n_monitors-1)/n_monitors))
 
 case "$1" in
 next)
-  hyprctl dispatch movetodesk "$((current_vdesk+1))"
+  hyprctl dispatch movetoworkspacesilent "$((current_vdesk+n_monitors))"
+  hyprctl dispatch nextdesk
   ;;
 prev)
   if [[ $current_vdesk == 1 ]]
   then
+    echo "Cannot go to prev: already on first!"
     exit 0
   else
-    hyprctl dispatch movetodesk "$((current_vdesk-1))"
+    hyprctl dispatch movetoworkspacesilent "$((current_vdesk-n_monitors))"
+    hyprctl dispatch prevdesk
   fi
   ;;
   
