@@ -7,7 +7,7 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config = {
     permittedInsecurePackages = [
-      "electron-24.8.6" # waiting for electron fix
+      "electron-25.9.0"
     ];
   };
 

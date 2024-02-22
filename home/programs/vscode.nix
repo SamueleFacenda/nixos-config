@@ -12,7 +12,7 @@ in
 {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium;
+    package = pkgs.vscode; # or vscodium
     mutableExtensionsDir = false;
     extensions = with pkgs.vscode-extensions; [
       # github.copilot
@@ -21,12 +21,12 @@ in
       ms-python.python
       ms-python.vscode-pylance
       ms-vscode.live-server
-      # ms-vscode-remote.remote-ssh
+      ms-vscode-remote.remote-ssh
       vscode-icons-team.vscode-icons
       formulahendry.auto-rename-tag
       jnoortheen.nix-ide
       editorconfig.editorconfig
-      ms-vscode.cpptools
+      # ms-vscode.cpptools
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "copilot";
@@ -40,12 +40,12 @@ in
         version = "0.9.6";
         sha256 = "ZsGBzfLzRFzSWx4vttfXPb6gSrFBy+QUDz9hkAdKMCw=";
       }
-      (mkOpenVSXExt {
-        name = "open-remote-ssh";
-        publisher = "jeanp413";
-        version = "0.0.45";
-        sha256 = "1qc1qsahfx1nvznq4adplx63w5d94xhafngv76vnqjjbzhv991v2";
-      })
+      # (mkOpenVSXExt {
+      #   name = "open-remote-ssh";
+      #   publisher = "jeanp413";
+      #   version = "0.0.45";
+      #   sha256 = "1qc1qsahfx1nvznq4adplx63w5d94xhafngv76vnqjjbzhv991v2";
+      # })
     ];
 
     userSettings = {
