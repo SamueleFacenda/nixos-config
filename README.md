@@ -77,7 +77,7 @@ TODOS:
 - [x] ~~libwacom overlay~~
 - [x] fonts
 - [x] cache cleanup
-- [ ] rice :construction:
+- [x] rice (this is enough)
 - [x] wallaper(s)
 - [x] wakatime
 - [x] cli trash bin with clean up
@@ -112,7 +112,6 @@ TODOS:
 - [ ] nwg-drawer
 - [ ] nwg-dock-hyprland
 - [x] hyprfocus
-- [ ] libinput gestures
 - [x] spotifyd, spotify-tui (need to be repaced with spotify-player)
 - [x] flake templates
 - [ ] waybar mpris, taskbar, drawers for brightness
@@ -132,8 +131,6 @@ TODOS:
 - [ ] syncthing
 - [x] nwg bar
 - [x] touchpad gestures (fusuma)
-- [ ] work setup:
-  - reorder monitors layout
 
 :construction: means work in progress
 
