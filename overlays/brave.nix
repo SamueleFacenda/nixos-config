@@ -4,9 +4,12 @@ final: prev: {
   brave = prev.runCommandLocal prev.brave.name {} ''
     mkdir $out
 
-    ln -st $out \
-      ${prev.brave}/bin \
-      ${prev.brave}/opt
+    ln -st $out ${prev.brave}/opt
+
+    mkdir $out/bin
+    source "${prev.makeWrapper}/nix-support/setup-hook" # bad way
+    makeWrapper ${prev.brave}/bin/brave $out/bin/brave \
+      --add-flags "--enable-features=TouchpadOverscrollHistoryNavigation"
 
     mkdir $out/share
     ln -st $out/share ${prev.brave}/share/*
