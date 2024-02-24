@@ -1,6 +1,6 @@
 { pkgs, ... }@args:
 let
-  inherit (builtins) head readDir;
+  inherit (builtins) readDir;
   inherit (pkgs.lib.strings) removeSuffix;
   inherit (pkgs.lib.attrsets) filterAttrs mapAttrs';
 in

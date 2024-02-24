@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (builtins) filter readDir;
+  inherit (builtins) readDir;
   inherit (lib) mapAttrsToList filterAttrs any all mkOption types;
 in
 rec {

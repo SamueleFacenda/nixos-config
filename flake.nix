@@ -23,6 +23,8 @@
 
       formatter = eachSystem (system: (pk system).nixpkgs-fmt);
 
+      # Warning: these packages are built with a non overwritten nixpkgs. To use, for example,
+      # the flake's hyprland in the package build, the package must be overwritten.
       packages = nixpkgs.lib.recursiveUpdate (eachSystem (system: import ./packages (pk system))) {
         # custom images
         x86_64-linux.genericLinux = inputs.nixos-generators.nixosGenerate {
@@ -89,7 +91,7 @@
       url = "github:nix-community/nixpkgs-wayland";
       inputs.flake-compat.follows = "flake-compat";
       inputs.lib-aggregate.follows = "lib-aggregate";
-      # inputs.nixpkgs.follows = "nixpkgs"; # no cache
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix = {

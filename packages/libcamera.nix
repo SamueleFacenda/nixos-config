@@ -1,5 +1,4 @@
 { stdenv
-, lib
 , fetchgit
 , makeFontsConf
 , openssl
@@ -16,8 +15,6 @@
 , python3
 , python3Packages
 , graphviz
-, doxygen
-, qt5
 , libjpeg
 , SDL2
 }:

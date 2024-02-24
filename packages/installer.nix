@@ -1,5 +1,4 @@
-{ stdenv
-, writeShellApplication
+{ writeShellApplication
 , git
 , gum
 , nixos-install-tools

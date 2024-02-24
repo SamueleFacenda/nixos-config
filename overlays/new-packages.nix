@@ -12,8 +12,11 @@ in
     xdg-desktop-portal-shana
     xdg-desktop-portal-termfilechooser;
 
+  # Packages with overwritten dependencies
   hyprland-virtual-desktops = pk.hyprland-virtual-desktops.override { inherit (final) hyprland; };
-  hyprgrass = hyprgrass.packages.${sys}.default; # .override { inherit (final) hyprland; };
+
+  # Flake packages
+  hyprgrass = hyprgrass.packages.${sys}.default;
   hyprfocus = hyprfocus.packages.${sys}.default;
   hyprland = hyprland.packages.${sys}.hyprland;
   hycov = hycov.packages.${sys}.hycov;

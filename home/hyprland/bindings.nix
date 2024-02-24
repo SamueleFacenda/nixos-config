@@ -41,8 +41,8 @@
         "CTRL, J, movefocus, d"
         "CTRL, K, movefocus, u"
         # Move window on virtual desktop
-        "$mod, right, exec, movetovdesk next"
-        "$mod, left, exec, movetovdesk prev"
+        "$mod, right, exec, movetoprevdesk"
+        "$mod, left, exec, movetonextdesk"
 
       ];
 
