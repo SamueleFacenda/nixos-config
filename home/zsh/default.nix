@@ -15,6 +15,7 @@
       srm = "saferm";
       xcodium = "codium --enable-features=UseOzonePlatform --ozone-platform=x11";
       newnixbuildkey = "ssh-keygen -t ed25519 -f $HOME/.ssh/nixbuild && cat $HOME/.ssh/nixbuild.pub";
+      nix-direnv-reload-force = "touch flake.nix && nix-direnv-reload";
 
       tree = "eza --tree";
       ls = lib.mkForce "eza --git-ignore";
