@@ -8,6 +8,8 @@
       ../../modules/nixos.nix
       ../../modules/utils.nix
 
+      #HARDWARE_COMMENT_ANCHOR ./hardware-configuration.nix
+
       # speed up kernel builds (slow down easy build unless overwritten)
       # ../../modules/remote-build.nix
 

@@ -17,10 +17,13 @@
           # workspace swipe
           right.command = "hyprctl dispatch prevdesk";
           left.command = "hyprctl dispatch nextdesk";
+          # enter exit overview (additional commands)
+          up.command = "hyprctl dispatch hycov:enteroverview forceallinone";
+          down.command = "hyprctl dispatch hycov:leaveoverview";
         };
         "4" = {
-          # overview
-          begin.command = "hyprctl dispatch hycov:enteroverview forceallinone ";
+          # overview enter and navigation
+          begin.command = "hyprctl dispatch hycov:enteroverview forceallinone";
           end.command = "hyprctl dispatch hycov:leaveoverview";
           left.update = {
             command = "hyprctl dispatch hycov:movefocus l";

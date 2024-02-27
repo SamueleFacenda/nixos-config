@@ -79,6 +79,7 @@ writeShellApplication {
     tempDir="$(mktemp -d)"
     nixos-generate-config --dir "$tempDir"
     cp "$tempDir/hardware-configuration.nix" "$configdir/host/$hostname"
+    sed -i "s/#HARDWARE_COMMENT_ANCHOR//g" "$configdir/host/$hostname/default.nix"
 
 
     # add to git the config (required for flakes)
