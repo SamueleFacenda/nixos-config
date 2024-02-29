@@ -40,7 +40,7 @@
 
     spotify = lib.mkIf config.secrets.spotify.enable {
       file = ./spotify.age;
-      owner = config.users.default.name; # TODO make group for spotifyd
+      owner = config.users.default.name;
       group = "users";
     };
 
