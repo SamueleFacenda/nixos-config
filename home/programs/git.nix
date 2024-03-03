@@ -11,6 +11,7 @@
 
     extraConfig = {
       pull.ff = "only";
+      init.defaultBranch = "main";
     };
 
     signing.key = "0DB83F58B2596271";

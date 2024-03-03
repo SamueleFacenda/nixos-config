@@ -20,6 +20,7 @@
     python312
     gnome.seahorse
     mediawriter
+    rlwrap
 
     # misc
     xdg-utils
