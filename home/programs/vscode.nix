@@ -26,7 +26,8 @@ in
       formulahendry.auto-rename-tag
       jnoortheen.nix-ide
       editorconfig.editorconfig
-      # ms-vscode.cpptools
+      ms-vscode.cpptools
+      azdavis.millet
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "copilot";
