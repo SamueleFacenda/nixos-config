@@ -131,6 +131,7 @@ TODOS:
 - [ ] syncthing
 - [x] nwg bar
 - [x] touchpad gestures (fusuma)
+- [ ] hyprland workspacer
 
 :construction: means work in progress
 
