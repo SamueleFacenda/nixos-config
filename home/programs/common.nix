@@ -12,10 +12,9 @@
     xclip
     rpl
     statix
-    nixd
     nixpkgs-fmt
     ffmpeg
-    flameshot
+    # flameshot # https://github.com/flameshot-org/flameshot/issues/2978
     jq
     python312
     gnome.seahorse
@@ -25,7 +24,7 @@
     # misc
     xdg-utils
     wakatime
-    spotify-tui
+    spotify-player
     editorconfig-core-c
     gnome.adwaita-icon-theme
     wf-recorder
@@ -51,7 +50,6 @@
         "--group"
         # "--total-size"
       ];
-      enableAliases = true;
     };
   };
 

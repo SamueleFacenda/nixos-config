@@ -8,6 +8,7 @@
       "desc:Ancor Communications Inc ASUS VW199 DCLMTF153087,highres,0x0,1" # small asus
       # "desc:HSI HiTV 0x00000001,highres,0x1812,1" # projector
       "desc:Ancor Communications Inc VX279 D5LMRS021367,highres,1441x900,1"
+      "desc:Dell Inc. DELL U2412M Y1H5T17S0N3L,highres,1441x900,1"
 
 # Monitor DP-2 (ID 1):
 # 	1920x1080@59.94000 at 1441x900

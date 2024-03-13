@@ -87,12 +87,14 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    nixpkgs-wayland = {
-      url = "github:nix-community/nixpkgs-wayland";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.lib-aggregate.follows = "lib-aggregate";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixpkgs-wayland = {
+    #   url = "github:nix-community/nixpkgs-wayland";
+    #   inputs.flake-compat.follows = "flake-compat";
+    #   inputs.lib-aggregate.follows = "lib-aggregate";
+    #   # inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+
 
     stylix = {
       url = "github:danth/stylix";

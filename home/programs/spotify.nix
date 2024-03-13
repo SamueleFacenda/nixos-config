@@ -57,7 +57,7 @@ in
     };
 
   services.spotifyd = {
-    enable = true;
+    enable = false; # wait for build to be fixed
     settings = {
       global = {
         username = "2pxqknxvfuz2yuigiqd4wazlt";

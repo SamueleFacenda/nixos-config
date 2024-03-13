@@ -112,7 +112,7 @@ TODOS:
 - [ ] nwg-drawer
 - [ ] nwg-dock-hyprland
 - [x] hyprfocus
-- [x] spotifyd, spotify-tui (need to be repaced with spotify-player)
+- [x] spotifyd, spotify-player
 - [x] flake templates
 - [ ] waybar mpris, taskbar, drawers for brightness
 - [ ] waycorner
