@@ -9,7 +9,6 @@ in
   inherit (pk)
     monofurx
     libcamera-surface
-    xdg-desktop-portal-shana
     xdg-desktop-portal-termfilechooser;
 
   # Packages with overwritten dependencies

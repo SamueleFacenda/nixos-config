@@ -16,7 +16,6 @@ If you want to to a test just use the install wizard (desciption below)
 
 
 ### Packages:
-- xdg-desktop-portal-shana (the portal of portals)
 - xdg-desktop-portal-termfilechooser (use ranger instead of gui file manager)
 - monofurx (patched version of the original monofur)
 - libcamera-surface (see the file for credits, update to version 0.1.0)
@@ -40,7 +39,7 @@ inputs.nixos-samu.inputs.nixpkgs.follows = "nixpkgs";
 
 {inputs, pkgs, ...}: {
   xdg.portal.extraPortals = with pkgs; [
-    inputs.nixos-samu.packages.${pkgs.system}.xdg-desktop-portal-shana
+    inputs.nixos-samu.packages.${pkgs.system}.xdg-desktop-portal-termfilechooser
   ];
   
   font.packages = [
@@ -141,7 +140,6 @@ TODOS:
 - micro-wakatime (faster loading)
 - nerdfonts (use monofur with bullet point character from blexmono)
 - rpl (update version)
-- xdg-desktop-portal-shana (new pkg)
 - monofurx (new pkg)
 - libcamera-surface (new pkg)
 - xdg-desktop-portal-termfilechooser (new pkg)

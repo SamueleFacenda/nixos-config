@@ -31,7 +31,7 @@
       # nix user repository
       nur.nixosModules.nur
 
-      { nixpkgs.overlays = [ nixpkgs-wayland.overlay ]; }
+      # { nixpkgs.overlays = [ nixpkgs-wayland.overlay ]; }
       ../../overlays
 
       home-manager.nixosModules.home-manager
