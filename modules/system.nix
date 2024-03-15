@@ -78,6 +78,9 @@
     #theme = "breeze";
   };
 
+  # Important! It will persist overwise (and some build will persist in the store)
+  boot.tmp.cleanOnBoot = true;
+
   # enable zsh system-wide and set it as default
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
