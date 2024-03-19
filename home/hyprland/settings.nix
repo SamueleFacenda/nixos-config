@@ -36,18 +36,16 @@
       follow_mouse = 2; # keyboard focus don't change until click on window
     };
 
-    device = [
-      {
-        name = "ipts-stylus";
-        transform = 0;
-        output = "eDP-1";
-      };
-      {
-        name  = "ipts-touch";
-        transform = 0;
-        output = "eDP-1";
-      };
-    ];
+    "device:ipts-stylus" = {
+      transform = 0;
+      output = "eDP-1";
+    };
+
+
+    "device:ipts-touch" = {
+      transform = 0;
+      output = "eDP-1";
+    };
 
     general = {
       layout = "dwindle";

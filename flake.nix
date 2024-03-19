@@ -82,12 +82,19 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     # nixpkgs-wayland = {
     #   url = "github:nix-community/nixpkgs-wayland";
     #   inputs.flake-compat.follows = "flake-compat";
     #   inputs.lib-aggregate.follows = "lib-aggregate";
     #   # inputs.nixpkgs.follows = "nixpkgs";
     # };
+
+
 
     stylix = {
       url = "github:danth/stylix";
@@ -129,18 +136,13 @@
       inputs.systems.follows = "systems";
     };
 
-    hyprgrass = {
-      url = "github:horriblename/hyprgrass";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     hyprfocus = {
-      url = "github:pyt0xic/hyprfocus"; # (old owner: VortexCoyote)
+      url = "github:VortexCoyote/hyprfocus";
       inputs.hyprland.follows = "hyprland";
     };
 
     hycov = {
-      url = "github:Ayuei/hycov"; # (old owner: DreamMaoMao)
+      url = "github:DreamMaoMao/hycov";
       inputs.hyprland.follows = "hyprland";
     };
 
