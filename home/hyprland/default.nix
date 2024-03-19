@@ -36,7 +36,7 @@
     enable = true;
     plugins = with pkgs; [
       hyprgrass # touch gestures
-      hyprfocus # animation on focus change
+      # hyprfocus # animation on focus change Wait for fork to be buildable
       hycov # toggle overview
       hyprland-virtual-desktops # gnome-like workspaces behaviour
     ];

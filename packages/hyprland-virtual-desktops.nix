@@ -10,8 +10,8 @@ stdenv.mkDerivation rec {
     owner = "levnikmyskin";
     repo = pname;
     # rev = "v${version}";
-    rev = "c55bcdddcd299f1f7a819193fed62cfa2c64fec7";
-    sha256 = "eWlnmzZCsfo5IW0aJNZ8LEblXTuufN95QGhzkYYcni0=";
+    rev = "5c3bda1dfc297297d27084ea3c7271d49ec4512a";
+    sha256 = "FBMoBVqdbRJdSGRrB8/kVR3z0dgHw2bnXc532ll9ctU=";
   };
 
   inherit (hyprland) nativeBuildInputs;
