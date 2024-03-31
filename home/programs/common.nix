@@ -20,6 +20,8 @@
     gnome.seahorse
     mediawriter
     rlwrap
+    gparted
+    gnome.gnome-disk-utility
 
     # misc
     xdg-utils

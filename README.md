@@ -131,6 +131,7 @@ TODOS:
 - [x] nwg bar
 - [x] touchpad gestures (fusuma)
 - [ ] hyprland workspacer
+- [ ] swaync
 
 :construction: means work in progress
 
