@@ -26,6 +26,7 @@
     gnome.nautilus
     gnome.eog
     gnome.file-roller
+    gnome.totem
     lollypop # gnome audio player
 
     # screen recorder via xdg-desktop-portal
