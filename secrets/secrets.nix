@@ -4,7 +4,11 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE59Df0Xe2lYi3XVqT7XLhR6/KneHvIt8uzi1zAXzMJs"
   ];
 
-  systems = surface-samu;
+  zenbook = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICFL+UNaFO1NkvU+lvlaIbIDSLiXmRIgT2/C3r6rt2O+"
+  ];
+
+  systems = surface-samu ++ zenbook;
 in
 {
   "github-token.age".publicKeys = systems;
