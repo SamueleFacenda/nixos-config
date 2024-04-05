@@ -1,6 +1,8 @@
 { config, pkgs, lib, specialArgs, ... }:
 # specialArgs are inputs
-{
+let
+  stateVersion = "STATE_VERSION_PLACEHOLDER";
+in {
   imports = with specialArgs;
     [
       # mandatory
@@ -55,7 +57,7 @@
             home = {
               username = config.users.default.name;
               homeDirectory = "/home/" + config.users.default.name;
-              stateVersion = "STATE_VERSION_PLACEHOLDER";
+              inherit stateVersion;
             };
           };
         };
@@ -83,5 +85,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "STATE_VERSION_PLACEHOLDER"; # Did you read the comment?
+  system.stateVersion = stateVersion; # Did you read the comment?
 }

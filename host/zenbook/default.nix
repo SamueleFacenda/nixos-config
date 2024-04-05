@@ -1,6 +1,8 @@
 { config, pkgs, lib, specialArgs, ... }:
 # specialArgs are inputs
-{
+let 
+  stateVersion = "23.11";
+in {
   imports = with specialArgs;
     [
       # mandatory
@@ -55,7 +57,7 @@
             home = {
               username = config.users.default.name;
               homeDirectory = "/home/" + config.users.default.name;
-              stateVersion = "23.11";
+              inherit stateVersion;
             };
           };
         };
@@ -78,5 +80,5 @@
     nix-access-tokens.enable = true;
   };
 
-  system.stateVersion = lib.mkForce "23.11";
+  system.stateVersion = stateVersion;
 }
