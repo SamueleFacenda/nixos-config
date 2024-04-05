@@ -8,7 +8,7 @@
       ../../modules/nixos.nix
       ../../modules/utils.nix
 
-      #HARDWARE_COMMENT_ANCHOR ./hardware-configuration.nix
+       ./hardware-configuration.nix
 
       # speed up kernel builds (slow down easy build unless overwritten)
       # ../../modules/remote-build.nix
@@ -55,7 +55,7 @@
             home = {
               username = config.users.default.name;
               homeDirectory = "/home/" + config.users.default.name;
-              stateVersion = "STATE_VERSION_PLACEHOLDER";
+              stateVersion = "23.11";
             };
           };
         };
@@ -65,23 +65,18 @@
   # override for custom name (this is also the default value)
   users.default.name = "samu";
   users.default.longName = "Samuele Facenda";
+  users.users.samu.hashedPassword = lib.mkForce null;
 
-  networking.hostName = "nixos-samu";
+  networking.hostName = "zenbook";
 
   # custom options for secrets, fallback placeholder is used
   secrets = {
-    # spotify.enable = true;
-    # network-keys.enable = true;
-    # wakatime-key.enable = true;
-    # github-token.enable = true;
-    # nix-access-tokens.enable = true;
+    spotify.enable = true;
+    network-keys.enable = true;
+    wakatime-key.enable = true;
+    github-token.enable = true;
+    nix-access-tokens.enable = true;
   };
-  
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "STATE_VERSION_PLACEHOLDER"; # Did you read the comment?
+
+  system.stateVersion = lib.mkForce "23.11";
 }

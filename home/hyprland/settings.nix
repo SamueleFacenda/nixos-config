@@ -3,7 +3,7 @@
   wayland.windowManager.hyprland.settings = {
     monitor = [
       # "eDP-1,2736x1824,1440x1050,2" # builtin
-      "eDP-1,highres,0x900,1.9" # builtin
+      "eDP-1,highres,0x900,1.875" # builtin TODO adjust scale
       "desc:Fujitsu Siemens Computers GmbH E22W-5 YV2C027320,highres,1440x0,1" # big fujitsu
       "desc:Ancor Communications Inc ASUS VW199 DCLMTF153087,highres,0x0,1" # small asus
       # "desc:HSI HiTV 0x00000001,highres,0x1812,1" # projector
