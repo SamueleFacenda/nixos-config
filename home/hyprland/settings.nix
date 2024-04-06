@@ -1,18 +1,18 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, device, ... }:
 {
   wayland.windowManager.hyprland.settings = {
     monitor = [
       # "eDP-1,2736x1824,1440x1050,2" # builtin
-      "eDP-1,highres,0x900,1.875" # builtin TODO adjust scale
+      "eDP-1,highres,0x900,${lib.strings.floatToString device.screenScale}" # builtin
       "desc:Fujitsu Siemens Computers GmbH E22W-5 YV2C027320,highres,1440x0,1" # big fujitsu
       "desc:Ancor Communications Inc ASUS VW199 DCLMTF153087,highres,0x0,1" # small asus
       # "desc:HSI HiTV 0x00000001,highres,0x1812,1" # projector
       "desc:Ancor Communications Inc VX279 D5LMRS021367,highres,1441x900,1"
       "desc:Dell Inc. DELL U2412M Y1H5T17S0N3L,highres,1441x900,1"
 
-# Monitor DP-2 (ID 1):
-# 	1920x1080@59.94000 at 1441x900
-# 	description: Ancor Communications Inc VX279 D5LMRS021367 (DP-2 via HDMI)
+      # Monitor DP-2 (ID 1):
+      # 	1920x1080@59.94000 at 1441x900
+      # 	description: Ancor Communications Inc VX279 D5LMRS021367 (DP-2 via HDMI)
 
       ",preferred,auto,1" # fallback
     ];

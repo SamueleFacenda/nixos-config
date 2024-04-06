@@ -50,6 +50,10 @@ in {
               # tex.nix # uncomment for quick test, this is big
               # common.nix # idem
             ];
+            device = {
+              keyboard = "at-translated-set-2-keyboard";
+              screeScale = 1;
+            };
           };
 
           users.${config.users.default.name} = _: {

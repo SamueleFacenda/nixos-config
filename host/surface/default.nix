@@ -37,6 +37,10 @@ in
             inherit (config.lib) utils;
             inherit (config.age) secrets;
             disabledFiles = [ ];
+            device = {
+              keyboard = "microsoft-surface-type-cover-keyboard";
+              screenScale = 1.9;
+            };
           };
 
           users.${config.users.default.name} = { ... }: {

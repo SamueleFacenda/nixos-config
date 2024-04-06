@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, device, ... }:
 let
   base_config = {
     layer = "top";
@@ -164,7 +164,7 @@ let
       format = "{}";
       format-en = "us🇺🇸";
       format-it = "it🇮🇹";
-      keyboard-name = "microsoft-surface-type-cover-keyboard";
+      keyboard-name = device.keyboard;
     };
   };
 in

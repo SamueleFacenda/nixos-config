@@ -29,8 +29,8 @@
       readme = "mdcat README.md";
       whr = "grep -R --exclude-dir .direnv";
       ggr = "git grep --ignore-case";
-      bright = "swayosd-client --brightness 20";
-      dark = "swayosd-client --brightness -20";
+      bright = "swayosd-client --brightness raise";
+      dark = "swayosd-client --brightness lower";
       img = "kitty +kitten icat";
       logh =
         if secrets ? github-token
