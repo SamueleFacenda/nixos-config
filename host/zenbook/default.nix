@@ -86,6 +86,8 @@ in {
 
   system.stateVersion = stateVersion;
   
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  
   # Hardware tweaks (from https://nixos.wiki/wiki/Laptop)
   
   services.thermald.enable = true;
@@ -117,7 +119,7 @@ in {
     };
   };
   
-  powerManagement.powertop.enable = true;
+  # powerManagement.powertop.enable = true;
   environment.systemPackages = with pkgs; [
     powertop
   ];

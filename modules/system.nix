@@ -154,8 +154,7 @@
     '';
   };
   console = {
-    packages = [ pkgs.powerline-fonts ];
-    font = "ter-powerline-v32n.psf.gz";
+    font = "${pkgs.powerline-fonts}/share/consolefonts/ter-powerline-v32n.psf.gz";
     useXkbConfig = true;
   };
 }
