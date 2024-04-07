@@ -128,8 +128,8 @@ in {
   # Use these or the standard nvidia settings
   services.supergfxd.enable = false;
   services.asusd = {
-    enable = false;
-    enableUserService = false;
+    enable = true;
+    enableUserService = true;
   };
   
   

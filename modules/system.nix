@@ -157,4 +157,8 @@
     font = "${pkgs.powerline-fonts}/share/consolefonts/ter-powerline-v32n.psf.gz";
     useXkbConfig = true;
   };
+  
+  # Geolocalization over Dbus
+  location.provider = "geoclue2";
+  services.geoclue2.enable = true;
 }

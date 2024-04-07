@@ -49,9 +49,9 @@ let
       format-icons = {
         default = [ "" "" "" ];
       };
-      on-click = "swayosd --output-volume mute-toggle";
-      on-scroll-up = "swayosd --output-volume +1";
-      on-scroll-down = "swayosd --output-volume -1";
+      on-click = "swayosd-client --output-volume mute-toggle";
+      on-scroll-down = "swayosd-client --output-volume +1";
+      on-scroll-up = "swayosd-client --output-volume -1";
       tooltip = false;
     };
 

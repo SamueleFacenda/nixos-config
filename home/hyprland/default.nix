@@ -21,6 +21,7 @@
     wlr-randr
     nwg-displays
     nwg-bar
+    hyprshade
 
     # utilities
     gnome.nautilus
