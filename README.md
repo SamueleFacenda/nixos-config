@@ -76,7 +76,7 @@ TODOS:
 - [x] ~~libwacom overlay~~
 - [x] fonts
 - [x] cache cleanup
-- [x] rice (this is enough)
+- [x] rice (for me this is enough)
 - [x] wallaper(s)
 - [x] wakatime
 - [x] cli trash bin with clean up
@@ -89,9 +89,8 @@ TODOS:
 - [x] remote build with nixbuild.net
 - [ ] home server containers
 - [x] waybar
-- [ ] dunst
 - [x] xdg-desktop-portal-shana
-- [x] known nets
+- [x] known networks
 - [x] hyprland gnome indipendence
 - [ ] tablet mode (hyprgrass)
 - [x] power profiles daemon
@@ -115,10 +114,9 @@ TODOS:
 - [x] flake templates
 - [ ] waybar mpris, taskbar, drawers for brightness
 - [ ] waycorner
-- [ ] lid switch power off
 - [x] adjust nixpkgs wayland overlay
 - [x] termfilechooser portal
-- [ ] spotify-player or ncspot
+- [ ] spotify-player
 - [ ] discocss (discord)
 - [ ] nix index database
 - [ ] tinyproxy wakapi
@@ -132,8 +130,8 @@ TODOS:
 - [x] touchpad gestures (fusuma)
 - [ ] hyprland workspacer
 - [ ] swaync
-
-:construction: means work in progress
+- [ ] anti oled burn-in
+- [ ] howdy
 
 
 ### Overlays (custom packages and other):
@@ -145,3 +143,4 @@ TODOS:
 - libcamera-surface (new pkg)
 - xdg-desktop-portal-termfilechooser (new pkg)
 - eza (add some icons mapping)
+- waybar (use hyprland-virtual-workspaces)
