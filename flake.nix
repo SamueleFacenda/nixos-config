@@ -30,7 +30,11 @@
         x86_64-linux.genericLinux = inputs.nixos-generators.nixosGenerate {
           modules = [
             ./host/genericLinux
-            ({ lib, ... }: { networking.networkmanager.enable = lib.mkForce false; })
+            ({ lib, ... }: { 
+              networking.networkmanager.enable = lib.mkForce false;
+              users.default.name = lib.mkForce "nixos";
+              users.default.longName = lib.mkForce "nixos";
+            })
           ];
           format = "install-iso";
           specialArgs = inputs;

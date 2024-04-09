@@ -86,6 +86,12 @@ in {
 
   system.stateVersion = stateVersion;
   
+  # Weylus: use the surface as input device
+  programs.weylus = {
+    enable = true;
+    users = [ "samu" ];
+  };
+  
   boot.kernelPackages = pkgs.linuxPackages_latest;
   
   # Hardware tweaks (from https://nixos.wiki/wiki/Laptop)
