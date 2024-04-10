@@ -16,7 +16,7 @@ in
     mutableExtensionsDir = false;
     extensions = with pkgs.vscode-extensions; [
       # github.copilot
-      wakatime.vscode-wakatime
+      # wakatime.vscode-wakatime
       yzhang.markdown-all-in-one
       ms-python.python
       ms-python.vscode-pylance
@@ -32,14 +32,20 @@ in
       {
         name = "copilot";
         publisher = "GitHub";
-        version = "1.105.354"; # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
-        sha256 = "QuZ2Dhy8K2o/9vH+ejvY6ICG8bpzAIa9uq9xvabav/Q=";
+        version = "1.178.811"; # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
+        sha256 = "JkJWFbnUSyGOz6yduq5jxxcwveEXA1gvPNu8bBTBly4=";
       }
       {
         name = "vscode-ros";
         publisher = "ms-iot";
         version = "0.9.6";
         sha256 = "ZsGBzfLzRFzSWx4vttfXPb6gSrFBy+QUDz9hkAdKMCw=";
+      }
+      {
+        name = "vscode-wakatime";
+        publisher = "WakaTime";
+        version = "24.5.0";
+        sha256 = "HRFonjVM3mGulfSL5w7biLx84MuQ9AaLr5dC5DHjC2s=";
       }
       # (mkOpenVSXExt {
       #   name = "open-remote-ssh";
