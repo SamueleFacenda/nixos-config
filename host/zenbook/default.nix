@@ -11,6 +11,7 @@ in {
       ../../modules/utils.nix
 
        ./hardware-configuration.nix
+       nixos-hardware.nixosModules.common-cpu-intel 
 
       # speed up kernel builds (slow down easy build unless overwritten)
       # ../../modules/remote-build.nix
@@ -94,6 +95,27 @@ in {
   
   boot.kernelPackages = pkgs.linuxPackages_latest;
   
+  specialisation.multi-monitor.configuration = {
+    home-manager.users.samu.wayland.windowManager.hyprland.settings.env = [
+      # for hyprland with nvidia gpu, ref https://wiki.hyprland.org/Nvidia/
+      "LIBVA_DRIVER_NAME,nvidia"
+      "XDG_SESSION_TYPE,wayland"
+      "GBM_BACKEND,nvidia-drm"
+      "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+      "WLR_NO_HARDWARE_CURSORS,1"
+    ];
+    hardware.nvidia = {
+      powerManagement.finegrained = lib.mkForce false;
+      prime.offload = {
+			  enable = lib.mkForce false;
+			  enableOffloadCmd = lib.mkForce false;
+		  };
+    };
+  };
+  
+  # Automatic ssd trim
+  services.fstrim.enable = true;
+  
   # Hardware tweaks (from https://nixos.wiki/wiki/Laptop)
   
   services.thermald.enable = true;
@@ -104,13 +126,13 @@ in {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
 
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
       CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
       CPU_MIN_PERF_ON_AC = 0;
       CPU_MAX_PERF_ON_AC = 100;
       CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 50;
+      CPU_MAX_PERF_ON_BAT = 30;
       
       CPU_BOOST_ON_AC = 1;
       CPU_BOOST_ON_BAT = 0;
@@ -120,22 +142,23 @@ in {
 
       # Optional helps save long term battery health
       # START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
-      # STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
+      STOP_CHARGE_THRESH_BAT0 = 75; # 80 and above it stops charging
 
     };
   };
   
-  # powerManagement.powertop.enable = true;
+  powerManagement.powertop.enable = true;
   environment.systemPackages = with pkgs; [
     powertop
+    nvtop-nvidia
   ];
   
   
   # Use these or the standard nvidia settings
   services.supergfxd.enable = false;
   services.asusd = {
-    enable = true;
-    enableUserService = true;
+    enable = false;
+    enableUserService = false;
   };
   
   
@@ -144,15 +167,18 @@ in {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      vaapiVdpau
+    ];
   };
+  
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
-    powerManagement.finegrained = false;
+    powerManagement.finegrained = true;
     open = false;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
     
     prime = {
       # pci@0000:00:02.0 nvidia
@@ -165,5 +191,5 @@ in {
 			  enableOffloadCmd = true;
 		  };
     };
-  };  
+  }; 
 }
