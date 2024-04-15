@@ -1,4 +1,4 @@
-{ trashy, hyprgrass, hyprfocus, hyprland, hycov, self, ... }:
+{ hyprgrass, hyprfocus, hyprland, hycov, self, ... }:
 
 (final: prev:
 let
@@ -19,5 +19,4 @@ in
   hyprfocus = hyprfocus.packages.${sys}.default;
   hyprland = hyprland.packages.${sys}.hyprland;
   hycov = hycov.packages.${sys}.hycov;
-  trashy = trashy.defaultPackage.${sys};
 })

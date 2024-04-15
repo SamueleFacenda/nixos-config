@@ -109,12 +109,6 @@
 
     systems.url = "github:nix-systems/default";
 
-    trashy = {
-      url = "github:oberblastmeister/trashy";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -132,6 +132,7 @@ TODOS:
 - [ ] swaync
 - [ ] anti oled burn-in
 - [ ] howdy
+- [ ] hyprswitch
 
 
 ### Overlays (custom packages and other):

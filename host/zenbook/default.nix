@@ -95,6 +95,10 @@ in {
   
   boot.kernelPackages = pkgs.linuxPackages_latest;
   
+  # Thunderbolt
+  services.hardware.bolt.enable = true;
+    
+
   specialisation.multi-monitor.configuration = {
     home-manager.users.samu.wayland.windowManager.hyprland.settings.env = [
       # for hyprland with nvidia gpu, ref https://wiki.hyprland.org/Nvidia/
@@ -154,7 +158,7 @@ in {
   ];
   
   
-  # Use these or the standard nvidia settings
+  # Use these or the standard nvidia settings (not working now)
   services.supergfxd.enable = false;
   services.asusd = {
     enable = false;
@@ -173,9 +177,12 @@ in {
   };
   
   services.xserver.videoDrivers = ["nvidia"];
+  
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+  
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     powerManagement.finegrained = true;
     open = false;
     nvidiaSettings = true;
