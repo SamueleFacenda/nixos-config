@@ -10,6 +10,7 @@ in
     monofurx
     libcamera-surface
     hyprland-virtual-desktops
+    hyprswitch
     xdg-desktop-portal-termfilechooser;
 
   # Flake packages

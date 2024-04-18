@@ -7,6 +7,7 @@
     wofi
     wvkbd
     libinput
+    hyprswitch
 
     # screenshots tools
     slurp
