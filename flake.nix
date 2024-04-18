@@ -5,7 +5,7 @@
   outputs = { self, nixpkgs, ... }@inputs:
     let
       eachSystem = nixpkgs.lib.genAttrs (import inputs.systems);
-      pk = system: nixpkgs.legacyPackages.${system};
+      pk = system: nixpkgs.legacyPackages.${system}.extend inputs.hyprland.overlays.default;
     in
     {
       nixosConfigurations = builtins.mapAttrs
@@ -129,7 +129,7 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/v0.39.1";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
     };
@@ -140,7 +140,7 @@
     };
 
     hycov = {
-      url = "github:DreamMaoMao/hycov";
+      url = "github:DreamMaoMao/hycov/0.39.1.1";
       inputs.hyprland.follows = "hyprland";
     };
 

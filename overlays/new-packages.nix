@@ -9,14 +9,11 @@ in
   inherit (pk)
     monofurx
     libcamera-surface
+    hyprland-virtual-desktops
     xdg-desktop-portal-termfilechooser;
-
-  # Packages with overwritten dependencies
-  hyprland-virtual-desktops = pk.hyprland-virtual-desktops.override { inherit (final) hyprland; };
 
   # Flake packages
   hyprgrass = hyprgrass.packages.${sys}.default;
   hyprfocus = hyprfocus.packages.${sys}.default;
-  hyprland = hyprland.packages.${sys}.hyprland;
   hycov = hycov.packages.${sys}.hycov;
 })
