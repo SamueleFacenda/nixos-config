@@ -39,7 +39,6 @@ in
             disabledFiles = [ ];
             device = {
               keyboard = "microsoft-surface-type-cover-keyboard";
-              screenScale = 1.9;
             };
           };
 

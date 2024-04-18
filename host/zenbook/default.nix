@@ -50,10 +50,7 @@ in {
             disabledFiles = [
               "hyprgrass.nix"
             ];
-            device = {
-              keyboard = "at-translated-set-2-keyboard";
-              screenScale = 1.875;
-            };
+            device.keyboard = "at-translated-set-2-keyboard";
           };
 
           users.${config.users.default.name} = _: {
@@ -108,11 +105,11 @@ in {
       "WLR_NO_HARDWARE_CURSORS,1"
     ];
     hardware.nvidia = {
-      powerManagement.finegrained = lib.mkForce false;
       prime.offload = {
 			  enable = lib.mkForce false;
 			  enableOffloadCmd = lib.mkForce false;
 		  };
+		  prime.sync.enable = lib.mkForce true;
     };
   };
   

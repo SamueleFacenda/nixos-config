@@ -52,7 +52,6 @@ in {
             ];
             device = {
               keyboard = "at-translated-set-2-keyboard";
-              screeScale = 1;
             };
           };
 

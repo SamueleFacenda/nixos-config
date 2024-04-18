@@ -101,7 +101,7 @@ let
         flags = "--landscape-layers simple,special,emoji -L 200 ";
       in
       {
-        format-alt = "󰌐";
+        format-alt = "󰌐"; # They are inverted
         format = "󰌌";
         tooltip = false;
         # https://github.com/Alexays/Waybar/issues/1850
