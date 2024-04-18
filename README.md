@@ -133,6 +133,8 @@ TODOS:
 - [ ] anti oled burn-in
 - [ ] howdy
 - [ ] hyprswitch
+- [ ] resolve power plugged problem
+- [ ] oled life fixes
 
 
 ### Overlays (custom packages and other):

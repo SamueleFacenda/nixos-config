@@ -60,13 +60,15 @@
         #",switch:Lid Switch,exec,swaylock"
 
         # ",switch:off:Lid Switch,exec,hyprctl keyword monitor \"eDP-1,2736x1824,1440x1050,2\""
-        ",switch:off:Lid Switch,exec, wake"
+        # ",switch:off:Lid Switch,exec, wake"
         #",switch:on:Lid Switch,exec,hyprctl keyword monitor \"DP-3,1680x1050,1440x0,1\""
         #",switch:on:Lid Switch,exec,hyprctl keyword monitor \"DP-4,1440x900,0x0,1\""
 
-        ",switch:on:Lid Switch,exec, suspend"
+        # ",switch:on:Lid Switch,exec, suspend"
         #",switch:off:Lid Switch,exec,hyprctl keyword monitor \"DP-3, disable\""
         #",switch:off:Lid Switch,exec,hyprctl keyword monitor \"DP-4, disable\""
+        
+        "$mod, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 ${pkgs.swaylock-effects}/bin/swaylock -f"
       ];
 
       bindle = [

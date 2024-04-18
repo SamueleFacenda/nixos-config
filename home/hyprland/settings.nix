@@ -119,6 +119,7 @@
       mouse_move_enables_dpms = true;
       key_press_enables_dpms = true;
       # suppress_portal_warnings = true; # documented but does not exists
+      allow_session_lock_restore = true;
     };
 
     decoration = {

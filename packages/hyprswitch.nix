@@ -10,9 +10,9 @@ let
       repo = "hyprswitch";
       owner = "H3rmt";
       rev = "v1.2.2";
-      sha256 = "";
+      sha256 = "w1AkbI/hrW3gcIZ+Fydcde2Ob8zzBRlzJSlk03MrJr0=";
     };
-  meta = (builtins.fromTOML (src + "/Cargo.toml")).package;
+  meta = (builtins.fromTOML (builtins.readFile (src + "/Cargo.toml"))).package;
 in
 rustPlatform.buildRustPackage {
   name = meta.name;
