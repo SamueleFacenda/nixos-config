@@ -37,7 +37,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = with pkgs; [
-      hyprfocus # animation on focus change
+      # hyprfocus # animation on focus change TODO wait for build fix
       hycov # toggle overview
       hyprland-virtual-desktops # gnome-like workspaces behaviour
     ];
