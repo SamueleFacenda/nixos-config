@@ -18,16 +18,9 @@
         "$mod, space, exec, echo keyboard_change" # keyboard change, configured in settings (keep to prevent menu spawn)
         "$mod, S, fullscreen"
 
-        # hycov (overview)
-        "ALT, tab, hycov:toggleoverview, forceallinone"
-
         # Windows bindings (they are recorded on the mouse)
         "CTRL_SUPER, left, workspace, r-1"
         "CTRL_SUPER, right, workspace, r+1"
-
-        ", edge:r:l, nextdesk"
-        ", edge:l:r, prevdesk"
-        ", edge:d:u, exec, toggle ${keyboard} ${flags}"
 
         #### windows navigation and arrangement ####
         # move to window around of monitors

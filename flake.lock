@@ -303,27 +303,6 @@
         "type": "github"
       }
     },
-    "hycov": {
-      "inputs": {
-        "hyprland": [
-          "hyprland"
-        ]
-      },
-      "locked": {
-        "lastModified": 1713397476,
-        "narHash": "sha256-PcOGj9sCmGXwsuI+Wu2pvd0XL8mFYQSWXWF4KL7+83s=",
-        "owner": "DreamMaoMao",
-        "repo": "hycov",
-        "rev": "17a57622eb776c23c233c876d838046f07dc9989",
-        "type": "github"
-      },
-      "original": {
-        "owner": "DreamMaoMao",
-        "ref": "0.39.1.1",
-        "repo": "hycov",
-        "type": "github"
-      }
-    },
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
@@ -657,7 +636,6 @@
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
-        "hycov": "hycov",
         "hyprfocus": "hyprfocus",
         "hyprgrass": "hyprgrass",
         "hyprland": "hyprland",

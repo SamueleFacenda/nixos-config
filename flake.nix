@@ -139,11 +139,6 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    hycov = {
-      url = "github:DreamMaoMao/hycov/0.39.1.1";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     nur.url = "github:nix-community/NUR";
 
     nixos-generators = {

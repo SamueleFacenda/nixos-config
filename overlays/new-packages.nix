@@ -1,4 +1,4 @@
-{ hyprgrass, hyprfocus, hyprland, hycov, self, ... }:
+{ hyprgrass, hyprfocus, self, ... }:
 
 (final: prev:
 let
@@ -15,5 +15,4 @@ in
   # Flake packages
   hyprgrass = hyprgrass.packages.${sys}.default;
   hyprfocus = hyprfocus.packages.${sys}.default;
-  hycov = hycov.packages.${sys}.hycov;
 })

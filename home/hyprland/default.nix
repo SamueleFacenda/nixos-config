@@ -38,7 +38,6 @@
     enable = true;
     plugins = with pkgs; [
       # hyprfocus # animation on focus change TODO wait for build fix
-      hycov # toggle overview
     ];
     settings.exec-once = [
       "hyprctl setcursor Adwaita 24"

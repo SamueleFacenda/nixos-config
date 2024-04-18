@@ -36,16 +36,14 @@
       follow_mouse = 2; # keyboard focus don't change until click on window
     };
 
-    "device:ipts-stylus" = {
-      transform = 0;
-      output = "eDP-1";
-    };
+    device = [  
+      {
+        name = "ipts-stylus";
+        transform = 0;
+        output = "eDP-1";
+      }
+    ];
 
-
-    "device:ipts-touch" = {
-      transform = 0;
-      output = "eDP-1";
-    };
 
     general = {
       layout = "dwindle";
@@ -65,38 +63,29 @@
       new_is_master = true;
     };
 
-    plugin = {
-      hyprfocus = {
-        enabled = "yes";
-        keyboard_focus_animation = "flash";
-        mouse_focus_animation = "nothing";
-        bezier = [ "bezIn, 0.5,0.0,1.0,0.5" "bezOut, 0.0,0.5,0.5,1.0" ];
-
-        flash = {
-          flash_opacity = 0.7;
-          in_bezier = "bezIn";
-          in_speed = 0.5;
-          out_bezier = "bezOut";
-          out_speed = 3;
-        };
-        shrink = {
-          shrink_percentage = 0.95;
-          in_bezier = "bezIn";
-          in_speed = 0.5;
-          out_bezier = "bezOut";
-          out_speed = 3;
-        };
-      };
-
-      hycov = {
-        enable_hotarea = 0; # disable corner mouse cursor hotarea
-        enable_gesture = 0; # enable gesture (4 fingers up)
-        enable_alt_release_exit = 1; # alt-tab cycle
-        alt_toggle_auto_next = 1; # alt-tab-release is cycle
-        only_active_monitor = 0;
-        click_in_cursor = 1;
-      };
-    };
+#     plugin = {
+#       hyprfocus = {
+#         enabled = "yes";
+#         keyboard_focus_animation = "flash";
+#         mouse_focus_animation = "nothing";
+#         bezier = [ "bezIn, 0.5,0.0,1.0,0.5" "bezOut, 0.0,0.5,0.5,1.0" ];
+# 
+#         flash = {
+#           flash_opacity = 0.7;
+#           in_bezier = "bezIn";
+#           in_speed = 0.5;
+#           out_bezier = "bezOut";
+#           out_speed = 3;
+#         };
+#         shrink = {
+#           shrink_percentage = 0.95;
+#           in_bezier = "bezIn";
+#           in_speed = 0.5;
+#           out_bezier = "bezOut";
+#           out_speed = 3;
+#         };
+#       };
+#     };
 
     debug = {
       # disable_logs = false;
