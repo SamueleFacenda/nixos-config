@@ -15,8 +15,8 @@
       swipe = {
         "3" = {
           # workspace swipe
-          right.command = "hyprctl dispatch prevdesk";
-          left.command = "hyprctl dispatch nextdesk";
+          right.command = "hyprctl dispatch workspace r-1";
+          left.command = "hyprctl dispatch workspace r+1";
           # enter exit overview (additional commands)
           up.command = "hyprctl dispatch hycov:enteroverview forceallinone";
           down.command = "hyprctl dispatch hycov:leaveoverview";

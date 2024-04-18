@@ -22,8 +22,8 @@
         "ALT, tab, hycov:toggleoverview, forceallinone"
 
         # Windows bindings (they are recorded on the mouse)
-        "CTRL_SUPER, left, prevdesk"
-        "CTRL_SUPER, right, nextdesk"
+        "CTRL_SUPER, left, workspace, r-1"
+        "CTRL_SUPER, right, workspace, r+1"
 
         ", edge:r:l, nextdesk"
         ", edge:l:r, prevdesk"
@@ -41,8 +41,8 @@
         "CTRL, J, movefocus, d"
         "CTRL, K, movefocus, u"
         # Move window on virtual desktop
-        "$mod, right, movetonextdesk"
-        "$mod, left, movetoprevdesk"
+        "$mod, right, movetoworkspace, r+1"
+        "$mod, left, movetoworkspace, r-1"
 
       ];
 

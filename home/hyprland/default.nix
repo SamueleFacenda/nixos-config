@@ -39,7 +39,6 @@
     plugins = with pkgs; [
       # hyprfocus # animation on focus change TODO wait for build fix
       hycov # toggle overview
-      hyprland-virtual-desktops # gnome-like workspaces behaviour
     ];
     settings.exec-once = [
       "hyprctl setcursor Adwaita 24"

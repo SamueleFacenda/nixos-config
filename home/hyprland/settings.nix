@@ -96,11 +96,6 @@
         only_active_monitor = 0;
         click_in_cursor = 1;
       };
-
-      virtual-desktops = {
-        notifyinit = 0;
-        cycleworkspaces = 0;
-      };
     };
 
     debug = {
