@@ -135,6 +135,7 @@ TODOS:
 - [ ] hyprswitch
 - [ ] resolve power plugged problem
 - [ ] oled life fixes
+- [ ] update hyprland
 
 
 ### Overlays (custom packages and other):

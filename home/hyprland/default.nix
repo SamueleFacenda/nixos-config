@@ -37,7 +37,6 @@
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = with pkgs; [
-      hyprgrass # touch gestures
       hyprfocus # animation on focus change
       hycov # toggle overview
       hyprland-virtual-desktops # gnome-like workspaces behaviour

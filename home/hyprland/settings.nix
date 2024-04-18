@@ -66,11 +66,6 @@
     };
 
     plugin = {
-      touch_gestures = {
-        sensitivity = 6.0;
-        workspace_swipe_fingers = 3;
-      };
-
       hyprfocus = {
         enabled = "yes";
         keyboard_focus_animation = "flash";

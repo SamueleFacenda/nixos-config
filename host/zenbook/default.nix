@@ -48,8 +48,7 @@ in {
             inherit (config.lib) utils;
             inherit (config.age) secrets;
             disabledFiles = [
-              # tex.nix # uncomment for quick test, this is big
-              # common.nix # idem
+              "hyprgrass.nix"
             ];
             device = {
               keyboard = "at-translated-set-2-keyboard";
