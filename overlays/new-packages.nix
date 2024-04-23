@@ -11,6 +11,7 @@ in
     libcamera-surface
     hyprland-virtual-desktops
     hyprswitch
+    hypr-shellevents
     xdg-desktop-portal-termfilechooser;
 
   # Flake packages
