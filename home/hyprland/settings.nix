@@ -6,7 +6,9 @@
       "desc:Samsung Display Corp. 0x4190,2880x1800@60,0x0,2" # builtin (120hz possibles)
       "desc:Fujitsu Siemens Computers GmbH E22W-5 YV2C027320,1680x1050@60,1440x-1050,1" # big fujitsu
       "desc:Ancor Communications Inc ASUS VW199 DCLMTF153087,1440x900@60,0x-900,1" # small asus
-      "desc:HSI HiTV 0x00000001,highres,0x-1441,1" # projector
+      
+      "desc:HSI HiTV 0x00000001,highres,0x-1440,1" # projector
+      
       "desc:Ancor Communications Inc VX279 D5LMRS021367,1920x1080,0x-1080,1" # work
       "desc:Dell Inc. DELL U2412M Y1H5T17S0N3L,1680x1050@60,0x-1050,1" # work dell
 
@@ -106,7 +108,7 @@
 
     misc = {
       disable_hyprland_logo = true;
-      disable_splash_rendering = false;
+      disable_splash_rendering = true;
       mouse_move_enables_dpms = true;
       key_press_enables_dpms = true;
       # suppress_portal_warnings = true; # documented but does not exists

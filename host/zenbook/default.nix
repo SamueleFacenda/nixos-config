@@ -148,9 +148,12 @@ in {
   };
   
   powerManagement.powertop.enable = true;
+  
+  # Packages
   environment.systemPackages = with pkgs; [
     powertop
     nvtop-nvidia
+    (ollama.override {acceleration = "cuda";})
   ];
   
   
