@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ config, pkgs, lib, ...}:
 let 
   events = [ # cat file | grep '()' | tr -d "(){ " | sed 's/^/"/' | sed 's/$/"/'
     "workspace"
@@ -38,6 +38,7 @@ let
       EXEC:"${pkgs.hypr-shellevents}/bin/shellevents ${hyprlandEventHandlers}",nofork
   '';
   
+in 
 {
   config.wayland.windowManager.hyprland.settings.exec-once = lib.mkIf cfg.enable [
     "${hyprlandHandleEvents}"
@@ -46,8 +47,8 @@ let
   options.services.hypr-shellevents = {
     enable = lib.mkEnableOption "hypr-shellevents";
     callbacks = lib.attrsets.genAttrs events (name: lib.mkOption {
-      default = ":Historically, Bourne shells didn't have true and false as built-in ";
-      type = with types; string;
+      default = ":";
+      type = lib.types.str;
       description = ''
         Callback for ${name} hyprland event, more info 
         [here](https://github.com/hyprwm/contrib/blob/main/shellevents/shellevents_default.sh)
@@ -61,14 +62,19 @@ let
     callbacks = {
       workspace = ''
         # WORKSPACENAME
-        monitor=$(hyprctl workspaces -j \
+        movedmonitor=$(hyprctl workspaces -j \
           | jq ".[] | select(.name == \"$WORKSPACENAME\") | .monitor")
         others=$(hyprctl monitors -j \
-          | jq ".[] | select(.name != \"$monitor\") | .name")
+          | jq ".[] | select(.name != \"$movedmonitor\") | .id")
+        workspace=$(hyprctl workspaces -j \
+          | jq ".[] | select(.name == \"$WORKSPACENAME\") | .id")
+        hyprcommand=""
         for monitor in $others
         do
-          
+          hyprcommand+="moveworkspacetomonitor \
+            $((10*monitor + WORKSPACENAME - 10*movedmonitor)) $monitor ; "
         done
+        hyprctl --batch $hyprcommand
       '';
     };
   };

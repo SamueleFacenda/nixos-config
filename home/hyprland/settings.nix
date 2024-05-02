@@ -1,5 +1,9 @@
 { config, pkgs, lib, device, ... }:
-{
+let
+  monitors = [
+    "eDP-1"
+  ] ++ map (id: "DP-" + builtins.toString id) (lib.lists.range 1 9);
+in {
   wayland.windowManager.hyprland.settings = {
     monitor = [
       # "eDP-1,2736x1824,1440x1050,2" # builtin
@@ -126,6 +130,12 @@
       ];
 
     };
-
+    
+    # Monitor bindings and workspace persistance. 10 workspaces per monitor, 10 total monitors 
+    workspace = [ 
+      "r[1-100],persistent:true"
+    ] ++ lib.lists.imap0 
+      (mId: name: "r[${builtins.toString (mId*10 + 1)}-${builtins.toString (mId*10 + 10)}], monitor:${name}")
+      monitors;
   };
 }
