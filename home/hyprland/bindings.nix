@@ -18,16 +18,9 @@
         "$mod, space, exec, echo keyboard_change" # keyboard change, configured in settings (keep to prevent menu spawn)
         "$mod, S, fullscreen"
 
-        # hycov (overview)
-        "ALT, tab, hycov:toggleoverview, forceallinone"
-
         # Windows bindings (they are recorded on the mouse)
-        "CTRL_SUPER, left, prevdesk"
-        "CTRL_SUPER, right, nextdesk"
-
-        ", edge:r:l, nextdesk"
-        ", edge:l:r, prevdesk"
-        ", edge:d:u, exec, toggle ${keyboard} ${flags}"
+        "CTRL_SUPER, left, workspace, r-1"
+        "CTRL_SUPER, right, workspace, r+1"
 
         #### windows navigation and arrangement ####
         # move to window around of monitors
@@ -41,8 +34,8 @@
         "CTRL, J, movefocus, d"
         "CTRL, K, movefocus, u"
         # Move window on virtual desktop
-        "$mod, right, movetonextdesk"
-        "$mod, left, movetoprevdesk"
+        "$mod, right, movetoworkspace, r+1"
+        "$mod, left, movetoworkspace, r-1"
 
       ];
 
@@ -57,17 +50,10 @@
 
       bindl = [
         # Lid switch settings
-        #",switch:Lid Switch,exec,swaylock"
-
-        # ",switch:off:Lid Switch,exec,hyprctl keyword monitor \"eDP-1,2736x1824,1440x1050,2\""
-        # ",switch:off:Lid Switch,exec, wake"
-        #",switch:on:Lid Switch,exec,hyprctl keyword monitor \"DP-3,1680x1050,1440x0,1\""
-        #",switch:on:Lid Switch,exec,hyprctl keyword monitor \"DP-4,1440x900,0x0,1\""
-
-        # ",switch:on:Lid Switch,exec, suspend"
-        #",switch:off:Lid Switch,exec,hyprctl keyword monitor \"DP-3, disable\""
-        #",switch:off:Lid Switch,exec,hyprctl keyword monitor \"DP-4, disable\""
+        ",switch:off:Lid Switch,exec, clamshell-wake"
+        ",switch:on:Lid Switch,exec, clamshell-suspend"
         
+        # Tmp fix for swaylock
         "$mod, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 ${pkgs.swaylock-effects}/bin/swaylock -f"
       ];
 

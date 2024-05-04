@@ -148,8 +148,8 @@ let
       active-only = false;
       all-outputs = false;
       disable-scroll = false;
-      on-scroll-up = "hyprctl dispatch nextdesk";
-      on-scroll-down = "hyprctl dispatch prevdesk";
+      on-scroll-up = "hyprctl dispatch r+1";
+      on-scroll-down = "hyprctl dispatch r-1";
       format = "{icon}";
       on-click = "activate";
       format-icons = {
@@ -158,6 +158,10 @@ let
         default = "󰧞";
       };
       sort-by-number = true;
+      ignore-workspaces = [
+        "[0-9]*0" # Not show unreachable workspaces
+        "[0-9]*9"
+      ];
     };
 
     "hyprland/language" = {
@@ -176,7 +180,7 @@ in
     }
     {
       output = [ "Fujitsu Siemens Computers GmbH E22W-5 YV2C027320" ];
-      "hyprland/language".keyboard-name = "keychron-keychron-k3-pro";
+      "hyprland/language".keyboard-name = "keychron-k3-pro-keyboard"; # "keychron-keychron-k3-pro"; # Changes betwenn bluethoot and cabled connection
     }
   ];
 }
