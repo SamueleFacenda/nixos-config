@@ -92,8 +92,8 @@ in {
 #     };
 
     debug = {
-      disable_logs = false;
-      enable_stdout_logs = true;
+      disable_logs = true;
+      enable_stdout_logs = false;
     };
 
     misc = {
@@ -136,7 +136,7 @@ in {
       (lib.lists.imap0 
         (mId: name:
           builtins.genList
-            (wId: builtins.toString (mId*10 + wId) + ", monitor:${name}, persistent:true" +
+            (wId: builtins.toString (mId*10 + wId) + ", monitor:${name}" + # optional: persistent:true, change only the waybar widget
               lib.strings.optionalString (wId == 1) ", default:true") # The [n]1 workspace is the default  
             10)
         monitors);
