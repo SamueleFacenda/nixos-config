@@ -2,7 +2,7 @@
 let
   monitors = [
     "eDP-1"
-  ] ++ map (id: "DP-" + builtins.toString id) (lib.lists.range 1 7);
+  ] ++ map (id: "DP-" + builtins.toString id) (lib.lists.range 1 9);
 in {
   wayland.windowManager.hyprland.settings = {
     monitor = [
@@ -124,19 +124,20 @@ in {
       blurls = [
         # "waybar"
         "lockscreen"
-        #"wlroots"
+        # "wlroots"
         "launcher"
         # "swayosd"
       ];
 
     };
     
-    # Monitor bindings and workspace persistance. 10 workspaces per monitor 
+    # Monitor bindings and workspace persistance. 10 workspaces per monitor (But the [n]0 and [n]9 cannot be accessed)
     workspace = lib.lists.flatten 
       (lib.lists.imap0 
         (mId: name:
           builtins.genList
-            (wId: builtins.toString (mId*10 + wId + 1) + ", monitor:${name}, persistent:true")
+            (wId: builtins.toString (mId*10 + wId) + ", monitor:${name}, persistent:true" +
+              lib.strings.optionalString (wId == 1) ", default:true") # The [n]1 workspace is the default  
             10)
         monitors);
   };
