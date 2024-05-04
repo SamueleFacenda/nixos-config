@@ -152,7 +152,7 @@ in {
   # Packages
   environment.systemPackages = with pkgs; [
     powertop
-    nvtop-nvidia
+    nvtopPackages.nvidia
     (ollama.override {acceleration = "cuda";})
   ];
   
