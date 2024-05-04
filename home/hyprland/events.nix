@@ -20,6 +20,7 @@ let
     "closelayer"
     "submap"
   ];
+  
   cfg = config.services.hypr-shellevents; 
 
   hyprlandEventHandlers = pkgs.writeShellScript "hyprlandEventHandlers" (
@@ -62,19 +63,24 @@ in
     callbacks = {
       workspace = ''
         # WORKSPACENAME
-        movedmonitor=$(hyprctl workspaces -j \
-          | jq ".[] | select(.name == \"$WORKSPACENAME\") | .monitor")
-        others=$(hyprctl monitors -j \
-          | jq ".[] | select(.name != \"$movedmonitor\") | .id")
-        workspace=$(hyprctl workspaces -j \
+        movedmonitorid=$(hyprctl workspaces -j \
+          | jq ".[] | select(.name == \"$WORKSPACENAME\") | .monitorID")
+        
+        othersid=$(hyprctl monitors -j \
+          | jq ".[] | select(.id != $movedmonitorid) | .id")
+        
+        focusedworkspace=$(hyprctl workspaces -j \
           | jq ".[] | select(.name == \"$WORKSPACENAME\") | .id")
+        
         hyprcommand=""
-        for monitor in $others
+        
+        while IFS= read -r monitorid
         do
-          hyprcommand+="moveworkspacetomonitor \
-            $((10*monitor + WORKSPACENAME - 10*movedmonitor)) $monitor ; "
-        done
-        hyprctl --batch $hyprcommand
+          hyprcommand+="dispatch workspace \
+            $((10*monitorid + focusedworkspace - 10*movedmonitorid)) ; "
+        done <<< "$othersid"
+        
+        hyprctl --batch "$hyprcommand"
       '';
     };
   };
