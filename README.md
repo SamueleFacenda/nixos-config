@@ -92,16 +92,14 @@ TODOS:
 - [x] xdg-desktop-portal-shana
 - [x] known networks
 - [x] hyprland gnome indipendence
-- [ ] tablet mode (hyprgrass)
 - [x] power profiles daemon
-- [ ] remap surface pen button
 - [x] wpa supplicant config
 - [x] nordic like theme (blue dark)
 - [x] make suspend, screen off and sleep work
 - [x] stylix
 - [ ] phone integration (kde connect/gsconnects)
 - [ ] waydroid
-- [ ] more custom kernel (I already have to build it from source)
+- [ ] customize kernel
 - [x] kanshi dynamic monitor config (crash on change, hyprland problem)
 - [x] nixd language server
 - [x] swayosd (on screen display)
@@ -124,22 +122,19 @@ TODOS:
 - [x] on screen keyboard for tablet mode
 - [x] networkmanager config
 - [x] image builder
-- [x] hyprland-virtual-desktops
 - [ ] syncthing
 - [x] nwg bar
 - [x] touchpad gestures (fusuma)
-- [ ] hyprland workspacer
+- [x] hyprland workspacer (good workspaces on multi-monitor)
 - [ ] swaync
 - [ ] anti oled burn-in
 - [ ] howdy
 - [ ] hyprswitch
 - [ ] resolve power plugged problem
 - [ ] oled life fixes
-- [ ] update hyprland
-
+- [ ] hyprcursor Adwaita
 
 ### Overlays (custom packages and other):
-- hyprgrass (use hyprland from nixpkgs instead of the hyprland.org flake)
 - micro-wakatime (faster loading)
 - nerdfonts (use monofur with bullet point character from blexmono)
 - rpl (update version)
@@ -147,4 +142,4 @@ TODOS:
 - libcamera-surface (new pkg)
 - xdg-desktop-portal-termfilechooser (new pkg)
 - eza (add some icons mapping)
-- waybar (use hyprland-virtual-workspaces)
+- nwg-bar (better icon support with gtk themes)
