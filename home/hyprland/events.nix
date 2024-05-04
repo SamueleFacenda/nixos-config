@@ -29,7 +29,7 @@ let
       (lib.attrsets.mapAttrsToList
         (name: value: ''
           event_${name}() {
-            ${value}
+          ${value}
           }
         '')
         cfg.callbacks)
@@ -63,24 +63,27 @@ in
     callbacks = {
       workspace = ''
         # WORKSPACENAME
-        movedmonitorid=$(hyprctl workspaces -j \
-          | jq ".[] | select(.name == \"$WORKSPACENAME\") | .monitorID")
-        
-        othersid=$(hyprctl monitors -j \
-          | jq ".[] | select(.id != $movedmonitorid) | .id")
-        
-        focusedworkspace=$(hyprctl workspaces -j \
-          | jq ".[] | select(.name == \"$WORKSPACENAME\") | .id")
-        
+        prevcursorcoords=$(hyprctl cursorpos)
+
+        focusedmonitor=$(hyprctl workspaces -j \
+          | jq ".[] | select(.name == \"$WORKSPACENAME\") | .monitor")
+          
+        othersworkspaceid=$(hyprctl monitors -j \
+          | jq ".[] | select(.name != $focusedmonitor) | .activeWorkspace.id")
+          
+        focusedworkspaceid=$(hyprctl monitors -j \
+          | jq ".[] | select(.name == $focusedmonitor) | .activeWorkspace.id")
+
         hyprcommand=""
-        
-        while IFS= read -r monitorid
+
+        while IFS= read -r monitorworkspaceid
         do
-          hyprcommand+="dispatch workspace \
-            $((10*monitorid + focusedworkspace - 10*movedmonitorid)) ; "
-        done <<< "$othersid"
-        
-        hyprctl --batch "$hyprcommand"
+          hyprcommand+="dispatch workspace $((monitorworkspaceid / 10 * 10 + (focusedworkspaceid - 1) % 10 + 1)) ; "
+        done <<< "$othersworkspaceid"
+
+        # Remove trailing semicolon
+        hyprcommand+="dispatch movecursor $(tr -d ',' <<<$prevcursorcoords)"
+        hyprctl --batch "$hyprcommand" >/dev/null
       '';
     };
   };
