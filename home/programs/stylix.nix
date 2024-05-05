@@ -17,7 +17,7 @@
     cursor = {
       name = "Adwaita";
       size = 12;
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.gnome.adwaita-icon-theme-hyprcursor;
     };
 
     fonts =

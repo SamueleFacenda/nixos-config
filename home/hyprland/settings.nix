@@ -95,6 +95,7 @@ in {
     };
 
     misc = {
+      enable_hyprcursor = false; # too few support now
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
       mouse_move_enables_dpms = true;
