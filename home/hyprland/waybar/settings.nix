@@ -176,7 +176,13 @@ in
   programs.waybar.settings = builtins.map (lib.recursiveUpdate base_config) [
     ## OUTPUT SPECIFIC CONFIG
     {
-      output = [ "eDP-1" "Ancor Communications Inc VX279 D5LMRS021367" ];
+      ## Oled config
+      output = [ "Samsung Display Corp. 0x4190" ];
+      # mode = "dock";
+      # start_hidden = true;
+    }
+    {
+      output = [ "Ancor Communications Inc VX279 D5LMRS021367" ];# Todo get surface monitor name
     }
     {
       output = [ "Fujitsu Siemens Computers GmbH E22W-5 YV2C027320" ];

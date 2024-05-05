@@ -93,7 +93,21 @@ in {
   
   # Thunderbolt
   services.hardware.bolt.enable = true;
-    
+  
+  home-manager.users.samu.wayland.windowManager.hyprland.settings = {
+    workspace = [
+      "m[eDP-1] w[t1], gapsin:0, rounding:false, decorate:false, gapsout:0"
+    ];
+    windowrulev2 = [
+      # "fullscreen:1, onworkspace:m[eDP-1] w[1]"
+    ];
+    # bindt = [
+    #   ", Super_L, exec, pkill -SIGUSR1 waybar"
+    # ];
+    # bindrt = [
+    #   "SUPER, Super_L, exec, pkill -SIGUSR1 waybar"
+    # ];
+  };
 
   specialisation.multi-monitor.configuration = {
     home-manager.users.samu.wayland.windowManager.hyprland.settings.env = [
