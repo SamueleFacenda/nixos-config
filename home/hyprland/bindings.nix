@@ -17,6 +17,7 @@
         "$mod, B, exec, hyprctl dispatch dpms off"
         "$mod, space, exec, echo keyboard_change" # keyboard change, configured in settings (keep to prevent menu spawn)
         "$mod, S, fullscreen"
+        "$mod, W, exec, pkill -SIGUSR1 waybar"
 
         # Windows bindings (they are recorded on the mouse)
         "CTRL_SUPER, left, workspace, r-1"
@@ -45,7 +46,9 @@
 
       bindm = [
         "$mod, mouse:272, movewindow"
+        "$mod, Control_L, movewindow"
         "$mod, mouse:273, resizewindow"
+        "$mod, ALT_L, resizewindow"
       ];
 
       bindl = [

@@ -131,8 +131,9 @@ TODOS:
 - [ ] howdy
 - [ ] hyprswitch
 - [ ] resolve power plugged problem
-- [ ] oled life fixes
+- [ ] oled life fixies
 - [ ] hyprcursor Adwaita
+- [ ] hyprexpo
 
 ### Overlays (custom packages and other):
 - micro-wakatime (faster loading)
