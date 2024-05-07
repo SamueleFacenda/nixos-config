@@ -149,7 +149,6 @@ in {
       
       DEVICES_TO_ENABLE_ON_AC = "bluetooth wifi";
       DEVICES_TO_DISABLE_ON_BAT_NOT_IN_USE = "bluetooth wifi";
-      DEVICES_TO_DISABLE_ON_STARTUP = "bluetooth";
       
       RUNTIME_PM_ON_AC = "on";
       RUNTIME_PM_ON_BAT = "auto";

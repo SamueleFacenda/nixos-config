@@ -61,6 +61,9 @@ in
   config.services.hypr-shellevents = {
     enable = true;
     callbacks = {
+      openwindow = "check-hide-waybar";
+      closewindow = "check-hide-waybar";
+      
       workspace = ''
         # WORKSPACENAME
 
@@ -98,6 +101,8 @@ in
         hyprcommand+="dispatch movecursor $(tr -d ',' <<<$prevcursorcoords)"
 
         hyprctl --batch "$hyprcommand" >/dev/null
+        
+        check-hide-waybar
       '';
     };
   };
