@@ -14,7 +14,7 @@
         "$mod, C, killactive,"
         "$mod, F, togglefloating,"
         "$mod, M, exit,"
-        "$mod, B, exec, hyprctl dispatch dpms off"
+        "$mod, B, exec, sleep 1 && hyprctl dispatch dpms off"
         "$mod, space, exec, echo keyboard_change" # keyboard change, configured in settings (keep to prevent menu spawn)
         "$mod, S, fullscreen"
         "$mod, W, exec, pkill -SIGUSR1 waybar"
@@ -53,8 +53,8 @@
 
       bindl = [
         # Lid switch settings
-        ",switch:off:Lid Switch,exec, clamshell-wake"
-        ",switch:on:Lid Switch,exec, clamshell-suspend"
+        ", switch:off:Lid Switch, exec, hyprctl keyword monitor 'eDP-1,highres,0x0,2'"
+        ", switch:on:Lid Switch,exec, clamshell-suspend"
         
         # Tmp fix for swaylock
         "$mod, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 ${pkgs.swaylock-effects}/bin/swaylock -f"
