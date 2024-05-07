@@ -2,7 +2,7 @@
 let
   monitors = [
     "eDP-1"
-  ] ++ map (id: "DP-" + builtins.toString id) (lib.lists.range 1 9);
+  ] ++ map (id: "DP-" + builtins.toString id) (lib.lists.range 1 8);
 in {
   wayland.windowManager.hyprland.settings = {
     monitor = [
@@ -130,14 +130,18 @@ in {
 
     };
     
-    # Monitor bindings and workspace persistance. 10 workspaces per monitor (But the [n]0 and [n]9 cannot be accessed)
-    workspace = lib.lists.flatten 
+    # Monitor bindings and workspace persistance. N workspaces per monitor (But the [n]0 and [n]{n-1} cannot be accessed)
+    workspace = 
+    let
+      n = config.wayland.windowManager.hyprland.maxNWorkspaces;
+    in
+    lib.lists.flatten 
       (lib.lists.imap0 
         (mId: name:
           builtins.genList
-            (wId: builtins.toString (mId*10 + wId) + ", monitor:${name}" + # optional: persistent:true, change only the waybar widget
+            (wId: builtins.toString (mId*n + wId) + ", monitor:${name}" + # optional: persistent:true, change only the waybar widget
               lib.strings.optionalString (wId == 1) ", default:true") # The [n]1 workspace is the default  
-            10)
+            n)
         monitors);
   };
 }

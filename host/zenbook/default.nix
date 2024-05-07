@@ -98,10 +98,10 @@ in {
     workspace = [
       "m[eDP-1] w[t1], gapsin:0, rounding:false, decorate:false, gapsout:0"
     ];
-    windowrulev2 = [
-      # "fullscreen:1, onworkspace:m[eDP-1] w[1]"
-      "minsize 1440 900, onworkspace:m[eDP-1] w[t1]"
-    ];
+    # windowrulev2 = [
+    #   # "fullscreen:1, onworkspace:m[eDP-1] w[1]"
+    #   "minsize 1440 900, onworkspace:m[eDP-1] w[t1]"
+    # ];
     # bindt = [
     #   ", Super_L, exec, pkill -SIGUSR1 waybar"
     # ];
