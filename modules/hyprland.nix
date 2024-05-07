@@ -81,7 +81,7 @@
 
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
-    settings.Policy.AutoEnable = true;
+    powerOnBoot = false;
+    settings.Policy.AutoEnable = false;
   };
 }
