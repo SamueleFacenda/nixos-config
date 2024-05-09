@@ -41,8 +41,8 @@ let
   
 in 
 {
-  config.wayland.windowManager.hyprland.settings.exec-once = lib.mkIf cfg.enable [
-    "${hyprlandHandleEvents}"
+  config.wayland.windowManager.hyprland.settings.exec = lib.mkIf cfg.enable [
+    "pkill -f hyprlandHandleEvents; pkill -f hyprlandEventHandlers; ${hyprlandHandleEvents}"
   ];
   
   options.services.hypr-shellevents = {
@@ -72,8 +72,8 @@ in
   config.services.hypr-shellevents = {
     enable = true;
     callbacks = {
-      openwindow = "check-hide-waybar";
-      closewindow = "check-hide-waybar";
+      # openwindow = "check-hide-waybar";
+      # closewindow = "check-hide-waybar";
       
       workspace = 
         let
@@ -121,7 +121,7 @@ in
 
           hyprctl --batch "$hyprcommand" >/dev/null
           
-          check-hide-waybar
+          # check-hide-waybar
           '';
     };
   };

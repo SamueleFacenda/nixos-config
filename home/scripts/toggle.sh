@@ -4,6 +4,5 @@ if pgrep "$1"
 then
     pkill "$1"
 else
-    # unpack everything
-    exec $@
+    $@
 fi
