@@ -182,7 +182,10 @@ in
       # start_hidden = true;
     }
     {
-      output = [ "Ancor Communications Inc VX279 D5LMRS021367" ];# Todo get surface monitor name
+      output = [ 
+        "Ancor Communications Inc VX279 D5LMRS021367" 
+        "Dell Inc. DELL U2412M Y1H5T17S0N3L"
+      ];# Todo get surface monitor name
     }
     {
       output = [ "Fujitsu Siemens Computers GmbH E22W-5 YV2C027320" ];

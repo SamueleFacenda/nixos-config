@@ -41,8 +41,8 @@ let
   
 in 
 {
-  config.wayland.windowManager.hyprland.settings.exec = lib.mkIf cfg.enable [
-    "pkill -f hyprlandHandleEvents; pkill -f hyprlandEventHandlers; ${hyprlandHandleEvents}"
+  config.wayland.windowManager.hyprland.settings.exec-once = lib.mkIf cfg.enable [
+    hyprlandHandleEvents
   ];
   
   options.services.hypr-shellevents = {

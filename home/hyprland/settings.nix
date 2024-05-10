@@ -1,8 +1,8 @@
 { config, pkgs, lib, device, ... }:
 let
-  monitors = [
-    "eDP-1"
-  ] ++ map (id: "DP-" + builtins.toString id) (lib.lists.range 1 8);
+  monitors = [ "eDP-1" ] ++ 
+  map (id: "DP-" + builtins.toString id) (lib.lists.range 1 8) ++
+  map (id: "HDMI-A-" + builtins.toString id) (lib.lists.range 1 2);
 in {
   wayland.windowManager.hyprland.settings = {
     monitor = [
