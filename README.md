@@ -127,13 +127,13 @@ TODOS:
 - [x] touchpad gestures (fusuma)
 - [x] hyprland workspacer (good workspaces on multi-monitor)
 - [ ] swaync
-- [ ] anti oled burn-in
+- [x] anti oled burn-in
 - [ ] howdy
 - [ ] hyprswitch
 - [ ] resolve power plugged problem
-- [ ] oled life fixies
-- [ ] hyprcursor Adwaita
+- [x] hyprcursor Adwaita
 - [ ] hyprexpo
+- [ ] luks2, tmp2 unlock, secureboot
 
 ### Overlays (custom packages and other):
 - micro-wakatime (faster loading)
