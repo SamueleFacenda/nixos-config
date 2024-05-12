@@ -16,6 +16,7 @@ in
       wallpaper = , ${bg}
 
       ipc = off
+      splash = false
     '';
   };
 }

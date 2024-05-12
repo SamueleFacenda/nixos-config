@@ -134,6 +134,7 @@ TODOS:
 - [x] hyprcursor Adwaita
 - [ ] hyprexpo
 - [ ] luks2, tmp2 unlock, secureboot
+- [ ] nh
 
 ### Overlays (custom packages and other):
 - micro-wakatime (faster loading)
