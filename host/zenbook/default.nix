@@ -67,6 +67,9 @@ in {
       # Device specific config
       ./power.nix
       ./gpu.nix
+      
+      # Secure boot
+      lanzaboote.nixosModules.lanzaboote
     ];
 
   # override for custom name (this is also the default value)
@@ -117,4 +120,18 @@ in {
     "resume_offset=2291712"
   ];
   services.logind.lidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors
+  
+  # Secure boot
+  
+  environment.systemPackages = with pkgs; [
+    sbctl
+  ];
+  
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+  
+  boot.lanzaboote = {
+    enable = true;
+    configurationLimit = 5;
+    pkiBundle = "/etc/secureboot";
+  };
 }
