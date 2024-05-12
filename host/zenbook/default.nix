@@ -109,4 +109,12 @@ in {
   
   # Automatic ssd trim
   services.fstrim.enable = true; 
+  
+  # Swap and hibernate
+  swapDevices = [ { device = "/var/swapfile"; size = (48 + 8)*1024; } ]; # ram + buffer
+  boot.resumeDevice = "/dev/dm-0";
+  boot.kernelParams = [
+    "resume_offset=2291712"
+  ];
+  services.logind.lidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors
 }
