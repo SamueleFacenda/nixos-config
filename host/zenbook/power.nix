@@ -15,6 +15,7 @@
       WIFI_PWR_ON_AC = "off";
       WIFI_PWR_ON_BAT = "on";
       
+      RESTORE_DEVICE_STATE_ON_STARTUP = 0;
       DEVICES_TO_ENABLE_ON_AC = "bluetooth wifi";
       DEVICES_TO_DISABLE_ON_BAT_NOT_IN_USE = "bluetooth wifi";
       
