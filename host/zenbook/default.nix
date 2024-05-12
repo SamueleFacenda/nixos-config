@@ -125,13 +125,24 @@ in {
   
   environment.systemPackages = with pkgs; [
     sbctl
+    tpm2-tools
+    tpm2-tss 
   ];
   
   boot.loader.systemd-boot.enable = lib.mkForce false;
   
   boot.lanzaboote = {
     enable = true;
-    configurationLimit = 5;
+    configurationLimit = 12;
     pkiBundle = "/etc/secureboot";
   };
+  
+  # https://nixos.wiki/wiki/TPM
+  security.tpm2 = {
+    enable = true;
+    pkcs11.enable = true;
+    tctiEnvironment.enable = true;
+  };
+  users.users.samu.extraGroups = [ "tss" ];
+  boot.initrd.systemd.enable = true;
 }
