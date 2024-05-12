@@ -144,5 +144,6 @@ in {
     tctiEnvironment.enable = true;
   };
   users.users.samu.extraGroups = [ "tss" ];
-  boot.initrd.systemd.enable = true;
+  
+  boot.initrd.systemd.enable = true; # Auto luks unlock
 }

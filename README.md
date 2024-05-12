@@ -133,7 +133,7 @@ TODOS:
 - [ ] resolve power plugged problem
 - [x] hyprcursor Adwaita
 - [ ] hyprexpo
-- [ ] luks2, tmp2 unlock
+- [x] luks2, tmp2 unlock
 - [ ] nh
 
 ### Overlays (custom packages and other):
