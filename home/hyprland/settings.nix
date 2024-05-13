@@ -1,18 +1,19 @@
 { config, pkgs, lib, device, ... }:
 let
-  monitors = [ "eDP-1" ] ++ 
-  map (id: "DP-" + builtins.toString id) (lib.lists.range 1 8) ++
-  map (id: "HDMI-A-" + builtins.toString id) (lib.lists.range 1 2);
-in {
+  monitors = [ "eDP-1" ] ++
+    map (id: "DP-" + builtins.toString id) (lib.lists.range 1 8) ++
+    map (id: "HDMI-A-" + builtins.toString id) (lib.lists.range 1 2);
+in
+{
   wayland.windowManager.hyprland.settings = {
     monitor = [
       # "eDP-1,2736x1824,0x0,2" # builtin
       "desc:Samsung Display Corp. 0x4190,2880x1800@60,0x0,2" # builtin (120hz possibles)
       "desc:Fujitsu Siemens Computers GmbH E22W-5 YV2C027320,1680x1050@60,1440x-1050,1" # big fujitsu
       "desc:Ancor Communications Inc ASUS VW199 DCLMTF153087,1440x900@60,0x-900,1" # small asus
-      
+
       "desc:HSI HiTV 0x00000001,highres,0x-1440,1" # projector
-      
+
       "desc:Ancor Communications Inc VX279 D5LMRS021367,1920x1080,0x-1080,1" # work
       "desc:Dell Inc. DELL U2412M Y1H5T17S0N3L,1680x1050@60,0x-1050,1" # work dell
 
@@ -38,7 +39,7 @@ in {
       follow_mouse = 2; # keyboard focus don't change until click on window
     };
 
-    device = [  
+    device = [
       {
         name = "ipts-stylus";
         transform = 0;
@@ -65,29 +66,29 @@ in {
       new_is_master = true;
     };
 
-#     plugin = {
-#       hyprfocus = {
-#         enabled = "yes";
-#         keyboard_focus_animation = "flash";
-#         mouse_focus_animation = "nothing";
-#         bezier = [ "bezIn, 0.5,0.0,1.0,0.5" "bezOut, 0.0,0.5,0.5,1.0" ];
-# 
-#         flash = {
-#           flash_opacity = 0.7;
-#           in_bezier = "bezIn";
-#           in_speed = 0.5;
-#           out_bezier = "bezOut";
-#           out_speed = 3;
-#         };
-#         shrink = {
-#           shrink_percentage = 0.95;
-#           in_bezier = "bezIn";
-#           in_speed = 0.5;
-#           out_bezier = "bezOut";
-#           out_speed = 3;
-#         };
-#       };
-#     };
+    #     plugin = {
+    #       hyprfocus = {
+    #         enabled = "yes";
+    #         keyboard_focus_animation = "flash";
+    #         mouse_focus_animation = "nothing";
+    #         bezier = [ "bezIn, 0.5,0.0,1.0,0.5" "bezOut, 0.0,0.5,0.5,1.0" ];
+    # 
+    #         flash = {
+    #           flash_opacity = 0.7;
+    #           in_bezier = "bezIn";
+    #           in_speed = 0.5;
+    #           out_bezier = "bezOut";
+    #           out_speed = 3;
+    #         };
+    #         shrink = {
+    #           shrink_percentage = 0.95;
+    #           in_bezier = "bezIn";
+    #           in_speed = 0.5;
+    #           out_bezier = "bezOut";
+    #           out_speed = 3;
+    #         };
+    #       };
+    #     };
 
     debug = {
       disable_logs = true;
@@ -129,19 +130,19 @@ in {
       ];
 
     };
-    
+
     # Monitor bindings and workspace persistance. N workspaces per monitor (But the [n]0 and [n]{n-1} cannot be accessed)
-    workspace = 
-    let
-      n = config.wayland.windowManager.hyprland.maxNWorkspaces;
-    in
-    lib.lists.flatten 
-      (lib.lists.imap0 
-        (mId: name:
-          builtins.genList
-            (wId: builtins.toString (mId*n + wId) + ", monitor:${name}" + # optional: persistent:true, change only the waybar widget
-              lib.strings.optionalString (wId == 1) ", default:true") # The [n]1 workspace is the default  
-            n)
-        monitors);
+    workspace =
+      let
+        n = config.wayland.windowManager.hyprland.maxNWorkspaces;
+      in
+      lib.lists.flatten
+        (lib.lists.imap0
+          (mId: name:
+            builtins.genList
+              (wId: builtins.toString (mId * n + wId) + ", monitor:${name}" + # optional: persistent:true, change only the waybar widget
+                lib.strings.optionalString (wId == 1) ", default:true") # The [n]1 workspace is the default  
+              n)
+          monitors);
   };
 }

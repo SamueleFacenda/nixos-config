@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ...}:{
+{ config, lib, pkgs, ... }: {
   # touch gestures
   wayland.windowManager.hyprland = {
     plugins = [ pkgs.hyprgrass ];

@@ -1,7 +1,7 @@
 final: prev: {
   # copy everithing but edit the desktop entry
   # just to enable the touchpad gestures (should have done with a wrapper)
-  brave = prev.runCommandLocal prev.brave.name {} ''
+  brave = prev.runCommandLocal prev.brave.name { } ''
     mkdir $out
 
     ln -st $out ${prev.brave}/opt

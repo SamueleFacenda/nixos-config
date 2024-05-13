@@ -107,7 +107,7 @@
   # Make `nix repl '<nixpkgs>'` use the same nixpkgs as the one used by this flake.
   environment.etc."nix/inputs/nixpkgs".source = "${nixpkgs}";
   nix.nixPath = [ "/etc/nix/inputs" ];
-  
+
   # OOM Settings (help preventing system freezes) (https://discourse.nixos.org/t/nix-build-ate-my-ram/35752)
   systemd.services.nix-daemon.serviceConfig.OOMScoreAdjust = 250;
   nix.daemonCPUSchedPolicy = "idle";

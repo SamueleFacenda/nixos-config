@@ -136,7 +136,7 @@ in
     # https://github.com/umlaeute/v4l2loopback
     options v4l2loopback devices=2 video_nr=40,41,42 exclusive_caps=1,1,1 card_label="Camera,Screen,Network"
   '';
-  
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

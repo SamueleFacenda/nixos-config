@@ -31,7 +31,7 @@ stdenvNoCC.mkDerivation rec {
     description = "Run shell scripts in response to Hyprland events";
     license = licenses.mit;
     platforms = platforms.unix;
-    maintainers = with maintainers; [fufexan];
+    maintainers = with maintainers; [ fufexan ];
     mainProgram = "shellevents";
   };
 }

@@ -1,7 +1,7 @@
 # font patched with bullet point right (not an animal paw like the original one)
 final: prev:
-let 
-  mkHyprcursorTheme = {pkg, name}: prev.stdenv.mkDerivation {
+let
+  mkHyprcursorTheme = { pkg, name }: prev.stdenv.mkDerivation {
     name = pkg.name;
     src = pkg;
     nativeBuildInputs = with prev; [

@@ -1,6 +1,7 @@
-{ config, pkgs, lib, ...}:
-let 
-  events = [ # cat file | grep '()' | tr -d "(){ " | sed 's/^/"/' | sed 's/$/"/'
+{ config, pkgs, lib, ... }:
+let
+  events = [
+    # cat file | grep '()' | tr -d "(){ " | sed 's/^/"/' | sed 's/$/"/'
     "workspace"
     "focusedmon"
     "activewindow"
@@ -20,8 +21,8 @@ let
     "closelayer"
     "submap"
   ];
-  
-  cfg = config.services.hypr-shellevents; 
+
+  cfg = config.services.hypr-shellevents;
 
   hyprlandEventHandlers = pkgs.writeShellScript "hyprlandEventHandlers" (
     builtins.concatStringsSep
@@ -38,13 +39,13 @@ let
     ${pkgs.socat}/bin/socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock \
       EXEC:"${pkgs.hypr-shellevents}/bin/shellevents ${hyprlandEventHandlers}",nofork
   '';
-  
-in 
+
+in
 {
   config.wayland.windowManager.hyprland.settings.exec-once = lib.mkIf cfg.enable [
     hyprlandHandleEvents
   ];
-  
+
   options.services.hypr-shellevents = {
     enable = lib.mkEnableOption "hypr-shellevents";
     callbacks = lib.attrsets.genAttrs events (name: lib.mkOption {
@@ -56,7 +57,7 @@ in
       '';
     });
   };
-  
+
   options.wayland.windowManager.hyprland.maxNWorkspaces = lib.mkOption {
     type = lib.types.int;
     default = 6;
@@ -67,61 +68,61 @@ in
       to have one workspace.
     '';
   };
-  
-  
+
+
   config.services.hypr-shellevents = {
     enable = true;
     callbacks = {
       # openwindow = "check-hide-waybar";
       # closewindow = "check-hide-waybar";
-      
-      workspace = 
+
+      workspace =
         let
           n = config.wayland.windowManager.hyprland.maxNWorkspaces;
           nstr = builtins.toString n;
-        in 
-        lib.trivial.throwIf 
+        in
+        lib.trivial.throwIf
           (n < 3)
           "There must be at least 3 workspaces (two are unacessible)"
           ''
-          # WORKSPACENAME
+            # WORKSPACENAME
 
-          focusedmonitor=$(hyprctl workspaces -j \
-            | jq ".[] | select(.name == \"$WORKSPACENAME\") | .monitor")
+            focusedmonitor=$(hyprctl workspaces -j \
+              | jq ".[] | select(.name == \"$WORKSPACENAME\") | .monitor")
             
-          othersworkspaceid=$(hyprctl monitors -j \
-            | jq ".[] | select(.name != $focusedmonitor) | .activeWorkspace.id")
+            othersworkspaceid=$(hyprctl monitors -j \
+              | jq ".[] | select(.name != $focusedmonitor) | .activeWorkspace.id")
             
-          focusedworkspaceid=$(hyprctl monitors -j \
-            | jq ".[] | select(.name == $focusedmonitor) | .activeWorkspace.id")
+            focusedworkspaceid=$(hyprctl monitors -j \
+              | jq ".[] | select(.name == $focusedmonitor) | .activeWorkspace.id")
             
-          # If it's trying to go to the 0 (before the first) block and return to the first
-          if [[ $((focusedworkspaceid % ${nstr})) == 0 ]]
-          then
-            hyprctl dispatch workspace r+1
-            return 0
-          fi
+            # If it's trying to go to the 0 (before the first) block and return to the first
+            if [[ $((focusedworkspaceid % ${nstr})) == 0 ]]
+            then
+              hyprctl dispatch workspace r+1
+              return 0
+            fi
           
-          # Same for the last
-          if [[ $((focusedworkspaceid % ${nstr})) == ${builtins.toString (n -1)} ]]
-          then
-            hyprctl dispatch workspace r-1
-            return 0
-          fi
+            # Same for the last
+            if [[ $((focusedworkspaceid % ${nstr})) == ${builtins.toString (n -1)} ]]
+            then
+              hyprctl dispatch workspace r-1
+              return 0
+            fi
 
-          hyprcommand=""
+            hyprcommand=""
 
-          while IFS= read -r monitorworkspaceid
-          do
-            hyprcommand+="dispatch workspace $((monitorworkspaceid / ${nstr} * ${nstr} + (focusedworkspaceid - 1) % ${nstr} + 1)) ; "
-          done <<< "$othersworkspaceid"
+            while IFS= read -r monitorworkspaceid
+            do
+              hyprcommand+="dispatch workspace $((monitorworkspaceid / ${nstr} * ${nstr} + (focusedworkspaceid - 1) % ${nstr} + 1)) ; "
+            done <<< "$othersworkspaceid"
 
-          prevcursorcoords=$(hyprctl cursorpos)
-          hyprcommand+="dispatch movecursor $(tr -d ',' <<<$prevcursorcoords)"
+            prevcursorcoords=$(hyprctl cursorpos)
+            hyprcommand+="dispatch movecursor $(tr -d ',' <<<$prevcursorcoords)"
 
-          hyprctl --batch "$hyprcommand" >/dev/null
+            hyprctl --batch "$hyprcommand" >/dev/null
           
-          # check-hide-waybar
+            # check-hide-waybar
           '';
     };
   };

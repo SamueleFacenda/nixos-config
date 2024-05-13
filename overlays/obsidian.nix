@@ -1,7 +1,7 @@
 final: prev: {
   # copy everithing but edit the desktop entry
   # just to enable the touchpad gestures (should have done with a wrapper)
-  obsidian = prev.runCommandLocal prev.obsidian.name {} ''
+  obsidian = prev.runCommandLocal prev.obsidian.name { } ''
     mkdir $out
 
     ln -st $out ${prev.obsidian}/share

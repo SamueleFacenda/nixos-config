@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ...}:{
+{ config, pkgs, lib, ... }: {
 
   # Nvidia (https://wiki.nixos.org/wiki/Nvidia)
   hardware.opengl = {
@@ -9,30 +9,30 @@
       vaapiVdpau
     ];
   };
-  
-  services.xserver.videoDrivers = ["nvidia"];
-  
+
+  services.xserver.videoDrivers = [ "nvidia" ];
+
   # boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
-  
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
     powerManagement.finegrained = true;
     open = false;
     nvidiaSettings = true;
-    
+
     prime = {
       # pci@0000:00:02.0 nvidia
       # pci@0000:01:00.0 intel
       nvidiaBusId = "PCI:1:0:0";
-		  intelBusId = "PCI:0:2:0";
-		  
-		  offload = {
-			  enable = true;
-			  enableOffloadCmd = true;
-		  };
+      intelBusId = "PCI:0:2:0";
+
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
     };
-  }; 
+  };
 
   # Change prime mode and some hyprland env vars (hdmi doesn't work with offload)
   specialisation.multi-monitor.configuration = {
@@ -46,18 +46,18 @@
     ];
     hardware.nvidia = {
       prime.offload = {
-			  enable = lib.mkForce false;
-			  enableOffloadCmd = lib.mkForce false;
-		  };
-		  prime.sync.enable = lib.mkForce true;
-		  powerManagement.finegrained = lib.mkForce false;
+        enable = lib.mkForce false;
+        enableOffloadCmd = lib.mkForce false;
+      };
+      prime.sync.enable = lib.mkForce true;
+      powerManagement.finegrained = lib.mkForce false;
     };
   };
-  
+
   environment.systemPackages = with pkgs; [
     nvtopPackages.nvidia
   ];
-  
+
   # Use these or the standard nvidia settings (not working now)
   services.supergfxd.enable = false;
   services.asusd = {

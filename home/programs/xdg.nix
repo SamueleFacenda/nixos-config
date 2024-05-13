@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-    flipAssocs = assocs:
+  flipAssocs = assocs:
     lib.pipe assocs [
       (lib.mapAttrsToList mapMimeListToXDGAttrs)
       lib.flatten

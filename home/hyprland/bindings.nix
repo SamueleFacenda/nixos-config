@@ -55,7 +55,7 @@
         # Lid switch settings
         ", switch:off:Lid Switch, exec, hyprctl keyword monitor 'eDP-1,highres,0x0,2'"
         ", switch:on:Lid Switch,exec, clamshell-suspend"
-        
+
         # Tmp fix for swaylock
         "$mod, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 ${pkgs.swaylock-effects}/bin/swaylock -f"
       ];

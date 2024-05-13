@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ...}:{
+{ config, lib, pkgs, ... }: {
   services.fusuma = {
     enable = true;
     extraPackages = with pkgs; [
@@ -19,7 +19,7 @@
           right.command = "hyprctl dispatch workspace r-1";
           left.command = "hyprctl dispatch workspace r+1";
           # enter exit overview (additional commands)
-          
+
           up.command = "hyprswitch --daemon";
           down.command = "hyprswitch --stop-daemon";
         };

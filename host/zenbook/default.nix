@@ -1,8 +1,9 @@
 { config, pkgs, lib, specialArgs, ... }:
 # specialArgs are inputs
-let 
+let
   stateVersion = "23.11";
-in {
+in
+{
   imports = with specialArgs;
     [
       # mandatory
@@ -10,8 +11,8 @@ in {
       ../../modules/nixos.nix
       ../../modules/utils.nix
 
-       ./hardware-configuration.nix
-       nixos-hardware.nixosModules.common-cpu-intel 
+      ./hardware-configuration.nix
+      nixos-hardware.nixosModules.common-cpu-intel
 
       # speed up kernel builds (slow down easy build unless overwritten)
       # ../../modules/remote-build.nix
@@ -63,11 +64,11 @@ in {
           };
         };
       }
-      
+
       # Device specific config
       ./power.nix
       ./gpu.nix
-      
+
       # Secure boot
       lanzaboote.nixosModules.lanzaboote
     ];
@@ -88,18 +89,18 @@ in {
   };
 
   system.stateVersion = stateVersion;
-  
+
   # Weylus: use the surface as input device
   programs.weylus = {
     enable = true;
     users = [ "samu" ];
   };
-  
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  
+
   # Thunderbolt
   services.hardware.bolt.enable = true;
-  
+
   home-manager.users.samu.wayland.windowManager.hyprland.settings = {
     workspace = [
       "m[eDP-1] w[t1], gapsin:0, rounding:false, decorate:false, gapsout:0"
@@ -109,34 +110,34 @@ in {
     #   "minsize 1440 900, onworkspace:m[eDP-1] w[t1]"
     # ];
   };
-  
+
   # Automatic ssd trim
-  services.fstrim.enable = true; 
-  
+  services.fstrim.enable = true;
+
   # Swap and hibernate
-  swapDevices = [ { device = "/var/swapfile"; size = (48 + 8)*1024; } ]; # ram + buffer
+  swapDevices = [{ device = "/var/swapfile"; size = (48 + 8) * 1024; }]; # ram + buffer
   boot.resumeDevice = "/dev/dm-0";
   boot.kernelParams = [
     "resume_offset=2291712"
   ];
   services.logind.lidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors
-  
+
   # Secure boot
-  
+
   environment.systemPackages = with pkgs; [
     sbctl
     tpm2-tools
-    tpm2-tss 
+    tpm2-tss
   ];
-  
+
   boot.loader.systemd-boot.enable = lib.mkForce false;
-  
+
   boot.lanzaboote = {
     enable = true;
     configurationLimit = 12;
     pkiBundle = "/etc/secureboot";
   };
-  
+
   # https://nixos.wiki/wiki/TPM
   security.tpm2 = {
     enable = true;
@@ -144,6 +145,6 @@ in {
     tctiEnvironment.enable = true;
   };
   users.users.samu.extraGroups = [ "tss" ];
-  
+
   boot.initrd.systemd.enable = true; # Auto luks unlock
 }

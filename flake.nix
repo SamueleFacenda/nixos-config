@@ -30,7 +30,7 @@
         x86_64-linux.genericLinux = inputs.nixos-generators.nixosGenerate {
           modules = [
             ./host/genericLinux
-            ({ lib, ... }: { 
+            ({ lib, ... }: {
               networking.networkmanager.enable = lib.mkForce false;
               users.default.name = lib.mkForce "nixos";
               users.default.longName = lib.mkForce "nixos";
@@ -143,7 +143,7 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.3.0";
       inputs.nixpkgs.follows = "nixpkgs";
