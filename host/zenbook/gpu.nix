@@ -12,12 +12,12 @@
   
   services.xserver.videoDrivers = ["nvidia"];
   
-  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
+  # boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
   
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
+    powerManagement.enable = false;
+    powerManagement.finegrained = true;
     open = false;
     nvidiaSettings = true;
     
@@ -50,6 +50,7 @@
 			  enableOffloadCmd = lib.mkForce false;
 		  };
 		  prime.sync.enable = lib.mkForce true;
+		  powerManagement.finegrained = lib.mkForce false;
     };
   };
   
