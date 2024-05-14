@@ -37,7 +37,6 @@
         # Move window on virtual desktop
         "$mod, right, movetoworkspace, r+1"
         "$mod, left, movetoworkspace, r-1"
-
       ];
 
       bindr = [
@@ -58,20 +57,34 @@
 
         # Tmp fix for swaylock
         "$mod, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 ${pkgs.swaylock-effects}/bin/swaylock -f"
+        
+        ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioStop, exec, playerctl play-pause"
+        ", XF86SelectiveScreenshot, exec, grim -g \"$(slurp)\" "
+        ", print, exec, grim"
       ];
 
       bindle = [
         # volume keys
         ", XF86AudioRaiseVolume, exec, swayosd-client --max-volume 150 --output-volume +5"
         ", XF86AudioLowerVolume, exec, swayosd-client --max-volume 150 --output-volume -5"
-        ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
         ", XF86MonBrightnessUp, exec, swayosd-client --brightness raise 200"
         ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower 200"
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioStop, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
-        ", print, exec, grim -g \"$(slurp)\" "
+        
+        # XF86TouchpadToggle XF86WebCam windows+p XF86Launch1 windows+shift+s -> XF86SelectiveScreenshot XF86AudioMicMute
+        
+        # For mic and camera buttons led toggle
+        # $ sudo -s
+        # $ cd /sys/kernel/debug/asus-nb-wmi
+        # $ echo "0x00040017" > dev_id
+        # $ echo "1" > ctrl_param
+        # $ cat  devs
+        # $ echo "0" > ctrl_param
+        # $ cat  devs
+        # $ echo "0x00060078" > dev_id
       ];
     };
 }
