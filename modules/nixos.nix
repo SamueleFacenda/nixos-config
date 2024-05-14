@@ -1,6 +1,10 @@
-{ lib, config, pkgs, nixpkgs, self, ... }:
+{ lib, config, pkgs, nixpkgs, nix-gc-env,  self, ... }:
 
 {
+  imports = [
+    nix-gc-env.nixosModules.default
+  ];
+
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -81,7 +85,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly";
-    options = "--delete-older-than 30d";
+    delete_generations = "+" + builtins.toString config.boot.loader.systemd-boot.configurationLimit;
     randomizedDelaySec = "15min";
   };
 

@@ -150,5 +150,7 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks";
     };
+    
+    nix-gc-env.url = "github:Julow/nix-gc-env";
   };
 }
