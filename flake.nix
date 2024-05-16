@@ -16,9 +16,11 @@
         })
         (builtins.readDir ./host);
 
-      devShells = eachSystem (system:
-        (import ./shells { pkgs = pk system; }) //
-        { default = (pk system).mkShell { inherit (self.checks.${system}.pre-commit-check) shellHook; }; }
+      devShells = eachSystem (system: { 
+          default = (pk system).mkShell { 
+            inherit (self.checks.${system}.pre-commit-check) shellHook; 
+          }; 
+        }
       );
 
       formatter = eachSystem (system: (pk system).nixpkgs-fmt);

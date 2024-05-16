@@ -9,7 +9,6 @@
     shellAliases = {
       up = "sudo nixos-rebuild switch --flake samu";
       fup = "sudo nixos-rebuild switch --flake samu --fast --builders ''";
-      shell = "NIXPKGS_ALLOW_UNFREE=1 nix develop --impure";
       free-space = "home-manager expire-generations '-7 days' && sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
       # code = "codium --password-store=\"gnome\"";
       srm = "saferm";
@@ -31,14 +30,13 @@
       ggr = "git grep --ignore-case";
       bright = "swayosd-client --brightness raise";
       dark = "swayosd-client --brightness lower";
+      lum = "swayosd-client --brightness";
       img = "kitty +kitten icat";
       logh =
         if secrets ? github-token
         then "sudo cat ${secrets.github-token.path} | gh auth login --with-token"
         else "gh auth login";
       rlk = "kitty --directory $HOME --detach; exit";
-
-      pwn = "shell samu#pwn";
 
       bat = "cat /sys/class/power_supply/BAT1/capacity";
       screenshot = "grim -g \"$(slurp)\"";
