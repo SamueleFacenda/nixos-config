@@ -37,8 +37,11 @@
         then "sudo cat ${secrets.github-token.path} | gh auth login --with-token"
         else "gh auth login";
       rlk = "kitty --directory $HOME --detach; exit";
-
-      bat = "cat /sys/class/power_supply/BAT1/capacity";
+      
+      ac = "sudo auto-cpufreq --force performance && sudo tlp ac";
+      batt = "sudo auto-cpufreq --force powersave && sudo tlp bat";
+      
+      bat = "cat /sys/class/power_supply/BAT*/capacity";
       screenshot = "grim -g \"$(slurp)\"";
     };
 
