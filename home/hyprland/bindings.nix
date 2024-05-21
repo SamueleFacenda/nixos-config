@@ -61,7 +61,8 @@
         ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioStop, exec, playerctl play-pause"
-        ", XF86SelectiveScreenshot, exec, grim -g \"$(slurp)\" "
+        # ", XF86SelectiveScreenshot, exec, grim -g \"$(slurp)\" "
+        "SUPER_SHIFT, S, exec, grim -g \"$(slurp)\" "
         ", print, exec, grim"
       ];
 
@@ -74,7 +75,7 @@
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
         
-        # XF86TouchpadToggle XF86WebCam windows+p XF86Launch1 windows+shift+s -> XF86SelectiveScreenshot XF86AudioMicMute
+        # XF86TouchpadToggle XF86WebCam windows+p XF86Launch1 leftwindows+leftshift+s+XF86SelectiveScreenshot XF86AudioMicMute
         
         # For mic and camera buttons led toggle
         # $ sudo -s
