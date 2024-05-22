@@ -3,6 +3,8 @@
 <!-- 
 to count the lines that I've written
 find ./ "" -type f 2>/dev/null -not -path '*/.*' | grep -v -E ".git|.png|.age|.jpg|.pem|.lock|.zsh|.py|.conf" | xargs cat | wc -l 
+
+https://github.com/MayNiklas/eduroam-flake
 -->
 
 ![hyprland screenshot](assets/screenshot1.png)
@@ -73,7 +75,6 @@ TODOS:
 - [x] secure boot
 - [x] surface kernel
 - [x] IPTS (surface pen)
-- [x] ~~libwacom overlay~~
 - [x] fonts
 - [x] cache cleanup
 - [x] rice (for me this is enough)
@@ -135,6 +136,7 @@ TODOS:
 - [ ] hyprexpo
 - [x] luks2, tmp2 unlock
 - [ ] nh
+- [ ] cuda
 
 ### Overlays (custom packages and other):
 - micro-wakatime (faster loading)

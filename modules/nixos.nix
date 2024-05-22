@@ -122,4 +122,8 @@
   #   ManagedOOMMemoryPressureLimit = "50%";
   # };
   # systemd.services."nix-daemon".serviceConfig.Slice = "nix-daemon.slice";
+  
+  environment.variables = {
+    NIXPKGS_ALLOW_UNFREE = 1;
+  };
 }

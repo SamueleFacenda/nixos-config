@@ -105,10 +105,11 @@ in
     workspace = [
       "m[eDP-1] w[t1], gapsin:0, rounding:false, decorate:false, gapsout:0"
     ];
-    # windowrulev2 = [
+    windowrulev2 = [
     #   # "fullscreen:1, onworkspace:m[eDP-1] w[1]"
+      # "maxsize 0 0, class(waybar) onworkspace:m[eDP-1] w[1]"
     #   "minsize 1440 900, onworkspace:m[eDP-1] w[t1]"
-    # ];
+    ];
   };
 
   # Automatic ssd trim
