@@ -88,11 +88,6 @@
       inputs.home-manager.follows = "home-manager";
     };
 
-    hyprgrass = {
-      url = "github:horriblename/hyprgrass";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     # nixpkgs-wayland = {
     #   url = "github:nix-community/nixpkgs-wayland";
     #   inputs.flake-compat.follows = "flake-compat";
@@ -136,6 +131,11 @@
 
     hyprfocus = {
       url = "github:VortexCoyote/hyprfocus";
+      inputs.hyprland.follows = "hyprland";
+    };
+    
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland";
     };
 

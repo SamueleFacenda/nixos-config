@@ -9,6 +9,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nixpkgs.config.allowUnfree = true;
+  environment.variables.NIXPKGS_ALLOW_UNFREE = 1;
   nixpkgs.config = {
     permittedInsecurePackages = [
       "electron-25.9.0"
@@ -122,8 +123,4 @@
   #   ManagedOOMMemoryPressureLimit = "50%";
   # };
   # systemd.services."nix-daemon".serviceConfig.Slice = "nix-daemon.slice";
-  
-  environment.variables = {
-    NIXPKGS_ALLOW_UNFREE = 1;
-  };
 }
