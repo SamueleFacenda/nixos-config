@@ -64,7 +64,7 @@ in
       "workbench.iconTheme" = "vscode-icons";
       "vsicons.dontShowNewVersionMessage" = true;
       "nix.enableLanguageServer" = true;
-      # "nix.serverPath" = "${pkgs.nixd}/bin/nixd"; TODO wait for security fix
+      "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
       "nix.serverSettings".nixd = {
         formatting.command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
         eval.target.installable = "${self.outPath}#nixosConfigurations.surface.config.system.build.toplevel";
