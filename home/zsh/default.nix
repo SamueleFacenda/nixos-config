@@ -32,6 +32,7 @@
       dark = "swayosd-client --brightness lower";
       lum = "swayosd-client --brightness";
       img = "kitty +kitten icat";
+      tmp = "cd $(mktemp -d)";
       logh =
         if secrets ? github-token
         then "sudo cat ${secrets.github-token.path} | gh auth login --with-token"
@@ -39,6 +40,7 @@
       
       ac = "sudo auto-cpufreq --force performance && sudo tlp ac";
       batt = "sudo auto-cpufreq --force powersave && sudo tlp bat";
+      
       
       bat = "cat /sys/class/power_supply/BAT*/capacity";
       screenshot = "grim -g \"$(slurp)\"";

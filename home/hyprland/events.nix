@@ -1,25 +1,44 @@
 { config, pkgs, lib, ... }:
 let
   events = [
-    # cat file | grep '()' | tr -d "(){ " | sed 's/^/"/' | sed 's/$/"/'
+    # cat file | grep '()' | tr -d "(){ " | sed 's/^event_/"/' | sed 's/$/"/'
     "workspace"
+    "workspacev2"
     "focusedmon"
     "activewindow"
     "activewindowv2"
     "fullscreen"
     "monitorremoved"
     "monitoradded"
+    "monitoraddedv2"
     "createworkspace"
+    "createworkspacev2"
     "destroyworkspace"
+    "destroyworkspacev2"
     "moveworkspace"
+    "moveworkspacev2"
+    "renameworkspace"
+    "activespecial"
     "activelayout"
     "openwindow"
     "closewindow"
     "movewindow"
+    "movewindowv2"
     "windowtitle"
     "openlayer"
     "closelayer"
     "submap"
+    "changefloatingmode"
+    "urgent"
+    "minimize"
+    "screencast"
+    "togglegroup"
+    "moveintogroup"
+    "moveoutofgroup"
+    "ignoregrouplock"
+    "lockgroups"
+    "configreloaded"
+    "pin"
   ];
 
   cfg = config.services.hypr-shellevents;
@@ -76,6 +95,7 @@ in
       # openwindow = "check-hide-waybar";
       # closewindow = "check-hide-waybar";
 
+      # TODO movewindow put windows back if they are put on the unaccessible workspaces
       workspace =
         let
           n = config.wayland.windowManager.hyprland.maxNWorkspaces;
@@ -84,6 +104,7 @@ in
         lib.trivial.throwIf
           (n < 3)
           "There must be at least 3 workspaces (two are unacessible)"
+          # TODO use workspacev2 and get workspaceid
           ''
             # WORKSPACENAME
 

@@ -12,8 +12,8 @@ stdenvNoCC.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "hyprwm";
     repo = "contrib";
-    rev = "110e6dc761d5c3d352574def3479a9c39dfc4358";
-    sha256 = "DDAYNGSnrBwvVfpKx+XjkuecpoE9HiEf6JW+DBQgvm0=";
+    rev = "33b38358559054d316eb605ccb733980dfa7dc63";
+    sha256 = "y+LOXuSRMfkR2Vfwl5K2NVrszi1h5MJpML+msLnVS8U=";
   };
   sourceRoot = "${src.name}/shellevents";
 
