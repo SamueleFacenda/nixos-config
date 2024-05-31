@@ -30,7 +30,7 @@ in
     input = {
       touchpad.natural_scroll = true;
 
-      kb_layout = "us,it";
+      kb_layout = "it,us";
       kb_options = "grp:win_space_toggle,caps:escape_shifted_capslock";
 
       repeat_rate = 25;

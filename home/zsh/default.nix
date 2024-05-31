@@ -36,7 +36,6 @@
         if secrets ? github-token
         then "sudo cat ${secrets.github-token.path} | gh auth login --with-token"
         else "gh auth login";
-      rlk = "kitty --directory $HOME --detach; exit";
       
       ac = "sudo auto-cpufreq --force performance && sudo tlp ac";
       batt = "sudo auto-cpufreq --force powersave && sudo tlp bat";

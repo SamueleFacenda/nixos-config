@@ -18,6 +18,7 @@
       RESTORE_DEVICE_STATE_ON_STARTUP = 0;
       DEVICES_TO_ENABLE_ON_AC = "bluetooth wifi";
       DEVICES_TO_DISABLE_ON_BAT_NOT_IN_USE = "bluetooth wifi";
+      USB_EXCLUDE_BTUSB = 1; # "8087:0033";
 
       RUNTIME_PM_ON_AC = "on";
       RUNTIME_PM_ON_BAT = "auto";

@@ -107,7 +107,6 @@
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
       inputs.flake-compat.follows = "flake-compat";
     };
 
@@ -124,7 +123,7 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.39.1";
+      url = "github:hyprwm/Hyprland/v0.40.0";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
     };

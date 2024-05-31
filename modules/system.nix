@@ -98,6 +98,8 @@
     gnumake
     wireguard-tools
     networkmanager
+    usbutils
+    glxinfo
 
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
     (
