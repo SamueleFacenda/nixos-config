@@ -25,6 +25,7 @@ in
       nur.nixosModules.nur
 
       # { nixpkgs.overlays = [ nixpkgs-wayland.overlay ]; }
+      { nixpkgs.overlays = [ hyprland.overlays.default ]; }
       ../../overlays
 
       home-manager.nixosModules.home-manager

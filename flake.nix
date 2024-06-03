@@ -5,6 +5,7 @@
   outputs = { self, nixpkgs, ... }@inputs:
     let
       eachSystem = nixpkgs.lib.genAttrs (import inputs.systems);
+      # Override hyprland in the flake packages (but not into nixos configurations)
       pk = system: nixpkgs.legacyPackages.${system}.extend inputs.hyprland.overlays.default;
     in
     {
@@ -25,8 +26,6 @@
 
       formatter = eachSystem (system: (pk system).nixpkgs-fmt);
 
-      # Warning: these packages are built with a non overwritten nixpkgs. To use, for example,
-      # the flake's hyprland in the package build, the package must be overwritten.
       packages = nixpkgs.lib.recursiveUpdate (eachSystem (system: import ./packages (pk system))) {
         # custom images
         x86_64-linux.genericLinux = inputs.nixos-generators.nixosGenerate {
