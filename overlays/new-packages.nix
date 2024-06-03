@@ -12,6 +12,7 @@ in
     hyprland-virtual-desktops
     hyprswitch
     hypr-shellevents
+    hyprspace
     xdg-desktop-portal-termfilechooser;
 
   # Flake packages

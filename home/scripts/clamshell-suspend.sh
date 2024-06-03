@@ -6,6 +6,6 @@ if (( n_monitors > 1 ))
 then
     logger "$0: disable builtin monitor"
     hyprctl keyword monitor "eDP-1, disable"
-    # "disable" not working right now, this is better than nothing
-    swayosd-client --brightness 0
+    # "disable" not working right now, this is better than nothing (now works)
+    # swayosd-client --brightness 0
 fi
