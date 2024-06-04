@@ -91,60 +91,77 @@ in
 
   config.services.hypr-shellevents = {
     enable = true;
-    callbacks = {
-      # openwindow = "check-hide-waybar";
-      # closewindow = "check-hide-waybar";
-
-      # TODO movewindow put windows back if they are put on the unaccessible workspaces
-      workspace =
-        let
-          n = config.wayland.windowManager.hyprland.maxNWorkspaces;
-          nstr = builtins.toString n;
-        in
+    callbacks = 
+      let
+        n = config.wayland.windowManager.hyprland.maxNWorkspaces;
+        nstr = builtins.toString n;
+      in
         lib.trivial.throwIf
-          (n < 3)
+          (n < 3) 
           "There must be at least 3 workspaces (two are unacessible)"
-          # TODO use workspacev2 and get workspaceid
-          ''
-            # WORKSPACENAME
+          {
+            # openwindow = "check-hide-waybar";
+            # closewindow = "check-hide-waybar";
 
-            focusedmonitor=$(hyprctl workspaces -j \
-              | jq ".[] | select(.name == \"$WORKSPACENAME\") | .monitor")
+            # TODO movewindow put windows back if they are put on the unaccessible workspaces
+            # TODO use workspacev2 and get workspaceid
+            workspace = ''
+              # WORKSPACENAME
+
+              focusedmonitor=$(hyprctl workspaces -j \
+                | jq ".[] | select(.name == \"$WORKSPACENAME\") | .monitor")
+              
+              othersworkspaceid=$(hyprctl monitors -j \
+                | jq ".[] | select(.name != $focusedmonitor) | .activeWorkspace.id")
+              
+              focusedworkspaceid=$(hyprctl monitors -j \
+                | jq ".[] | select(.name == $focusedmonitor) | .activeWorkspace.id")
+              
+              # If it's trying to go to the 0 (before the first) block and return to the first
+              if [[ $((focusedworkspaceid % ${nstr})) == 0 ]]
+              then
+                hyprctl dispatch workspace r+1
+                return 0
+              fi
             
-            othersworkspaceid=$(hyprctl monitors -j \
-              | jq ".[] | select(.name != $focusedmonitor) | .activeWorkspace.id")
+              # Same for the last
+              if [[ $((focusedworkspaceid % ${nstr})) == ${builtins.toString (n -1)} ]]
+              then
+                hyprctl dispatch workspace r-1
+                return 0
+              fi
+
+              hyprcommand=""
+
+              while IFS= read -r monitorworkspaceid
+              do
+                hyprcommand+="dispatch workspace $((monitorworkspaceid / ${nstr} * ${nstr} + (focusedworkspaceid - 1) % ${nstr} + 1)) ; "
+              done <<< "$othersworkspaceid"
+
+              prevcursorcoords=$(hyprctl cursorpos)
+              hyprcommand+="dispatch movecursor $(tr -d ',' <<<$prevcursorcoords)"
+
+              hyprctl --batch "$hyprcommand" >/dev/null
             
-            focusedworkspaceid=$(hyprctl monitors -j \
-              | jq ".[] | select(.name == $focusedmonitor) | .activeWorkspace.id")
+              # check-hide-waybar
+            '';
             
-            # If it's trying to go to the 0 (before the first) block and return to the first
-            if [[ $((focusedworkspaceid % ${nstr})) == 0 ]]
-            then
-              hyprctl dispatch workspace r+1
-              return 0
-            fi
-          
-            # Same for the last
-            if [[ $((focusedworkspaceid % ${nstr})) == ${builtins.toString (n -1)} ]]
-            then
-              hyprctl dispatch workspace r-1
-              return 0
-            fi
-
-            hyprcommand=""
-
-            while IFS= read -r monitorworkspaceid
-            do
-              hyprcommand+="dispatch workspace $((monitorworkspaceid / ${nstr} * ${nstr} + (focusedworkspaceid - 1) % ${nstr} + 1)) ; "
-            done <<< "$othersworkspaceid"
-
-            prevcursorcoords=$(hyprctl cursorpos)
-            hyprcommand+="dispatch movecursor $(tr -d ',' <<<$prevcursorcoords)"
-
-            hyprctl --batch "$hyprcommand" >/dev/null
-          
-            # check-hide-waybar
-          '';
-    };
+            # Put windows back when they are thrown out of bounds
+            movewindowv2 = ''
+              if [[ $((WORKSPACEID % ${nstr})) == ${builtins.toString (n -1)} ]]
+              then
+                hyprctl dispatch movetoworkspacesilent \
+                   "$((WORKSPACEID-1)),address:$WINDOWADDRESS"
+                return 0
+              fi
+              
+              if [[ $((WORKSPACEID % ${nstr})) == 0 ]]
+              then
+                hyprctl dispatch movetoworkspacesilent \ 
+                  "$((WORKSPACEID+1)),address:$WINDOWADDRESS"
+                return 0
+              fi
+            '';
+          };
   };
 }
