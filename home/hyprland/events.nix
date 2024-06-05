@@ -151,14 +151,14 @@ in
               if [[ $((WORKSPACEID % ${nstr})) == ${builtins.toString (n -1)} ]]
               then
                 hyprctl dispatch movetoworkspacesilent \
-                   "$((WORKSPACEID-1)),address:$WINDOWADDRESS"
+                   "$((WORKSPACEID-1)),address:0x$WINDOWADDRESS"
                 return 0
               fi
               
               if [[ $((WORKSPACEID % ${nstr})) == 0 ]]
               then
                 hyprctl dispatch movetoworkspacesilent \ 
-                  "$((WORKSPACEID+1)),address:$WINDOWADDRESS"
+                  "$((WORKSPACEID+1)),address:0x$WINDOWADDRESS"
                 return 0
               fi
             '';

@@ -20,8 +20,8 @@
     nvidiaSettings = true;
 
     prime = {
-      # pci@0000:00:02.0 nvidia
-      # pci@0000:01:00.0 intel
+      # pci@0000:00:02.0 intel
+      # pci@0000:01:00.0 nvidia
       nvidiaBusId = "PCI:1:0:0";
       intelBusId = "PCI:0:2:0";
 
