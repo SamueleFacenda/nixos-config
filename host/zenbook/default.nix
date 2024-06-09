@@ -122,7 +122,8 @@ in
     "resume_offset=2291712"
   ];
   services.logind.lidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors
-  services.logind.lidSwitchExternalPower = lib.mkForce "suspend-then-hibernate";
+  services.logind.lidSwitchExternalPower = lib.mkForce "suspend-then-hibernate";  
+  # services.logind.powerKey = lib.mkForce "suspend-then-hibernate";
 
   # Secure boot
 
