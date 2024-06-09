@@ -106,9 +106,9 @@ in
       "m[eDP-1] w[t1], gapsin:0, rounding:false, decorate:false, gapsout:0"
     ];
     windowrulev2 = [
-    #   # "fullscreen:1, onworkspace:m[eDP-1] w[1]"
+      #   # "fullscreen:1, onworkspace:m[eDP-1] w[1]"
       # "maxsize 0 0, class(waybar) onworkspace:m[eDP-1] w[1]"
-    #   "minsize 1440 900, onworkspace:m[eDP-1] w[t1]"
+      #   "minsize 1440 900, onworkspace:m[eDP-1] w[t1]"
     ];
   };
 
@@ -122,7 +122,7 @@ in
     "resume_offset=2291712"
   ];
   services.logind.lidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors
-  services.logind.lidSwitchExternalPower = lib.mkForce "suspend-then-hibernate";  
+  services.logind.lidSwitchExternalPower = lib.mkForce "suspend-then-hibernate";
   # services.logind.powerKey = lib.mkForce "suspend-then-hibernate";
 
   # Secure boot

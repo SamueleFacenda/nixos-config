@@ -16,10 +16,10 @@ gcc13Stdenv.mkDerivation {
   };
 
   inherit (hyprland) nativeBuildInputs;
-  buildInputs = [hyprland] ++ hyprland.buildInputs;
-  
+  buildInputs = [ hyprland ] ++ hyprland.buildInputs;
+
   dontUseCmakeConfigure = true;
-  
+
   meta = with lib; {
     homepage = "https://github.com/KZDKM/Hyprspace";
     description = "Workspace overview plugin for Hyprland";

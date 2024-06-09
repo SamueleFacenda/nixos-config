@@ -57,7 +57,7 @@
 
         # Tmp fix for swaylock
         "$mod, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 ${pkgs.swaylock-effects}/bin/swaylock -f"
-        
+
         ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioStop, exec, playerctl play-pause"
@@ -74,9 +74,9 @@
         ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower 200"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
-        
+
         # XF86TouchpadToggle XF86WebCam windows+p XF86Launch1 leftwindows+leftshift+s+XF86SelectiveScreenshot XF86AudioMicMute
-        
+
         # For mic and camera buttons led toggle
         # $ sudo -s
         # $ cd /sys/kernel/debug/asus-nb-wmi

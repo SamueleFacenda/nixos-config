@@ -17,11 +17,11 @@
         })
         (builtins.readDir ./host);
 
-      devShells = eachSystem (system: { 
-          default = (pk system).mkShell { 
-            inherit (self.checks.${system}.pre-commit-check) shellHook; 
-          }; 
-        }
+      devShells = eachSystem (system: {
+        default = (pk system).mkShell {
+          inherit (self.checks.${system}.pre-commit-check) shellHook;
+        };
+      }
       );
 
       formatter = eachSystem (system: (pk system).nixpkgs-fmt);
@@ -131,7 +131,7 @@
       url = "github:VortexCoyote/hyprfocus";
       inputs.hyprland.follows = "hyprland";
     };
-    
+
     hyprgrass = {
       url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland";
@@ -150,7 +150,7 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks";
     };
-    
+
     nix-gc-env.url = "github:Julow/nix-gc-env";
   };
 }

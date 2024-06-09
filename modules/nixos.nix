@@ -1,4 +1,4 @@
-{ lib, config, pkgs, nixpkgs, nix-gc-env,  self, ... }:
+{ lib, config, pkgs, nixpkgs, nix-gc-env, self, ... }:
 
 {
   imports = [
