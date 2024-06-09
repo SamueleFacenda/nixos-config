@@ -58,8 +58,4 @@
 
   # Use these or the standard nvidia settings (not working now)
   services.supergfxd.enable = false;
-  services.asusd = {
-    enable = false;
-    enableUserService = false;
-  };
 }

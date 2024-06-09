@@ -2,7 +2,7 @@
 final: prev:
 let
   mkHyprcursorTheme = { pkg, name }: prev.stdenv.mkDerivation {
-    name = pkg.name;
+    name = "Hypr" + pkg.name;
     src = pkg;
     nativeBuildInputs = with prev; [
       hyprcursor

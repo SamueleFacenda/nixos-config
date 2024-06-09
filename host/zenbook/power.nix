@@ -60,4 +60,6 @@
   environment.systemPackages = with pkgs; [
     powertop
   ];
+  
+  services.asusd.enable = true;
 }
