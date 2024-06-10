@@ -2,7 +2,7 @@
 {
   description = "An over-engineered Hello World in C";
 
-  inputs.nixpkgs.url = "nixpkgs/nixos-23.05";
+  inputs.nixpkgs.url = "nixpkgs/nixos-24.05";
 
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
