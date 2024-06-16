@@ -124,6 +124,9 @@ in
   services.logind.lidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors
   services.logind.lidSwitchExternalPower = lib.mkForce "suspend-then-hibernate";
   # services.logind.powerKey = lib.mkForce "suspend-then-hibernate";
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=3h
+  '';
 
   # Secure boot
 
@@ -131,6 +134,7 @@ in
     sbctl
     tpm2-tools
     tpm2-tss
+    config.boot.kernelPackages.turbostat
   ];
 
   boot.loader.systemd-boot.enable = lib.mkForce false;
@@ -139,6 +143,7 @@ in
     enable = true;
     configurationLimit = 12;
     pkiBundle = "/etc/secureboot";
+    settings.timeout = 2;
   };
 
   # https://nixos.wiki/wiki/TPM

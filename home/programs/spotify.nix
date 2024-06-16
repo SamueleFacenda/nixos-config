@@ -15,7 +15,7 @@ in
   programs.spicetify =
     {
       enable = true;
-      theme = spicePkgs.themes.Sleek;
+      theme = spicePkgs.themes.Default;
 
       colorScheme = "custom";
       # https://github.com/spicetify/spicetify-themes/blob/3231c5e4d1a5f2dbae7aec65291364f863eaf9e0/Sleek/color.ini#L323
@@ -55,6 +55,15 @@ in
         marketplace
       ];
     };
+    
+  programs.spotify-player = {
+    enable = true;
+    settings = {
+      client_id = "478557dfc9ab451f8d97ee4070634865";
+      client_port = 8088;
+      
+    };
+  };
 
   services.spotifyd = {
     enable = false; # wait for build to be fixed

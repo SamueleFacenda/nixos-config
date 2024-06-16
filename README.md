@@ -115,7 +115,7 @@ TODOS:
 - [ ] waycorner
 - [x] adjust nixpkgs wayland overlay
 - [x] termfilechooser portal
-- [ ] spotify-player
+- [x] spotify-player
 - [ ] discocss (discord)
 - [ ] nix index database
 - [ ] tinyproxy wakapi
