@@ -5,14 +5,14 @@
 }:
 
 gcc13Stdenv.mkDerivation {
-  pname = "hyprspace";
-  version = "0.39.1";
+  pname = "Hyprspace";
+  version = "0.41.1";
 
   src = fetchFromGitHub {
     repo = "Hyprspace";
     owner = "KZDKM";
-    rev = "8049b2794ca19d49320093426677d8c2911e7327";
-    sha256 = "QKecFhWAB7sagSE+FXztINDqYqLro2nYp94f+ZtE/f4=";
+    rev = "b6f3fc37452ea9b38b5e2662a80fd80aed12018f";
+    sha256 = "P7sg1jE0fAF0SuJJu1x8LXqaPHNIbmbyColYJFNzWhU=";
   };
 
   inherit (hyprland) nativeBuildInputs;

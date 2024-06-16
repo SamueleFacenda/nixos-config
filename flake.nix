@@ -122,7 +122,10 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.39.1";
+      type = "git";
+      url = "https://github.com/hyprwm/Hyprland";
+      ref = "refs/tags/v0.41.1"; # https://github.com/NixOS/nix/issues/5291
+      submodules = true;
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
     };
