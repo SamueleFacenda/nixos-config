@@ -99,13 +99,17 @@ in
     };
 
     misc = {
-      enable_hyprcursor = false; # too few support now
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
       mouse_move_enables_dpms = true;
       key_press_enables_dpms = true;
       # suppress_portal_warnings = true; # documented but does not exists
       allow_session_lock_restore = true;
+    };
+    
+    cursor = {
+      enable_hyprcursor = true;
+      
     };
 
     decoration = {

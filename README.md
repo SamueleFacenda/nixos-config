@@ -137,6 +137,8 @@ TODOS:
 - [x] luks2, tmp2 unlock
 - [ ] nh
 - [ ] cuda
+- [ ] hyprland native gestures instead of fusuma
+- [ ] remove stylix
 
 ### Overlays (custom packages and other):
 - micro-wakatime (faster loading)
