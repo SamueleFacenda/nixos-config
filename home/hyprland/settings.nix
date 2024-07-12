@@ -19,6 +19,10 @@ in
 
       ",preferred,auto,1" # fallback
     ];
+    
+    env = [
+      "GRIM_DEFAULT_DIR,${config.xdg.userDirs.pictures}/screenshots"
+    ];
 
     windowrule = [
       # xdg-desktop-portal-termfilechooser
