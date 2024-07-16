@@ -3,10 +3,12 @@
 {
   gtk.iconTheme = {
     name = "Adwaita";
-    package = pkgs.gnome.adwaita-icon-theme;
+    package = pkgs.adwaita-icon-theme;
   };
 
   stylix = {
+    enable = true;
+  
     targets = {
       gnome.enable = false;
       kitty.enable = false;
@@ -17,7 +19,7 @@
     cursor = {
       name = "Adwaita";
       size = 24;
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
     };
 
     fonts =

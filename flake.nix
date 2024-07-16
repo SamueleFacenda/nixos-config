@@ -124,10 +124,11 @@
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
-      ref = "refs/tags/v0.41.1"; # https://github.com/NixOS/nix/issues/5291
+      ref = "refs/tags/v0.41.2"; # https://github.com/NixOS/nix/issues/5291
       submodules = true;
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.systems.follows = "systems";
+      # inputs.xdph.follows = "xdph";
     };
 
     hyprfocus = {

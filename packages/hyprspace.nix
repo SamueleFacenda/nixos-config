@@ -6,13 +6,13 @@
 
 gcc13Stdenv.mkDerivation {
   pname = "Hyprspace";
-  version = "0.41.1";
+  version = "0.41.2";
 
   src = fetchFromGitHub {
     repo = "Hyprspace";
     owner = "KZDKM";
-    rev = "b6f3fc37452ea9b38b5e2662a80fd80aed12018f";
-    sha256 = "P7sg1jE0fAF0SuJJu1x8LXqaPHNIbmbyColYJFNzWhU=";
+    rev = "e8662093ae5b6e13a3cf1145d21d4804a3e84aeb";
+    sha256 = "9aM4MCBJn4UstcsSdukOFTxg79keUMTw9Kmqr7Wsfmw=";
   };
 
   inherit (hyprland) nativeBuildInputs;

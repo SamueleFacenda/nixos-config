@@ -11,5 +11,6 @@ self: super: {
       inherit src;
       hash = "sha256-/q/ZCpKkwhnPh3MMVNYZw6XvjyQpoZDBXCPagliGr1M=";
     };
+    preFixup = "";
   };
 }

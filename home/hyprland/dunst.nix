@@ -9,7 +9,7 @@
     iconTheme = {
       name = "Adwaita";
       size = "32x32";
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
     };
     settings = {
       global = {

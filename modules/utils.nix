@@ -37,7 +37,7 @@ rec {
     contains = (element: list: any (x: x == element) list);
     not_contains = (element: list: all (x: x != element) list);
 
-    getIcon = path: pkgs.gnome.adwaita-icon-theme
+    getIcon = path: pkgs.adwaita-icon-theme
       + "/share/icons/Adwaita/symbolic/" + path;
     getIconPath = path: "${getIcon path}";
   };

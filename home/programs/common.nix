@@ -18,11 +18,11 @@
     # flameshot # https://github.com/flameshot-org/flameshot/issues/2978
     jq
     python312
-    gnome.seahorse
+    seahorse
     mediawriter
     rlwrap
     gparted
-    gnome.gnome-disk-utility
+    gnome-disk-utility
 
     # misc
     xdg-utils

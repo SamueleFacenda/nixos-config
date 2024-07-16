@@ -3,6 +3,7 @@
     stylix.nixosModules.stylix
   ];
   stylix = {
+    enable = true;
 
     # inherit (config.home-manager.users.samu.stylix) fonts;
 

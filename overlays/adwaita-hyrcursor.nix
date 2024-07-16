@@ -29,10 +29,8 @@ let
   };
 in
 {
-  gnome = prev.gnome // {
-    adwaita-icon-theme-hyprcursor = mkHyprcursorTheme {
-      pkg = prev.gnome.adwaita-icon-theme;
-      name = "Adwaita";
-    };
-  };
+  adwaita-icon-theme-hyprcursor = mkHyprcursorTheme {
+    pkg = prev.adwaita-icon-theme;
+    name = "Adwaita";
+  };  
 }

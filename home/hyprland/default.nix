@@ -25,11 +25,11 @@
     hyprshade
 
     # utilities
-    gnome.nautilus
-    gnome.eog
-    gnome.file-roller
-    gnome.totem
-    lollypop # gnome audio player
+    nautilus
+    eog
+    file-roller
+    totem
+    # broken dep lollypop # gnome audio player
 
     # screen recorder via xdg-desktop-portal
     kooha
