@@ -125,7 +125,7 @@ TODOS:
 - [x] image builder
 - [ ] syncthing
 - [x] nwg bar
-- [x] touchpad gestures (fusuma)
+- [x] touchpad gestures (hyprland native)
 - [x] hyprland workspacer (good workspaces on multi-monitor)
 - [ ] swaync
 - [x] anti oled burn-in
@@ -137,8 +137,6 @@ TODOS:
 - [x] luks2, tmp2 unlock
 - [ ] nh
 - [ ] cuda
-- [ ] hyprland native gestures instead of fusuma
-- [ ] remove stylix
 
 ### Overlays (custom packages and other):
 - micro-wakatime (faster loading)

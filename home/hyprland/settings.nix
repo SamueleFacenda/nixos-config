@@ -69,6 +69,13 @@ in
     master = {
       new_status = "master";
     };
+    
+    gestures = {
+      workspace_swipe = true;
+      workspace_swipe_fingers = 3;
+      workspace_swipe_forever = true;
+      workspace_swipe_use_r = true;
+    };
 
     plugin = {
       #       hyprfocus = {
@@ -113,7 +120,6 @@ in
     
     cursor = {
       enable_hyprcursor = true;
-      
     };
 
     decoration = {
