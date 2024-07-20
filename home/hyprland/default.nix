@@ -29,7 +29,7 @@
     eog
     file-roller
     totem
-    # broken dep lollypop # gnome audio player
+    lollypop # gnome audio player
 
     # screen recorder via xdg-desktop-portal
     kooha

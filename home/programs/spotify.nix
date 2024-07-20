@@ -1,6 +1,6 @@
 { config, pkgs, lib, spicetify-nix, secrets, ... }:
 let
-  spicePkgs = spicetify-nix.packages.${pkgs.system}.default;
+  spicePkgs = spicetify-nix.legacyPackages.${pkgs.system};
 in
 {
   # allow spotify to be installed if you don't have unfree enabled already
@@ -9,13 +9,13 @@ in
   ];
 
   # import the flake's module for your system
-  imports = [ spicetify-nix.homeManagerModule ];
+  imports = [ spicetify-nix.homeManagerModules.default ];
 
   # configure spicetify :)
   programs.spicetify =
     {
       enable = true;
-      theme = spicePkgs.themes.Default;
+      theme = spicePkgs.themes.default;
 
       colorScheme = "custom";
       # https://github.com/spicetify/spicetify-themes/blob/3231c5e4d1a5f2dbae7aec65291364f863eaf9e0/Sleek/color.ini#L323
@@ -51,8 +51,9 @@ in
       ];
 
       enabledCustomApps = with spicePkgs.apps; [
-        new-releases
+        newReleases
         marketplace
+        historyInSidebar
       ];
     };
     
