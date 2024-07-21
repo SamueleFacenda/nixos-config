@@ -75,6 +75,8 @@ in
       workspace_swipe_fingers = 3;
       workspace_swipe_forever = true;
       workspace_swipe_use_r = true;
+      workspace_swipe_distance = 150;
+      workspace_swipe_cancel_ratio = 0.1;
     };
 
     plugin = {
