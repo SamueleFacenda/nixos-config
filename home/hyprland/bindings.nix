@@ -74,8 +74,9 @@
         ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower 200"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioMicMute, exec, pamixer --default-source -t"
 
-        # XF86TouchpadToggle XF86WebCam windows+p XF86Launch1 leftwindows+leftshift+s+XF86SelectiveScreenshot XF86AudioMicMute
+        # XF86TouchpadToggle XF86WebCam windows+p XF86Launch1 leftwindows+leftshift+s+XF86SelectiveScreenshot 
 
         # For mic and camera buttons led toggle
         # $ sudo -s
