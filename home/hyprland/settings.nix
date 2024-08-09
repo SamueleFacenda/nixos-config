@@ -5,6 +5,11 @@ let
     map (id: "HDMI-A-" + builtins.toString id) (lib.lists.range 1 2);
 in
 {
+  services.hyprpaper.settings = {
+    ipc = "off";
+    splash = false;
+  };
+
   wayland.windowManager.hyprland.settings = {
     monitor = [
       # "eDP-1,2736x1824,0x0,2" # builtin

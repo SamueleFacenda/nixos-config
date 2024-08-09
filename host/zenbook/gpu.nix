@@ -12,10 +12,11 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
+    # package = config.boot.kernelPackages.nvidiaPackages.beta;
     modesetting.enable = true;
     powerManagement.enable = false;
     powerManagement.finegrained = true;
-    open = false;
+    open = false; # true
     nvidiaSettings = true;
 
     prime = {
