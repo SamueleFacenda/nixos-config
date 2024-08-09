@@ -152,7 +152,12 @@ in
     pkcs11.enable = true;
     tctiEnvironment.enable = true;
   };
-  users.users.samu.extraGroups = [ "tss" ];
+  users.users.samu.extraGroups = [ "tss" "docker" ];
 
   boot.initrd.systemd.enable = true; # Auto luks unlock
+  
+  # Docker
+  
+  virtualisation.docker.enable = true;
+  # user group at line 155
 }

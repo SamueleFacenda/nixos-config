@@ -28,6 +28,8 @@ in
       editorconfig.editorconfig
       ms-vscode.cpptools
       azdavis.millet
+      ms-vscode-remote.remote-containers
+      ms-azuretools.vscode-docker
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "copilot";

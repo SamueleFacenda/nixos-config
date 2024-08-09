@@ -59,7 +59,7 @@ in
   networking.networkmanager = {
     enable = true;
 
-    insertNameservers = [ "1.1.1.1" "1.0.0.1" ];
+    # insertNameservers = [ "1.1.1.1" ]; # "1.0.0.1"
 
     ensureProfiles = {
       environmentFiles = lib.mkIf (config.age.secrets ? network-keys) [ config.age.secrets.network-keys.path ];
