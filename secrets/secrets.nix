@@ -7,8 +7,12 @@ let
   zenbook = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICFL+UNaFO1NkvU+lvlaIbIDSLiXmRIgT2/C3r6rt2O+"
   ];
+  
+  surface-ng = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPcBmbjND6MiySUj0aP02nhuBUZerTTdJxO+bqFq5GTg"
+  ];
 
-  systems = surface-samu ++ zenbook;
+  systems = surface-samu ++ zenbook ++ surface-ng;
 in
 {
   "github-token.age".publicKeys = systems;
