@@ -8,13 +8,15 @@ in
     [
       ../../modules/system.nix
       ../../modules/nixos.nix
-      # ../../modules/gnome.nix
+      ../../modules/gnome.nix
       ../../modules/remote-build.nix
-      ../../modules/hyprland.nix
+      # ../../modules/hyprland.nix
       ../../modules/network.nix
       ../../modules/stylix.nix
       ../../modules/utils.nix
       ../../timers/empty-trash.nix
+      
+      ./power.nix
 
       ./hardware-configuration.nix
       nixos-hardware.nixosModules.microsoft-surface-pro-intel
@@ -25,7 +27,7 @@ in
       nur.nixosModules.nur
 
       # { nixpkgs.overlays = [ nixpkgs-wayland.overlay ]; }
-      { nixpkgs.overlays = [ hyprland.overlays.default ]; }
+      # { nixpkgs.overlays = [ hyprland.overlays.default ]; }
       ../../overlays
 
       home-manager.nixosModules.home-manager
@@ -37,7 +39,7 @@ in
           extraSpecialArgs = specialArgs // {
             inherit (config.lib) utils;
             inherit (config.age) secrets;
-            disabledFiles = [ ];
+            disabledFiles = [ "hyprland" ];
             device = {
               keyboard = "microsoft-surface-type-cover-keyboard";
             };
