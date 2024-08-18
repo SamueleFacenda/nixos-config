@@ -21,6 +21,8 @@ in
       ./hardware-configuration.nix
       nixos-hardware.nixosModules.microsoft-surface-pro-intel
 
+      lanzaboote.nixosModules.lanzaboote
+
       agenix.nixosModules.default
       ../../secrets
 
@@ -74,6 +76,25 @@ in
     github-token.enable = true;
     nix-access-tokens.enable = true;
   };
+  
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
+  };
+  
+  boot.initrd.systemd.enable = true; # Auto luks unlock
+  
+  services.logind = {
+    lidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors
+    lidSwitchExternalPower = lib.mkForce "suspend-then-hibernate";
+    powerKey = lib.mkForce "suspend-then-hibernate";
+    suspendKey = lib.mkForce "suspend-then-hibernate";
+  };
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=2h
+  '';
 
   # fix iptsd shutdown idle problem
   systemd.services.iptsd.serviceConfig = {
@@ -108,6 +129,8 @@ in
   environment.systemPackages = with pkgs; [
     rnote
     write_stylus
+    
+    sbctl
   
     microcodeIntel
     libwacom-surface
