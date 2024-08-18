@@ -10,7 +10,7 @@
     enable = true;
   
     targets = {
-      gnome.enable = false;
+      gnome.enable = true;
       kitty.enable = false;
       waybar.enable = false;
       vscode.enable = false;

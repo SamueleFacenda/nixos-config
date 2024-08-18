@@ -18,16 +18,16 @@
     gnome-tour
     gnome-text-editor
     gnome-console
+    gnome-calendar
+    epiphany
+    evince
+    geary
     gedit # text editor
   ]) ++ (with pkgs.gnome; [
     # cheese # webcam tool
     gnome-music
     # gnome-terminal
-    epiphany # web browser
-    geary # email reader
-    evince # document viewer
     gnome-characters
-    totem # video player
     tali # poker game
     iagno # go game
     hitori # sudoku game
@@ -35,22 +35,8 @@
     gnome-contacts
     gnome-weather
     gnome-maps
-    gnome-calendar
   ]);
 
   # enable dconf for global config
   programs.dconf.enable = true;
-
-  # install extensions
-  environment.systemPackages = (with pkgs.gnomeExtensions; [
-    user-themes
-    caffeine
-    # system-monitor-next not working
-    # tophat
-    # system-monitor-2
-  ]) ++ (with pkgs; [
-    # libgtop # dependecy of tophat
-    # gtop
-  ]);
-
 }

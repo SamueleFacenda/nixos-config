@@ -52,6 +52,8 @@ in
               homeDirectory = "/home/" + config.users.default.name;
               stateVersion = "24.05";
             };
+            
+            programs.kitty.settings.background_opacity = lib.mkForce "0.9";
           };
           backupFileExtension = "bak";
 
@@ -104,6 +106,9 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    rnote
+    write_stylus
+  
     microcodeIntel
     libwacom-surface
     libcamera-surface # custom
