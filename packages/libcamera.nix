@@ -22,11 +22,11 @@
 # thanks https://github.com/damianoognissanti/libcamera-surface
 stdenv.mkDerivation rec {
   pname = "libcamera-surface";
-  version = "0.1.0";
+  version = "0.2.0";
   src = fetchgit {
     url = "https://git.libcamera.org/libcamera/libcamera.git";
     rev = "v${version}";
-    hash = "sha256-icHZtv25QvJEv0DlELT3cDxho3Oz2BJAMNKr5W4bshk=";
+    hash = "sha256-x0Im9m9MoACJhQKorMI34YQ+/bd62NdAPc2nWwaJAvM=";
   };
 
   postPatch = ''
@@ -78,10 +78,10 @@ stdenv.mkDerivation rec {
     "-Dv4l2=true"
     "-Dqcam=disabled"
     "-Ddocumentation=disabled" # sphinx errors
-    # "-Dlc-compliance=disabled" # tries unconditionally to download gtest when enabled
+    "-Dlc-compliance=disabled" # tries unconditionally to download gtest when enabled
     # Avoid blanket -Werror to evade build failures on less
     # tested compilers.
-    # "-Dwerror=false"
+    "-Dwerror=false"
   ];
 
   preBuild = ''
@@ -94,7 +94,7 @@ stdenv.mkDerivation rec {
   NIX_CFLAGS_COMPILE = "-Wno-error=deprecated-declarations";
 
   # Silence fontconfig warnings about missing config
-  FONTCONFIG_FILE = makeFontsConf { fontDirectories = [ ]; };
+  # FONTCONFIG_FILE = makeFontsConf { fontDirectories = [ ]; };
 
   # libcamera signs the IPA module libraries at install time, but they are then
   # modified by stripping and RPATH fixup. Therefore, we need to generate the

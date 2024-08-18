@@ -14,7 +14,7 @@
       init.defaultBranch = "main";
     };
 
-    signing.key = "0DB83F58B2596271";
+    signing.key = null;
     signing.signByDefault = true;
 
     lfs.enable = true;
