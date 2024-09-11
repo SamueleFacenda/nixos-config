@@ -30,6 +30,8 @@ in
       azdavis.millet
       ms-vscode-remote.remote-containers
       ms-azuretools.vscode-docker
+      # ms-vscode.cmake-tools
+      twxs.cmake
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "copilot";

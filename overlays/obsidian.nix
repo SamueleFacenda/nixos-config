@@ -1,6 +1,5 @@
 final: prev: {
-  # copy everithing but edit the desktop entry
-  # just to enable the touchpad gestures (should have done with a wrapper)
+  # just add graphviz to the $PATH
   obsidian = prev.runCommandLocal prev.obsidian.name { } ''
     mkdir $out
 

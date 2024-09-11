@@ -13,7 +13,7 @@ in
   wayland.windowManager.hyprland.settings = {
     monitor = [
       # "eDP-1,2736x1824,0x0,2" # builtin
-      "desc:Samsung Display Corp. 0x4190,2880x1800@60,0x0,2" # builtin (120hz possibles)
+      "desc:Samsung Display Corp. 0x4190,2880x1800@120,0x0,2" # builtin (120hz possibles)
       "desc:Fujitsu Siemens Computers GmbH E22W-5 YV2C027320,1680x1050@60,1440x-1050,1" # big fujitsu
       "desc:Ancor Communications Inc ASUS VW199 DCLMTF153087,1440x900@60,0x-900,1" # small asus
 

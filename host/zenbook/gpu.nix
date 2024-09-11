@@ -18,6 +18,7 @@
     powerManagement.finegrained = true;
     open = false; # true
     nvidiaSettings = true;
+    dynamicBoost.enable = false;
 
     prime = {
       # pci@0000:00:02.0 intel
