@@ -38,7 +38,7 @@
   };
   
   # https://github.com/nix-community/nur-combined/blob/f08289e1961ee896d665b1ade61549ec4e4fe6ad/repos/eownerdead/users/noobuser/gnome.nix#L9
-  home.sessionVariables.JHBUILD_PREFIX = "${pkgs.gnome.gnome-shell}";
+  home.sessionVariables.JHBUILD_PREFIX = "${pkgs.gnome-shell}";
   
   programs.gnome-shell = {
     enable = true;

@@ -38,9 +38,9 @@
   wayland.windowManager.hyprland = {
     enable = true;
     maxNWorkspaces = 6;
-    plugins = with pkgs; [
+    plugins = with pkgs.hyprlandPlugins; [
       # hyprfocus # animation on focus change TODO wait for build fix
-      Hyprspace #  broken
+      hyprspace
     ];
     settings.exec-once = [
       "hyprctl setcursor Adwaita 24"

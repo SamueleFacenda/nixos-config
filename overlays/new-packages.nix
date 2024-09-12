@@ -1,12 +1,7 @@
-{ hyprgrass, hyprfocus, self, ... }:
+{ self, ... }:
 
-(final: prev:
-let
-  sys = prev.system;
-  pk = self.packages.${sys};
-in
-{
-  inherit (pk)
+(final: prev: {
+  inherit (self.packages.${prev.system})
     monofurx
     libcamera-surface
     hyprland-virtual-desktops
@@ -14,8 +9,4 @@ in
     hypr-shellevents
     Hyprspace
     xdg-desktop-portal-termfilechooser;
-
-  # Flake packages
-  hyprgrass = hyprgrass.packages.${sys}.default;
-  hyprfocus = hyprfocus.packages.${sys}.default;
 })

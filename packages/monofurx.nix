@@ -7,7 +7,7 @@
 stdenv.mkDerivation {
   # meta TODO
   pname = "monofurx";
-  version = "56.0";
+  version = "6.0";
   src = fetchFromGitHub {
     owner = "noisnemid";
     repo = "monofurx-the-monospace-font";

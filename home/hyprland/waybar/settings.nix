@@ -177,7 +177,8 @@ in
     ## OUTPUT SPECIFIC CONFIG
     {
       ## Oled config
-      output = [ "Samsung Display Corp. 0x4190" ];
+      # output = [ "eDP-1" ]; # "Samsung Display Corp. 0x4190"
+      output = [ "Samsung Display Corp. 0x4190 "  ]; # 
       # mode = "dock";
       # start_hidden = true;
     }

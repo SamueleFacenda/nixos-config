@@ -5,8 +5,6 @@
   outputs = { self, nixpkgs, ... }@inputs:
     let
       eachSystem = nixpkgs.lib.genAttrs (import inputs.systems);
-      # Override hyprland in the flake packages (but not into nixos configurations)
-      pk = system: nixpkgs.legacyPackages.${system}.extend inputs.hyprland.overlays.default;
     in
     {
       nixosConfigurations = builtins.mapAttrs
@@ -18,15 +16,14 @@
         (builtins.readDir ./host);
 
       devShells = eachSystem (system: {
-        default = (pk system).mkShell {
+        default = nixpkgs.legacyPackages.${system}.mkShell {
           inherit (self.checks.${system}.pre-commit-check) shellHook;
         };
-      }
-      );
+      });
 
-      formatter = eachSystem (system: (pk system).nixpkgs-fmt);
+      formatter = eachSystem (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
 
-      packages = nixpkgs.lib.recursiveUpdate (eachSystem (system: import ./packages (pk system))) {
+      packages = nixpkgs.lib.recursiveUpdate (eachSystem (system: import ./packages nixpkgs.legacyPackages.${system})) {
         # custom images
         x86_64-linux.genericLinux = inputs.nixos-generators.nixosGenerate {
           modules = [
@@ -121,26 +118,6 @@
       inputs.flake-utils.follows = "flake-utils";
     };
 
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      ref = "refs/tags/v0.41.2"; # https://github.com/NixOS/nix/issues/5291
-      submodules = true;
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
-      # inputs.xdph.follows = "xdph";
-    };
-
-    hyprfocus = {
-      url = "github:VortexCoyote/hyprfocus";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprgrass = {
-      url = "github:horriblename/hyprgrass";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     nur.url = "github:nix-community/NUR";
 
     nixos-generators = {
@@ -149,7 +126,7 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.3.0";
+      url = "github:nix-community/lanzaboote/v0.4.1";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
       inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks";
