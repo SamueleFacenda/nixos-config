@@ -7,8 +7,8 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      up = "sudo nixos-rebuild switch --flake samu";
-      fup = "sudo nixos-rebuild switch --flake samu --fast --builders ''";
+      up = "nh os switch";
+      fup = "nh os switch -- --builders ''";
       free-space = "home-manager expire-generations '-7 days' && sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system && sudo nix store gc --debug";
       # code = "codium --password-store=\"gnome\"";
       srm = "saferm";

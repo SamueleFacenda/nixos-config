@@ -130,12 +130,10 @@ TODOS:
 - [ ] swaync
 - [x] anti oled burn-in
 - [ ] howdy
-- [ ] hyprswitch
-- [ ] resolve power plugged problem
 - [x] hyprcursor Adwaita
 - [ ] hyprexpo
 - [x] luks2, tmp2 unlock
-- [ ] nh
+- [x] nh
 - [ ] cuda
 - [ ] tray (blueman, nm)
 

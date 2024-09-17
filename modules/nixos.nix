@@ -1,9 +1,6 @@
-{ lib, config, pkgs, nixpkgs, nix-gc-env, self, ... }:
+{ lib, config, pkgs, nixpkgs, self, ... }:
 
 {
-  imports = [
-    nix-gc-env.nixosModules.default
-  ];
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -82,13 +79,17 @@
   # Limit the number of generations to keep
   boot.loader.systemd-boot.configurationLimit = 12;
   # boot.loader.grub.configurationLimit = 10;
-
-  # Perform garbage collection weekly to maintain low disk usage
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    delete_generations = "+" + builtins.toString config.boot.loader.systemd-boot.configurationLimit;
-    randomizedDelaySec = "15min";
+  
+  # Nix alternative cli
+  programs.nh = {
+    enable = true;
+    flake = config.nix.registry.samu.to.path;
+    # Perform garbage collection weekly to maintain low disk usage
+    clean = {
+      enable = true;
+      dates = "weekly";
+      extraArgs = "--keep-since 7d --keep ${builtins.toString config.boot.loader.systemd-boot.configurationLimit}";
+    };
   };
 
   # only for a flake system

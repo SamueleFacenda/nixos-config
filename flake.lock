@@ -380,21 +380,6 @@
         "type": "github"
       }
     },
-    "nix-gc-env": {
-      "locked": {
-        "lastModified": 1688934394,
-        "narHash": "sha256-Y72My5Ym2w9jhprmw8kQrom7ObvzqZ3DfNO2r3ZqfOo=",
-        "owner": "Julow",
-        "repo": "nix-gc-env",
-        "rev": "c1e41568772c21a8274ab8edf5d0faadd5df4c8c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Julow",
-        "repo": "nix-gc-env",
-        "type": "github"
-      }
-    },
     "nixlib": {
       "locked": {
         "lastModified": 1719708727,
@@ -542,7 +527,6 @@
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "lib-aggregate": "lib-aggregate",
-        "nix-gc-env": "nix-gc-env",
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

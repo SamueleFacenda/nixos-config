@@ -36,8 +36,11 @@
     obsidian
     xournalpp
 
-    # web
+    # web/social
     brave
+    # telegram-desktop
+    # discord
+    # whatsapp-for-linux
   ];
 
   programs = {
