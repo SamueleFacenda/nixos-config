@@ -134,8 +134,7 @@ TODOS:
 - [ ] hyprexpo
 - [x] luks2, tmp2 unlock
 - [x] nh
-- [ ] cuda
-- [ ] tray (blueman, nm)
+- [x] tray (blueman, nm)
 
 ### Overlays (custom packages and other):
 - micro-wakatime (faster loading)

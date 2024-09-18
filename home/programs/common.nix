@@ -58,13 +58,11 @@
     };
   };
 
-  services = {
+  services.udiskie = {
     # auto mount usb drives
-    udiskie.enable = true;
-    udiskie.settings.program_options = {
-      file_manager = "${pkgs.xdg-utils}/bin/xdg-open";
-      tray = false;
-    };
+    enable = true;
+    tray = "always";
+    settings.program_options.file_manager = "${pkgs.xdg-utils}/bin/xdg-open";
   };
 
   # fix udiskie problem

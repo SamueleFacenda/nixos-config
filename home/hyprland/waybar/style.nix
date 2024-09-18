@@ -2,8 +2,6 @@
   programs.waybar.style = with config.lib.stylix.colors.withHashtag; ''
 
     * {
-      border: none;
-      border-radius: 0px;
       font-size: 14px;
       font-style: normal;
       min-height: 0;
@@ -30,7 +28,7 @@
     }
 
     /* Dark background, cyan text, pill shape */
-    #cpu, #memory, #temperature, #custom-powermenu, #custom-osk, #workspaces, #battery, #wireplumber, #network, #language, #idle_inhibitor{
+    #tray, #custom-left-icon, #network, #cpu, #memory, #temperature, #custom-powermenu, #custom-osk, #workspaces, #battery, #wireplumber, #network, #language, #idle_inhibitor{
     	background: ${base01};
     	margin: 5px 5px 5px 5px;
       padding: 5px 10px 5px 10px;
@@ -81,6 +79,24 @@
     }
 
     #language {}
+    
+    #traydrawer {
+      padding: 0px;
+    }
+    
+    /* Remove rounded border from left icon when drawer expands  */
+    #traydrawer:hover #custom-left-icon {
+      border-radius: 0px;
+      margin-left: 0px;
+      padding-left: 15px;
+    }
+    
+    #traydrawer:not(:hover) #custom-left-icon {
+      border-radius: 16px 0px 0px 16px;
+      transition-property: all;
+      transition-delay: 0.26s;
+      transition-duration: 0.2s;
+    }
 
     #clock {
       color: ${base05};
@@ -97,14 +113,14 @@
     }
 
     /* LEFT  MODULES */
-    #temperature, #network {
+    #temperature, #custom-left-icon, #tray {
       border-radius: 16px 0px 0px 16px;
       margin-right: 0px;
       padding: 5px 3px 5px 10px;
     }
 
     /* CENTER MODULES */
-    #memory, #wireplumber, #battery, #idle_inhibitor, #custom-osk{
+    #network, #memory, #wireplumber, #battery, #idle_inhibitor, #custom-osk{
       border-radius: 0px;
       margin-right: 0px;
       margin-left: 0px;
@@ -174,7 +190,7 @@
     /* !!!! During a transition(battery blinking) the background is shown. This sets the background of the
     battery parent (a widget) to something different from transparent. Using the css selector E:has() is a better
     way to do that, but it is not supported in gtk3. (the battery is the 6th node of the right elements) */
-    box.modules-right > widget:nth-child(6) {
+    box.modules-right > widget:nth-child(7) {
     	background: content-box ${base01};
     	padding: 5px 0px;
     }

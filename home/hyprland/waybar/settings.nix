@@ -16,6 +16,7 @@ let
       "temperature"
       "memory"
       "cpu"
+      "group/traydrawer"
       "network"
       "wireplumber"
       "battery"
@@ -24,10 +25,28 @@ let
       "hyprland/language"
       "custom/powermenu"
     ];
+    
+    "group/traydrawer" = {
+      orientation = "inherit";
+      modules = [
+        "custom/left-icon"
+        "tray"
+      ];
+      drawer = {
+        transition-duration = 500;
+        children-class = "traydrawer-child";
+        transition-left-to-right = false;
+      };
+    };
+    
+    "custom/left-icon" = {
+      tooltip = false;
+      format = "";
+    };
 
     "custom/launcher" = {
       format = " ";
-      on-click = "wofi-toggle";
+      on-click = "toggle wofi --show drun";
       tooltip = false;
     };
 
@@ -60,6 +79,18 @@ let
       format = "{:%R  %A %b %d}";
       tooltip = true;
       tooltip-format = "<tt>{calendar}</tt>";
+    };
+    
+    mpris = {
+      format = "DEFAULT: {player_icon} {dynamic}";
+      format-paused = "DEFAULT: {status_icon} <i>{dynamic}</i>";
+      player-icons = {
+      	default = "▶";
+      	mpv = "🎵";
+      };
+      status-icons = {
+      	paused = "⏸";
+      };
     };
 
     temperature = {
@@ -115,7 +146,8 @@ let
     };
 
     tray = {
-      icon-size = 15;
+      icon-size = 14;
+      # show-passive-items = true;
       spacing = 5;
     };
 
