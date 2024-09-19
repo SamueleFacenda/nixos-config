@@ -68,7 +68,7 @@ The process is described above, and you also should:
  the keyboards and the temperature thermal zone.
 
 
-TODOS:
+## TODOS:
 - [x] zsh
 - [x] powerlevel10k
 - [ ] neovim + copilot
@@ -88,7 +88,6 @@ TODOS:
 - [x] dev and pwn shells
 - [x] kitty
 - [x] remote build with nixbuild.net
-- [ ] home server containers
 - [x] waybar
 - [x] xdg-desktop-portal-shana
 - [x] known networks
@@ -106,13 +105,10 @@ TODOS:
 - [x] swayosd (on screen display)
 - [ ] flameshot
 - [ ] iio-hyprland
-- [ ] nwg-drawer
-- [ ] nwg-dock-hyprland
 - [x] hyprfocus
 - [x] spotifyd, spotify-player
 - [x] flake templates
 - [ ] waybar mpris, taskbar, drawers for brightness
-- [ ] waycorner
 - [x] adjust nixpkgs wayland overlay
 - [x] termfilechooser portal
 - [x] spotify-player
@@ -123,7 +119,6 @@ TODOS:
 - [x] on screen keyboard for tablet mode
 - [x] networkmanager config
 - [x] image builder
-- [ ] syncthing
 - [x] nwg bar
 - [x] touchpad gestures (hyprland native)
 - [x] hyprland workspacer (good workspaces on multi-monitor)
@@ -135,6 +130,17 @@ TODOS:
 - [x] luks2, tmp2 unlock
 - [x] nh
 - [x] tray (blueman, nm)
+
+### Possible packages
+Good packages not installed becouse I don't need them. They are probably usefule
+for less expert users.
+- nwg-dock-hyprland
+- nwg-drawer
+- waycorner
+
+### Waiting for an home-server...
+- syncthing
+- home server containers
 
 ### Overlays (custom packages and other):
 - micro-wakatime (faster loading)
