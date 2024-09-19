@@ -108,6 +108,13 @@
       })
     )
   ];
+  
+  # Tinyproxy reverse proxy for wakatime
+  # https://github.com/muety/wakapi/wiki/Advanced-Setup:-Client-side-proxy
+  services.tinyproxy = {
+    enable = true;
+    settings.Port = 58888;
+  };
 
   environment.sessionVariables = {
     EDITOR = "micro";

@@ -114,7 +114,7 @@ The process is described above, and you also should:
 - [x] spotify-player
 - [ ] discocss (discord)
 - [ ] nix index database
-- [ ] tinyproxy wakapi
+- [x] tinyproxy wakapi
 - [x] flake installer wizard with nix run
 - [x] on screen keyboard for tablet mode
 - [x] networkmanager config
