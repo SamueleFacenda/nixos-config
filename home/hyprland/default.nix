@@ -40,7 +40,8 @@
     maxNWorkspaces = 6;
     plugins = with pkgs.hyprlandPlugins; [
       # hyprfocus # animation on focus change TODO wait for build fix
-      hyprspace
+      # hyprspace
+      # hyprexpo # hyprctl dispatch hyprexpo:expo toggle
     ];
     settings.exec-once = [
       "hyprctl setcursor Adwaita 24"

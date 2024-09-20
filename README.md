@@ -124,9 +124,8 @@ The process is described above, and you also should:
 - [x] hyprland workspacer (good workspaces on multi-monitor)
 - [ ] swaync
 - [x] anti oled burn-in
-- [ ] howdy
 - [x] hyprcursor Adwaita
-- [ ] hyprexpo
+- [x] hyprexpo
 - [x] luks2, tmp2 unlock
 - [x] nh
 - [x] tray (blueman, nm)
@@ -141,6 +140,10 @@ for less expert users.
 ### Waiting for an home-server...
 - syncthing
 - home server containers
+
+### Waiting for these PR:
+- [Howdy auth](https://github.com/NixOS/nixpkgs/pull/216245)
+
 
 ### Overlays (custom packages and other):
 - micro-wakatime (faster loading)
