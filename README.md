@@ -99,12 +99,10 @@ The process is described above, and you also should:
 - [x] stylix
 - [ ] phone integration (kde connect/gsconnects)
 - [ ] waydroid
-- [ ] customize kernel
 - [x] kanshi dynamic monitor config (crash on change, hyprland problem)
 - [x] nixd language server
 - [x] swayosd (on screen display)
-- [ ] flameshot
-- [ ] iio-hyprland
+- [x] flameshot
 - [x] hyprfocus
 - [x] spotifyd, spotify-player
 - [x] flake templates
