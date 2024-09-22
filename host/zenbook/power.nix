@@ -18,7 +18,6 @@
       RESTORE_DEVICE_STATE_ON_STARTUP = 0;
       DEVICES_TO_ENABLE_ON_AC = "bluetooth wifi";
       DEVICES_TO_DISABLE_ON_BAT_NOT_IN_USE = "bluetooth wifi";
-      USB_EXCLUDE_BTUSB = 1; # "8087:0033";
 
       RUNTIME_PM_ON_AC = "on";
       RUNTIME_PM_ON_BAT = "auto";
@@ -30,7 +29,9 @@
       USB_AUTOSUSPEND = 1;
       USB_EXCLUDE_AUDIO = 1;
       USB_EXCLUDE_PHONE = 1;
-
+      USB_EXCLUDE_BTUSB = 1; # "8087:0033";
+      USB_DENYLIST = "046d:c539";
+      
       # Optional helps save long term battery health
       # START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
       STOP_CHARGE_THRESH_BAT0 = 75; # 80 and above it stops charging

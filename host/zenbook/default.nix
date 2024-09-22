@@ -158,6 +158,6 @@ in
   
   # Docker
   
-  virtualisation.docker.enable = true;
+  # virtualisation.docker.enable = true;
   # user group at line 155
 }
