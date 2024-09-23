@@ -1,13 +1,13 @@
 { config, pkgs, lib, utils, disabledFiles, ... }:
 {
 
-  imports = utils.listDirPathsExcluding disabledFiles ./.;
+  imports = utils.listDirPathsExcluding (disabledFiles ++ [ "dunst.nix" ]) ./.;
 
   home.packages = with pkgs; [
     wofi
     wvkbd
     libinput
-    hyprswitch
+    # hyprswitch
 
     # screenshots tools
     slurp

@@ -120,7 +120,7 @@ The process is described above, and you also should:
 - [x] nwg bar
 - [x] touchpad gestures (hyprland native)
 - [x] hyprland workspacer (good workspaces on multi-monitor)
-- [ ] swaync
+- [x] swaync
 - [x] anti oled burn-in
 - [x] hyprcursor Adwaita
 - [x] hyprexpo
