@@ -1,4 +1,4 @@
-{ config, pkgs, lib, device, ... }:
+{ config, pkgs, lib, ... }:
 let
   base_config = {
     layer = "top";
@@ -200,7 +200,7 @@ let
       format = "{}";
       format-en = "us🇺🇸";
       format-it = "it🇮🇹";
-      keyboard-name = device.keyboard;
+      keyboard-name = config.home.keyboard.model;
     };
   };
 in

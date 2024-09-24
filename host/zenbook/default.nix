@@ -10,6 +10,8 @@ in
       ../../modules/system.nix
       ../../modules/nixos.nix
       ../../modules/utils.nix
+      ../../modules/options.nix
+      ../../modules/home.nix
 
       ./hardware-configuration.nix
       nixos-hardware.nixosModules.common-cpu-intel
@@ -38,33 +40,6 @@ in
       # { nixpkgs.overlays = [ hyprland.overlays.default ]; }
       ../../overlays
 
-      home-manager.nixosModules.home-manager
-      {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          backupFileExtension = "bak";
-
-          extraSpecialArgs = specialArgs // {
-            inherit (config.lib) utils;
-            inherit (config.age) secrets;
-            disabledFiles = [
-              "hyprgrass.nix"
-            ];
-            device.keyboard = "at-translated-set-2-keyboard";
-          };
-
-          users.${config.users.default.name} = _: {
-            imports = [ ../../home ];
-            home = {
-              username = config.users.default.name;
-              homeDirectory = "/home/" + config.users.default.name;
-              inherit stateVersion;
-            };
-          };
-        };
-      }
-
       # Device specific config
       ./power.nix
       ./gpu.nix
@@ -79,6 +54,9 @@ in
   users.users.samu.hashedPassword = lib.mkForce null;
 
   networking.hostName = "zenbook";
+  
+  home-manager.users.samu.home.keyboard.model = "at-translated-set-2-keyboard";
+  home-manager.disabledFiles = [ "hyprgrass.nix" ];
 
   secrets = {
     spotify.enable = true;

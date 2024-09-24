@@ -10,6 +10,8 @@ in
       ../../modules/system.nix
       ../../modules/nixos.nix
       ../../modules/utils.nix
+      ../../modules/options.nix
+      ../../modules/home.nix
 
       #HARDWARE_COMMENT_ANCHOR ./hardware-configuration.nix
 
@@ -37,41 +39,13 @@ in
       # { nixpkgs.overlays = [ nixpkgs-wayland.overlay ]; }
       # { nixpkgs.overlays = [ hyprland.overlays.default ]; }
       ../../overlays
-
-      home-manager.nixosModules.home-manager
-      {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          backupFileExtension = "bak";
-
-          extraSpecialArgs = specialArgs // {
-            inherit (config.lib) utils;
-            inherit (config.age) secrets;
-            disabledFiles = [
-              # tex.nix # uncomment for quick test, this is big
-              # common.nix # idem
-            ];
-            device = {
-              keyboard = "at-translated-set-2-keyboard";
-            };
-          };
-
-          users.${config.users.default.name} = _: {
-            imports = [ ../../home ];
-            home = {
-              username = config.users.default.name;
-              homeDirectory = "/home/" + config.users.default.name;
-              inherit stateVersion;
-            };
-          };
-        };
-      }
     ];
 
   # override for custom name (this is also the default value)
   users.default.name = "samu";
   users.default.longName = "Samuele Facenda";
+  
+  home-manager.users.samu.home.keyboard.model = "at-translated-set-2-keyboard";
 
   networking.hostName = "nixos-samu";
 

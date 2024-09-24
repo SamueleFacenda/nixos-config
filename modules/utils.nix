@@ -4,26 +4,6 @@ let
   inherit (lib) mapAttrsToList filterAttrs any all mkOption types;
 in
 rec {
-
-  options.users.default = {
-    name = mkOption {
-      type = types.str;
-      default = "samu";
-      example = "john";
-      description = "The main user username";
-    };
-    longName = mkOption {
-      type = types.str;
-      default = "Samuele Facenda";
-      example = "John Doe";
-      description = "The main user complete name";
-    };
-  };
-
-  options.secrets = lib.genAttrs
-    [ "spotify" "network-keys" "nix-access-tokens" "wakatime-key" "github-token" ]
-    (secret: { enable = lib.mkEnableOption (lib.mdDoc secret); });
-
   config.lib.utils = rec {
 
     listDirPathsExcluding = (exclude: path:

@@ -14,6 +14,8 @@ in
       ../../modules/network.nix
       ../../modules/stylix.nix
       ../../modules/utils.nix
+      ../../modules/options.nix
+      ../../modules/home.nix
       ../../timers/empty-trash.nix
       
       ./power.nix
@@ -31,36 +33,6 @@ in
       # { nixpkgs.overlays = [ nixpkgs-wayland.overlay ]; }
       # { nixpkgs.overlays = [ hyprland.overlays.default ]; }
       ../../overlays
-
-      home-manager.nixosModules.home-manager
-      {
-        home-manager = {
-          useGlobalPkgs = true;
-          useUserPackages = true;
-
-          extraSpecialArgs = specialArgs // {
-            inherit (config.lib) utils;
-            inherit (config.age) secrets;
-            disabledFiles = [ "hyprland" ];
-            device = {
-              keyboard = "microsoft-surface-type-cover-keyboard";
-            };
-          };
-
-          users.${config.users.default.name} = { ... }: {
-            imports = [ ../../home ];
-            home = {
-              username = config.users.default.name;
-              homeDirectory = "/home/" + config.users.default.name;
-              stateVersion = "24.05";
-            };
-            
-            programs.kitty.settings.background_opacity = lib.mkForce "0.9";
-          };
-          backupFileExtension = "bak";
-
-        };
-      }
     ];
 
   # override for custom name
@@ -76,6 +48,10 @@ in
     github-token.enable = true;
     nix-access-tokens.enable = true;
   };
+  
+  home-manager.disabledFiles = [ "hyprland" ];
+  home-manager.users.samu.home.keyboard.model = "microsoft-surface-type-cover-keyboard";
+  home-manager.users.samu.programs.kitty.settings.background_opacity = lib.mkForce "0.9";
   
   boot.loader.systemd-boot.enable = lib.mkForce false;
 
