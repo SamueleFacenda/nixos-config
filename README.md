@@ -129,8 +129,8 @@ The process is described above, and you also should:
 - [x] tray (blueman, nm)
 
 ### Possible packages
-Good packages not installed becouse I don't need them. They are probably usefule
-for less expert users.
+Good packages not installed becouse I don't need them. They are probably useful
+for less expert users or for different mouse config.
 - nwg-dock-hyprland
 - nwg-drawer
 - waycorner

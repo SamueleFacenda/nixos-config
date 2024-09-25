@@ -7,7 +7,7 @@
   programs.home-manager.enable = true; # (useless if on nixos)
   
   nix.gc = {
-    automatic = true;
+    automatic = false;
     frequency = "weekly";
     options = "-d";
   };
