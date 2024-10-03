@@ -149,6 +149,10 @@
       xkb-layout=${layout}
       xkb-options=${options}
     '';
+    fonts = [{
+      package = pkgs.nerdfonts.override { fonts = [ "Monofur" ]; };
+      name = "Monofur Nerd Font Mono";
+    }];
   };
   console = {
     font = "${pkgs.powerline-fonts}/share/consolefonts/ter-powerline-v32n.psf.gz";

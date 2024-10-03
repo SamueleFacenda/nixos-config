@@ -51,6 +51,8 @@ in
 
   services.logind.lidSwitch = "ignore";
   services.logind.lidSwitchExternalPower = "ignore";
+  
+  services.kmscon.enable = lib.mkForce true;
 
   services.openssh = {
     enable = true;
