@@ -32,6 +32,8 @@ in
       ms-azuretools.vscode-docker
       # ms-vscode.cmake-tools
       twxs.cmake
+      ms-toolsai.jupyter
+      ms-toolsai.jupyter-renderers
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "copilot";

@@ -33,4 +33,4 @@ else
 fi
 
 shift
-$out "$@"
+exec $out "$@"

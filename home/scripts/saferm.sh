@@ -3,9 +3,9 @@
 #### Only work for one file/argument
 for var in "$@"
 do
-    if [ -d "$dir" ]
+    if [ -d "$var" ]
     then
-        read -r -p "The target ($dir) is a directory, are you sure?[y/*]" confirm
+        read -r -p "The target ($var) is a directory, are you sure?[y/*]" confirm
         if [ "$confirm" != "y" ]
         then
             echo "Aborting"
@@ -15,4 +15,4 @@ do
 done
 
 
-trashy put $@
+exec trashy put "$@"

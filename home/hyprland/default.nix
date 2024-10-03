@@ -23,6 +23,7 @@
     nwg-displays
     nwg-bar
     hyprshade
+    swaylock-effects
 
     # utilities
     nautilus

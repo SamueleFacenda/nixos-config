@@ -15,5 +15,6 @@ fi
 
 # shell_indicator="IN_NIX_SHELL=tmpy"
 shell_indicator="IN_NIX_SHELL="
-
-env "PATH=$out_path/bin:$PATH" "$shell_indicator" zsh
+export "PATH=$out_path/bin:$PATH"
+export "$shell_indicator"
+exec zsh
