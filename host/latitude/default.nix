@@ -23,6 +23,7 @@ in
       # ../../modules/hyprland.nix
       
       ./power.nix
+      ./services.nix
 
       # optionals wifi settings (networkmanager is already enable by default)
       ../../modules/network.nix
@@ -74,7 +75,7 @@ in
     tmux
   ];
 
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 ];
 
   # custom options for secrets, fallback placeholder is used
   secrets = {

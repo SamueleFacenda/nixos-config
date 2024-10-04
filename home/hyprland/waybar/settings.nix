@@ -218,6 +218,7 @@ in
       output = [
         "Ancor Communications Inc VX279 D5LMRS021367"
         "Dell Inc. DELL U2412M Y1H5T17S0N3L"
+        "Dell Inc. DELL P2312H YJ3JX2B2H1UL"
       ]; # Todo get surface monitor name
     }
     {
