@@ -21,6 +21,8 @@ in
       # choose one or both
       # ../../modules/gnome.nix
       # ../../modules/hyprland.nix
+      
+      ./power.nix
 
       # optionals wifi settings (networkmanager is already enable by default)
       ../../modules/network.nix
