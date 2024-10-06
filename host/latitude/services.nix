@@ -2,6 +2,7 @@
   
   services.photoprism = {
     enable = true;
+    # package = pkgs.photoprism.override { ffmpeg_7 = pkgs.ffmpeg_7-full; };
     originalsPath = "/var/lib/private/photoprism/originals";
     port = 2342;
     address = "0.0.0.0";
@@ -16,14 +17,32 @@
       PHOTOPRISM_SITE_TITLE = "Samu's photos";
       PHOTOPRISM_DEFAULT_LOCALE = "it";
       PHOTOPRISM_ADMIN_USER = "admin";
-      # PHOTOPRISM_LOG_LEVEL = "debug";
+      PHOTOPRISM_FFMPEG_ENCODER = "vaapi";
+      PHOTOPRISM_ORIGINALS_LIMIT = "-1";
+    };
+  };
+
+  systemd.services.photoprism = {
+    environment.LIBVA_DRIVER_NAME = "i965";
+    serviceConfig = {
+      SupplementaryGroups = [ "video" "render" ];
+      PrivateDevices = lib.mkForce false;
+      # DeviceAllow = "/dev/dri/renderD128";
     };
   };
   
-  fileSystems."/var/lib/private/photoprism/originals" =
-      { device = "/home/samuelef/Pictures";
-        options = [ "bind" ];
-      };
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-vaapi-driver # For older processors. LIBVA_DRIVER_NAME=i965
+    ];
+  };
+  
+
+  fileSystems."/var/lib/private/photoprism/originals" ={ 
+    device = "/home/samuelef/Pictures";
+    options = [ "bind" ];
+  };
   
   services.mysql = {
     enable = true;
@@ -50,7 +69,7 @@
     recommendedGzipSettings = true;
     recommendedProxySettings = true;
     clientMaxBodySize = "500m";
-    logError = "stderr debug";
+    logError = "stderr";
     virtualHosts = {
       "samuele.freeddns.it" = {
         forceSSL = true;

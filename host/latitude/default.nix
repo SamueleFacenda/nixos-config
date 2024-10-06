@@ -26,7 +26,7 @@ in
       ./services.nix
 
       # optionals wifi settings (networkmanager is already enable by default)
-      ../../modules/network.nix
+      # ../../modules/network.nix
 
       # optionals
       ../../timers/empty-trash.nix
