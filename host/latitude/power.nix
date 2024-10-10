@@ -1,6 +1,13 @@
 { config, pkgs, lib, ... }: {
   # Hardware tweaks (from https://nixos.wiki/wiki/Laptop)
+  
+  services.journald.extraConfig = ''
+    ReadKMsg=no
+    SyncIntervalSec=60m
 
+  '';
+  # SystemMaxUse=50M
+  # SystemMaxFileSize=10M
   services.thermald.enable = true;
   services.power-profiles-daemon.enable = lib.mkForce false;
   services.tlp = {

@@ -68,6 +68,9 @@ in
       PermitRootLogin = "prohibit-password"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
     };
   };
+  
+  services.fail2ban.enable = true;
+  
   home-manager.disabledFiles = [ "hyprland" "programs"  ];
 
   environment.systemPackages = with pkgs; [
@@ -75,6 +78,7 @@ in
     tmux
   ];
 
+  networking.firewall.enable = lib.mkForce true;
   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
 
   # custom options for secrets, fallback placeholder is used
