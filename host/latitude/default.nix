@@ -76,10 +76,14 @@ in
   environment.systemPackages = with pkgs; [
     eza
     tmux
+    btop
   ];
 
   networking.firewall.enable = lib.mkForce true;
   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
+  
+  boot.kernel.sysctl."vm.swappiness" = 10;
+  boot.tmp.useTmpfs = true;
 
   # custom options for secrets, fallback placeholder is used
   secrets = {

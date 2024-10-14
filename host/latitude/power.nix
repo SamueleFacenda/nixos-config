@@ -8,6 +8,16 @@
   '';
   # SystemMaxUse=50M
   # SystemMaxFileSize=10M
+  
+  environment.etc."default/laptop-mode".text = ''
+    MAX_AGE=30000
+    MINIMUM_BATTERY_MINUTES=0
+    AC_HD=24
+    HD=/dev/sda
+    DIRTY_RATIO=50
+    DIRTY_BACKGROUND_RATIO=5
+  '';
+  
   services.thermald.enable = true;
   services.power-profiles-daemon.enable = lib.mkForce false;
   services.tlp = {
@@ -16,15 +26,17 @@
       DISK_DEVICES = "sda";
       DISK_APM_LEVEL_ON_AC = "18"; # 1 for max power saving
       DISK_APM_LEVEL_ON_BAT = "128"; # 1
-      DISK_SPINDOWN_TIMEOUT_ON_AC = "3";
-      DISK_SPINDOWN_TIMEOUT_ON_BAT = "3";
+      DISK_SPINDOWN_TIMEOUT_ON_AC = "24";
+      DISK_SPINDOWN_TIMEOUT_ON_BAT = "24";
       # SATA_LINKPWR_ON_AC = "min_power":
       # SATA_LINKPWR_ON_BAT = "min_power":
       AHCI_RUNTIME_PM_ON_AC = "auto";
       AHCI_RUNTIME_PM_ON_BAT = "auto";
       
-      MAX_LOST_WORK_SECS_ON_AC = "100";
-      MAX_LOST_WORK_SECS_ON_BAT = "100";
+      DISK_IDLE_SECS_ON_AC = 2;
+      
+      MAX_LOST_WORK_SECS_ON_AC = "30000";
+      MAX_LOST_WORK_SECS_ON_BAT = "30000";
 
       PLATFORM_PROFILE_ON_AC = "low-power";
       PLATFORM_PROFILE_ON_BAT = "low-power";
