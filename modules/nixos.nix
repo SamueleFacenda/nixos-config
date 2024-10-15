@@ -18,10 +18,10 @@
     warn-dirty = false;
     auto-optimise-store = true;
     trusted-users = [ "@wheel" ];
-    # pure-eval = true;
+    pure-eval = false;
     max-jobs = "auto";
     log-lines = 20;
-    # keep-going = true;
+    keep-going = false;
     user-agent-suffix = "NixOS unstable";
 
     trusted-substituters = [

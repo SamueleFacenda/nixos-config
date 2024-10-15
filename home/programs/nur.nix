@@ -3,7 +3,7 @@
     nur.hmModules.nur
   ];
 
-  home.packages = with config.nur.repos."999eagle"; [
-    github-linguist
-  ];
+  # home.packages = with config.nur.repos."999eagle"; [
+  #   github-linguist
+  # ];
 }
