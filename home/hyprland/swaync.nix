@@ -19,7 +19,7 @@
       ];
       widget-config = {
         backlight = {
-          label = "󰱊  ";
+          label = "🔆  ";
           min = 10;
           device = "intel_backlight";
         };
@@ -34,7 +34,6 @@
       };
     };
     style = ''
-      
     '';
   };
 }

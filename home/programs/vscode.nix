@@ -98,6 +98,7 @@ in
         markdown = false;
         scminput = false;
       };
+      "git.openRepositoryInParentFolders" = "always";
     };
   };
 }

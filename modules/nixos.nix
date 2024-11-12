@@ -79,7 +79,7 @@
     clean = {
       enable = true;
       dates = "weekly";
-      extraArgs = "--keep-since 7d --keep ${builtins.toString config.boot.loader.systemd-boot.configurationLimit}";
+      extraArgs = "--keep-since 30d --keep ${builtins.toString config.boot.loader.systemd-boot.configurationLimit}";
     };
   };
 

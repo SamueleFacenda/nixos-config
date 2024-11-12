@@ -138,4 +138,17 @@ in
   
   # virtualisation.docker.enable = true;
   # user group at line 155
+  
+  services.mysql = {
+    enable = false;
+    # dataDir = "/data/mysql";
+    package = pkgs.mariadb;
+    ensureDatabases = [ "my_pastapizza" ];
+    ensureUsers = [ {
+      name = "samu";
+      ensurePermissions = {
+        "my_pastapizza.*" = "ALL PRIVILEGES";
+      };
+    } ];
+  };
 }
