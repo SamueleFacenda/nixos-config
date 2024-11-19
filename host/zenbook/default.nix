@@ -136,8 +136,7 @@ in
   
   # Docker
   
-  # virtualisation.docker.enable = true;
-  # user group at line 155
+  virtualisation.docker.enable = true;
   
   services.mysql = {
     enable = false;
