@@ -137,6 +137,7 @@ in
   # Docker
   
   virtualisation.docker.enable = true;
+  virtualisation.waydroid.enable = true;
   
   services.mysql = {
     enable = false;

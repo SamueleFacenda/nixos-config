@@ -38,12 +38,6 @@
     ];
   };
   
-
-  fileSystems."/var/lib/private/photoprism/originals" ={ 
-    device = "/home/samuelef/Pictures";
-    options = [ "bind" ];
-  };
-  
   services.mysql = {
     enable = true;
     # dataDir = "/data/mysql";

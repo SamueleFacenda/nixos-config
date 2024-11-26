@@ -127,6 +127,7 @@ The process is described above, and you also should:
 - [x] luks2, tmp2 unlock
 - [x] nh
 - [x] tray (blueman, nm)
+- [ ] systemd nspawn nomad + autoscaler
 
 ### Possible packages
 Good packages not installed becouse I don't need them. They are probably useful

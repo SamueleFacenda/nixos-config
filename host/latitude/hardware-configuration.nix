@@ -22,6 +22,16 @@
     { device = "/dev/disk/by-uuid/1A35-CB98";
       fsType = "vfat";
     };
+    
+  fileSystems."/var/lib/private/photoprism/originals" =
+      { device = "/dev/disk/by-uuid/ca65dd59-0fbf-4418-b61a-ab51026e6cf0";
+        fsType = "ext4";
+      };
+  
+  # fileSystems."/var/lib/private/photoprism/originals" ={ 
+  #   device = "/home/samuelef/Pictures";
+  #   options = [ "bind" ];
+  # };
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/9a8b2ac1-ceb4-4a6c-b7ef-8a9bdc921ffa"; }
