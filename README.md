@@ -62,13 +62,13 @@ The process is described above, and you also should:
 - change the [wifi settings](modules/network.nix)
 - edit the [wakatime settings](home/programs/wakatime.nix)
 - edit the [spotifyd settings](home/programs/spotify.nix)
-- edit the monitos in [hyprpaper](home/hyprland/hyprpaper.nix),
+- edit the monitors in [hyprpaper](home/hyprland/hyprpaper.nix),
 [kanshi](home/hyprland/kanshi.nix) and [hyprland conf](home/hyprland/settings.nix)
 - edit the [waybar config](home/hyprland/waybar/settings.nix): the outputs,
  the keyboards and the temperature thermal zone.
 
 
-## TODOS:
+## TODO:
 - [x] zsh
 - [x] powerlevel10k
 - [ ] neovim + copilot
@@ -128,6 +128,7 @@ The process is described above, and you also should:
 - [x] nh
 - [x] tray (blueman, nm)
 - [ ] systemd nspawn nomad + autoscaler
+- [ ] better shortcuts (resize)
 
 ### Possible packages
 Good packages not installed becouse I don't need them. They are probably useful

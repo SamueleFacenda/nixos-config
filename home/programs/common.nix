@@ -41,6 +41,7 @@
     # telegram-desktop
     # discord
     # whatsapp-for-linux
+    zoom-us
   ];
 
   programs = {
