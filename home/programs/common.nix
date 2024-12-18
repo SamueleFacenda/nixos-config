@@ -1,7 +1,5 @@
 { config, pkgs, lib, ... }: {
   home.packages = with pkgs; [
-    home-manager
-    nix-output-monitor
 
     # archives
     zip
@@ -12,8 +10,6 @@
     mdcat
     xclip
     rpl
-    statix
-    nixpkgs-fmt
     ffmpeg
     # flameshot # https://github.com/flameshot-org/flameshot/issues/2978
     jq
@@ -35,6 +31,14 @@
     # productivity
     obsidian
     xournalpp
+    
+    # nix
+    nix-init
+    nurl
+    nix-output-monitor
+    home-manager
+    statix
+    nixpkgs-fmt
 
     # web/social
     brave
@@ -42,6 +46,10 @@
     # discord
     # whatsapp-for-linux
     zoom-us
+    
+    # media
+    qgis
+    inkscape
   ];
 
   programs = {

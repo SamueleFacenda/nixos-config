@@ -34,12 +34,19 @@ in
       twxs.cmake
       ms-toolsai.jupyter
       ms-toolsai.jupyter-renderers
+      ms-vsliveshare.vsliveshare
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "copilot";
         publisher = "GitHub";
         version = "1.178.811"; # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
         sha256 = "JkJWFbnUSyGOz6yduq5jxxcwveEXA1gvPNu8bBTBly4=";
+      }
+      {
+        name = "awesome-vhdl";
+        publisher = "puorc";
+        version = "0.0.1";
+        sha256 = "PzE98po3egiJLSlfQST7G4Claeo4j0xC9/xm9KGSpcA=";
       }
       {
         name = "vscode-ros";
