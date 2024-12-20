@@ -111,7 +111,7 @@ The process is described above, and you also should:
 - [x] termfilechooser portal
 - [x] spotify-player
 - [ ] discocss (discord)
-- [ ] nix index database
+- [ ] nix index database, comma
 - [x] tinyproxy wakapi
 - [x] flake installer wizard with nix run
 - [x] on screen keyboard for tablet mode
