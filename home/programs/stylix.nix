@@ -14,6 +14,7 @@
       kitty.enable = false;
       waybar.enable = false;
       vscode.enable = false;
+      spicetify.enable = false;
     };
 
     cursor = {
@@ -23,10 +24,7 @@
     };
 
     fonts =
-      let
-        nf = pkgs.nerdfonts.override { fonts = [ "DejaVuSansMono" "JetBrainsMono" "Monofur" "IBMPlexMono" ]; };
-      in
-      {
+      {      
         serif = {
           package = pkgs.noto-fonts;
           name = "Noto Serif";
@@ -38,7 +36,7 @@
         };
 
         monospace = {
-          package = nf;
+          package = pkgs.nerd-fonts.jetbrains-mono;
           name = "JetBrainsMono Nerd Font";
         };
 

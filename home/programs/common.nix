@@ -56,7 +56,7 @@
     btop.enable = true; # replacement of htop/nmon
     eza = {
       enable = true; # A modern replacement for ‘ls’
-      icons = true;
+      icons = "auto";
       extraOptions = [
         "--group-directories-first"
         # "--git-ignore"

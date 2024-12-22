@@ -3,6 +3,7 @@
     enable = true;
     font.name = lib.mkForce "Monofur Nerd Font Mono"; # "JetBrainsMono Nerd Font";#"monofurx Nerd Font";#
     font.size = lib.mkForce 15;
+    font.package = pkgs.nerd-fonts.monofur;
     # theme = "Adwaita dark";
     # theme = "GitHub Dark";
     environment = {

@@ -92,7 +92,7 @@
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
     (
       let base = pkgs.appimageTools.defaultFhsEnvArgs; in
-      pkgs.buildFHSUserEnv (base // {
+      pkgs.buildFHSEnv (base // {
         name = "fhs";
         targetPkgs = pkgs: (
           (base.targetPkgs pkgs) ++ (with pkgs; [
@@ -150,7 +150,7 @@
       xkb-options=${options}
     '';
     fonts = [{
-      package = pkgs.nerdfonts.override { fonts = [ "Monofur" ]; };
+      package = pkgs.nerd-fonts.monofur;
       name = "Monofur Nerd Font Mono";
     }];
   };

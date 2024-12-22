@@ -1,6 +1,6 @@
 { config, pkgs, nur, ... }: {
   imports = [
-    nur.hmModules.nur
+    nur.modules.homeManager.default
   ];
 
   # home.packages = with config.nur.repos."999eagle"; [

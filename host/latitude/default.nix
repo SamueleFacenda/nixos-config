@@ -37,7 +37,7 @@ in
       ../../secrets
 
       # nix user repository
-      nur.nixosModules.nur
+      nur.modules.nixos.default
 
       # { nixpkgs.overlays = [ nixpkgs-wayland.overlay ]; }
       # { nixpkgs.overlays = [ hyprland.overlays.default ]; }

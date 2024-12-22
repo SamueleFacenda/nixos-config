@@ -139,11 +139,12 @@ in
         new_optimizations = true;
         ignore_opacity = true;
       };
-      drop_shadow = true;
-      shadow_range = 15;
-      "col.shadow" = lib.mkDefault "0xffa7caff";
-      "col.shadow_inactive" = "0x50000000";
-
+      shadow = {
+        enabled = true;
+        range = 15;
+        color = lib.mkDefault "0xffa7caff";
+        color_inactive = "0x50000000";
+      };
       active_opacity = 1.0;
       inactive_opacity = 0.75;
       blurls = [

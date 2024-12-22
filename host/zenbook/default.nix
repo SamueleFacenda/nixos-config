@@ -35,7 +35,7 @@ in
       ../../secrets
 
       # nix user repository
-      nur.nixosModules.nur
+      nur.modules.nixos.default
 
       # { nixpkgs.overlays = [ hyprland.overlays.default ]; }
       ../../overlays
@@ -169,4 +169,7 @@ in
     ATTRS{idVendor}=="1443", MODE:="666" 
     ACTION=="add", ATTRS{idVendor}=="0403", ATTRS{manufacturer}=="Digilent", MODE:="666"
   '';
+  
+  # https://discourse.nixos.org/t/warning-not-applying-gid-change-of-group-uinput-989-327-in-etc-group/57652/3
+  users.groups.uinput.gid = lib.mkForce 989;
 }
