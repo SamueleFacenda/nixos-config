@@ -30,7 +30,7 @@
       USB_EXCLUDE_AUDIO = 1;
       USB_EXCLUDE_PHONE = 1;
       USB_EXCLUDE_BTUSB = 1; # "8087:0033";
-      USB_DENYLIST = "046d:c539";
+      USB_DENYLIST = "046d:c539 3434:0233";
       
       # Optional helps save long term battery health
       # START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
