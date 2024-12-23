@@ -40,11 +40,23 @@
     bluetuith
   ];
 
-  xdg.portal.extraPortals = with pkgs; [
-    #xdg-desktop-portal-shana
-    #xdg-desktop-portal-gtk
-    xdg-desktop-portal-termfilechooser
-  ];
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      #xdg-desktop-portal-shana
+      #xdg-desktop-portal-gtk
+      xdg-desktop-portal-termfilechooser
+    ];
+    config.hyprland = {
+      default = [
+        "hyprland"
+        "gtk"
+      ];
+      "org.freedesktop.impl.portal.FileChooser" = [
+        "termfilechooser"
+      ];
+    };
+  };
 
   # needed by termfilechooser portal
   environment.sessionVariables.TERMCMD = "${pkgs.kitty}/bin/kitty --class=file_chooser --override background_opacity=1";
