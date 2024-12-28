@@ -84,6 +84,19 @@ in
   
   boot.kernel.sysctl."vm.swappiness" = 10;
   boot.tmp.useTmpfs = true;
+  
+  # Latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  
+  # Use bbr for more aggressive tcp
+  boot.kernelPatches = [{
+    name = "bbr";
+    patch = null;
+    extraStructuredConfig = with pkgs.lib.kernel; {
+      TCP_CONG_BBR = yes; # enable BBR
+      DEFAULT_BBR = yes; # use it by default
+    };
+  }];
 
   # custom options for secrets, fallback placeholder is used
   secrets = {
