@@ -70,7 +70,7 @@ in
 
   # Weylus: use the surface as input device
   programs.weylus = {
-    enable = true;
+    enable = false; # wait for build fix
     users = [ "samu" ];
   };
 
