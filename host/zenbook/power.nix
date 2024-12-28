@@ -46,11 +46,16 @@
         governor = "powersave";
         energy_performance_preference = "power";
         turbo = "never";
+        platform_profile = "quiet";
+        energy_perf_bias = "power";
       };
       charger = {
         governor = "performance";
         energy_performance_preference = "performance";
         turbo = "auto";
+        # scaling_max_freq = "5200000";
+        platform_profile = "performance";
+        energy_perf_bias = "performance";
       };
     };
   };
