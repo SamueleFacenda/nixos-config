@@ -67,5 +67,5 @@
     powertop
   ];
 
-  services.asusd.enable = true;
+  services.asusd.enable = false;
 }

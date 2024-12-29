@@ -55,4 +55,11 @@
   services.gnome-keyring.enable = true;
 
   services.swayosd.enable = true;
+  
+  # Link gpus to home
+  
+  systemd.user.tmpfiles.rules = [
+    "L /home/${config.home.username}/.config/hypr/nvidia - - - - /dev/dri/by-path/pci-0000:01:00.0-card"
+    "L /home/${config.home.username}/.config/hypr/intel - - - - /dev/dri/by-path/pci-0000:00:02.0-card"
+  ];
 }

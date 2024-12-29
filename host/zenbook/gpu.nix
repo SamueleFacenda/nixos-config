@@ -14,11 +14,12 @@
   hardware.nvidia = {
     # package = config.boot.kernelPackages.nvidiaPackages.beta;
     modesetting.enable = true;
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     powerManagement.finegrained = true;
-    open = false; # true
+    open = false;
     nvidiaSettings = true;
-    dynamicBoost.enable = false;
+    dynamicBoost.enable = true; # nvidia-powerd, should make changes only on AC
+    videoAcceleration = true; # vaapi nvidia
 
     prime = {
       # pci@0000:00:02.0 intel
@@ -32,6 +33,10 @@
       };
     };
   };
+  
+  boot.kernelParams = [
+    "nvidia.NVreg_TemporaryFilePath=/var/tmp"
+  ];
 
   # Change prime mode and some hyprland env vars (hdmi doesn't work with offload)
   specialisation.multi-monitor.configuration = {
@@ -59,4 +64,7 @@
 
   # Use these or the standard nvidia settings (not working now)
   services.supergfxd.enable = false;
+  
+  #   # environment.sessionVariables.AQ_DRM_DEVICES = "/home/${config.users.default.name}/.config/hypr/intel:/home/${config.users.default.name}/.config/hypr/nvidia";
+  environment.sessionVariables.AQ_DRM_DEVICES = "/home/${config.users.default.name}/.config/hypr/intel";
 }
