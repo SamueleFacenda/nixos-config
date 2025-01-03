@@ -14,9 +14,9 @@
   hardware.nvidia = {
     # package = config.boot.kernelPackages.nvidiaPackages.beta;
     modesetting.enable = true;
-    powerManagement.enable = true;
+    powerManagement.enable = false; # https://forums.developer.nvidia.com/t/fixed-suspend-resume-issues-with-the-driver-version-470/187150/3
     powerManagement.finegrained = true;
-    open = false;
+    open = true;
     nvidiaSettings = true;
     dynamicBoost.enable = true; # nvidia-powerd, should make changes only on AC
     videoAcceleration = true; # vaapi nvidia
