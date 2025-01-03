@@ -80,7 +80,7 @@ in
   ];
 
   networking.firewall.enable = lib.mkForce true;
-  networking.firewall.allowedTCPPorts = [ 22 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 5001 ];
   
   boot.kernel.sysctl."vm.swappiness" = 10;
   boot.tmp.useTmpfs = true;
