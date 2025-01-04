@@ -1,4 +1,4 @@
-{ lib, config, pkgs, nixpkgs, self, ... }:
+{ lib, config, pkgs, nixpkgs, nix-index-database, self, ... }:
 
 {
 
@@ -116,4 +116,11 @@
   #   ManagedOOMMemoryPressureLimit = "50%";
   # };
   # systemd.services."nix-daemon".serviceConfig.Slice = "nix-daemon.slice";
+  
+  
+  # Nix index db (command not found)
+  imports = [
+    nix-index-database.nixosModules.nix-index
+  ];
+  programs.nix-index-database.comma.enable = true;
 }

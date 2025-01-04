@@ -19,7 +19,7 @@
     open = true;
     nvidiaSettings = true;
     dynamicBoost.enable = true; # nvidia-powerd, should make changes only on AC
-    videoAcceleration = true; # vaapi nvidia
+    videoAcceleration = false; # vaapi nvidia
 
     prime = {
       # pci@0000:00:02.0 intel
