@@ -41,7 +41,7 @@ in
       touchpad.natural_scroll = true;
 
       kb_layout = "it,us";
-      kb_options = "grp:win_space_toggle,caps:escape_shifted_capslock";
+      kb_options = "grp:win_space_toggle,caps:escape"; # caps:escape_shifted_capslock";
 
       repeat_rate = 25;
       repeat_delay = 500;

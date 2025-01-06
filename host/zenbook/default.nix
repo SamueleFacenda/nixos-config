@@ -15,6 +15,9 @@ in
 
       ./hardware-configuration.nix
       nixos-hardware.nixosModules.common-cpu-intel
+      
+      # Add `pkgs-cuda` to modules input
+      ../../modules/nixpkgs-cuda.nix
 
       # speed up kernel builds (slow down easy build unless overwritten)
       # ../../modules/remote-build.nix

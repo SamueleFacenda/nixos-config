@@ -223,7 +223,7 @@ in
     }
     {
       output = [ "Fujitsu Siemens Computers GmbH E22W-5 YV2C027320" ];
-      "hyprland/language".keyboard-name = "keychron-k3-pro-keyboard"; # "keychron-keychron-k3-pro"; # Changes betwenn bluethoot and cabled connection
+      "hyprland/language".keyboard-name = "keychron-keychron-k3-pro-keyboard"; # "keychron-keychron-k3-pro"; # Changes betwenn bluethoot and cabled connection
     }
   ];
 }
