@@ -144,10 +144,6 @@ for less expert users or for different mouse config.
 ### Waiting for these PR:
 - [Howdy auth](https://github.com/NixOS/nixpkgs/pull/216245)
 
-### Now working/annoying:
-- keyboard switching layout
-- usb autosuspend always on
-
 ### Overlays (custom packages and other):
 - micro-wakatime (faster loading)
 - nerdfonts (use monofur with bullet point character from blexmono)
