@@ -38,7 +38,7 @@ index 88bc697..042dde2 100755
 +path_wasnt_present=false
 +
 +if [ "$save" = "1" ]; then
-+    set -- --choosefile="$out" --cmd='echo Select save path (see tutorial in preview pane; try pressing zv or zp if no preview)' "$path"
++    set -- --choosefile="$out" --cmd='echo Select save path (see tutorial in preview pane; try pressing zv or zp if no preview)' --selectfile="$path"
 +    if [ ! -e "$path" ]; then
 +        printf '%s' "$info" > "$path"
 +        path_wasnt_present=true
