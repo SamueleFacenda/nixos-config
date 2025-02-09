@@ -21,6 +21,7 @@
       PHOTOPRISM_ORIGINALS_LIMIT = "-1";
       PHOTOPRISM_FFMPEG_SIZE = "1920";
       PHOTOPRISM_FFMPEG_BITRATE = "8";
+      # PHOTOPRISM_LOG_LEVEL = "trace";
     };
   };
 

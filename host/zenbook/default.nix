@@ -128,6 +128,8 @@ in
     tpm2-tools
     tpm2-tss
     config.boot.kernelPackages.turbostat
+    
+    bottles
   ];
   
   fonts.packages = with pkgs; [
@@ -152,6 +154,8 @@ in
   users.users.samu.extraGroups = [ "tss" "docker" ];
 
   boot.initrd.systemd.enable = true; # Auto luks unlock
+  
+  services.fwupd.enable = true;
   
   # Docker
   
@@ -187,4 +191,20 @@ in
   
   # https://discourse.nixos.org/t/warning-not-applying-gid-change-of-group-uinput-989-327-in-etc-group/57652/3
   users.groups.uinput.gid = lib.mkForce 989;
+  
+  ## To run nvidia jetson sdk and flash the jetson
+  # boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  # boot.binfmt.preferStaticEmulators = true;
+  # boot.binfmt.registrations.aarch64-linux.matchCredentials = true;
+  
+  # services.nfs.settings.nfsd.debug = "all";
+  # services.nfs.server = {
+  #   enable = true;
+  #   exports = ''
+  #     /home/samu/Public/Linux_for_Tegra/tools/kernel_flash/images *(rw,nohide,insecure,no_subtree_check,async,no_root_squash)
+  #     /home/samu/Public/Linux_for_Tegra/rootfs *(rw,nohide,insecure,no_subtree_check,async,no_root_squash)
+  #   '';
+  # };
+
+  services.mongodb.enable = true;
 }

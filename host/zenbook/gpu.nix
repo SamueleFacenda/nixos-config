@@ -19,7 +19,7 @@
     open = true;
     nvidiaSettings = true;
     dynamicBoost.enable = true; # nvidia-powerd, should make changes only on AC
-    videoAcceleration = false; # vaapi nvidia
+    videoAcceleration = true; # vaapi nvidia
 
     prime = {
       # pci@0000:00:02.0 intel
@@ -43,19 +43,22 @@
     home-manager.users.samu.wayland.windowManager.hyprland.settings.env = [
       # for hyprland with nvidia gpu, ref https://wiki.hyprland.org/Nvidia/
       "LIBVA_DRIVER_NAME,nvidia"
-      "XDG_SESSION_TYPE,wayland"
-      "GBM_BACKEND,nvidia-drm"
+      # "XDG_SESSION_TYPE,wayland"
+      # "GBM_BACKEND,nvidia-drm"
       "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-      "WLR_NO_HARDWARE_CURSORS,1"
+      "NVD_BACKEND,direct"
+      # "WLR_NO_HARDWARE_CURSORS,1"
     ];
     hardware.nvidia = {
       prime.offload = {
         enable = lib.mkForce false;
         enableOffloadCmd = lib.mkForce false;
       };
-      prime.sync.enable = lib.mkForce true;
+      # prime.sync.enable = lib.mkForce true;
       powerManagement.finegrained = lib.mkForce false;
     };
+    environment.sessionVariables.AQ_DRM_DEVICES = lib.mkForce 
+      "/home/${config.users.default.name}/.config/hypr/intel:/home/${config.users.default.name}/.config/hypr/nvidia";
   };
 
   environment.systemPackages = with pkgs; [
@@ -65,6 +68,6 @@
   # Use these or the standard nvidia settings (not working now)
   services.supergfxd.enable = false;
   
-  #   # environment.sessionVariables.AQ_DRM_DEVICES = "/home/${config.users.default.name}/.config/hypr/intel:/home/${config.users.default.name}/.config/hypr/nvidia";
+  # environment.sessionVariables.AQ_DRM_DEVICES = "/home/${config.users.default.name}/.config/hypr/intel:/home/${config.users.default.name}/.config/hypr/nvidia";
   environment.sessionVariables.AQ_DRM_DEVICES = "/home/${config.users.default.name}/.config/hypr/intel";
 }

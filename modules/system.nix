@@ -39,7 +39,7 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = false; # bug that causes high cpu for cupsd-browsed
   # services.printing.cups-pdf.enable = true;
   # auto-discover
   services.avahi = {
