@@ -80,7 +80,7 @@
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
+      inputs.systems.follows = "systems";
     };
 
     agenix = {
@@ -102,12 +102,14 @@
       inputs.home-manager.follows = "home-manager";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
+      inputs.nur.follows = "nur";
+      inputs.git-hooks.follows = "pre-commit-hooks";
     };
 
     systems.url = "github:nix-systems/default";
 
     pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
+      url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
     };
@@ -135,9 +137,8 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.1";
+      url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
       inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks";
     };
 

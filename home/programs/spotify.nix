@@ -14,7 +14,7 @@ in
 
       colorScheme = "custom";
       # https://github.com/spicetify/spicetify-themes/blob/3231c5e4d1a5f2dbae7aec65291364f863eaf9e0/Sleek/color.ini#L323
-      customColorScheme = with config.lib.stylix.scheme; {
+      customColorScheme = with config.lib.stylix.colors; {
         text = cyan;
         subtext = base05;
         nav-active-text = base06;

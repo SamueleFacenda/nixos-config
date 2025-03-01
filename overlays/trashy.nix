@@ -9,7 +9,7 @@ self: super: {
     };
     cargoDeps = super.rustPlatform.fetchCargoTarball {
       inherit src;
-      hash = "sha256-/q/ZCpKkwhnPh3MMVNYZw6XvjyQpoZDBXCPagliGr1M=";
+      hash = "sha256-ZmP9+Jmz/HMhflFT8PNb2Clw38q+ez3GqWIEJhuNCNI=";
     };
     postInstall = "";
   };

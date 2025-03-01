@@ -15,6 +15,7 @@
       waybar.enable = false;
       vscode.enable = false;
       spicetify.enable = false;
+      micro.enable = false;
     };
 
     cursor = {

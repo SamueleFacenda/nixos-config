@@ -124,6 +124,7 @@ in
       key_press_enables_dpms = true;
       # suppress_portal_warnings = true; # documented but does not exists
       allow_session_lock_restore = true;
+      middle_click_paste = false;
     };
     
     cursor = {
