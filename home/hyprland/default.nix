@@ -50,6 +50,7 @@
       "kitty"
       "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
     ];
+    portalPackage = null; # fix wrong portal config dir set, use option from nixos
   };
 
   services.gnome-keyring.enable = true;
