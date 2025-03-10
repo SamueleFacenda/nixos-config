@@ -138,11 +138,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # burp suite certificate
-  security.pki.certificateFiles = [
-    ../assets/burpsuiteca.pem
-  ];
-
   services.kmscon = {
     enable = false; # buggy and not very good looking in multi monitor
     extraConfig = with config.services.xserver.xkb; ''

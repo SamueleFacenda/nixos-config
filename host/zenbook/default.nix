@@ -158,7 +158,6 @@ in
   services.fwupd.enable = true;
   
   # Docker
-  
   virtualisation.docker.enable = true;
   virtualisation.waydroid.enable = true;
   
@@ -207,4 +206,8 @@ in
   # };
 
   services.mongodb.enable = false;
+  services.globalprotect = {
+    enable = true;
+    csdWrapper = "${pkgs.openconnect}/libexec/openconnect/hipreport.sh";
+  };
 }
