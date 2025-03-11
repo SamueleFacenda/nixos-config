@@ -25,6 +25,27 @@
         "type": "github"
       }
     },
+    "asus-dialpad-driver": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1741727685,
+        "narHash": "sha256-v7stouV3z3BlccRSZv8n+YEwU8OdPHt+QBd7Si4wMJ4=",
+        "owner": "SamueleFacenda",
+        "repo": "asus-dialpad-driver",
+        "rev": "ef74d525db3f6faa63994049feef0099caa19ba2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SamueleFacenda",
+        "ref": "fix_nixos_module",
+        "repo": "asus-dialpad-driver",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -550,6 +571,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "asus-dialpad-driver": "asus-dialpad-driver",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",

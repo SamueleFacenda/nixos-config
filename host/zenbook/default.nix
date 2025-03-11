@@ -49,6 +49,8 @@ in
 
       # Secure boot
       lanzaboote.nixosModules.lanzaboote
+      
+      asus-dialpad-driver.nixosModules.default
     ];
 
   # override for custom name (this is also the default value)
@@ -206,8 +208,26 @@ in
   # };
 
   services.mongodb.enable = false;
+  
+  # University vpn (unitn)
   services.globalprotect = {
     enable = true;
     csdWrapper = "${pkgs.openconnect}/libexec/openconnect/hipreport.sh";
+  };
+  
+  # Touch asus dial config
+  services.asus-dialpad-driver = {
+    enable = true;
+    wayland = true;
+    waylandDisplay = "wayland-1";
+    layout = "asusvivobook16x";
+    config.main = {
+      enabled = false;
+      slices_count = 16;
+      disable_due_inactivity_time = 0;
+      touchpad_disables_dialpad = true;
+      activation_time = 0.5;
+      config_supress_app_specifics_shortcuts = 0;
+    };
   };
 }

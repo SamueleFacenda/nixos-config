@@ -141,6 +141,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks";
     };
+    
+    asus-dialpad-driver = {
+      url = "github:SamueleFacenda/asus-dialpad-driver/fix_nixos_module";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 }
