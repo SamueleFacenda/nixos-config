@@ -32,16 +32,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1741727685,
+        "lastModified": 1741760521,
         "narHash": "sha256-v7stouV3z3BlccRSZv8n+YEwU8OdPHt+QBd7Si4wMJ4=",
-        "owner": "SamueleFacenda",
+        "owner": "asus-linux-drivers",
         "repo": "asus-dialpad-driver",
-        "rev": "ef74d525db3f6faa63994049feef0099caa19ba2",
+        "rev": "a8e038816d86323141a36f7bc0ca1f356410a04c",
         "type": "github"
       },
       "original": {
-        "owner": "SamueleFacenda",
-        "ref": "fix_nixos_module",
+        "owner": "asus-linux-drivers",
         "repo": "asus-dialpad-driver",
         "type": "github"
       }
