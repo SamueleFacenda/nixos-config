@@ -23,7 +23,9 @@ in
       "desc:Dell Inc. DELL U2412M Y1H5T17S0N3L,1680x1050@60,0x-1050,1" # work dell
       "desc:Dell Inc. DELL P2312H YJ3JX2B2H1UL,1920x1080@60,0x-1080,1" # another work dell
 
-      ",preferred,auto,1" # fallback
+      ",preferred,auto,1" # fallback      
+      # ",preferred,auto,1, mirror, eDP-1"
+
     ];
     
     env = [

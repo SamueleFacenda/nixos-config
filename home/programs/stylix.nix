@@ -13,8 +13,6 @@
       gnome.enable = true;
       kitty.enable = false;
       waybar.enable = false;
-      vscode.enable = false;
-      spicetify.enable = false;
       micro.enable = false;
       gnome-text-editor.enable = false; # https://www.reddit.com/r/NixOS/comments/1ivo70f/comment/mea7qgm/
     };
@@ -49,9 +47,9 @@
 
         sizes = {
           applications = 11;
-          desktop = 11;
-          popups = 11;
-          terminal = 15;
+          desktop = 10;
+          popups = 10;
+          terminal = 12;
         };
       };
   };
