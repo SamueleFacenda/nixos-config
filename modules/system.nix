@@ -113,7 +113,10 @@
   # https://github.com/muety/wakapi/wiki/Advanced-Setup:-Client-side-proxy
   services.tinyproxy = {
     enable = true;
-    settings.Port = 58888;
+    settings = {
+      Port = 58888;
+      LogLevel = "Notice";
+    };
   };
 
   environment.sessionVariables = {

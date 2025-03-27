@@ -6,7 +6,7 @@
       font-style: normal;
       min-height: 0;
       color: ${cyan};
-      font-family: 'NomeSbagliato DejaVuSansM Nerd Font Mono';
+      font-family: 'DejaVu Sans';
     }
 
     window#waybar {
@@ -103,7 +103,8 @@
       background-color: ${brown};
       border-radius: 0px 0px 24px 24px;
       padding-left: 13px;
-      padding-right: 15px;      margin-top: 0px;
+      padding-right: 15px;      
+      margin-top: 0px;
       margin-bottom: 0px;
       font-weight: bold;
     }
