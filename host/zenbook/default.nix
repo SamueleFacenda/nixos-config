@@ -161,7 +161,9 @@ in
   
   # Docker
   virtualisation.docker.enable = true;
-  virtualisation.waydroid.enable = true;
+  hardware.nvidia-container-toolkit.enable = true;
+  
+  virtualisation.waydroid.enable = false;
   
   services.mysql = {
     enable = false;

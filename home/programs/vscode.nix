@@ -107,6 +107,9 @@ in
           scminput = false;
         };
         "git.openRepositoryInParentFolders" = "always";
+        "files.associations" = {
+          "*.sage" = "python";
+        };
       };
     };
   };
