@@ -143,7 +143,8 @@
     };
     
     asus-dialpad-driver = {
-      url = "github:asus-linux-drivers/asus-dialpad-driver";
+      # url = "github:asus-linux-drivers/asus-dialpad-driver";
+      url = "/home/samu/repos/asus-dialpad-driver";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
