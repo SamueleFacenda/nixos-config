@@ -102,7 +102,7 @@ The process is described above, and you also should:
 - [x] kanshi dynamic monitor config (crash on change, hyprland problem)
 - [x] nixd language server
 - [x] swayosd (on screen display)
-- [x] flameshot
+- [ ] flameshot (fix for hyprland)
 - [x] hyprfocus
 - [x] spotifyd, spotify-player
 - [x] flake templates
@@ -129,6 +129,7 @@ The process is described above, and you also should:
 - [x] tray (blueman, nm)
 - [ ] systemd nspawn nomad + autoscaler
 - [ ] better shortcuts (resize)
+- [ ] fix swayosd size
 
 ### Possible packages
 Good packages not installed becouse I don't need them. They are probably useful

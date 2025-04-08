@@ -34,9 +34,9 @@ in
 
     windowrule = [
       # xdg-desktop-portal-termfilechooser
-      "float,^(file_chooser)$"
-      "size 800 500,^(file_chooser)$"
-      "center,^(file_chooser)$"
+      "float,initialClass:^(file_chooser)$"
+      "size 800 500,initialClass:^(file_chooser)$"
+      "center,initialClass:^(file_chooser)$"
     ];
 
     input = {

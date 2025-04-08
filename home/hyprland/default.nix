@@ -57,6 +57,8 @@
 
   services.swayosd.enable = true;
   
+  services.flameshot.package = pkgs.flameshot.override { enableWlrSupport = true; };
+  
   # Link gpus to home
   
   systemd.user.tmpfiles.rules = [

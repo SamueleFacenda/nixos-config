@@ -32,17 +32,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1743942782,
-        "narHash": "sha256-r2/uSZRJVEx1j5tCagcclG1U2tpThGb0A/eJR8X13A0=",
-        "ref": "refs/heads/fix_nix_build",
-        "rev": "92f4e54b989b3199e77435f48e156fca4f318e0e",
-        "revCount": 32,
-        "type": "git",
-        "url": "file:///home/samu/repos/asus-dialpad-driver"
+        "lastModified": 1744122432,
+        "narHash": "sha256-EdXPKKiyoPOQaoQWaR0OWfacYlTKyt0snebZNVx3npQ=",
+        "owner": "asus-linux-drivers",
+        "repo": "asus-dialpad-driver",
+        "rev": "d68f8c788120093c78a09fad33818b1121a6d392",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/samu/repos/asus-dialpad-driver"
+        "owner": "asus-linux-drivers",
+        "repo": "asus-dialpad-driver",
+        "type": "github"
       }
     },
     "base16": {
