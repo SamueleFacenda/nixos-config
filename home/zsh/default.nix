@@ -18,8 +18,7 @@
       nix-unsec = "env NIXPKGS_ALLOW_INSECURE=1 nix --impure";
 
       tree = "eza --tree";
-      ls = lib.mkForce "eza --git-ignore";
-
+      # ls = lib.mkForce "eza --git-ignore";
       c = "clear";
       q = "exit";
       rl = "omz reload";

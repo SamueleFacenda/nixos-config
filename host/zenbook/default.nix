@@ -208,6 +208,18 @@ in
   #     /home/samu/Public/Linux_for_Tegra/rootfs *(rw,nohide,insecure,no_subtree_check,async,no_root_squash)
   #   '';
   # };
+  
+  # Stuff for osx kvm
+  
+#   virtualisation.libvirtd.enable = true;
+#   users.extraUsers.samu.extraGroups = [ "libvirtd" ];
+# 
+#   boot.extraModprobeConfig = ''
+#     options kvm_intel nested=1
+#     options kvm_intel emulate_invalid_guest_state=0
+#     options kvm ignore_msrs=1
+#   '';
+  
 
   services.mongodb.enable = false;
   

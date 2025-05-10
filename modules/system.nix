@@ -100,6 +100,8 @@
             ncurses
             glibc
             glib
+            pkgsi686Linux.glib
+            pkgsi686Linux.glibc
           ])
         );
         profile = "export FHS=1";

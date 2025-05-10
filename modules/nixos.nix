@@ -23,6 +23,8 @@
     log-lines = 20;
     keep-going = false;
     user-agent-suffix = "NixOS unstable";
+    
+    substituters = config.nix.settings.trusted-substituters;
 
     trusted-substituters = [
       "https://cache.nixos.org/"
