@@ -29,14 +29,14 @@
     trusted-substituters = [
       "https://cache.nixos.org/"
       "https://nix-community.cachix.org"
-      "https://cuda-maintainers.cachix.org"
+      # "https://cuda-maintainers.cachix.org"
       "https://ros.cachix.org"
     ];
 
     trusted-public-keys = [
       "nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+      # "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
       "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="
     ];
   };
