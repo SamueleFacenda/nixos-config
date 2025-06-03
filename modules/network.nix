@@ -107,6 +107,14 @@ in
           priority = 80;
           password = "$LEO_PSW";
         })
+      #   (mkPeapWifi {
+      #     name = "eduroam-ethernet";
+      #     identity = "@fbkeduroam.it";
+      #     password = "$FBK_PSW";
+      #     priority = 75;
+      #     connection.type = "ethernet";
+      #     ethernet = {};
+      #   })
       ];
     };
   };

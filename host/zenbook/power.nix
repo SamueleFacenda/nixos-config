@@ -39,6 +39,7 @@
     };
   };
 
+  # boot.kernelParams = ["intel_pstate=disable"];
   services.auto-cpufreq = {
     enable = true;
     settings = {

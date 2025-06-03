@@ -33,6 +33,7 @@
       lum = "swayosd-client --brightness";
       img = "kitty +kitten icat";
       tmp = "cd $(mktemp -d)";
+      tmpf = "micro $(mktemp)";
       logh =
         if secrets ? github-token
         then "sudo cat ${secrets.github-token.path} | gh auth login --with-token"

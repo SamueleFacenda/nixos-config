@@ -130,6 +130,7 @@ The process is described above, and you also should:
 - [ ] systemd nspawn nomad + autoscaler
 - [ ] better shortcuts (resize)
 - [ ] fix swayosd size
+- [ ] ZSH_AUTOCD with zshz
 
 ### Possible packages
 Good packages not installed becouse I don't need them. They are probably useful

@@ -105,6 +105,7 @@ in
           plaintext = false;
           markdown = false;
           scminput = false;
+          c = false;
         };
         "git.openRepositoryInParentFolders" = "always";
         "files.associations" = {

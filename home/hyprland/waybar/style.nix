@@ -171,20 +171,20 @@
     }
 
     #battery.critical:not(.charging) {
-      animation-name: critical;
+      /* animation-name: critical;
       animation-duration: 1s;
       animation-direction: alternate;
       animation-timing-function: cubic-bezier(.59,.23,.25,.91);
-      animation-iteration-count: infinite;
+      animation-iteration-count: infinite; */
       color: ${red};
     }
 
     #battery.warning:not(.charging) {
-      animation-name: warning;
+      /* animation-name: warning;
       animation-duration: 2s;
       animation-direction: alternate;
       animation-timing-function: cubic-bezier(.59,.23,.25,.91);
-      animation-iteration-count: infinite;
+      animation-iteration-count: infinite; */
       color: ${red};
     }
 
