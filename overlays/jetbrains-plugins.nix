@@ -31,10 +31,6 @@ in {
           .${super.stdenv.hostPlatform.uname.processor} or ""
         }/copilot-language-server'
         
-        find_placeholder_pos() {
-          grep -obUa -- "$1" "$agent" | cut -d: -f1
-        }
-        
         # Helper: find the offset of the payload by matching gzip magic bytes
         find_payload_offset() {
           grep -aobUam1 -f <(printf '\x1f\x8b\x08\x00') "$agent" | cut -d: -f1
@@ -44,24 +40,6 @@ in {
         find_prelude_offset() {
           local prelude_string='(function(process, require, console, EXECPATH_FD, PAYLOAD_POSITION, PAYLOAD_SIZE) {'
           grep -obUa -- "$prelude_string" "$agent" | cut -d: -f1
-        }
-        
-        find_prelude_size() {
-          local file_size=$(stat -c%s "$agent")
-          echo -n $((file_size - $(find_prelude_offset)))
-        }
-        
-        find_payload_size() {
-          echo -n "$(($(find_prelude_offset) - $(find_payload_offset)))"
-        }
-        
-        replace_placeholder_with_value() {
-          local placeholder="$1" value="$2"
-          local pos len
-          pos=$(find_placeholder_pos "$placeholder")
-          len=''${#placeholder}
-          printf -v value "%-''${len}s" "$value"
-          echo -n "$value" | dd of="$agent" bs=1 seek="$pos" conv=notrunc status=none
         }
         
         before_payload_position="$(find_payload_offset)"
@@ -79,13 +57,9 @@ in {
         after_payload_position="$(find_payload_offset)"
         after_prelude_position="$(find_prelude_offset)"
         
+        # There are hardcoded positions in the binary, then it replaces the placeholders by himself
         sed -i -e "s/$before_payload_position/$after_payload_position/g" "$agent"        
         sed -i -e "s/$before_prelude_position/$after_prelude_position/g" "$agent"
-
-        # replace_placeholder_with_value "// PAYLOAD_POSITION //" "$(find_payload_offset)"
-        # replace_placeholder_with_value "// PAYLOAD_SIZE //" "$(find_payload_size)"
-        # replace_placeholder_with_value "// PRELUDE_POSITION //" "$(find_prelude_offset)"
-        # replace_placeholder_with_value "// PRELUDE_SIZE //" "$(find_prelude_size)"
       '';
     };
   };
