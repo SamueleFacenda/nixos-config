@@ -63,6 +63,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    
+    # nixpkgs-stable.url = "github/NixOS/nixpkgs/nixos-25.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -101,9 +103,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
       inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
       inputs.nur.follows = "nur";
       inputs.git-hooks.follows = "pre-commit-hooks";
+      inputs.flake-parts.follows = "flake-parts";
     };
 
     systems.url = "github:nix-systems/default";
@@ -120,6 +122,8 @@
     };
 
     flake-compat.url = "github:edolstra/flake-compat";
+    
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     lib-aggregate = {
       url = "github:nix-community/lib-aggregate";
@@ -129,6 +133,7 @@
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
 
     nixos-generators = {
@@ -140,6 +145,7 @@
       url = "github:nix-community/lanzaboote/v0.4.2";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks";
+      inputs.flake-parts.follows = "flake-parts";
     };
     
     asus-dialpad-driver = {

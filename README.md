@@ -131,6 +131,7 @@ The process is described above, and you also should:
 - [ ] better shortcuts (resize)
 - [ ] fix swayosd size
 - [ ] ZSH_AUTOCD with zshz
+- [ ] move away from swaylock (gets stuck very often)
 
 ### Possible packages
 Good packages not installed becouse I don't need them. They are probably useful

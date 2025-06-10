@@ -45,7 +45,7 @@
     extensions = with pkgs.gnomeExtensions; [
       { package = caffeine; }
       { package = user-themes; }
-      { package = enhanced-osk; }
+      { package = gjs-osk; }
       { package = blur-my-shell; }
       { package = screen-rotate; }
       { package = always-show-titles-in-overview; }

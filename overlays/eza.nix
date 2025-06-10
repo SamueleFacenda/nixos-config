@@ -2,6 +2,7 @@
 self: super: {
   eza = super.eza.overrideAttrs (finalAttrs: previousAttrs: {
     version = "${previousAttrs.version}-patched";
+    __intentionallyOverridingVersion = true;
     patchPhase = ''
       runHook prePatch
 

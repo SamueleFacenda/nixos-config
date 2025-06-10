@@ -15,6 +15,7 @@
           )}"
       }
     '';
+    config.global.log_filter = "^$";
   };
   home.sessionVariables.DIRENV_LOG_FORMAT = "";
 }

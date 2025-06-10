@@ -82,7 +82,7 @@
   systemd.packages = [ pkgs.swayosd ];
   services.dbus.packages = [ pkgs.swayosd ];
 
-  services.xserver.displayManager.gdm.enable = lib.mkForce false;
+  services.displayManager.gdm.enable = lib.mkForce false;
   services.greetd = {
     enable = true;
     vt = 2; # clean login screen, no startup logs
