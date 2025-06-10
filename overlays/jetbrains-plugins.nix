@@ -16,7 +16,6 @@ in {
         executable = false;
       };
       
-      
       # prelude
       # (function(process, require, console, EXECPATH_FD, PAYLOAD_POSITION, PAYLOAD_SIZE) { return (function (REQUIRE_COMMON, VIRTUAL_FILESYSTEM, DEFAULT_ENTRYPOINT, SYMLINKS, DICT, DOCOMPRESS) {
       # payload 
@@ -30,21 +29,21 @@ in {
           }
           .${super.stdenv.hostPlatform.uname.processor} or ""
         }/copilot-language-server'
-        
+
         # Helper: find the offset of the payload by matching gzip magic bytes
         find_payload_offset() {
           grep -aobUam1 -f <(printf '\x1f\x8b\x08\x00') "$agent" | cut -d: -f1
         }
-        
+
         # Helper: find the offset of the prelude by searching for function string start
         find_prelude_offset() {
           local prelude_string='(function(process, require, console, EXECPATH_FD, PAYLOAD_POSITION, PAYLOAD_SIZE) {'
           grep -obUa -- "$prelude_string" "$agent" | cut -d: -f1
         }
-        
+
         before_payload_position="$(find_payload_offset)"
         before_prelude_position="$(find_prelude_offset)"
-        
+
         patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $agent
         patchelf --set-rpath ${
           super.lib.makeLibraryPath [
@@ -56,7 +55,7 @@ in {
                 
         after_payload_position="$(find_payload_offset)"
         after_prelude_position="$(find_prelude_offset)"
-        
+
         # There are hardcoded positions in the binary, then it replaces the placeholders by himself
         sed -i -e "s/$before_payload_position/$after_payload_position/g" "$agent"        
         sed -i -e "s/$before_prelude_position/$after_prelude_position/g" "$agent"
