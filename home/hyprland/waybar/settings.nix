@@ -94,7 +94,7 @@ let
     };
 
     temperature = {
-      thermal-zone = 10; # 5 for surface, TODO make an option
+      thermal-zone = 11; # 5 for surface, TODO make an option
       critical-threshold = 100;
       interval = 5;
       format-icons = [ "" "" "" "" "" "󰸁" ];
