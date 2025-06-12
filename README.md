@@ -134,8 +134,8 @@ The process is described above, and you also should:
 - [ ] move away from swaylock (gets stuck very often)
 
 ### Possible packages
-Good packages not installed becouse I don't need them. They are probably useful
-for less expert users or for different mouse config.
+Good packages not installed because I don't need them. They are probably useful
+for less expert users or for different mouse configs.
 - nwg-dock-hyprland
 - nwg-drawer
 - waycorner
