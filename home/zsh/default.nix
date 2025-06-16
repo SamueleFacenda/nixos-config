@@ -40,10 +40,10 @@
         else "gh auth login";
 
       ac = "sudo auto-cpufreq --force performance && sudo tlp ac";
-      batt = "sudo auto-cpufreq --force powersave && sudo tlp bat";
+      bat = "sudo auto-cpufreq --force powersave && sudo tlp bat";
+      auto = "sudo auto-cpufreq --force reset && sudo tlp start";
 
-
-      bat = "cat /sys/class/power_supply/BAT*/capacity";
+      batt = "cat /sys/class/power_supply/BAT*/capacity";
       screenshot = "grim -g \"$(slurp)\"";
     };
 

@@ -111,7 +111,7 @@ let
 
     cpu = {
       interval = 1;
-      format = "󰻠 {usage:02}%";
+      format = "󰻠 {usage:02}% {avg_frequency:.1f}<span size='small'>GHz</span>";
       states = {
         warning = 95;
       };
