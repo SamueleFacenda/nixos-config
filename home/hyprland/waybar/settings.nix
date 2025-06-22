@@ -46,7 +46,8 @@ let
 
     "custom/launcher" = {
       format = " ";
-      on-click = "toggle wofi --show drun";
+      # on-click = "toggle wofi --show drun";
+      on-click = "swaync-client --toggle-panel"; # TODO put in the proper place and side
       tooltip = false;
     };
 

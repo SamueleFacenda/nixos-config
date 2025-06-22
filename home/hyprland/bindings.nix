@@ -59,8 +59,9 @@
         "$mod, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 ${pkgs.swaylock-effects}/bin/swaylock -f"
 
         ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioStop, exec, playerctl play-pause"
+        ", XF86AudioPlay, exec, playerctl play-pause" # bluetooth get's confused about current status(?)
+        ", XF86AudioPause, exec, playerctl play-pause"
+        ", XF86AudioStop, exec, playerctl stop"
         # ", XF86SelectiveScreenshot, exec, grim -g \"$(slurp)\" "
         "SUPER_SHIFT, S, exec, grim -g \"$(slurp)\" "
         ", print, exec, grim"

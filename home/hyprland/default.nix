@@ -65,4 +65,11 @@
     "L /home/${config.home.username}/.config/hypr/nvidia - - - - /dev/dri/by-path/pci-0000:01:00.0-card"
     "L /home/${config.home.username}/.config/hypr/intel - - - - /dev/dri/by-path/pci-0000:00:02.0-card"
   ];
+  
+  programs.zathura = {
+    enable = true;
+  };
+  
+  
+  services.playerctld.enable = true;
 }
