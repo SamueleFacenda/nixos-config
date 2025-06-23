@@ -58,19 +58,21 @@
 
     #workspaces {
       margin: 5px 40px;
-      padding: 0pc 5px 0px 5px;
+      padding: 0px;
     }
 
     #workspaces button {
-      padding: 0px 5px;
+      padding: 0px 6px;
       border-radius: 16px;
       color: ${blue};
     }
 
-    /* Does this works?(seems to be overwritten in child label) */
-    #workspaces button.active {
-      color: ${red};
-      background-color: transparent;
+    #workspaces label{
+      font-family: 'JetBrainsMono NerdFont Mono';
+    }
+    
+    #workspaces button.active label{
+     font-size: 20px;
     }
 
     #workspaces button:hover {
