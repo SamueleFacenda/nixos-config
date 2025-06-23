@@ -70,6 +70,16 @@
     enable = true;
   };
   
-  
   services.playerctld.enable = true;
+  
+  services.batsignal = {
+    enable = true;
+    extraArgs = [
+      "-w" "20" # "-W" "message"
+      "-c" "5" # "-C" "message"
+      "-d" "2" # "-D" "message"
+      # "-p" "-P" "charging message" "-U" "discharging message"
+      "-m" "30" # interval
+    ];
+  };
 }
