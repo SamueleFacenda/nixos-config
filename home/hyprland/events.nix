@@ -108,14 +108,11 @@ in
           workspace = ''
             # WORKSPACENAME
 
-            focusedmonitor=$(hyprctl workspaces -j \
-              | jq ".[] | select(.name == \"$WORKSPACENAME\") | .monitor")
+            focusedmonitor=$(hyprctl workspaces -j | jq ".[] | select(.name == \"$WORKSPACENAME\") | .monitor")
               
-            othersworkspaceid=$(hyprctl monitors -j \
-              | jq ".[] | select(.name != $focusedmonitor) | .activeWorkspace.id")
+            othersworkspaceid=$(hyprctl monitors -j | jq ".[] | select(.name != $focusedmonitor) | .activeWorkspace.id")
               
-            focusedworkspaceid=$(hyprctl monitors -j \
-              | jq ".[] | select(.name == $focusedmonitor) | .activeWorkspace.id")
+            focusedworkspaceid=$(hyprctl monitors -j | jq ".[] | select(.name == $focusedmonitor) | .activeWorkspace.id")
               
             # If it's trying to go to the 0 (before the first) block and return to the first
             if [[ $((focusedworkspaceid % ${nstr})) == 0 ]]

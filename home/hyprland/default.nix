@@ -38,7 +38,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    maxNWorkspaces = 6;
+    maxNWorkspaces = 7;
     plugins = with pkgs.hyprlandPlugins; [
       # hyprfocus # animation on focus change TODO wait for build fix
       # hyprspace
