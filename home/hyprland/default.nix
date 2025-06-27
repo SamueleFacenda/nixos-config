@@ -68,6 +68,11 @@
   
   programs.zathura = {
     enable = true;
+    options = with config.lib.stylix.colors.withHashtag; {
+      default-bg = lib.mkForce "alpha(${base00}, 0.2)";
+      adjust-open = "width";
+      selection-clipboard = "clipboard";
+    };
   };
   
   services.playerctld.enable = true;
