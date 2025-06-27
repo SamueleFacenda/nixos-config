@@ -14,6 +14,7 @@
       kitty.enable = false;
       waybar.enable = false;
       micro.enable = false;
+      swaync.enable = false;
       gnome-text-editor.enable = false; # https://www.reddit.com/r/NixOS/comments/1ivo70f/comment/mea7qgm/
     };
 
