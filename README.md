@@ -132,6 +132,8 @@ The process is described above, and you also should:
 - [ ] fix swayosd size
 - [ ] ZSH_AUTOCD with zshz
 - [ ] move away from swaylock (gets stuck very often)
+- [ ] more blur (swayosd, shell elements), like liquid glass
+- [ ] clipboard manager
 
 ### Possible packages
 Good packages not installed because I don't need them. They are probably useful
