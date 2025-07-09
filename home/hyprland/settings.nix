@@ -63,6 +63,8 @@ in
     general = {
       layout = "dwindle";
       border_size = 0;
+      gaps_in = 5;
+      gaps_out = 10;
     };
 
     animations = {

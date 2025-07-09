@@ -76,6 +76,7 @@
   };
   
   services.playerctld.enable = true;
+  services.mpris-proxy.enable = false; # handle bluetooth mpris status
   
   services.batsignal = {
     enable = true;
