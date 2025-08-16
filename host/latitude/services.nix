@@ -24,11 +24,14 @@
       # PHOTOPRISM_LOG_LEVEL = "trace";
     };
   };
+  
+  users.groups.photos = {};
+  users.users.samuelef.extraGroups = [ "photos" ];
 
   systemd.services.photoprism = {
     environment.LIBVA_DRIVER_NAME = "i965";
     serviceConfig = {
-      SupplementaryGroups = [ "video" "render" ];
+      SupplementaryGroups = [ "video" "render" "photos" ];
       PrivateDevices = lib.mkForce false;
       # DeviceAllow = "/dev/dri/renderD128";
     };
