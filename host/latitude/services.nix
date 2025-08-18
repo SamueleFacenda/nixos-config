@@ -85,4 +85,39 @@
       };
     };
   };
+  
+  # TRMNL
+  
+  virtualisation.oci-containers.containers."trmnl-server-app" = {
+    image = "ghcr.io/usetrmnl/terminus:latest";
+    environment = {
+      API_URI = "http://192.168.68.109:2300";
+      HANAMI_PORT = "2300";
+      DATABASE_URL = "postgresql://terminus:password@192.168.68.109:5432/terminus";
+    };
+    ports = [ "2300:2300" ];
+  };
+  
+  services.postgresql = {
+    enable = true;
+    enableTCPIP = true;
+    package = pkgs.postgresql_17_jit;
+    ensureDatabases = [ "terminus" ];
+    ensureUsers = [
+      {
+        name = "terminus";
+        ensureDBOwnership = true;
+      }
+    ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      # TYPE  DATABASE  USER      ADDRESS          METHOD
+      local   all      postgres                  peer map=postgres
+      local   all      all                       peer
+      host    all      all       127.0.0.1/32    md5
+      host    all      all       ::1/128         md5
+
+      # allow podman containers
+      host    all      all       10.88.0.0/16    md5
+    '';
+  };
 }
