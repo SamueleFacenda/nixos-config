@@ -81,7 +81,6 @@ in
 
   networking.firewall.enable = lib.mkForce true;
   networking.firewall.allowedTCPPorts = [ 22 80 443 5001 2300 ];
-  networking.firewall.interfaces."podman0".allowedTCPPorts = [ 5432 ];
   
   
   boot.kernel.sysctl."vm.swappiness" = 10;
