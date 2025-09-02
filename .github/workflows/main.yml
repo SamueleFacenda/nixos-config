@@ -1,0 +1,144 @@
+name: Update Nix Flake Inputs
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 22 * * *'
+  workflow_dispatch: # Allow manual triggering
+    inputs:
+      rebase_strategy:
+        description: 'Strategy for updating the branch'
+        required: false
+        default: 'rebase'
+        type: choice
+        options:
+        - 'rebase'
+        - 'reset'
+      force_update:
+        description: 'Force update even if rebase fails'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  update-flake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch all branches
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v23
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Update/rebase updated branch
+        run: |
+          # Switch to main and pull latest
+          git checkout main
+          git pull origin main
+          
+          # Determine strategy (from manual input or default to rebase)
+          STRATEGY="${{ github.event.inputs.rebase_strategy || 'rebase' }}"
+          FORCE_UPDATE="${{ github.event.inputs.force_update || 'false' }}"
+          
+          echo "Using strategy: $STRATEGY"
+          
+          # Check if updated branch exists remotely
+          if git ls-remote --exit-code --heads origin updated > /dev/null 2>&1; then
+            echo "Updated branch exists..."
+            
+            # Checkout updated branch
+            git checkout updated
+            git pull origin updated
+            
+            if [[ "$STRATEGY" == "rebase" ]]; then
+              echo "Attempting rebase with main..."
+              
+              # Try to rebase updated onto main
+              if git rebase main; then
+                echo "✅ Rebase successful"
+              else
+                echo "❌ Rebase failed"
+                git rebase --abort
+                
+                if [[ "$FORCE_UPDATE" == "true" ]]; then
+                  echo "🔄 Force update enabled, resetting to main..."
+                  git reset --hard main
+                else
+                  echo "❌ Rebase failed and force update disabled. Exiting."
+                  exit 1
+                fi
+              fi
+            else
+              echo "🔄 Using reset strategy..."
+              git reset --hard main
+            fi
+          else
+            echo "Updated branch doesn't exist, creating from main..."
+            git checkout -b updated
+          fi
+          
+          # Ensure updated branch is pushed
+          git push -u origin updated --force-with-lease
+
+      - name: Update flake inputs
+        run: |
+          nix flake lock --verbose --update-input nixpkgs
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet HEAD -- flake.lock; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "No changes in flake.lock"
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in flake.lock"
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changes == 'true'
+        run: |
+          git add flake.lock
+          
+          # Create a detailed commit message
+          echo "Update flake inputs" > commit_msg.txt
+          echo "" >> commit_msg.txt
+          echo "Updated on $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> commit_msg.txt
+          echo "" >> commit_msg.txt
+          echo "Changes in this update:" >> commit_msg.txt
+          
+          # Show a summary of what changed in a more readable format
+          if command -v nix &> /dev/null; then
+            echo "Input changes:" >> commit_msg.txt
+            # This will show which inputs changed and their new revisions
+            git diff HEAD~1 -- flake.lock | grep -E "^\+.*\"rev\":" | sed 's/^+//' >> commit_msg.txt 2>/dev/null || echo "  (details in flake.lock)" >> commit_msg.txt
+          else
+            echo "  See flake.lock for detailed changes" >> commit_msg.txt
+          fi
+          
+          git commit -F commit_msg.txt
+          git push origin updated
+
+      - name: Summary
+        run: |
+          if [[ "${{ steps.changes.outputs.changes }}" == "true" ]]; then
+            echo "✅ Flake inputs updated successfully"
+            echo "📝 Changes committed and pushed to 'updated' branch"
+            echo "🔗 Branch URL: ${{ github.server_url }}/${{ github.repository }}/tree/updated"
+          else
+            echo "ℹ️  No updates needed - all inputs are current"
+          fi
