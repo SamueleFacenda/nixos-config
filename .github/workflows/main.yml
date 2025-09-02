@@ -119,7 +119,8 @@ jobs:
 
       - name: Update flake inputs
         run: |
-          nix flake lock --verbose --update-input nixpkgs
+          # nix flake lock --verbose --update-input nixpkgs
+          nix flake update --verbose
 
       - name: Check for changes
         id: changes
