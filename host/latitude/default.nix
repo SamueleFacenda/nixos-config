@@ -82,6 +82,12 @@ in
   networking.firewall.enable = lib.mkForce true;
   networking.firewall.allowedTCPPorts = [ 22 80 443 5001 2300 ];
   
+  system.autoUpgrade = {
+    enable = lib.mkForce true;
+    allowReboot = true;
+    dates = lib.mkForce "daily";
+    flake = lib.mkForce "/nixos-config";
+  };
   
   boot.kernel.sysctl."vm.swappiness" = 10;
   boot.tmp.useTmpfs = true;
