@@ -90,8 +90,8 @@
     enable = false; # !!
     flake = "samu";
     flags = [
-      "--update-input"
-      "nixpkgs"
+      # "--update-input"
+      # "nixpkgs"
       #"--commit-lock-file"
       "-L" # print build logs
     ];
