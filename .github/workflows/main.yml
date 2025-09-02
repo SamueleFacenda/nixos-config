@@ -4,6 +4,8 @@ on:
   schedule:
     # Run daily at 2 AM UTC
     - cron: '0 22 * * *'
+  push:
+    branches: [ main ]
   workflow_dispatch: # Allow manual triggering
     inputs:
       rebase_strategy:
@@ -64,6 +66,10 @@ jobs:
             git checkout updated
             git pull origin updated
             
+            # Store the HEAD before rebase/reset to detect changes
+            OLD_HEAD=$(git rev-parse HEAD)
+            echo "HEAD before update: $OLD_HEAD"
+            
             if [[ "$STRATEGY" == "rebase" ]]; then
               echo "Attempting rebase with main..."
               
@@ -86,13 +92,30 @@ jobs:
               echo "🔄 Using reset strategy..."
               git reset --hard main
             fi
+            
+            # Check if HEAD changed after rebase/reset
+            NEW_HEAD=$(git rev-parse HEAD)
+            echo "HEAD after update: $NEW_HEAD"
+            
+            if [[ "$OLD_HEAD" != "$NEW_HEAD" ]]; then
+              echo "main_updated=true" >> $GITHUB_ENV
+              echo "📋 Branch updated with main changes"
+              
+              # Push the rebased/reset branch immediately
+              echo "🚀 Pushing updated branch with main changes..."
+              git push origin updated --force-with-lease
+            else
+              echo "main_updated=false" >> $GITHUB_ENV
+              echo "ℹ️ No changes from main (branch was already up to date)"
+            fi
           else
             echo "Updated branch doesn't exist, creating from main..."
             git checkout -b updated
+            echo "main_updated=true" >> $GITHUB_ENV
+            
+            # Push the new branch
+            git push -u origin updated
           fi
-          
-          # Ensure updated branch is pushed
-          git push -u origin updated --force-with-lease
 
       - name: Update flake inputs
         run: |
@@ -101,17 +124,30 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
+          FLAKE_CHANGED=false
+          
           if git diff --quiet HEAD -- flake.lock; then
-            echo "changes=false" >> $GITHUB_OUTPUT
             echo "No changes in flake.lock"
           else
-            echo "changes=true" >> $GITHUB_OUTPUT
             echo "Changes detected in flake.lock"
+            FLAKE_CHANGED=true
           fi
+          
+          # Only commit if flake changed (main updates are already pushed)
+          if [[ "$FLAKE_CHANGED" == "true" ]]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+            echo "Commit needed: flake inputs changed"
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+            echo "No commit needed: flake inputs unchanged"
+          fi
+          
+          echo "flake_changed=$FLAKE_CHANGED" >> $GITHUB_OUTPUT
 
       - name: Commit and push changes
         if: steps.changes.outputs.changes == 'true'
         run: |
+          # Add flake.lock changes
           git add flake.lock
           
           # Create a detailed commit message
@@ -119,12 +155,11 @@ jobs:
           echo "" >> commit_msg.txt
           echo "Updated on $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> commit_msg.txt
           echo "" >> commit_msg.txt
-          echo "Changes in this update:" >> commit_msg.txt
-          
-          # Show a summary of what changed in a more readable format
+          echo "🔄 Flake inputs updated" >> commit_msg.txt
+          echo "" >> commit_msg.txt
+          echo "Flake input changes:" >> commit_msg.txt
+          # Show a summary of what changed in flake inputs
           if command -v nix &> /dev/null; then
-            echo "Input changes:" >> commit_msg.txt
-            # This will show which inputs changed and their new revisions
             git diff HEAD~1 -- flake.lock | grep -E "^\+.*\"rev\":" | sed 's/^+//' >> commit_msg.txt 2>/dev/null || echo "  (details in flake.lock)" >> commit_msg.txt
           else
             echo "  See flake.lock for detailed changes" >> commit_msg.txt
@@ -135,10 +170,17 @@ jobs:
 
       - name: Summary
         run: |
-          if [[ "${{ steps.changes.outputs.changes }}" == "true" ]]; then
-            echo "✅ Flake inputs updated successfully"
-            echo "📝 Changes committed and pushed to 'updated' branch"
+          if [[ "${{ steps.changes.outputs.flake_changed }}" == "true" ]]; then
+            echo "✅ Flake inputs updated and committed"
+          fi
+          
+          if [[ "${{ env.main_updated }}" == "true" ]]; then
+            echo "✅ Branch synced with new main commits"
+          fi
+          
+          if [[ "${{ steps.changes.outputs.flake_changed }}" == "true" || "${{ env.main_updated }}" == "true" ]]; then
+            echo "📝 Updated branch is current"
             echo "🔗 Branch URL: ${{ github.server_url }}/${{ github.repository }}/tree/updated"
           else
-            echo "ℹ️  No updates needed - all inputs are current"
+            echo "ℹ️  No updates needed - branch is current with main and inputs"
           fi
