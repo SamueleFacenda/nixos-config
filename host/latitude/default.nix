@@ -86,7 +86,7 @@ in
     enable = lib.mkForce true;
     allowReboot = true;
     dates = lib.mkForce "daily";
-    flake = lib.mkForce "/nixos-config";
+    flake = lib.mkForce "github:SamueleFacenda/nixos-config/updated";
   };
   
   boot.kernel.sysctl."vm.swappiness" = 10;
