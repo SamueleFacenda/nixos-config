@@ -36,6 +36,7 @@ in
         ms-toolsai.jupyter
         ms-toolsai.jupyter-renderers
         ms-vsliveshare.vsliveshare
+        github.copilot-chat
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "copilot";
