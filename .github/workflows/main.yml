@@ -54,7 +54,7 @@ jobs:
           
           # Determine strategy (from manual input or default to rebase)
           STRATEGY="${{ github.event.inputs.rebase_strategy || 'rebase' }}"
-          FORCE_UPDATE="${{ github.event.inputs.force_update || 'false' }}"
+          FORCE_UPDATE="${{ github.event.inputs.force_update || 'true' }}"
           
           echo "Using strategy: $STRATEGY"
           

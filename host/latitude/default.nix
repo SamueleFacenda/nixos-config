@@ -16,7 +16,7 @@ in
       ./hardware-configuration.nix
 
       # speed up kernel builds (slows down easy build unless overwritten)
-      # ../../modules/remote-build.nix
+      ../../modules/remote-build.nix
 
       # choose one or both
       # ../../modules/gnome.nix
