@@ -19,7 +19,7 @@ on:
       force_update:
         description: 'Force update even if rebase fails'
         required: false
-        default: false
+        default: true
         type: boolean
 
 permissions:
