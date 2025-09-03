@@ -19,7 +19,7 @@ in
       # Add `pkgs-cuda` to modules input
       ../../modules/nixpkgs-cuda.nix
 
-      # speed up kernel builds (slow down easy build unless overwritten)
+      # speed up kernel builds (slows down easy build unless overwritten)
       # ../../modules/remote-build.nix
 
       # choose one or both
@@ -87,7 +87,7 @@ in
   boot.kernelPatches = [{
     name = "bbr";
     patch = null;
-    extraStructuredConfig = with pkgs.lib.kernel; {
+    structuredExtraConfig = with pkgs.lib.kernel; {
       TCP_CONG_BBR = yes; # enable BBR
       DEFAULT_BBR = yes; # use it by default
     };
@@ -116,12 +116,15 @@ in
   boot.kernelParams = [
     "resume_offset=2291712"
   ];
-  services.logind.lidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors
-  services.logind.lidSwitchExternalPower = lib.mkForce "suspend-then-hibernate";
-  # services.logind.powerKey = lib.mkForce "suspend-then-hibernate";
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=3h
   '';
+  
+  services.logind.settings.Login = {
+    HandleLidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors
+    HandleLidSwitchExternalPower = lib.mkForce "suspend-then-hibernate";
+    # HandlePowerKey = lib.mkForce "suspend-then-hibernate";
+  };
 
   # Secure boot
 
@@ -225,7 +228,7 @@ in
   
   # University vpn (unitn)
   services.globalprotect = {
-    enable = true;
+    enable = false; # Disable as unused and because it has insecure deps
     csdWrapper = "${pkgs.openconnect}/libexec/openconnect/hipreport.sh";
   };
   

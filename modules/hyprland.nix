@@ -3,11 +3,11 @@
   programs.hyprland.enable = true;
 
   # LidSwitch and PowerButton actions
-  services.logind = {
-    powerKey = "suspend";
-    lidSwitchExternalPower = "suspend";
-    lidSwitch = "suspend";
-    lidSwitchDocked = "ignore";
+  services.logind.settings.Login = {
+    HandlePowerKey = "suspend";
+    HandleLidSwitchExternalPower = "suspend";
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchDocked = "ignore";
   };
 
   # enable all the keyboard for system resume
@@ -34,7 +34,7 @@
   environment.systemPackages = with pkgs; [
     inotify-tools
     killall
-    greetd.tuigreet
+    tuigreet
     polkit_gnome
     swayosd
     bluetuith
@@ -85,11 +85,11 @@
   services.displayManager.gdm.enable = lib.mkForce false;
   services.greetd = {
     enable = true;
-    vt = 2; # clean login screen, no startup logs
+    useTextGreeter = true;
     settings = {
       default_session = {
         command = ''
-          ${pkgs.greetd.tuigreet}/bin/tuigreet \
+          ${pkgs.tuigreet}/bin/tuigreet \
             --time \
             --asterisks \
             --user-menu \

@@ -62,11 +62,11 @@ in
   
   boot.initrd.systemd.enable = true; # Auto luks unlock
   
-  services.logind = {
-    lidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors
-    lidSwitchExternalPower = lib.mkForce "suspend-then-hibernate";
-    powerKey = lib.mkForce "suspend-then-hibernate";
-    suspendKey = lib.mkForce "suspend-then-hibernate";
+  services.logind.settings.Login = {
+    HandleLidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors
+    HandleLidSwitchExternalPower = lib.mkForce "suspend-then-hibernate";
+    HandlePowerKey = lib.mkForce "suspend-then-hibernate";
+    HandleSuspendKey = lib.mkForce "suspend-then-hibernate";
   };
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=2h

@@ -15,7 +15,7 @@ in
 
       #HARDWARE_COMMENT_ANCHOR ./hardware-configuration.nix
 
-      # speed up kernel builds (slow down easy build unless overwritten)
+      # speed up kernel builds (slows down easy build unless overwritten)
       # ../../modules/remote-build.nix
 
       # choose one or both

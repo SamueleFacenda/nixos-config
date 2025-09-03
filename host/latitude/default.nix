@@ -15,7 +15,7 @@ in
 
       ./hardware-configuration.nix
 
-      # speed up kernel builds (slow down easy build unless overwritten)
+      # speed up kernel builds (slows down easy build unless overwritten)
       # ../../modules/remote-build.nix
 
       # choose one or both
@@ -52,8 +52,10 @@ in
 
   networking.hostName = "latitude";
 
-  services.logind.lidSwitch = "ignore";
-  services.logind.lidSwitchExternalPower = "ignore";
+  services.logind.settings.Login = {
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchExternalPower = "ignore";
+  };
   
   services.kmscon.enable = lib.mkForce true;
 
@@ -99,7 +101,7 @@ in
   boot.kernelPatches = [{
     name = "bbr";
     patch = null;
-    extraStructuredConfig = with pkgs.lib.kernel; {
+    structuredExtraConfig = with pkgs.lib.kernel; {
       TCP_CONG_BBR = yes; # enable BBR
       DEFAULT_BBR = yes; # use it by default
     };

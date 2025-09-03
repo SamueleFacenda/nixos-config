@@ -16,8 +16,8 @@ in
     mutableExtensionsDir = false;
     profiles.default = {
         extensions = with pkgs.vscode-extensions; [
-        # github.copilot
-        # wakatime.vscode-wakatime
+        github.copilot
+        wakatime.vscode-wakatime
         yzhang.markdown-all-in-one
         ms-python.python
         ms-python.vscode-pylance
@@ -39,28 +39,10 @@ in
         github.copilot-chat
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
-          name = "copilot";
-          publisher = "GitHub";
-          version = "1.178.811"; # https://marketplace.visualstudio.com/items?itemName=GitHub.copilot
-          sha256 = "JkJWFbnUSyGOz6yduq5jxxcwveEXA1gvPNu8bBTBly4=";
-        }
-        {
-          name = "awesome-vhdl";
-          publisher = "puorc";
-          version = "0.0.1";
-          sha256 = "PzE98po3egiJLSlfQST7G4Claeo4j0xC9/xm9KGSpcA=";
-        }
-        {
           name = "vscode-ros";
           publisher = "ms-iot";
           version = "0.9.6";
           sha256 = "ZsGBzfLzRFzSWx4vttfXPb6gSrFBy+QUDz9hkAdKMCw=";
-        }
-        {
-          name = "vscode-wakatime";
-          publisher = "WakaTime";
-          version = "24.5.0";
-          sha256 = "HRFonjVM3mGulfSL5w7biLx84MuQ9AaLr5dC5DHjC2s=";
         }
         # (mkOpenVSXExt {
         #   name = "open-remote-ssh";
@@ -82,12 +64,11 @@ in
         "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
         "nix.serverSettings".nixd = {
           formatting.command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
-          eval.target.installable = "${self.outPath}#nixosConfigurations.surface.config.system.build.toplevel";
+          eval.target.installable = "${self.outPath}#nixosConfigurations.${config.networking.hostName}.config.system.build.toplevel";
           options = {
             enable = true;
             target = {
-              installable = "${self.outPath}#nixosConfigurations.surface.options";
-              #installable = "${self.outPath}#homeConfigurations.samu.options";
+              installable = "${self.outPath}#nixosConfigurations.${config.networking.hostName}.options";
             };
           };
         };

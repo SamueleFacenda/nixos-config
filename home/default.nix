@@ -8,7 +8,7 @@
   
   nix.gc = {
     automatic = false;
-    frequency = "weekly";
+    dates = "weekly";
     options = "-d";
   };
 }
