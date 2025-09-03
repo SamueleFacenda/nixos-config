@@ -13,6 +13,7 @@ in
       inherit (config.lib) utils;
       inherit (config.age) secrets;
       inherit (config.home-manager) disabledFiles;
+      hostname = config.networking.hostName;
     };
 
     users.${config.users.default.name} = { ... }: {

@@ -11,7 +11,10 @@
         (hostname: type: nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = inputs;
-          modules = [ (./host + "/${hostname}") ];
+          modules = [ 
+            (./host + "/${hostname}") 
+            { networking.hostName = hostname; }
+          ];
         })
         (builtins.readDir ./host);
 

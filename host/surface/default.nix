@@ -35,8 +35,6 @@ in
 
   # override for custom name
   # users.default.name = "samu";
-
-  networking.hostName = "surface";
   
   home-manager.users.samu.home.keyboard.model = "microsoft-surface-type-cover-keyboard";
   home-manager.disabledFiles = [ "hyprland" ];

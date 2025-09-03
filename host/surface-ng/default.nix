@@ -38,8 +38,6 @@ in
   # override for custom name
   # users.default.name = "samu";
 
-  networking.hostName = "surface-ng";
-
   # custom options for secrets
   secrets = {
     spotify.enable = true;

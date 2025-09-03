@@ -57,8 +57,6 @@ in
   users.default.name = "samu";
   users.default.longName = "Samuele Facenda";
   users.users.samu.hashedPassword = lib.mkForce null;
-
-  networking.hostName = "zenbook";
   
   home-manager.users.samu.home.keyboard.model = "at-translated-set-2-keyboard";
   home-manager.disabledFiles = [ "hyprgrass.nix" ];

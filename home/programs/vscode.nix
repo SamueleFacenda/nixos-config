@@ -1,4 +1,4 @@
-{ config, pkgs, self, ... }:
+{ self, config, pkgs, hostname, ... }:
 let
   mkOpenVSXExt = { publisher, name, version, sha256 }: {
     inherit name publisher version;
@@ -64,11 +64,11 @@ in
         "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
         "nix.serverSettings".nixd = {
           formatting.command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
-          eval.target.installable = "${self.outPath}#nixosConfigurations.${config.networking.hostName}.config.system.build.toplevel";
+          eval.target.installable = "${self.outPath}#nixosConfigurations.${hostname}.config.system.build.toplevel";
           options = {
             enable = true;
             target = {
-              installable = "${self.outPath}#nixosConfigurations.${config.networking.hostName}.options";
+              installable = "${self.outPath}#nixosConfigurations.${hostname}.options";
             };
           };
         };

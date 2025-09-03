@@ -50,8 +50,6 @@ in
   
   home-manager.users.samuelef.home.keyboard.model = "at-translated-set-2-keyboard";
 
-  networking.hostName = "latitude";
-
   services.logind.settings.Login = {
     HandleLidSwitch = "ignore";
     HandleLidSwitchExternalPower = "ignore";

@@ -65,7 +65,6 @@ writeShellApplication {
 
     # generate the host config
     cp -r "$configdir/host/genericLinux" "$configdir/host/$hostname"
-    sed -i "s/nixos-samu/$hostname/g" "$configdir/host/$hostname/default.nix"
 
     echo "Enter a username"
     username="$(gum input --placeholder 'samu')"

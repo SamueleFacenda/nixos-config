@@ -1,6 +1,5 @@
 { config, pkgs, utils, lib, disabledFiles, ... }:
 {
-
   imports = utils.listDirPathsExcluding disabledFiles ./.;
 
   # Let Home Manager install and manage itself.

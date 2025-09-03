@@ -47,8 +47,6 @@ in
   
   home-manager.users.samu.home.keyboard.model = "at-translated-set-2-keyboard";
 
-  networking.hostName = "nixos-samu";
-
   # custom options for secrets, fallback placeholder is used
   secrets = {
     # spotify.enable = true;
