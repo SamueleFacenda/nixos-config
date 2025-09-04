@@ -93,7 +93,7 @@ in
   boot.tmp.useTmpfs = true;
   
   # Latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
   
   # Use bbr for more aggressive tcp
   boot.kernelPatches = [{
