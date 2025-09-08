@@ -149,8 +149,8 @@
     };
     
     asus-dialpad-driver = {
-      url = "github:asus-linux-drivers/asus-dialpad-driver";
-      # url = "/home/samu/repos/asus-dialpad-driver";
+      # url = "github:asus-linux-drivers/asus-dialpad-driver";
+      url = "github:SamueleFacenda/asus-dialpad-driver/add_zenbook_pro_14_layout";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

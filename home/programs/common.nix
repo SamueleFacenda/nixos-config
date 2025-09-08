@@ -1,6 +1,5 @@
 { config, pkgs, lib, ... }: {
   home.packages = with pkgs; [
-
     # archives
     zip
     unzip
@@ -11,7 +10,6 @@
     xclip
     rpl
     ffmpeg
-    # flameshot # https://github.com/flameshot-org/flameshot/issues/2978
     jq
     python312
     seahorse
@@ -27,10 +25,6 @@
     # gnome.adwaita-icon-theme
     wf-recorder
     # fonttools
-
-    # productivity
-    obsidian
-    xournalpp
     
     # nix
     nix-init
@@ -40,16 +34,15 @@
     statix
     nixpkgs-fmt
 
+    # productivity
+    obsidian
+    xournalpp
+
     # web/social
     brave
     # telegram-desktop
     # discord
     # whatsapp-for-linux
-    zoom-us
-    
-    # media
-    qgis
-    inkscape
   ];
 
   programs = {

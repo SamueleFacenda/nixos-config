@@ -127,12 +127,28 @@ in
   # Secure boot
 
   environment.systemPackages = with pkgs; [
+    # Sys tools
     sbctl
     tpm2-tools
     tpm2-tss
     config.boot.kernelPackages.turbostat
     
+    # Cli tools
+    lsof
+    imagemagick
+    dig
+    ncdu
+    nmap
+    
+    # Desktop apps
     bottles
+    # cura
+    cura-appimage
+    cloudcompare
+    qgis
+    zoom-us
+    inkscape
+    gimp
   ];
   
   fonts.packages = with pkgs; [
@@ -235,7 +251,7 @@ in
     enable = true;
     wayland = true;
     waylandDisplay = "wayland-1";
-    layout = "asusvivobook16x";
+    layout = "zenbookpro14";
     config.main = {
       enabled = false;
       slices_count = 16;

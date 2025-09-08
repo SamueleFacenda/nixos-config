@@ -32,15 +32,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1753599847,
-        "narHash": "sha256-P3O1gKACoIX2vm8cFkTpOAFcHhbhG4WbEITwhM64uYI=",
-        "owner": "asus-linux-drivers",
+        "lastModified": 1757347633,
+        "narHash": "sha256-tKkmlYEbuQTQbluKCw4GF4gbVzHK1OpEoS2txyw+MC8=",
+        "owner": "SamueleFacenda",
         "repo": "asus-dialpad-driver",
-        "rev": "5abaec9c1fb6d9cadb2e8bb81430ecadaf6aec67",
+        "rev": "9c0c40d339abf2c2f53ff4326f57db61b249152a",
         "type": "github"
       },
       "original": {
-        "owner": "asus-linux-drivers",
+        "owner": "SamueleFacenda",
+        "ref": "add_zenbook_pro_14_layout",
         "repo": "asus-dialpad-driver",
         "type": "github"
       }
