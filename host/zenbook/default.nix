@@ -135,7 +135,7 @@ in
     
     # Cli tools
     lsof
-    imagemagick
+    imagemagickBig
     dig
     ncdu
     nmap
