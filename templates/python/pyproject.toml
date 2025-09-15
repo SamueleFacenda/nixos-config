@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "my_package"
-version = "1.0.0"
+version = "0.0.1"
 description = "My first Python package"
 requires-python = ">=3.8"
 keywords = ["python"]

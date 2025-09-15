@@ -1,25 +1,15 @@
 # nix comment
 {
-  description = "An over-engineered Hello World in C";
+  description = "An Hello World in C++";
 
-  inputs.nixpkgs.url = "nixpkgs/nixos-24.05";
+  inputs.nixpkgs.url = "nixpkgs/nixos-25.05";
 
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
-  inputs.pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-  inputs.pre-commit-hooks.inputs.nixpkgs.follows = "nixpkgs";
-
-  outputs = { self, nixpkgs, flake-utils, pre-commit-hooks }:
+  outputs = { self, nixpkgs, flake-utils }:
     let
-
-      # to work with older version of flakes
-      lastModifiedDate = self.lastModifiedDate or self.lastModified or "19700101";
-
-      # Generate a user-friendly version number.
-      version = builtins.substring 0 8 lastModifiedDate;
-
+      version = "0.0.1";
       overlay = final: prev: { };
-
     in
 
     flake-utils.lib.eachDefaultSystem (system:
@@ -34,54 +24,17 @@
             inherit version;
 
             nativeBuildInputs = with pkgs; [
-              gcc
+              cmake
             ];
-
-            buildPhase = ''
-              g++ main.cpp
-            '';
-
-            installPhase = ''
-              mkdir -p $out/bin
-              find . -type f ! -iregex ".*\.\(c\|cpp\|cc\|nix\|lock\|envrc\|txt\)$" \
-                -exec mv -t "''${out}/bin" "{}" +
-            '';
-          };
-        };
-
-        apps = {
-          default = {
-            type = "app";
-            program = "${self.defaultPackage.${system}}/bin/a.out";
           };
         };
 
         devShells = {
           default = pkgs.mkShell {
+            inputsFrom = [ self.packages.${system}.default ];
             nativeBuildInputs = with pkgs; [
-              gcc
             ];
-
-            inherit (self.checks.${system}.pre-commit-check) shellHook;
-
-          };
-
-        };
-
-        checks = {
-          pre-commit-check = pre-commit-hooks.lib.${system}.run {
-            src = ./.;
-            hooks = {
-              nixpkgs-fmt.enable = true;
-              shellcheck.enable = true;
-              clang-format = {
-                enable = true;
-                types_or = [ "c" "c++" ];
-              };
-              clang-tidy.enable = true;
-            };
           };
         };
-
       });
 }
