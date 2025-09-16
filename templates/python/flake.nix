@@ -27,7 +27,7 @@
           default = myPack;
           myPack = pkgs.python3.pkgs.buildPythonApplication {
             pname = "myPack";
-            src = ./.;
+            src = pkgs.lib.cleanSource ./.;
             inherit version;
             pyproject = true;
             format = "pyproject";

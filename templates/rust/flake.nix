@@ -1,6 +1,6 @@
 # nix comments
 {
-  description = "An flake template";
+  description = "An rust flake template";
 
   # Nixpkgs / NixOS version to use.
   inputs.nixpkgs.url = "nixpkgs/nixos-25.05";
@@ -14,36 +14,39 @@
     in
 
     flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = (nixpkgs.legacyPackages.${system}.extend overlay); in
+      let 
+        pkgs = (nixpkgs.legacyPackages.${system}.extend overlay); 
+        rust-toolchain = pkgs.symlinkJoin {
+          name = "rust-toolchain";
+          paths = [pkgs.rustc pkgs.cargo pkgs.rustPlatform.rustcSrc];
+        };
+      in
       {
 
         packages = rec {
           default = myPack;
-          myPack = pkgs.stdenv.mkDerivation {
+          myPack = pkgs.rustPlatform.buildRustPackage {
             pname = "myPack";
             src = pkgs.lib.cleanSource ./.;
             inherit version;
 
             nativeBuildInputs = with pkgs; [ ];
 
-            buildPhase = ''
-              '';
-
-            installPhase = ''
-              mkdir -p $out/bin
-              cp * $out
-            '';
+            cargoHash = "";
+            verifyCargoDeps = true;
           };
         };
         devShells = {
           default = pkgs.mkShell {
             inputsFrom = [ self.packages.${system}.default ];
             packages = with pkgs; [
-
+              rust-toolchain 
+              evcxr 
               (python3.withPackages (ps: with ps; [
 
               ]))
             ];
+            RUST_BACKTRACE = 1;
           };
 
         };

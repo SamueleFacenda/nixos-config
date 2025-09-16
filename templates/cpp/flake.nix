@@ -20,7 +20,7 @@
           default = myPack;
           myPack = pkgs.stdenv.mkDerivation {
             pname = "myPack";
-            src = ./.;
+            src = pkgs.lib.cleanSource ./.;
             inherit version;
 
             nativeBuildInputs = with pkgs; [
