@@ -18,7 +18,7 @@
         pkgs = (nixpkgs.legacyPackages.${system}.extend overlay); 
         rust-toolchain = pkgs.symlinkJoin {
           name = "rust-toolchain";
-          paths = [pkgs.rustc pkgs.cargo pkgs.rustPlatform.rustcSrc];
+          paths = with pkgs; [ rustc cargo rustPlatform.rustcSrc ];
         };
       in
       {
@@ -49,7 +49,7 @@
               ]))
             ];
             RUST_BACKTRACE = 1;
-            RUST_SRC_PATH = "${rust-toolchain}/library";
+            RUST_SRC_PATH = pkgs.rustPlatform.rustLibSrc;
           };
 
         };
