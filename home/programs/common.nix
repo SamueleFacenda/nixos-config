@@ -25,6 +25,7 @@
     # gnome.adwaita-icon-theme
     wf-recorder
     # fonttools
+    rusty-diceware
     
     # nix
     nix-init

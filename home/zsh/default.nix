@@ -32,8 +32,8 @@
       dark = "swayosd-client --brightness lower";
       lum = "swayosd-client --brightness";
       img = "kitty +kitten icat";
-      tmp = "cd $(mktemp -d)";
-      tmpf = "micro $(mktemp)";
+      tmp = "cd $(mktemp --tmpdir -d $(diceware -d- -n2)-XXX)";
+      tmpf = "micro $(mktemp --tmpdir $(diceware -d- -n2)-XXX)";
       logh =
         if secrets ? github-token
         then "sudo cat ${secrets.github-token.path} | gh auth login --with-token"

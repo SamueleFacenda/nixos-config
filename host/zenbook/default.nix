@@ -195,7 +195,7 @@ in
     } ];
   };
   
-  # Cable drivers Xilinx FPGAs
+  # Cable drivers Xilinx FPGAs and Trmnl
   services.udev.extraRules = ''
     ACTION=="add", ATTRS{idVendor}=="0403", ATTRS{manufacturer}=="Xilinx", MODE:="666"
     ATTR{idVendor}=="03fd", ATTR{idProduct}=="0008", MODE="666"
@@ -207,6 +207,8 @@ in
     ATTR{idVendor}=="03fd", ATTR{idProduct}=="0015", MODE="666"
     ATTRS{idVendor}=="1443", MODE:="666" 
     ACTION=="add", ATTRS{idVendor}=="0403", ATTRS{manufacturer}=="Digilent", MODE:="666"
+    
+    SUBSYSTEM=="usb", ATTR{idVendor}=="303a", ATTR{idProduct}=="1001", MODE="0666"
   '';
   
   # https://discourse.nixos.org/t/warning-not-applying-gid-change-of-group-uinput-989-327-in-etc-group/57652/3
