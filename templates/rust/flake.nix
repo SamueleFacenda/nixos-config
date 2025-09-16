@@ -30,7 +30,7 @@
             src = pkgs.lib.cleanSource ./.;
             inherit version;
 
-            nativeBuildInputs = with pkgs; [ ];
+            buildInputs = with pkgs; [ ];
 
             cargoHash = "";
             verifyCargoDeps = true;
@@ -42,11 +42,14 @@
             packages = with pkgs; [
               rust-toolchain 
               evcxr 
+              rustfmt
+              clippy
               (python3.withPackages (ps: with ps; [
 
               ]))
             ];
             RUST_BACKTRACE = 1;
+            RUST_SRC_PATH = "${rust-toolchain}/library";
           };
 
         };

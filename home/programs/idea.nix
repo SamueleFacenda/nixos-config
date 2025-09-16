@@ -9,7 +9,6 @@
       "which-key"
       "better-direnv"
       "nixidea"
-      "extra-icons"
       # "wakatime"
     ]).overrideAttrs {
       # copying intellij back and forth from the build server is useless and slow
@@ -19,7 +18,6 @@
       "github-copilot"
       "nixidea"
       "protocol-buffers"
-      "extra-icons"
       "better-direnv"
       # "wakatime"
     ]).overrideAttrs { preferLocalBuild = true; })
@@ -27,8 +25,7 @@
       "ide-features-trainer"
       "github-copilot"
       "nixidea"
-      "wakatime"
-      "extra-icons"
+      # "wakatime"
       "better-direnv"
     ]).overrideAttrs { preferLocalBuild = true; })
   ];
