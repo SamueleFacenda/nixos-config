@@ -28,7 +28,7 @@ in
         jnoortheen.nix-ide
         editorconfig.editorconfig
         ms-vscode.cpptools
-        azdavis.millet
+        # azdavis.millet
         ms-vscode-remote.remote-containers
         ms-azuretools.vscode-docker
         # ms-vscode.cmake-tools
@@ -37,12 +37,19 @@ in
         ms-toolsai.jupyter-renderers
         ms-vsliveshare.vsliveshare
         github.copilot-chat
+        james-yu.latex-workshop
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "vscode-ros";
           publisher = "ms-iot";
           version = "0.9.6";
           sha256 = "ZsGBzfLzRFzSWx4vttfXPb6gSrFBy+QUDz9hkAdKMCw=";
+        }
+        {
+          name = "texpresso-basic";
+          publisher = "DominikPeters";
+          version = "1.8.0";
+          sha256 = "49BqESJcdHoC07QztzGNCysazBSYwofucoJfcQVoSds=";
         }
         # (mkOpenVSXExt {
         #   name = "open-remote-ssh";
@@ -93,6 +100,10 @@ in
         "files.associations" = {
           "*.sage" = "python";
         };
+        "texpresso.command" = "${pkgs.texpresso}/bin/texpresso";
+        "texpresso.syncTeXForwardOnSelection" = true;
+        "texpresso.useEditorTheme" = true;
+        "texpresso.useChangeRangeMode" = false;
       };
     };
   };
