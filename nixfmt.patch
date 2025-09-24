@@ -1,0 +1,34 @@
+--- a/src/Nixfmt/Pretty.hs
++++ b/src/Nixfmt/Pretty.hs
+@@
+-- For lists, attribute sets and let bindings
+-prettyItems :: (Pretty a) => Items a -> Doc
+-prettyItems (Items items) = sepBy hardline items
++-- Helper to determine if an item is short/simple for single-line formatting
++isShortItem :: (Pretty a) => Item a -> Bool
++isShortItem (Item x) = textWidth (pretty x) < 20 -- adjust threshold as needed
++isShortItem (Comments _) = True
++
++prettyItems :: (Pretty a) => Items a -> Doc
++prettyItems (Items items)
++  | length items <= 3 && all isShortItem items = sepBy hardspace items
++  | otherwise = sepBy hardline items
+@@
+-- General list
+--- Always expand if len > 1
+-prettyTerm (List paropen@Ann{trailComment = post} items parclose) =
+-  pretty (paropen{trailComment = Nothing})
+-    <> surroundWith sur (nest $ pretty post <> prettyItems items)
+-    <> pretty parclose
+-  where
+-    -- If the brackets are on different lines, keep them like that
+-    sur = if sourceLine paropen /= sourceLine parclose then hardline else line
++prettyTerm (List paropen@Ann{trailComment = post} items@(Items its) parclose) =
++  pretty (paropen{trailComment = Nothing})
++    <> surroundWith sur (nest $ pretty post <> prettyItems items)
++    <> pretty parclose
++  where
++    sur
++      | length its <= 3 && all isShortItem its = hardspace
++      | sourceLine paropen /= sourceLine parclose = hardline
++      | otherwise = line
