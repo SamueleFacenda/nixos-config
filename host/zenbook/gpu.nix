@@ -57,8 +57,12 @@
       # prime.sync.enable = lib.mkForce true;
       powerManagement.finegrained = lib.mkForce false;
     };
-    environment.sessionVariables.AQ_DRM_DEVICES = lib.mkForce 
-      "/home/${config.users.default.name}/.config/hypr/intel:/home/${config.users.default.name}/.config/hypr/nvidia";
+    environment.sessionVariables = let name = config.users.default.name; in {
+      AQ_DRM_DEVICES = lib.mkForce "/home/${name}/.config/hypr/intel:/home/${name}/.config/hypr/nvidia";
+      GSK_RENDERER = lib.mkForce null;
+      # __EGL_VENDOR_LIBRARY_FILENAMES = lib.mkForce null;
+    };
+    programs.hyprland.package = lib.mkForce pkgs.hyprland;
   };
 
   environment.systemPackages = with pkgs; [
@@ -69,5 +73,19 @@
   services.supergfxd.enable = false;
   
   # environment.sessionVariables.AQ_DRM_DEVICES = "/home/${config.users.default.name}/.config/hypr/intel:/home/${config.users.default.name}/.config/hypr/nvidia";
-  environment.sessionVariables.AQ_DRM_DEVICES = "/home/${config.users.default.name}/.config/hypr/intel";
+  environment.sessionVariables = {
+    AQ_DRM_DEVICES = "/home/${config.users.default.name}/.config/hypr/intel";
+    # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
+    # Don't use vulkan on GTK, avoid GPU wake
+    GSK_RENDERER =  "ngl";
+  };
+  
+  # Force integrated gpu
+  programs.hyprland.package = pkgs.hyprland.overrideAttrs {
+      postFixup = ''
+        wrapProgram $out/bin/Hyprland \
+          --set __EGL_VENDOR_LIBRARY_FILENAMES '${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json'
+      '';
+    };
+  
 }
