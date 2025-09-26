@@ -95,6 +95,7 @@
       PHP_OPCACHE_ENABLE = "1";
       APP_TIMEZONE = "Europe/Rome";
       DB_DATABASE = "database/storage/database.sqlite";
+      PUPPETEER_WINDOW_SIZE_STRATEGY = "v2";
     };
     volumes = [
       "database:/var/www/html/database/storage"
