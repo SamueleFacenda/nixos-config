@@ -6,7 +6,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" "configurable-impure-env" ];
 
   nixpkgs.config.allowUnfree = true;
-  environment.variables.NIXPKGS_ALLOW_UNFREE = 1;
+  environment.sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
   nixpkgs.config = {
     permittedInsecurePackages = [
       "electron-25.9.0"

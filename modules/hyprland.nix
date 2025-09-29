@@ -109,4 +109,10 @@
     powerOnBoot = true;
   };
   services.blueman.enable = true;
+  
+  # Fix captive portal issues
+  programs.captive-browser = {
+    enable = true;
+    interface = "captive-loopback";
+  };
 }

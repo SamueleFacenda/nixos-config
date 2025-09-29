@@ -80,12 +80,12 @@
     GSK_RENDERER =  "ngl";
   };
   
-  # Force integrated gpu
-  programs.hyprland.package = pkgs.hyprland.overrideAttrs {
-      postFixup = ''
-        wrapProgram $out/bin/Hyprland \
-          --set __EGL_VENDOR_LIBRARY_FILENAMES '${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json'
-      '';
-    };
+  # Force integrated gpu (needs to find a way to not propagate to child processes)
+  # programs.hyprland.package = pkgs.hyprland.overrideAttrs {
+  #     postFixup = ''
+  #       wrapProgram $out/bin/Hyprland \
+  #         --set __EGL_VENDOR_LIBRARY_FILENAMES '${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json'
+  #     '';
+  #   };
   
 }
