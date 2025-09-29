@@ -81,6 +81,13 @@ in
           password = "$UNITN_PSW";
           priority = 60;
         })
+        (mkPeapWifi {
+          name = "eduroam-fbk";
+          wifi.ssid = "eduroam";
+          identity = "sfacenda@fbkeduroam.it";
+          password = "$FBK_PSW";
+          priority = 60;
+        })
         (mkWpaWifi {
           name = "nenephone";
           password = "$HOTSPOT_PSW";
