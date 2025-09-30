@@ -86,7 +86,7 @@ in
           wifi.ssid = "eduroam";
           identity = "sfacenda@fbkeduroam.it";
           password = "$FBK_PSW";
-          priority = 60;
+          priority = 65;
         })
         (mkWpaWifi {
           name = "nenephone";
@@ -114,14 +114,18 @@ in
           priority = 80;
           password = "$LEO_PSW";
         })
-      #   (mkPeapWifi {
-      #     name = "eduroam-ethernet";
-      #     identity = "@fbkeduroam.it";
-      #     password = "$FBK_PSW";
-      #     priority = 75;
-      #     connection.type = "ethernet";
-      #     ethernet = {};
-      #   })
+        (mkPeapWifi {
+          name = "eduroam-ethernet";
+          identity = "sfacenda@fbkeduroam.it";
+          password = "$FBK_PSW";
+          priority = 25;
+          connection.type = "ethernet";
+          ethernet = {};
+          "802-1x" = { # Don't require certificate check
+            system-ca-certs = "no";
+            ca-cert = "";
+          };
+        })
       ];
     };
   };
