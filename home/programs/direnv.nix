@@ -15,7 +15,13 @@
           )}"
       }
     '';
-    config.global.log_filter = "^$";
+    config = {
+      global = {
+        load_dotenv = true;
+        hide_env_diff = true;
+        warn_timeout = "0s"; # disable
+      };
+      whitelist.prefix = [ "~/repos" ];
+    };
   };
-  home.sessionVariables.DIRENV_LOG_FORMAT = "";
 }
