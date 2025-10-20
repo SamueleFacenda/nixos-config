@@ -21,8 +21,8 @@ in
 
       "desc:Ancor Communications Inc VX279 D5LMRS021367,1920x1080,0x-1080,1" # work
       "desc:Dell Inc. DELL U2412M Y1H5T17S0N3L,1680x1050@60,0x-1050,1" # work dell
-      "desc:Dell Inc. DELL P2312H YJ3JX2B2H1UL,1920x1080@60,0x-1080,1" # another work dell
-
+      "desc:Dell Inc. DELL P2312H YJ3JX2B2H1UL,1920x1080@60,-1080x-1200,1,transform,1" # another work dell (vertical)
+      "desc:Dell Inc. DELL U2412M Y1H5T2C704HL,1920x1200@60,0x-1200,1" # another work dell
       ",preferred,auto,1" # fallback      
       # ",preferred,auto,1, mirror, eDP-1"
 

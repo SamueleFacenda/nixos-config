@@ -102,7 +102,7 @@ The process is described above, and you also should:
 - [x] kanshi dynamic monitor config (crash on change, hyprland problem)
 - [x] nixd language server
 - [x] swayosd (on screen display)
-- [ ] flameshot (fix for hyprland)
+- [x] flameshot (fix for hyprland)
 - [x] hyprfocus
 - [x] spotifyd, spotify-player
 - [x] flake templates
