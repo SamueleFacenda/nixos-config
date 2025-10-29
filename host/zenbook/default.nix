@@ -149,6 +149,7 @@ in
     zoom-us
     inkscape
     gimp
+    rawtherapee
   ];
   
   fonts.packages = with pkgs; [

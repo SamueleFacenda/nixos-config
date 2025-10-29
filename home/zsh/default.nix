@@ -105,6 +105,11 @@
       #ZSH_AUTOSUGGEST_ACCEPT_WIDGETS = "forward-char end-of-line vi-forward-char vi-end-of-line vi-add-eol";
     };
   };
+  
+  # Dependencies for aliases
+  home.packages = with pkgs; [
+    rusty-diceware
+  ];
 
   # needed config for zsh wakatime plugin
   home.sessionVariables.ZSH_WAKATIME_BIN = "${pkgs.wakatime}/bin/wakatime-cli";
