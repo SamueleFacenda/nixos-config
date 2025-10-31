@@ -20,7 +20,7 @@
 
     # misc
     xdg-utils
-    wakatime
+    wakatime-cli
     editorconfig-core-c
     # gnome.adwaita-icon-theme
     wf-recorder

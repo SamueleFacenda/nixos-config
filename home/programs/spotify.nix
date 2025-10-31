@@ -1,6 +1,6 @@
 { config, pkgs, lib, spicetify-nix, secrets, ... }:
 let
-  spicePkgs = spicetify-nix.legacyPackages.${pkgs.system};
+  spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   # import the flake's module for your system

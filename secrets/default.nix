@@ -7,10 +7,11 @@
 
   # needed client programs
   environment.systemPackages = with pkgs; [
-    agenix.packages.${system}.default
+    agenix.packages.${stdenv.hostPlatform.system}.default
 
     gnupg
-    pinentry
+    pinentry-gnome3
+    pinentry-tty
   ];
 
   programs.gnupg.agent = {

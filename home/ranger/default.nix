@@ -17,7 +17,7 @@
     libarchive
     unrar
     lynx
-    poppler_utils
+    poppler-utils
     # djvulibre
     # calibre
     # transmission-qt

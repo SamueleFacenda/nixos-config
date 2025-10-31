@@ -81,13 +81,13 @@
     neofetch
     ranger
     trashy
-    wakatime
+    wakatime-cli
     linux-firmware
     gnumake
     wireguard-tools
     networkmanager
     usbutils
-    glxinfo
+    mesa-demos
 
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
     (

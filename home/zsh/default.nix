@@ -112,5 +112,5 @@
   ];
 
   # needed config for zsh wakatime plugin
-  home.sessionVariables.ZSH_WAKATIME_BIN = "${pkgs.wakatime}/bin/wakatime-cli";
+  home.sessionVariables.ZSH_WAKATIME_BIN = "${pkgs.wakatime-cli}/bin/wakatime-cli";
 }
