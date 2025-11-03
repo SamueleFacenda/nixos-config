@@ -19,10 +19,11 @@ buildPythonApplication {
   pname = "trmnl-calendar";
   version = "unstable";
   src = fetchFromGitHub {
-    owner = "jfsso";
+    # owner = "jfsso";
+    owner = "SamueleFacenda";
     repo = "trmnl-calendar";
-    rev = "9a5b0c6da6941f1b4feb8b5fe762cebc3b9bfeb7";
-    hash = "sha256-fViNiB2qkAS87w3ut2LYuGfhBFbQWQyHLSHBQZhXy+Q=";
+    rev = "53789ad0d269fd5159c7369faccd7ed640716753";
+    hash = "sha256-mHi5VB5SDkinNdI7mqgpsO5QW6Q5FbY7lnUPSdQaBJA=";
   };
   pyproject = false;
   
