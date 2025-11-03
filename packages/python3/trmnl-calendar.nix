@@ -22,8 +22,8 @@ buildPythonApplication {
     # owner = "jfsso";
     owner = "SamueleFacenda";
     repo = "trmnl-calendar";
-    rev = "53789ad0d269fd5159c7369faccd7ed640716753";
-    hash = "sha256-mHi5VB5SDkinNdI7mqgpsO5QW6Q5FbY7lnUPSdQaBJA=";
+    rev = "325318911cdd9e4ac3fc1c1a184c1dde5330a005";
+    hash = "sha256-6Nq4XuvuJBN8jVt3Dwbvgub3ERfYjBNpQ9oEMXsuaYs=";
   };
   pyproject = false;
   
