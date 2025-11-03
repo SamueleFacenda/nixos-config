@@ -128,9 +128,9 @@
           "https://webapi.unitn.it/unitrentoapp/profile/me/calendar/C57C1F7D08BEF5551658CC7B2D299297A1F500FCD56280D6E03BA51A3E6E1F77"
           "https://calendar.google.com/calendar/ical/75607d8028ce751b368530686bd514ad295458dc8c6086b7b3bcc2048b83e226%40group.calendar.google.com/public/basic.ics"
           ];
-        TRMNL_DAYS = 30;
+        TRMNL_DAYS = "30";
         TRMNL_TZ = "Europe/Rome";
-        TRMNL_NUMBER_COLUMNS = 5;
+        TRMNL_NUMBER_COLUMNS = "5";
         TRMNL_LOCALE = "it_IT.UTF-8";
         
       };
