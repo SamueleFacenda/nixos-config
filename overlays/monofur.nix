@@ -1,21 +1,30 @@
 # font patched with bullet point right (not an animal paw like the original one)
 self: super:
 let
-  getFile = font: "${font}NerdFontMono-Regular.ttf";
-  source = getFile "BlexMono";
-  dest = getFile "Monofur";
+  getMonoName = fontType: font: "${font}NerdFontMono-${fontType}.ttf";
+  getCompletePath = pkg: fontName: fontType: "${pkg}/share/fonts/truetype/NerdFonts/${fontName}/" + getMonoName fontType fontName;
+  source = fontType: getCompletePath super.nerd-fonts.blex-mono "BlexMono" fontType;
+  dest = fontType: getMonoName fontType "Monofur";
   script = ../assets/character-replace.py;
+  py = super.python3.withPackages (ps: [ ps.fonttools ]);
+  
+  patchCommand = char: fontType: "${py}/bin/python ${script} ${source fontType} ${dest fontType} ${char}";
+  patchBullet = patchCommand "bullet";
 in
 {
-  nerdfonts = super.nerdfonts.overrideAttrs (finalAttrs: previousAttrs: {
-    version = "${previousAttrs.version}-patched";
-    patchPhase = ''
-      runHook prePatch
+  nerd-fonts = super.nerd-fonts // { 
+    monofur = super.nerd-fonts.monofur.overrideAttrs (finalAttrs: previousAttrs: {
+      version = "${previousAttrs.version}-patched";
+      __intentionallyOverridingVersion = true;
+      patchPhase = ''
+        runHook prePatch
 
-      python ${script} ${source} ${dest} bullet
+        ${patchBullet "Regular"}
+        ${patchBullet "Bold"}
+        ${patchBullet "Italic"}
 
-      runHook postPatch
-    '';
-    nativeBuildInputs = [ super.python3Packages.fonttools ];
-  });
+        runHook postPatch
+      '';
+    });
+  };
 }
