@@ -8,6 +8,11 @@
     {
 
       "$mod" = "SUPER";
+      
+      gesture = [
+        "3, horizontal, workspace"
+        "3, vertical, dispatcher, exec, pkill -SIGUSR1 waybar"
+      ];
 
       bind = [
         "$mod, Q, exec, kitty"

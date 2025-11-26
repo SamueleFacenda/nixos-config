@@ -86,9 +86,6 @@ in
       workspace_swipe_distance = 150;
       workspace_swipe_cancel_ratio = 0.1;
     };
-    gesture = [
-      "3, horizontal, workspace"
-    ];
 
     plugin = {
       #       hyprfocus = {
