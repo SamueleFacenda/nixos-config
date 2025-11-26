@@ -142,15 +142,15 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.2";
+      url = "github:nix-community/lanzaboote/v0.4.3";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks";
       inputs.flake-parts.follows = "flake-parts";
     };
     
     asus-dialpad-driver = {
-      # url = "github:asus-linux-drivers/asus-dialpad-driver";
-      url = "github:SamueleFacenda/asus-dialpad-driver/add_zenbook_pro_14_layout";
+      url = "github:asus-linux-drivers/asus-dialpad-driver";
+      # url = "github:SamueleFacenda/asus-dialpad-driver/patch-1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

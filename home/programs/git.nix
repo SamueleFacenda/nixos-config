@@ -5,11 +5,12 @@
 
   programs.git = {
     enable = true;
-
-    userName = "SamueleFacenda";
-    userEmail = "samuele.facenda@gmail.com";
-
-    extraConfig = {
+    
+    settings = {
+      user = {
+        name = "SamueleFacenda";
+        email = "samuele.facenda@gmail.com";
+      };
       pull.ff = "only";
       init.defaultBranch = "main";
     };
@@ -18,9 +19,12 @@
     signing.signByDefault = true;
 
     lfs.enable = true;
-
-    delta.enable = true;
-    delta.options = {
+  };
+  
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
       line-numbers = true;
     };
   };

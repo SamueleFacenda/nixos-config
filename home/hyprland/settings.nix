@@ -81,13 +81,14 @@ in
     };
     
     gestures = {
-      workspace_swipe = true;
-      workspace_swipe_fingers = 3;
       workspace_swipe_forever = false;
       workspace_swipe_use_r = true;
       workspace_swipe_distance = 150;
       workspace_swipe_cancel_ratio = 0.1;
     };
+    gesture = [
+      "3, horizontal, workspace"
+    ];
 
     plugin = {
       #       hyprfocus = {

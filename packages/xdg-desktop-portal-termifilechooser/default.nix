@@ -8,6 +8,7 @@
 , pkgconf
 , inih
 , systemd
+, libcap
 }:
 
 stdenv.mkDerivation {
@@ -31,7 +32,8 @@ stdenv.mkDerivation {
   buildInputs = [
     xdg-desktop-portal
     inih
-    systemd
+    systemd.dev
+    libcap.dev
   ];
 
   # Add hyprland support and set multiple directory and upload a directory false as default

@@ -2,7 +2,7 @@
   # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/jetbrains/plugins/plugins.json
   home.packages = with pkgs; [
     ((jetbrains.plugins.addPlugins jetbrains.idea-ultimate [
-      "github-copilot"
+      "github-copilot--your-ai-pair-programmer"
       "python"
       "ide-features-trainer"
       "ideavim"
@@ -15,7 +15,7 @@
       preferLocalBuild = true;
     })
     ((jetbrains.plugins.addPlugins jetbrains.clion [
-      "github-copilot"
+      "github-copilot--your-ai-pair-programmer"
       "nixidea"
       "protocol-buffers"
       "better-direnv"
@@ -23,7 +23,7 @@
     ]).overrideAttrs { preferLocalBuild = true; })
     ((jetbrains.plugins.addPlugins jetbrains.rust-rover [
       "ide-features-trainer"
-      "github-copilot"
+      "github-copilot--your-ai-pair-programmer"
       "nixidea"
       # "wakatime"
       "better-direnv"
