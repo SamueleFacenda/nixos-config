@@ -71,8 +71,8 @@
     pam.services = {
       # login.enableGnomeKeyring = true;
       # login.gnupg.enable = true;
-      swaylock.unixAuth = true;
-      swaylock.enableGnomeKeyring = true;
+      hyprlock.unixAuth = true;
+      hyprlock.enableGnomeKeyring = true;
       greetd.enableGnomeKeyring = true;
     };
   };

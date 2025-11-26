@@ -131,7 +131,7 @@ The process is described above, and you also should:
 - [ ] better shortcuts (resize)
 - [ ] fix swayosd size
 - [ ] ZSH_AUTOCD with zshz
-- [ ] move away from swaylock (gets stuck very often)
+- [x] move away from swaylock (gets stuck very often)
 - [ ] more blur (swayosd, shell elements), like liquid glass
 - [ ] clipboard manager
 - [ ] tuned instead of tlp
