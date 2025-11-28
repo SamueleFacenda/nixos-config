@@ -30,7 +30,6 @@
             src = pkgs.lib.cleanSource ./.;
             inherit version;
             pyproject = true;
-            format = "pyproject";
 
             dependencies = with pkgs.python3Packages; [
               numpy

@@ -136,6 +136,7 @@ The process is described above, and you also should:
 - [ ] clipboard manager
 - [ ] tuned instead of tlp
 - [ ] texpresso setup
+- [ ] fix inactive window blur
 
 ### Possible packages
 Good packages not installed because I don't need them. They are probably useful
