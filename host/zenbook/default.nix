@@ -113,10 +113,13 @@ in
   boot.resumeDevice = "/dev/dm-0";
   boot.kernelParams = [
     "resume_offset=2291712"
+    # "hibernate.compressor=lz4" # faster
   ];
+  boot.initrd.kernelModules = [ "lz4" ];
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=3h
   '';
+  # systemd.tmpfiles.rules = [ "w /sys/power/image_size - - - - 0" ]; # smaller image size possible
   
   services.logind.settings.Login = {
     HandleLidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors

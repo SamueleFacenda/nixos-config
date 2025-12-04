@@ -29,4 +29,9 @@
       "better-direnv"
     ]).overrideAttrs { preferLocalBuild = true; })
   ];
+  
+  xdg.configFile."gdb/gdbinit".text = ''
+    set auto-load local-gdbinit on
+    add-auto-load-safe-path /
+  '';
 }
