@@ -32,11 +32,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765188467,
-        "narHash": "sha256-ej4dM8fLc/PANXfAhcL29Bl9epTFA6BGSdoNojKizIw=",
+        "lastModified": 1765625526,
+        "narHash": "sha256-kRG29LAPwJwh3IyD1P7VMsF4ijRSCNk0kR+wxbt5utE=",
         "owner": "asus-linux-drivers",
         "repo": "asus-dialpad-driver",
-        "rev": "60d257939b02967367aa03bbb58952cfe2bc21c4",
+        "rev": "a646c211958375f55b40399d2b23ab1294e1e22a",
         "type": "github"
       },
       "original": {
@@ -298,11 +298,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765480374,
-        "narHash": "sha256-HlbvQAqLx7WqZFFQZ8nu5UUJAVlXiV/kqKbyueA8srw=",
+        "lastModified": 1765606130,
+        "narHash": "sha256-KOP4QnkiRwiD5KEOr6ceF67rfTP1OqPmCCft6xDC3k4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "39cb677ed9e908e90478aa9fe5f3383dfc1a63f3",
+        "rev": "d787ec69c3216ea33be1c0424fe65cb23aa8fb31",
         "type": "github"
       },
       "original": {
@@ -436,11 +436,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1765186076,
-        "narHash": "sha256-hM20uyap1a0M9d344I692r+ik4gTMyj60cQWO+hAYP8=",
+        "lastModified": 1765472234,
+        "narHash": "sha256-9VvC20PJPsleGMewwcWYKGzDIyjckEz8uWmT0vCDYK0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "addf7cf5f383a3101ecfba091b98d0a1263dc9b8",
+        "rev": "2fbfb1d73d239d2402a8fe03963e37aab15abe8b",
         "type": "github"
       },
       "original": {
@@ -490,11 +490,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765572306,
-        "narHash": "sha256-WqVMKEwdxC5LBRZMiKA9pxJ/vtKtl3HmdJzqMDd+1bg=",
+        "lastModified": 1765659404,
+        "narHash": "sha256-obPqwtFwKQHFdUZ5K45/JrRK3Pf+LK0mrO5rddrhFVY=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "a038d2f292138ba982e1df3ce8e69a12570bd5d7",
+        "rev": "226c3b90c475945f5a88a08739e0b392264896a0",
         "type": "github"
       },
       "original": {
