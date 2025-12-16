@@ -153,6 +153,7 @@ in
     inkscape
     gimp
     rawtherapee
+    libreoffice-fresh
   ];
   
   fonts.packages = with pkgs; [
