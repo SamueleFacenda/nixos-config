@@ -61,7 +61,7 @@
     };
   };
 
-  powerManagement.powertop.enable = true;
+  powerManagement.powertop.enable = false;
 
   # Packages
   environment.systemPackages = with pkgs; [

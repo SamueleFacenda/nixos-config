@@ -268,4 +268,20 @@ in
       config_supress_app_specifics_shortcuts = 0;
     };
   };
+  
+  # Printing
+  services.printing = {
+    enable = lib.mkForce true;
+    drivers = with pkgs; [
+      brlaser # Open source Brother laser printer driver
+      brgenml1lpr # Brother generic LPR driver
+      brgenml1cupswrapper # Brother CUPS wrapper
+    ];
+    openFirewall = true;
+    browsing = true;
+    cups-pdf.enable = true;
+    defaultShared = false;
+    startWhenNeeded = true;
+    # allowFrom = [ "all" ];
+  };
 }
