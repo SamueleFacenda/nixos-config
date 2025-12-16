@@ -32,11 +32,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765625526,
-        "narHash": "sha256-kRG29LAPwJwh3IyD1P7VMsF4ijRSCNk0kR+wxbt5utE=",
+        "lastModified": 1765917554,
+        "narHash": "sha256-g5fLseoc5YuFRjgfyZoX7Vp2ZQVzt8L8Nl3Q9V0fTX4=",
         "owner": "asus-linux-drivers",
         "repo": "asus-dialpad-driver",
-        "rev": "a646c211958375f55b40399d2b23ab1294e1e22a",
+        "rev": "0e5326e150763707d995867d7309a49cd15e6fa6",
         "type": "github"
       },
       "original": {
@@ -490,11 +490,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765861191,
-        "narHash": "sha256-OP7ZDv5XGbz0VxPaeP2SDQXWXSkdJodIxwKHOjYuW2Y=",
+        "lastModified": 1765918270,
+        "narHash": "sha256-TbNcuaNCIRp4ZcZBQ1lyXW6GMyHhY5+gWCHqKTLZ3So=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "28379486ea1ccedaaa910a1c454aed924d735524",
+        "rev": "e62aaff51af4cbc43149a71b67931005416d1138",
         "type": "github"
       },
       "original": {
@@ -514,11 +514,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765464257,
-        "narHash": "sha256-dixPWKiHzh80PtD0aLuxYNQ0xP+843dfXG/yM3OzaYQ=",
+        "lastModified": 1765911976,
+        "narHash": "sha256-t3T/xm8zstHRLx+pIHxVpQTiySbKqcQbK+r+01XVKc0=",
         "owner": "cachix",
         "repo": "git-hooks.nix",
-        "rev": "09e45f2598e1a8499c3594fe11ec2943f34fe509",
+        "rev": "b68b780b69702a090c8bb1b973bab13756cc7a27",
         "type": "github"
       },
       "original": {
@@ -617,11 +617,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1765812876,
-        "narHash": "sha256-mML2DlWmvwPOzn8K9QEsiKGdt67iHW/LaK6Xw+ZENMk=",
+        "lastModified": 1765897595,
+        "narHash": "sha256-NgTRxiEC5y96zrhdBygnY+mSzk5FWMML39PcRGVJmxg=",
         "owner": "danth",
         "repo": "stylix",
-        "rev": "9ba353558a288eb9d6fc3057bb418509dd8b4c01",
+        "rev": "e6829552d4bb659ebab00f08c61d8c62754763f3",
         "type": "github"
       },
       "original": {
