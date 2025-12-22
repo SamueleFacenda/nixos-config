@@ -61,7 +61,10 @@
         ", switch:on:Lid Switch,exec, clamshell-suspend"
 
         # Tmp fix for swaylock
-        "$mod, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 ${pkgs.swaylock-effects}/bin/swaylock -f"
+        # "$mod, BackSpace, exec, pkill -SIGUSR1 swaylock && WAYLAND_DISPLAY=wayland-1 ${pkgs.swaylock-effects}/bin/swaylock -f"
+        # Allow hibernate (boot switch) while locked
+        "$mod, Delete, exec, pgrep hyprlock && systemctl hibernate"
+      
 
         ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
         ", XF86AudioPlay, exec, playerctl play"
