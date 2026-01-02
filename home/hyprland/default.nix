@@ -72,6 +72,7 @@
       default-bg = lib.mkForce "alpha(${base00}, 0.2)";
       adjust-open = "width";
       selection-clipboard = "clipboard";
+      # recolor-lightcolor = lib.mkForce "#000000";
     };
   };
   

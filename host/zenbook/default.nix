@@ -113,11 +113,13 @@ in
   boot.resumeDevice = "/dev/dm-0";
   boot.kernelParams = [
     "resume_offset=2291712"
-    # "hibernate.compressor=lz4" # faster
+    "hibernate.compressor=lz4" # faster
   ];
   boot.initrd.kernelModules = [ "lz4" ];
+  # HibernateMode=platform is the default, sometimes it reboots
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=3h
+    HibernateMode=shutdown
   '';
   # systemd.tmpfiles.rules = [ "w /sys/power/image_size - - - - 0" ]; # smaller image size possible
   
@@ -125,6 +127,34 @@ in
     HandleLidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors
     HandleLidSwitchExternalPower = lib.mkForce "suspend-then-hibernate";
     # HandlePowerKey = lib.mkForce "suspend-then-hibernate";
+  };
+  
+  # Hibernate routine (before and after sleep commands)
+  systemd.services.hibernate_routine = let 
+    targets = [
+      "hibernate.target"
+      "suspend-then-hibernate.target"
+      "hybrid-sleep.target"
+    ];
+    toShell = cmd: "/bin/sh -c '${cmd}'";
+    in {
+    description = "load/unload modules, reduce image size";
+    before = targets;
+    unitConfig.StopWhenUnneeded = true;
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = builtins.map toShell [
+      "${pkgs.coreutils}/bin/sync"
+      "echo 3 > /proc/sys/vm/drop_caches"
+      "echo 1 > /proc/sys/vm/compact_memory"
+        # "-${pkgs.kmod}/bin/modprobe -a -r ath11k_pci ath11k"
+      ];
+      ExecStop = builtins.map toShell [ 
+        # "-${pkgs.kmod}/bin/modprobe -a ath11k_pci ath11k" 
+      ];
+    };
+    wantedBy = targets;
   };
 
   # Secure boot
