@@ -81,6 +81,11 @@
   
   services.batsignal = {
     enable = true;
+    package = pkgs.batsignal.overrideAttrs { # wait for #476228
+      env.NIX_CFLAGS_COMPILE = toString [
+        "-Wno-error=incompatible-pointer-types"
+      ];
+    };
     extraArgs = lib.cli.toGNUCommandLine { } {
       w = "20"; # "-W" "message"
       c = "5"; # "-C" "message"

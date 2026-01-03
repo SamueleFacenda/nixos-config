@@ -34,9 +34,9 @@ in
 
     windowrule = [
       # xdg-desktop-portal-termfilechooser
-      "float,initialClass:^(file_chooser)$"
-      "size 800 500,initialClass:^(file_chooser)$"
-      "center,initialClass:^(file_chooser)$"
+      "float on,match:initial_class ^(file_chooser)$"
+      "size 800 500,match:initial_class ^(file_chooser)$"
+      "center on,match:initial_class ^(file_chooser)$"
     ];
 
     input = {
@@ -150,14 +150,6 @@ in
       };
       active_opacity = 1.0;
       inactive_opacity = 0.75;
-      blurls = [
-        # "waybar"
-        "lockscreen"
-        # "wlroots"
-        "launcher"
-        # "swayosd"
-      ];
-
     };
 
     # Monitor bindings and workspace persistance. N workspaces per monitor (But the [n]0 and [n]{n-1} cannot be accessed)

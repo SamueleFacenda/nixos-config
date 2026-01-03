@@ -153,6 +153,13 @@
       # url = "github:SamueleFacenda/asus-dialpad-driver/patch-1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    
+    nix-jetbrains-plugins = {
+      url = "github:nix-community/nix-jetbrains-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.systems.follows = "systems";
+    };
   };
 }

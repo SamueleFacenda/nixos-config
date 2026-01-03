@@ -1,32 +1,35 @@
-{ config, pkgs, self, ... }: {
-  # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/jetbrains/plugins/plugins.json
-  home.packages = with pkgs; [
-    ((jetbrains.plugins.addPlugins jetbrains.idea-ultimate [
-      "github-copilot--your-ai-pair-programmer"
-      "python"
-      "ide-features-trainer"
-      "ideavim"
-      "which-key"
-      "better-direnv"
-      "nixidea"
-      # "wakatime"
+{ config, pkgs, nix-jetbrains-plugins,  ... }: 
+let 
+  withPlugins = nix-jetbrains-plugins.lib."${pkgs.stdenv.hostPlatform.system}".buildIdeWithPlugins pkgs.jetbrains;
+in
+{
+  home.packages = [
+    ((withPlugins "idea" [
+      "com.github.copilot"
+      "PythonCore"
+      "training"
+      "IdeaVIM"
+      "eu.theblob42.idea.whichkey"
+      "com.fapiko.jetbrains.plugins.better_direnv"
+      "nix-idea"
+      "com.wakatime.intellij.plugin"
     ]).overrideAttrs {
       # copying intellij back and forth from the build server is useless and slow
       preferLocalBuild = true;
     })
-    ((jetbrains.plugins.addPlugins jetbrains.clion [
-      "github-copilot--your-ai-pair-programmer"
-      "nixidea"
-      "protocol-buffers"
-      "better-direnv"
-      # "wakatime"
+    ((withPlugins "clion" [
+      "com.github.copilot"
+      "nix-idea"
+      "idea.plugin.protoeditor"
+      "com.fapiko.jetbrains.plugins.better_direnv"
+      "com.wakatime.intellij.plugin"
     ]).overrideAttrs { preferLocalBuild = true; })
-    ((jetbrains.plugins.addPlugins jetbrains.rust-rover [
-      "ide-features-trainer"
-      "github-copilot--your-ai-pair-programmer"
-      "nixidea"
-      # "wakatime"
-      "better-direnv"
+    ((withPlugins "rust-rover" [
+      "com.github.copilot"
+      "nix-idea"
+      "training"
+      "com.wakatime.intellij.plugin"
+      "com.fapiko.jetbrains.plugins.better_direnv"
     ]).overrideAttrs { preferLocalBuild = true; })
   ];
   

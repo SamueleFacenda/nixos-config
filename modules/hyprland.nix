@@ -93,7 +93,7 @@
             --time \
             --asterisks \
             --user-menu \
-            --cmd Hyprland \
+            --cmd start-hyprland \
             --width 50
         '';
         # XDG_SESSION_TYPE=wayland dbus-run-session gnome-session

@@ -5,6 +5,7 @@
     enableCompletion = true;
     autocd = true;
     syntaxHighlighting.enable = true;
+    dotDir = config.home.homeDirectory; # "${config.xdg.configHome}/zsh"; would be better TODO
 
     shellAliases = {
       up = "nh os switch";

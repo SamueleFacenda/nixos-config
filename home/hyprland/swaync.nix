@@ -4,11 +4,11 @@
   
   # Enable blur on layers
   wayland.windowManager.hyprland.settings.layerrule = [
-    "blur, swaync-control-center"
-    "blur, swaync-notification-window"
+    "match:namespace swaync-control-center, blur on"
+    "match:namespace swaync-notification-window, blur on"
     
-    "ignorezero, swaync-notification-window"
-    "ignorezero, swaync-control-center"
+    "match:namespace swaync-control-center, ignore_alpha 0"
+    "match:namespace swaync-notification-window, ignore_alpha 0"
     
     # "ignorealpha 0.5, swaync-control-center"
     # "ignorealpha 0.5, swaync-notification-window"
