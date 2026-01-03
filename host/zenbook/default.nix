@@ -212,7 +212,14 @@ in
   services.fwupd.enable = true;
   
   # Docker
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = false;
+    autoPrune = {
+      enable = true;
+      randomizedDelaySec = "1h";
+    };
+  };
   hardware.nvidia-container-toolkit.enable = true;
   
   virtualisation.waydroid.enable = false;
