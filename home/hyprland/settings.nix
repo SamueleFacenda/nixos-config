@@ -59,7 +59,6 @@ in
       }
     ];
 
-
     general = {
       layout = "dwindle";
       border_size = 0;

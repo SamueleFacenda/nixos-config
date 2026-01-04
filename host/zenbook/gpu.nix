@@ -14,11 +14,11 @@
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.latest;
     modesetting.enable = true;
-    powerManagement.enable = false; # https://forums.developer.nvidia.com/t/fixed-suspend-resume-issues-with-the-driver-version-470/187150/3
+    powerManagement.enable = true; # https://forums.developer.nvidia.com/t/fixed-suspend-resume-issues-with-the-driver-version-470/187150/3
     powerManagement.finegrained = true;
-    open = true;
+    open = false;
     nvidiaSettings = true;
-    dynamicBoost.enable = true; # nvidia-powerd, should make changes only on AC
+    dynamicBoost.enable = false; # nvidia-powerd, should make changes only on AC
     videoAcceleration = true; # vaapi nvidia
 
     prime = {
@@ -33,9 +33,15 @@
       };
     };
   };
-  
-  boot.kernelParams = [
+
+  boot.kernelParams = lib.mkAfter [
+    "nvidia.NVreg_DynamicPowerManagementVideoMemoryThreshold=1024"
+    "nvidia.NVreg_S0ixPowerManagementVideoMemoryThreshold=1024"
+    "nvidia.NVreg_EnableS0ixPowerManagement=1"
     "nvidia.NVreg_TemporaryFilePath=/var/tmp"
+    "nvidia.NVreg_EnableGpuFirmware=0"
+    "nvidia-drm.fbdev=0"
+    # "nvidia-drm.modeset=0"
   ];
 
   # Change prime mode and some hyprland env vars (hdmi doesn't work with offload)
@@ -43,11 +49,8 @@
     home-manager.users.samu.wayland.windowManager.hyprland.settings.env = [
       # for hyprland with nvidia gpu, ref https://wiki.hyprland.org/Nvidia/
       "LIBVA_DRIVER_NAME,nvidia"
-      # "XDG_SESSION_TYPE,wayland"
-      # "GBM_BACKEND,nvidia-drm"
       "__GLX_VENDOR_LIBRARY_NAME,nvidia"
       "NVD_BACKEND,direct"
-      # "WLR_NO_HARDWARE_CURSORS,1"
     ];
     hardware.nvidia = {
       prime.offload = {
@@ -60,9 +63,8 @@
     environment.sessionVariables = let name = config.users.default.name; in {
       AQ_DRM_DEVICES = lib.mkForce "/home/${name}/.config/hypr/intel:/home/${name}/.config/hypr/nvidia";
       GSK_RENDERER = lib.mkForce null;
-      # __EGL_VENDOR_LIBRARY_FILENAMES = lib.mkForce null;
+      __EGL_VENDOR_LIBRARY_FILENAMES = lib.mkForce null;
     };
-    programs.hyprland.package = lib.mkForce pkgs.hyprland;
   };
 
   environment.systemPackages = with pkgs; [
@@ -71,21 +73,12 @@
 
   # Use these or the standard nvidia settings (not working now)
   services.supergfxd.enable = false;
-  
-  # environment.sessionVariables.AQ_DRM_DEVICES = "/home/${config.users.default.name}/.config/hypr/intel:/home/${config.users.default.name}/.config/hypr/nvidia";
+
   environment.sessionVariables = {
-    AQ_DRM_DEVICES = "/home/${config.users.default.name}/.config/hypr/intel";
-    # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
+    AQ_DRM_DEVICES = "/home/${config.users.default.name}/.config/hypr/intel"; # no nvidia, it keeps an open fd on the card anyway
+    __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
     # Don't use vulkan on GTK, avoid GPU wake
     GSK_RENDERER =  "ngl";
   };
-  
-  # Force integrated gpu (needs to find a way to not propagate to child processes)
-  # programs.hyprland.package = pkgs.hyprland.overrideAttrs {
-  #     postFixup = ''
-  #       wrapProgram $out/bin/Hyprland \
-  #         --set __EGL_VENDOR_LIBRARY_FILENAMES '${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json'
-  #     '';
-  #   };
-  
+  home-manager.users.samu.systemd.user.services.swaync.Service.Environment = [ "GSK_RENDERER=ngl" ];
 }
