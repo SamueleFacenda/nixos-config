@@ -6,7 +6,7 @@ in
   home.packages = [
     ((withPlugins "idea" [
       "com.github.copilot"
-      "PythonCore"
+      "Pythonid"
       "training"
       "IdeaVIM"
       "eu.theblob42.idea.whichkey"

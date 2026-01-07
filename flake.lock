@@ -398,15 +398,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1767434185,
-        "narHash": "sha256-S289tJM4HQQStEF9QMCtS93duiYwfecWy/zhBoEb890=",
-        "owner": "nix-community",
+        "lastModified": 1767787448,
+        "narHash": "sha256-KR3EW+LFp7KhqvxmH1KW0EjCV8QB/RPq4S30e/IXYSo=",
+        "owner": "SamueleFacenda",
         "repo": "nix-jetbrains-plugins",
-        "rev": "d3b3c5d901ce5980dec75f54f2ca6446f51b3451",
+        "rev": "2bedfb89bd744c703619d0ff104c1d196afb4542",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
+        "owner": "SamueleFacenda",
+        "ref": "special_plugins_build",
         "repo": "nix-jetbrains-plugins",
         "type": "github"
       }
