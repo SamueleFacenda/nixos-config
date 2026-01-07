@@ -21,8 +21,9 @@
 
       RUNTIME_PM_ON_AC = "on";
       RUNTIME_PM_ON_BAT = "auto";
-
-      RUNTIME_PM_DRIVER_DENYLIST = "thunderbolt nvidia";
+    
+      RUNTIME_PM_DENYLIST = "01:00.0 01:00.1"; # use nvidia power management
+      RUNTIME_PM_DRIVER_DENYLIST = "thunderbolt nvidia"; # punt nvidia also here, snd_hda_intel maybe
       PCIE_ASPM_ON_AC = "performance";
       PCIE_ASPM_ON_BAT = "powersave"; # or powersupersave
 

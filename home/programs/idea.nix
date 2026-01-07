@@ -13,10 +13,7 @@ in
       "com.fapiko.jetbrains.plugins.better_direnv"
       "nix-idea"
       "com.wakatime.intellij.plugin"
-    ]).overrideAttrs {
-      # copying intellij back and forth from the build server is useless and slow
-      preferLocalBuild = true;
-    })
+    ]))
     ((withPlugins "clion" [
       "com.github.copilot"
       "nix-idea"

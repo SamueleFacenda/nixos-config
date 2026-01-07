@@ -14,18 +14,16 @@
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.latest;
     modesetting.enable = true;
-    powerManagement.enable = true; # https://forums.developer.nvidia.com/t/fixed-suspend-resume-issues-with-the-driver-version-470/187150/3
+    powerManagement.enable = false; # https://forums.developer.nvidia.com/t/fixed-suspend-resume-issues-with-the-driver-version-470/187150/3
     powerManagement.finegrained = true;
-    open = false;
+    open = true;
     nvidiaSettings = true;
     dynamicBoost.enable = false; # nvidia-powerd, should make changes only on AC
     videoAcceleration = true; # vaapi nvidia
 
     prime = {
-      # pci@0000:00:02.0 intel
-      # pci@0000:01:00.0 nvidia
-      nvidiaBusId = "PCI:1:0:0";
-      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0"; # pci@0000:01:00.0 nvidia
+      intelBusId = "PCI:0:2:0"; # pci@0000:00:02.0 intel
 
       offload = {
         enable = true;
@@ -39,10 +37,24 @@
     "nvidia.NVreg_S0ixPowerManagementVideoMemoryThreshold=1024"
     "nvidia.NVreg_EnableS0ixPowerManagement=1"
     "nvidia.NVreg_TemporaryFilePath=/var/tmp"
-    "nvidia.NVreg_EnableGpuFirmware=0"
+    # "nvidia.NVreg_EnableGpuFirmware=0"
+    "nvidia.NVreg_DynamicPowerManagement=0x03"
+    # "nvidia.NVreg_UsePageAttributeTable=1"
+    # "nvidia.NVreg_InitializeSystemMemoryAllocations=0"
     "nvidia-drm.fbdev=0"
-    # "nvidia-drm.modeset=0"
   ];
+  
+  services.udev.extraRules = lib.optionalString config.hardware.nvidia.powerManagement.finegrained ''
+    # Enable runtime PM for NVIDIA audio controller devices on driver bind
+    ACTION=="bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", TEST=="power/control", ATTR{power/control}="auto"
+    # Disable runtime PM for NVIDIA audio controller devices on driver unbind
+    ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", TEST=="power/control", ATTR{power/control}="on"
+    
+    # Enable runtime PM for NVIDIA VGA/3D controller devices on driver bind
+    ACTION=="bind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TEST=="power/control", ATTR{power/control}="auto"
+    # Disable runtime PM for NVIDIA VGA/3D controller devices on driver unbind
+    ACTION=="unbind", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000", TEST=="power/control", ATTR{power/control}="on"
+  '';
 
   # Change prime mode and some hyprland env vars (hdmi doesn't work with offload)
   specialisation.multi-monitor.configuration = {

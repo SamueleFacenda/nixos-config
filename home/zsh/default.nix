@@ -19,6 +19,7 @@
       nix-unsec = "env NIXPKGS_ALLOW_INSECURE=1 nix --impure";
 
       tree = "eza --tree";
+      watch = "watch -n0.5"; # faster watch
       # ls = lib.mkForce "eza --git-ignore";
       c = "clear";
       q = "exit";
