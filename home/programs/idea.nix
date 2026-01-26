@@ -1,19 +1,21 @@
 { config, pkgs, nix-jetbrains-plugins,  ... }: 
 let 
-  withPlugins = nix-jetbrains-plugins.lib."${pkgs.stdenv.hostPlatform.system}".buildIdeWithPlugins pkgs.jetbrains;
+  withPlugins = nix-jetbrains-plugins.lib.buildIdeWithPlugins pkgs;
 in
 {
   home.packages = [
     ((withPlugins "idea" [
       "com.github.copilot"
       "Pythonid"
+      "PythonCore"
       "training"
       "IdeaVIM"
       "eu.theblob42.idea.whichkey"
       "com.fapiko.jetbrains.plugins.better_direnv"
       "nix-idea"
       "com.wakatime.intellij.plugin"
-    ]))
+      "org.jetbrains.plugins.go"
+    ]).overrideAttrs { preferLocalBuild = true; })
     ((withPlugins "clion" [
       "com.github.copilot"
       "nix-idea"

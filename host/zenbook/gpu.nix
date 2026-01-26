@@ -15,7 +15,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.latest;
     modesetting.enable = true;
     powerManagement.enable = false; # https://forums.developer.nvidia.com/t/fixed-suspend-resume-issues-with-the-driver-version-470/187150/3
-    powerManagement.finegrained = true;
+    powerManagement.finegrained = false;
     open = true;
     nvidiaSettings = true;
     dynamicBoost.enable = false; # nvidia-powerd, should make changes only on AC
@@ -34,14 +34,15 @@
 
   boot.kernelParams = lib.mkAfter [
     "nvidia.NVreg_DynamicPowerManagementVideoMemoryThreshold=1024"
-    "nvidia.NVreg_S0ixPowerManagementVideoMemoryThreshold=1024"
-    "nvidia.NVreg_EnableS0ixPowerManagement=1"
-    "nvidia.NVreg_TemporaryFilePath=/var/tmp"
+    # "nvidia.NVreg_S0ixPowerManagementVideoMemoryThreshold=1024"
+    # "nvidia.NVreg_EnableS0ixPowerManagement=1"
+    # "nvidia.NVreg_TemporaryFilePath=/var/tmp"
     # "nvidia.NVreg_EnableGpuFirmware=0"
     "nvidia.NVreg_DynamicPowerManagement=0x03"
     # "nvidia.NVreg_UsePageAttributeTable=1"
     # "nvidia.NVreg_InitializeSystemMemoryAllocations=0"
     "nvidia-drm.fbdev=0"
+    "initcall_blacklist=sysfb_init"
   ];
   
   services.udev.extraRules = lib.optionalString config.hardware.nvidia.powerManagement.finegrained ''

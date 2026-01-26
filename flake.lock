@@ -387,9 +387,6 @@
         "flake-compat": [
           "flake-compat"
         ],
-        "flake-utils": [
-          "flake-utils"
-        ],
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -398,11 +395,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767787448,
-        "narHash": "sha256-KR3EW+LFp7KhqvxmH1KW0EjCV8QB/RPq4S30e/IXYSo=",
+        "lastModified": 1769365277,
+        "narHash": "sha256-avHOimx4e6HrA0O5pH1VwNWlbRr6wmIUMZjYOEl6tcU=",
         "owner": "SamueleFacenda",
         "repo": "nix-jetbrains-plugins",
-        "rev": "2bedfb89bd744c703619d0ff104c1d196afb4542",
+        "rev": "19d3f01b1f4967116154333ea80b82011df2bead",
         "type": "github"
       },
       "original": {
