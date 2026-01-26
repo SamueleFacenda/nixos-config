@@ -63,7 +63,7 @@ in
 
     ensureProfiles = {
       environmentFiles = lib.mkIf (config.age.secrets ? network-keys) [ config.age.secrets.network-keys.path ];
-      profiles = lib.fold (a: b: a // b) { } [
+      profiles = lib.foldr (a: b: a // b) { } [
         (mkWpaWifi {
           name = "fazzenda";
           password = "$FAZZENDA_PSW";
