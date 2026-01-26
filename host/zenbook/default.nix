@@ -182,7 +182,15 @@ in
     zoom-us
     inkscape
     gimp
-    rawtherapee
+    (rawtherapee.overrideAttrs (prevAttrs: {
+      postPatch = prevAttrs.postPatch + ''
+      
+        substituteInPlace rtengine/procparams.cc --replace \
+          'outputProfile(options.rtSettings.srgb),' \
+          'outputProfile("RTv4_sRGB"),'
+      '';
+    }))
+    darktable
     libreoffice-fresh
   ];
   
