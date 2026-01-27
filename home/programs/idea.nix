@@ -8,7 +8,7 @@ in
       "com.github.copilot"
       "Pythonid"
       "PythonCore"
-      "training"
+      # "training" not updated yet
       "IdeaVIM"
       "eu.theblob42.idea.whichkey"
       "com.fapiko.jetbrains.plugins.better_direnv"
@@ -26,7 +26,7 @@ in
     ((withPlugins "rust-rover" [
       "com.github.copilot"
       "nix-idea"
-      "training"
+      # "training" not updated yet
       "com.wakatime.intellij.plugin"
       "com.fapiko.jetbrains.plugins.better_direnv"
     ]).overrideAttrs { preferLocalBuild = true; })

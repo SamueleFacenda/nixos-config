@@ -300,7 +300,7 @@ in
   
   # Touch asus dial config
   services.asus-dialpad-driver = {
-    enable = true;
+    enable = false; # wait for https://github.com/asus-linux-drivers/asus-dialpad-driver/issues/23
     wayland = true;
     waylandDisplay = "wayland-1";
     layout = "zenbookpro14";

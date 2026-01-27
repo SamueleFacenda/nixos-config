@@ -86,7 +86,7 @@
         "-Wno-error=incompatible-pointer-types"
       ];
     };
-    extraArgs = lib.cli.toGNUCommandLine { } {
+    extraArgs = lib.cli.toCommandLineGNU { } {
       w = "20"; # "-W" "message"
       c = "5"; # "-C" "message"
       d = "2"; # "-D" "message"
