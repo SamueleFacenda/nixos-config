@@ -38,6 +38,7 @@ in
         ms-vsliveshare.vsliveshare
         github.copilot-chat
         james-yu.latex-workshop
+        bierner.markdown-mermaid
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "vscode-ros";

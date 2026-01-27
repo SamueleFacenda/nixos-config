@@ -20,7 +20,7 @@
 
     # displays
     wlr-randr
-    # nwg-displays # wait for https://nixpk.gs/pr-tracker.html?pr=438729
+    nwg-displays
     nwg-bar
     hyprshade
     swaylock-effects

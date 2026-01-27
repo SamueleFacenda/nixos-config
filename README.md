@@ -149,9 +149,6 @@ for less expert users or for different mouse configs.
 - syncthing
 - home server containers
 
-### Waiting for these PR:
-- [Howdy auth](https://github.com/NixOS/nixpkgs/pull/216245)
-
 ### Overlays (custom packages and other):
 - micro-wakatime (faster loading)
 - nerdfonts (use monofur with bullet point character from blexmono)
