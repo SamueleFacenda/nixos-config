@@ -329,4 +329,20 @@ in
     startWhenNeeded = true;
     # allowFrom = [ "all" ];
   };
+  
+  # Face auth
+  security.pam.services.login.howdy.enable = false;
+  security.pam.services.greetd.howdy.enable = false;
+  services.howdy = {
+    enable = true;
+    control = "sufficient";
+    # settings = {
+    #   video.dark_threshold = 90;
+    # };
+  };
+  # fix https://github.com/NixOS/nixpkgs/issues/483867
+  systemd.services."polkit-agent-helper@".serviceConfig = { 
+    DeviceAllow = "char-video4linux rw";
+    PrivateDevices = "no";
+  };
 }
