@@ -50,6 +50,10 @@
       owner = config.users.default.name;
       group = "users";
     };
+    
+    pingpov-env = lib.mkIf config.secrets.pingpov-env.enable {
+      file = ./pingpov-env.age;
+    };
   };
 
   age.identityPaths = [

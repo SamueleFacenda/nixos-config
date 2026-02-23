@@ -11,8 +11,12 @@ let
   surface-ng = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPcBmbjND6MiySUj0aP02nhuBUZerTTdJxO+bqFq5GTg"
   ];
+  
+  latitude = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKOYu7pb5Y9wk2bI2pBJzt1XtvpE0aiTmNhJIpqnjjud"
+  ];
 
-  systems = surface-samu ++ zenbook ++ surface-ng;
+  systems = surface-samu ++ zenbook ++ surface-ng ++ latitude;
 in
 {
   "github-token.age".publicKeys = systems;
@@ -20,4 +24,5 @@ in
   "network-keys.age".publicKeys = systems;
   "spotify.age".publicKeys = systems;
   "nix-access-tokens.age".publicKeys = systems;
+  "pingpov-env.age".publicKeys = systems;
 }

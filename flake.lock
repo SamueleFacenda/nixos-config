@@ -113,6 +113,29 @@
         "type": "github"
       }
     },
+    "challonge-bet-bot": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772048124,
+        "narHash": "sha256-h5lhuDe5PpwWXnzdpswCRaiYgDO3hf8eAbICbv3m/3o=",
+        "owner": "SamueleFacenda",
+        "repo": "challonge-bet-bot",
+        "rev": "a9ab8e5cc463f20173c0a5952f953b48cd02744a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SamueleFacenda",
+        "repo": "challonge-bet-bot",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1754269165,
@@ -558,6 +581,7 @@
       "inputs": {
         "agenix": "agenix",
         "asus-dialpad-driver": "asus-dialpad-driver",
+        "challonge-bet-bot": "challonge-bet-bot",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",

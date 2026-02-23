@@ -54,6 +54,7 @@ in
     # wakatime-key.enable = true;
     # github-token.enable = true;
     # nix-access-tokens.enable = true;
+    # pingpong-env.enable = true;
   };
 
   # This value determines the NixOS release from which the default

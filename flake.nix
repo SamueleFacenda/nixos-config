@@ -161,5 +161,11 @@
       inputs.flake-compat.follows = "flake-compat";
       inputs.systems.follows = "systems";
     };
+    
+    challonge-bet-bot = {
+      url = "github:SamueleFacenda/challonge-bet-bot";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 }

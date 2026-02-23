@@ -19,7 +19,7 @@ in
   };
 
   options.secrets = genAttrs
-    [ "spotify" "network-keys" "nix-access-tokens" "wakatime-key" "github-token" ]
+    [ "spotify" "network-keys" "nix-access-tokens" "wakatime-key" "github-token" "pingpov-env" ]
     (secret: { enable = lib.mkEnableOption (lib.mdDoc secret); });
 
 
