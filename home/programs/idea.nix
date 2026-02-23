@@ -18,6 +18,7 @@ in
     ]).overrideAttrs { preferLocalBuild = true; })
     ((withPlugins "clion" [
       "com.github.copilot"
+      "com.intellij.mermaid"
       "nix-idea"
       "idea.plugin.protoeditor"
       "com.fapiko.jetbrains.plugins.better_direnv"
@@ -25,6 +26,7 @@ in
     ]).overrideAttrs { preferLocalBuild = true; })
     ((withPlugins "rust-rover" [
       "com.github.copilot"
+      "com.intellij.mermaid"
       "nix-idea"
       # "training" not updated yet
       "com.wakatime.intellij.plugin"
