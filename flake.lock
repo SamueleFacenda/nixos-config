@@ -32,11 +32,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770823427,
-        "narHash": "sha256-+nhcPXzKUIEB8PRdUiT28YwG5aLxIv7k2PnMcf9Vb3o=",
+        "lastModified": 1772095681,
+        "narHash": "sha256-wMk6zfOIqF3oPNihtyePUP27zLHHKI7Tui89ed2l5bo=",
         "owner": "asus-linux-drivers",
         "repo": "asus-dialpad-driver",
-        "rev": "52182eb1c809c40c110ba1c4ff51e6fea20aaa85",
+        "rev": "301c3ec4ce3bdcb53d0f87d6cfc9cd2268d832f9",
         "type": "github"
       },
       "original": {
@@ -321,11 +321,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771851181,
-        "narHash": "sha256-gFgE6mGUftwseV3DUENMb0k0EiHd739lZexPo5O/sdQ=",
+        "lastModified": 1772060133,
+        "narHash": "sha256-VuyRptb8v1lVGMlLp4/1vRX3Efwec0CN0S6mKmDPzLg=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "9a4b494b1aa1b93d8edf167f46dc8e0c0011280c",
+        "rev": "ce9b6e52500a0ea0ec48f0bbf6d7a3e431d9dfa4",
         "type": "github"
       },
       "original": {
@@ -540,11 +540,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772056865,
-        "narHash": "sha256-G1zIGj74zfTzJBUlXKRQ3DvVpwCDjnkyUGBOSD7qlTs=",
+        "lastModified": 1772144000,
+        "narHash": "sha256-dUYARNc9WMVV8O+ToAWUb5eisdt7FcVkJarugxbUNOU=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "bd57bdd669cd19bfe4de63d1da0e77f44072349a",
+        "rev": "c78f503921b281144bf0791df0e9a5bff97b062f",
         "type": "github"
       },
       "original": {
