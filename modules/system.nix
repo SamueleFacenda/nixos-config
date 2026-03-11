@@ -78,7 +78,7 @@
     micro
     git
     curl
-    neofetch
+    fastfetch
     ranger
     trashy
     wakatime-cli

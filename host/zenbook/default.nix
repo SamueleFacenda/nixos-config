@@ -192,6 +192,7 @@ in
     }))
     darktable
     libreoffice-fresh
+    logseq
   ];
   
   fonts.packages = with pkgs; [

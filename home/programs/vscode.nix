@@ -61,7 +61,7 @@ in
       ];
 
       userSettings = {
-        # "editor.fontFamily" = "'JetBrainsMono Nerd Font Mono'";
+        # "editor.fontFamily" = "'JetBrainsMono Nerd Font Mono'"; already set by stylix
         "editor.fontLigatures" = true;
         "terminal.integrated.fontFamily" = "'JetbrainsMono Nerd Font Mono'";
         "[nix]"."editor.tabSize" = 2;
