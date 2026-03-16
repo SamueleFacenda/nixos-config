@@ -8,6 +8,7 @@
     hyprswitch
     hypr-shellevents
     Hyprspace
+    x-typewriter
     xdg-desktop-portal-termfilechooser;
   inherit (self.packages.${prev.stdenv.hostPlatform.system}.python3)
       trmnl-calendar;

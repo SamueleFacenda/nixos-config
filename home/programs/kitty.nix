@@ -1,9 +1,9 @@
 { config, pkgs, lib, ... }: {
   programs.kitty = {
     enable = true;
-    font.name = lib.mkForce "Monofur Nerd Font Mono"; # "JetBrainsMono Nerd Font";#"monofurx Nerd Font";#
+    font.name = lib.mkForce "XTypewriter Nerd Font"; # "JetBrainsMono Nerd Font" "monofurx Nerd Font" "Monofur Nerd Font Mono"
     font.size = lib.mkForce 15;
-    font.package = pkgs.nerd-fonts.monofur;
+    font.package = pkgs.x-typewriter; # pkgs.nerd-fonts.monofur
     # theme = "Adwaita dark";
     # theme = "GitHub Dark";
     environment = {
