@@ -12,7 +12,7 @@ https://github.com/MayNiklas/eduroam-flake
 This is more than my config, it's a flake. There are a couple packages, flake templates and overlays too.
 
 I currently manage it in order to be easy to pick and use for everybody. The main user name is defined in an option
-and secrets are optionals. In [the this default config](host/genericLinux/default.nix) you can 
+and secrets are optionals. In [the default config](host/genericLinux/default.nix) you can 
 find a sample config that shoud easy to tweak. 
 If you want to to a test just use the install wizard (desciption below)
 

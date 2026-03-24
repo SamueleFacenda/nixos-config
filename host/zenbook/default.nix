@@ -193,6 +193,7 @@ in
     darktable
     libreoffice-fresh
     logseq
+    vlc
   ];
   
   fonts.packages = with pkgs; [

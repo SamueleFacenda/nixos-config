@@ -48,6 +48,6 @@ stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out/share/fonts/truetype/x-typewriter
     
-    cp XTypewriterNerdFont-*.ttf $out/share/fonts/truetype/x-typewriter
+    cp XTypewriterNerdFontMono-*.ttf $out/share/fonts/truetype/x-typewriter
   '';
 }
