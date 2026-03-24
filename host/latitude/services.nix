@@ -89,13 +89,12 @@
   # TRMNL
   
   virtualisation.oci-containers.containers."trmnl-server-app" = {
-    image = "ghcr.io/usetrmnl/byos_laravel:latest";
+    image = "ghcr.io/usetrmnl/larapaper:latest";
     environment = {
       # REGISTRATION_ENABLED = "0";
       PHP_OPCACHE_ENABLE = "1";
       APP_TIMEZONE = "Europe/Rome";
       DB_DATABASE = "database/storage/database.sqlite";
-      PUPPETEER_WINDOW_SIZE_STRATEGY = "v2";
     };
     volumes = [
       "database:/var/www/html/database/storage"
