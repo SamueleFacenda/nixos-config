@@ -65,7 +65,7 @@ in
       environmentFiles = lib.mkIf (config.age.secrets ? network-keys) [ config.age.secrets.network-keys.path ];
       profiles = lib.foldr (a: b: a // b) { } [
         (mkWpaWifi {
-          name = "fazzenda";
+          name = "CasaRossa";
           password = "$FAZZENDA_PSW";
           priority = 50;
         })
