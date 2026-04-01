@@ -2,7 +2,7 @@
   
   services.photoprism = {
     enable = true;
-    # package = pkgs.photoprism.override { ffmpeg_7 = pkgs.ffmpeg_7-full; };
+    package = pkgs.photoprism.override { ffmpeg = pkgs.ffmpeg_7; };
     originalsPath = "/var/lib/private/photoprism/originals";
     port = 2342;
     address = "0.0.0.0";
