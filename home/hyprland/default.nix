@@ -94,4 +94,30 @@
       m = "30"; # interval
     };
   };
+  
+  services.wluma = {
+    enable = true;
+    settings = {
+      als.iio = {
+        path = "/sys/bus/iio/devices";
+        thresholds = {
+          "800" = "night";
+          "2000" = "dim";
+          "4000" = "dark";
+          "60000" = "normal";
+          "500000" = "bright";
+          "1000000" = "outdoors";
+        };
+      };
+      output.backlight = [{
+        name = "eDP-1";
+        path = "/sys/class/backlight/intel_backlight";
+        capturer = "wayland";
+      }];
+      keyboard = [{
+        name = "asus-keyboard";
+        path = "/sys/bus/platform/devices/asus-nb-wmi/leds/asus::kbd_backlight";
+      }];
+    };
+  };
 }
