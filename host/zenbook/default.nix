@@ -117,10 +117,10 @@ in
   ];
   boot.initrd.kernelModules = [ "lz4" ];
   # HibernateMode=platform is the default, sometimes it reboots
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=3h
-    HibernateMode=shutdown
-  '';
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "3h";
+    HibernateMode = "shutdown";
+  };
   # systemd.tmpfiles.rules = [ "w /sys/power/image_size - - - - 0" ]; # smaller image size possible
   
   services.logind.settings.Login = {
@@ -182,14 +182,7 @@ in
     zoom-us
     inkscape
     gimp
-    (rawtherapee.overrideAttrs (prevAttrs: {
-      postPatch = prevAttrs.postPatch + ''
-      
-        substituteInPlace rtengine/procparams.cc --replace \
-          'outputProfile(options.rtSettings.srgb),' \
-          'outputProfile("RTv4_sRGB"),'
-      '';
-    }))
+    rawtherapee
     darktable
     libreoffice-fresh
     logseq

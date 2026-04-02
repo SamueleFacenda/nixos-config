@@ -10,4 +10,7 @@
     dates = "weekly";
     options = "-d";
   };
+  
+  # Legacy behaviour
+  gtk.gtk4.theme = config.gtk.theme;
 }

@@ -14,6 +14,7 @@ in
 
     userDirs = {
       enable = true;
+      setSessionVariables = true;
       createDirectories = true;
       desktop = "${config.home.homeDirectory}/.Desktop";
       music = "${config.home.homeDirectory}/.Music";

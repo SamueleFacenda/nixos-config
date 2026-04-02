@@ -66,9 +66,7 @@ in
     HandlePowerKey = lib.mkForce "suspend-then-hibernate";
     HandleSuspendKey = lib.mkForce "suspend-then-hibernate";
   };
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=2h
-  '';
+  systemd.sleep.settings.Sleep.HibernateDelaySec = "2h";
 
   # fix iptsd shutdown idle problem
   systemd.services.iptsd.serviceConfig = {

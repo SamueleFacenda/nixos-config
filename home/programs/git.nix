@@ -15,8 +15,11 @@
       init.defaultBranch = "main";
     };
 
-    signing.key = null;
-    signing.signByDefault = true;
+    signing = {
+      key = null;
+      signByDefault = true;
+      format = "openpgp";
+    };
 
     lfs.enable = true;
   };

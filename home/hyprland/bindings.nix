@@ -79,8 +79,8 @@
         # volume keys
         ", XF86AudioRaiseVolume, exec, swayosd-client --max-volume 150 --output-volume +5"
         ", XF86AudioLowerVolume, exec, swayosd-client --max-volume 150 --output-volume -5"
-        ", XF86MonBrightnessUp, exec, swayosd-client --brightness raise 200"
-        ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower 200"
+        ", XF86MonBrightnessUp, exec, swayosd-client --brightness +5"
+        ", XF86MonBrightnessDown, exec, swayosd-client --brightness -5"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioMicMute, exec, pamixer --default-source -t"
