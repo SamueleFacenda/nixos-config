@@ -171,4 +171,15 @@
       UMask = "0077";
     };
   };
+  
+  # Univr updater
+  systemd.services.ping-univr = {
+    description = "Ping web page every day";
+    startAt = "daily"; # "0/4:00:00"
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.curl}/bin/curl -sS --max-time 1800 http://pastapizza.altervista.org/univr/generic_update.php";
+      RuntimeMaxSec = 1800;
+    };
+  };
 }

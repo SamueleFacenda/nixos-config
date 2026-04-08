@@ -358,7 +358,7 @@ in
       };
       video = {
         certainty = 3.5;
-        dark_threshold = 60;
+        dark_threshold = 90;
         device_format = "v4l2";
         device_fps = -1;
         device_path = "/dev/video2";
