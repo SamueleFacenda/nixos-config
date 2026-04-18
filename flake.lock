@@ -123,11 +123,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773840708,
-        "narHash": "sha256-FE1N1FJzPoCmFA9Nrmf3FGN7g0RfC3uhu8jIc/yFHA8=",
+        "lastModified": 1776515578,
+        "narHash": "sha256-+4GDQ8riGWTKV0u/hcktiM49IjGVrwbQ0J/1dWuavmo=",
         "owner": "SamueleFacenda",
         "repo": "challonge-bet-bot",
-        "rev": "f2e985ff32703f55c3cb7e9941c0b38cd8710633",
+        "rev": "cc36dd3ba5cb2dc13ed98a8dcd635d9b4e40f270",
         "type": "github"
       },
       "original": {

@@ -30,6 +30,7 @@
   
   fileSystems."/var/lib/private/photoprism/originals" =
     { device = "/originals";
+      fsType = "auto";
       options = [ "bind" ];
     };
 
