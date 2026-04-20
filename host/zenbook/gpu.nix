@@ -41,8 +41,8 @@
     "nvidia.NVreg_DynamicPowerManagement=0x03"
     # "nvidia.NVreg_UsePageAttributeTable=1"
     # "nvidia.NVreg_InitializeSystemMemoryAllocations=0"
-    "nvidia-drm.fbdev=0"
-    "initcall_blacklist=sysfb_init"
+    # "nvidia-drm.fbdev=0"
+    # "initcall_blacklist=sysfb_init"
   ];
   
   services.udev.extraRules = lib.optionalString config.hardware.nvidia.powerManagement.finegrained ''
