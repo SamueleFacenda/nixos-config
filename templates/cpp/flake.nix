@@ -2,7 +2,7 @@
 {
   description = "An Hello World in C++";
 
-  inputs.nixpkgs.url = "nixpkgs/nixos-25.05";
+  inputs.nixpkgs.url = "nixpkgs/nixos-25.11";
 
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
