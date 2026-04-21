@@ -82,14 +82,14 @@ in
   boot.kernelPackages = pkgs.linuxPackages_latest;
   
   # Use bbr for more aggressive tcp
-  boot.kernelPatches = [{
-    name = "bbr";
-    patch = null;
-    structuredExtraConfig = with pkgs.lib.kernel; {
-      TCP_CONG_BBR = yes; # enable BBR
-      DEFAULT_BBR = yes; # use it by default
-    };
-  }];
+  # boot.kernelPatches = [{
+  #   name = "bbr";
+  #   patch = null;
+  #   structuredExtraConfig = with pkgs.lib.kernel; {
+  #     TCP_CONG_BBR = yes; # enable BBR
+  #     DEFAULT_BBR = yes; # use it by default
+  #   };
+  # }];
 
   # Thunderbolt
   services.hardware.bolt.enable = true;

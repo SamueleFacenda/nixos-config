@@ -16,7 +16,7 @@ in
     mutableExtensionsDir = false;
     profiles.default = {
         extensions = with pkgs.vscode-extensions; [
-        github.copilot
+        github.copilot-chat
         wakatime.vscode-wakatime
         yzhang.markdown-all-in-one
         ms-python.python
