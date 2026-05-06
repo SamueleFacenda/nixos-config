@@ -91,7 +91,7 @@
   virtualisation.oci-containers.containers."trmnl-server-app" = {
     image = "ghcr.io/usetrmnl/larapaper:latest";
     environment = {
-      # REGISTRATION_ENABLED = "0";
+      REGISTRATION_ENABLED = "1";
       PHP_OPCACHE_ENABLE = "1";
       APP_TIMEZONE = "Europe/Rome";
       DB_DATABASE = "database/storage/database.sqlite";
@@ -121,7 +121,7 @@
       User = config.users.default.name;
       EnvironmentFile = pkgs.writeText "trmnl-calendar.env" (lib.generators.toKeyValue {} {
         TRMNL_TITLE = "Calendario lezioni Samu";
-        TRMNL_WEBHOOK_URL = "http://192.168.68.109:2300/api/custom_plugins/728011e6-bf28-4825-9e6d-4bcf7a59b631";
+        TRMNL_WEBHOOK_URL = "http://127.0.0.1:2300/api/custom_plugins/728011e6-bf28-4825-9e6d-4bcf7a59b631";
         TRMNL_ICS_URL = builtins.concatStringsSep "," [
           "https://webapi.unitn.it/unitrentoapp/profile/me/calendar/C57C1F7D08BEF5551658CC7B2D299297A1F500FCD56280D6E03BA51A3E6E1F77" # Uni
           "https://calendar.google.com/calendar/ical/75607d8028ce751b368530686bd514ad295458dc8c6086b7b3bcc2048b83e226%40group.calendar.google.com/public/basic.ics" # TT
