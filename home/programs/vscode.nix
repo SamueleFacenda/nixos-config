@@ -39,6 +39,7 @@ in
         github.copilot-chat
         james-yu.latex-workshop
         bierner.markdown-mermaid
+        antyos.openscad
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "vscode-ros";

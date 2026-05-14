@@ -380,4 +380,8 @@ in
     DeviceAllow = "char-video4linux rw";
     PrivateDevices = "no";
   };
+  # Audio fixies
+  boot.extraModprobeConfig = ''
+    options snd-hda-intel model=asus-zenbook
+  '';
 }
