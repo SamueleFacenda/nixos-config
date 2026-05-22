@@ -40,6 +40,7 @@ in
         james-yu.latex-workshop
         bierner.markdown-mermaid
         antyos.openscad
+        # platformio.platformio-vscode-ide
       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
         {
           name = "vscode-ros";
@@ -106,6 +107,7 @@ in
         "texpresso.syncTeXForwardOnSelection" = true;
         "texpresso.useEditorTheme" = true;
         "texpresso.useChangeRangeMode" = false;
+        # "platformio-ide.useBuiltinPIOCore" = false;
       };
     };
   };

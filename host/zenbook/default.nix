@@ -241,6 +241,12 @@ in
     } ];
   };
   
+  # Platformio and embedded development
+  services.udev.packages = with pkgs; [ 
+    platformio-core.udev
+    openocd
+  ];
+  
   # Cable drivers Xilinx FPGAs and Trmnl
   services.udev.extraRules = ''
     ACTION=="add", ATTRS{idVendor}=="0403", ATTRS{manufacturer}=="Xilinx", MODE:="666"
