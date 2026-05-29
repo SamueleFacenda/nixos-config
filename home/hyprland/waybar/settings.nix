@@ -206,25 +206,29 @@ let
   };
 in
 {
-  programs.waybar.settings = builtins.map (lib.recursiveUpdate base_config) [
-    ## OUTPUT SPECIFIC CONFIG
-    {
-      ## Oled config
-      # output = [ "eDP-1" ]; # "Samsung Display Corp. 0x4190"
-      output = [ "Samsung Display Corp. 0x4190 "  ]; # 
-      # mode = "dock";
-      # start_hidden = true;
-    }
-    {
-      output = [
-        "Ancor Communications Inc VX279 D5LMRS021367"
-        "Dell Inc. DELL U2412M Y1H5T17S0N3L"
-        "Dell Inc. DELL U2412M Y1H5T2C704HL"
-      ]; # Todo get surface monitor name
-    }
-    {
-      output = [ "Fujitsu Siemens Computers GmbH E22W-5 YV2C027320" ];
-      "hyprland/language".keyboard-name = "keychron-keychron-k3-pro-keyboard"; # "keychron-keychron-k3-pro"; # Changes betwenn bluethoot and cabled connection
-    }
-  ];
+  programs.waybar.settings = 
+    let 
+      mainMonitors = [ # toggling enabled
+        "Samsung Display Corp. 0x4190 "
+      ];
+      excludedSecondary = [ # output disabled by deafault
+        "Fujitsu Siemens Computers GmbH E22W-5 YV2C027320"
+      ];
+      exclude = map (name: "!${name}");
+    in
+    builtins.map (lib.recursiveUpdate base_config) [
+      ## OUTPUT SPECIFIC CONFIG
+      {
+        output = mainMonitors;
+      }
+      {
+        output = exclude mainMonitors ++ exclude excludedSecondary ++ [ "*" ];
+        on-sigusr1 = "noop";
+      }
+      {
+        output = [ "Fujitsu Siemens Computers GmbH E22W-5 YV2C027320" ];
+        "hyprland/language".keyboard-name = "keychron-keychron-k3-pro-keyboard"; # "keychron-keychron-k3-pro"; # Changes betwenn bluetooth and cabled connection
+        on-sigusr1 = "noop";
+      }
+    ];
 }

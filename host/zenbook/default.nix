@@ -244,7 +244,7 @@ in
   # Platformio and embedded development
   services.udev.packages = with pkgs; [ 
     platformio-core.udev
-    openocd
+    # openocd
   ];
   
   # Cable drivers Xilinx FPGAs and Trmnl
