@@ -213,6 +213,7 @@ in
       ];
       excludedSecondary = [ # output disabled by deafault
         "Fujitsu Siemens Computers GmbH E22W-5 YV2C027320"
+        "Ancor Communications Inc ASUS VW199 DCLMTF153087"
       ];
       exclude = map (name: "!${name}");
     in
