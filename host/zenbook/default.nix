@@ -51,6 +51,7 @@ in
       lanzaboote.nixosModules.lanzaboote
       
       asus-dialpad-driver.nixosModules.default
+      { nixpkgs.overlays = [ asus-dialpad-driver.overlays.default ]; }
     ];
 
   # override for custom name (this is also the default value)
@@ -209,7 +210,7 @@ in
     pkcs11.enable = true;
     tctiEnvironment.enable = true;
   };
-  users.users.samu.extraGroups = [ "tss" "docker" ];
+  users.users.samu.extraGroups = [ "tss" "docker" "i2c" "input" "uinput" ];
 
   boot.initrd.systemd.enable = true; # Auto luks unlock
   
@@ -301,12 +302,11 @@ in
   };
   
   # Touch asus dial config
-  services.asus-dialpad-driver = {
-    enable = false; # wait for https://github.com/asus-linux-drivers/asus-dialpad-driver/issues/23
-    wayland = true;
-    waylandDisplay = "wayland-1";
+  hardware.asus-dialpad-driver = {
+    enable = true;
+    sessionTypes = [ "wayland" ];
     layout = "zenbookpro14";
-    config.main = {
+    defaultConfig.main = {
       enabled = false;
       slices_count = 16;
       disable_due_inactivity_time = 0;
