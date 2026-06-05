@@ -143,17 +143,6 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  services.kmscon = {
-    enable = false; # buggy and not very good looking in multi monitor
-    extraConfig = with config.services.xserver.xkb; ''
-      xkb-layout=${layout}
-      xkb-options=${options}
-    '';
-    fonts = [{
-      package = pkgs.nerd-fonts.monofur;
-      name = "Monofur Nerd Font Mono";
-    }];
-  };
   console = {
     font = "${pkgs.powerline-fonts}/share/consolefonts/ter-powerline-v32n.psf.gz";
     useXkbConfig = true;

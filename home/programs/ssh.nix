@@ -3,7 +3,7 @@
     enable = true;
     
     enableDefaultConfig = false;
-    matchBlocks."*" = {
+    settings."*" = {
       forwardAgent = false;
       addKeysToAgent = "no";
       compression = false;
@@ -14,13 +14,6 @@
       controlMaster = "no";
       controlPath = "~/.ssh/master-%r@%n:%p";
       controlPersist = "no";
-    };
-
-    matchBlocks = {
-      leo = {
-        user = "pi";
-        hostname = "10.0.0.1";
-      };
     };
   };
 }

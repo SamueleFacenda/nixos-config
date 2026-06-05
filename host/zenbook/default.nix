@@ -295,12 +295,6 @@ in
 
   services.mongodb.enable = false;
   
-  # University vpn (unitn)
-  services.globalprotect = {
-    enable = false; # Disable as unused and because it has insecure deps
-    csdWrapper = "${pkgs.openconnect}/libexec/openconnect/hipreport.sh";
-  };
-  
   # Touch asus dial config
   hardware.asus-dialpad-driver = {
     enable = true;
