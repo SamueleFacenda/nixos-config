@@ -16,6 +16,7 @@
     };
 
     settings = with config.lib.stylix.colors.withHashtag; {
+      auto_reload_config = -1; # wait for https://github.com/kovidgoyal/kitty/issues/10102 on unstable
       clipboard_control = "write-clipboard write-primary read-clipboard read-primary";
       disable_ligatures = "cursor";
       close_on_child_death = "yes";

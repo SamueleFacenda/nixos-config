@@ -173,7 +173,6 @@ in
     dig
     ncdu
     nmap
-    opencode
     
     # Desktop apps
     bottles
