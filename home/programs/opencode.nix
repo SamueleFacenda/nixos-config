@@ -4,7 +4,7 @@
     enableMcpIntegration = true;
     settings = {
       plugin = [
-        "oh-my-opencode-slim@1.1.1"
+        "oh-my-opencode-slim@1.1.2"
         "@tarquinen/opencode-dcp@3.1.12"
         "opencode-wakatime@1.3.8"
       ];
@@ -57,7 +57,7 @@
           };
 
           oracle = {
-            model = "nvidia/moonshotai/kimi-k2.6";
+            model = "nvidia/mistralai/mistral-large-3-675b-instruct-2512";
             variant = "high";
             skills = [
               "refactor-plan"
@@ -67,7 +67,7 @@
           };
 
           librarian = {
-            model = "nvidia/minimaxai/minimax-m2.7";
+            model = "nvidia/openai/gpt-oss-120b";
             variant = "low";
             skills = [];
             mcps = [
@@ -79,7 +79,7 @@
           };
 
           explorer = {
-            model = "nvidia/minimaxai/minimax-m2.7";
+            model = "nvidia/openai/gpt-oss-120b";
             variant = "low";
             skills = ["context-map"];
             mcps = [];
@@ -95,7 +95,7 @@
           };
 
           fixer = {
-            model = "nvidia/minimaxai/minimax-m2.7";
+            model = "nvidia/nvidia/nemotron-3-super-120b-a12b";
             variant = "low";
             skills = [
               "refactor"
@@ -103,6 +103,34 @@
             ];
             mcps = [];
           };
+        };
+      };
+      
+      fallback = {
+        enabled = true;
+        chains = {
+          orchestrator = [
+            "mistral/magistral-medium-latest"
+            "nvidia/qwen/qwen3.5-397b-a17b"
+          ];
+          librarian = [
+            "mistral/codestral-latest"
+            "nvidia/nvidia/nemotron-3-super-120b-a12b"
+          ];
+          explorer = [
+            "mistral/codestral-latest"
+            "nvidia/nvidia/nemotron-3-super-120b-a12b"
+          ];
+          fixer = [
+            "mistral/codestral-latest"
+            "nvidia/openai/gpt-oss-120b"
+          ];
+          designer = [
+            "mistral/mistral-large-latest"
+          ];
+          oracle = [
+            "mistral/mistral-large-latest"
+          ];
         };
       };
 
