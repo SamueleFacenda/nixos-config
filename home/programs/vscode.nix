@@ -54,6 +54,12 @@ in
           version = "1.8.0";
           sha256 = "49BqESJcdHoC07QztzGNCysazBSYwofucoJfcQVoSds=";
         }
+        {
+          name = "openchamber";
+          publisher = "FedaykinDev";
+          version = "1.12.4";
+          hash = "sha256-MbkbVH1gxLKi4cb8XIJyOpqhlk58yp4OLofZbxwSTbo=";
+        }
         # (mkOpenVSXExt {
         #   name = "open-remote-ssh";
         #   publisher = "jeanp413";
