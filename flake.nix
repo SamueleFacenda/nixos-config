@@ -65,7 +65,8 @@
     };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"; # Faster and non GH dependant
     
     # nixpkgs-stable.url = "github/NixOS/nixpkgs/nixos-25.05";
 
@@ -74,7 +75,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # nixos-hardware.url = "github:SamueleFacenda/nixos-hardware/master"; # My personal fork
 
     nix-index-database = {
@@ -146,7 +150,6 @@
       # url = "github:nix-community/lanzaboote/v0.4.3";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.pre-commit.follows = "pre-commit-hooks";
-      inputs.flake-parts.follows = "flake-parts";
     };
     
     asus-dialpad-driver = {
@@ -158,7 +161,7 @@
     
     nix-jetbrains-plugins = {
       url = "github:nix-community/nix-jetbrains-plugins";
-      # url = "github:SamueleFacenda/nix-jetbrains-plugins/special_plugins_build";
+      # url = "github:SamueleFacenda/nix-jetbrains-plugins/plugin-updates";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
       inputs.systems.follows = "systems";
