@@ -38,6 +38,7 @@
     # "nvidia.NVreg_EnableS0ixPowerManagement=1"
     # "nvidia.NVreg_TemporaryFilePath=/var/tmp"
     # "nvidia.NVreg_EnableGpuFirmware=0"
+    # "nvidia.NVreg_UseKernelSuspendNotifiers=1"
     "nvidia.NVreg_DynamicPowerManagement=0x03"
     # "nvidia.NVreg_UsePageAttributeTable=1"
     # "nvidia.NVreg_InitializeSystemMemoryAllocations=0"

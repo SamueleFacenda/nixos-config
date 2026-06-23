@@ -146,8 +146,7 @@
     };
 
     lanzaboote = {
-      url = "github:x45iq/lanzaboote/v1.0.1"; # Waiting for https://github.com/nix-community/lanzaboote/issues/624
-      # url = "github:nix-community/lanzaboote/v0.4.3";
+      url = "github:nix-community/lanzaboote/v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.pre-commit.follows = "pre-commit-hooks";
     };
