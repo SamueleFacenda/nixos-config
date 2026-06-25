@@ -15,7 +15,7 @@
   };
 
   nix = {
-    distributedBuilds = true;
+    distributedBuilds = false; # Opt in with --builders '@/etc/nix/machines'
     buildMachines = [
       {
         hostName = "eu.nixbuild.net";
