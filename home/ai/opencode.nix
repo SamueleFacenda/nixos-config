@@ -2,6 +2,9 @@
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
+    skills = config.ai.skills;
+    agents = config.ai.agents;
+    commands = config.ai.commands;
     settings = {
       plugin = [
         "oh-my-opencode-slim@1.1.2"

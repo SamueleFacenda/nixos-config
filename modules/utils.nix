@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (builtins) readDir;
-  inherit (lib) mapAttrsToList filterAttrs any all mkOption types;
+  inherit (builtins) readDir readFile;
+  inherit (lib) mapAttrsToList mapAttrs' filterAttrs any all mkOption types removeSuffix;
 in
 rec {
   config.lib.utils = rec {
@@ -20,6 +20,15 @@ rec {
     getIcon = path: pkgs.adwaita-icon-theme
       + "/share/icons/Adwaita/symbolic/" + path;
     getIconPath = path: "${getIcon path}";
+  
+    readAllMdFiles = path: mapAttrs'
+      (n: v: rec {
+        name = removeSuffix ".md" n; # filename
+        value = readFile (path + "/${n}");
+      })
+      (filterAttrs
+        (n: v: n != "default.nix")
+        (readDir path));
   };
   # config.home-manager.users.samu.lib.utils = config.lib.utils;
 }
