@@ -186,7 +186,7 @@ in
     rawtherapee
     darktable
     libreoffice-fresh
-    logseq
+    # logseq # wait for https://github.com/NixOS/nixpkgs/pull/536292
     vlc
   ];
   
