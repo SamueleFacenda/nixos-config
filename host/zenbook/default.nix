@@ -383,4 +383,7 @@ in
   boot.extraModprobeConfig = ''
     options snd-hda-intel model=asus-zenbook
   '';
+  
+  # Loopback audio and video
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
 }

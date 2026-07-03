@@ -5,5 +5,9 @@
     agents = config.ai.agents;
     commands = config.ai.commands;
     enableMcpIntegration = true;
+    plugins = with config.ai.plugins; [
+      token-optimizer
+      ponytail
+    ];
   };
 }
