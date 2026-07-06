@@ -184,7 +184,7 @@ in
     inkscape
     gimp
     rawtherapee
-    darktable
+    (darktable.override { withAi = true; })
     libreoffice-fresh
     # logseq # wait for https://github.com/NixOS/nixpkgs/pull/536292
     vlc
