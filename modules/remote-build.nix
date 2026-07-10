@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
   programs.ssh.extraConfig = ''
     Host eu.nixbuild.net
+      SetEnv NIXBUILDNET_SETTINGS_FROM_DRV_ENV=true
       PubkeyAcceptedKeyTypes ssh-ed25519
       ServerAliveInterval 60
       IPQoS throughput
