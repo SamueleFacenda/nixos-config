@@ -7,7 +7,7 @@
     }
     {
       label = "Logout";
-      exec = "hyprctl dispatch exit";
+      exec = "hyprctl dispatch 'hl.dsp.exit()'";
       icon = "system-log-out-symbolic";
     }
     {

@@ -122,29 +122,29 @@ in
             # If it's trying to go to the 0 (before the first) block and return to the first
             if [[ $((focusedworkspaceid % ${nstr})) == 0 ]]
             then
-              hyprctl dispatch workspace r+1
+              hyprctl dispatch "hl.dsp.focus({ workspace = \"r+1\" })"
               return 0
             fi
-            
+
             # Same for the last
             if [[ $((focusedworkspaceid % ${nstr})) == ${builtins.toString (n -1)} ]]
             then
-              hyprctl dispatch workspace r-1
+              hyprctl dispatch "hl.dsp.focus({ workspace = \"r-1\" })"
               return 0
             fi
 
-            hyprcommand=""
+            # Capture the cursor before we move focus across monitors, to restore it after
+            read -r px py <<< "$(hyprctl cursorpos | tr -d ',')"
 
+            # hyprctl dispatch now takes a lua expression; switch each other monitor
+            # to the matching workspace in its block (global focus jumps to its monitor)
             while IFS= read -r monitorworkspaceid
             do
-              hyprcommand+="dispatch workspace $((monitorworkspaceid / ${nstr} * ${nstr} + (focusedworkspaceid - 1) % ${nstr} + 1)) ; "
+              hyprctl dispatch "hl.dsp.focus({ workspace = \"$((monitorworkspaceid / ${nstr} * ${nstr} + (focusedworkspaceid - 1) % ${nstr} + 1))\" })" >/dev/null
             done <<< "$othersworkspaceid"
 
-            prevcursorcoords=$(hyprctl cursorpos)
-            hyprcommand+="dispatch movecursor $(tr -d ',' <<<$prevcursorcoords)"
+            hyprctl dispatch "hl.dsp.cursor.move({ x = $px, y = $py })" >/dev/null
 
-            hyprctl --batch "$hyprcommand" >/dev/null
-            
             # check-hide-waybar
           '';
 
@@ -152,15 +152,13 @@ in
           movewindowv2 = ''
             if [[ $((WORKSPACEID % ${nstr})) == ${builtins.toString (n -1)} ]]
             then
-              hyprctl dispatch movetoworkspacesilent \
-                 "$((WORKSPACEID-1)),address:0x$WINDOWADDRESS"
+              hyprctl dispatch "hl.dsp.window.move({ window = \"address:0x$WINDOWADDRESS\", workspace = \"$((WORKSPACEID-1))\", follow = false })"
               return 0
             fi
-              
+
             if [[ $((WORKSPACEID % ${nstr})) == 0 ]]
             then
-              hyprctl dispatch movetoworkspacesilent \ 
-                "$((WORKSPACEID+1)),address:0x$WINDOWADDRESS"
+              hyprctl dispatch "hl.dsp.window.move({ window = \"address:0x$WINDOWADDRESS\", workspace = \"$((WORKSPACEID+1))\", follow = false })"
               return 0
             fi
           '';

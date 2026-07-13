@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
   services.hypridle = let 
-    screen-on = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
-    screen-off = "${pkgs.hyprland}/bin/hyprctl dispatch dpms off";
+    screen-on = "${pkgs.hyprland}/bin/hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'";
+    screen-off = "${pkgs.hyprland}/bin/hyprctl dispatch 'hl.dsp.dpms({ action = \"off\" })'";
     lock = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock"; # --fade-in 5
     trigger_lock = "${pkgs.systemd}/bin/loginctl lock-session && sleep 2";
   in

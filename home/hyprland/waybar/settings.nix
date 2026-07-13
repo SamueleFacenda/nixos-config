@@ -181,8 +181,8 @@ let
       active-only = false;
       all-outputs = false;
       disable-scroll = false;
-      on-scroll-up = "hyprctl dispatch r+1";
-      on-scroll-down = "hyprctl dispatch r-1";
+      on-scroll-up = "hyprctl dispatch 'hl.dsp.focus({ workspace = \"r+1\" })'";
+      on-scroll-down = "hyprctl dispatch 'hl.dsp.focus({ workspace = \"r-1\" })'";
       format = "{icon}";
       on-click = "activate";
       format-icons = {

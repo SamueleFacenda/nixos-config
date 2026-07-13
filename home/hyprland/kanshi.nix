@@ -4,7 +4,7 @@
     enable = false;
     systemdTarget = "hyprland-session.target";
     profiles = {
-      undocked.exec = [ "${pkgs.hyprland}/bin/hyprctl dispatch dpms on" ];
+      undocked.exec = [ "${pkgs.hyprland}/bin/hyprctl dispatch 'hl.dsp.dpms({ action = \"on\" })'" ];
       undocked.outputs = [
         {
           criteria = "eDP-1";

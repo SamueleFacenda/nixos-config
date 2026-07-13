@@ -39,7 +39,7 @@ in
         (bind "${mod} + C" "hl.dsp.window.close()")
         (bind "${mod} + F" ''hl.dsp.window.float({ action = "toggle" })'')
         (bind "${mod} + M" "hl.dsp.exit()") # review: exit dispatcher may be restricted in 0.55 (migration note suggests uwsm stop)
-        (bind "${mod} + B" (exec "sleep 1 && hyprctl dispatch dpms off"))
+        (bind "${mod} + B" (exec "sleep 1 && hyprctl dispatch 'hl.dsp.dpms({ action = \"off\" })'"))
         (bind "${mod} + space" (exec "echo keyboard_change")) # keyboard change, configured in settings (keep to prevent menu spawn)
         (bind "${mod} + S" ''hl.dsp.window.fullscreen({ mode = "fullscreen" })'') # review: fullscreen mode name
         (bind "${mod} + W" (exec "pkill -SIGUSR1 waybar"))
