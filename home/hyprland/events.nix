@@ -43,6 +43,11 @@ let
 
   cfg = config.services.hypr-shellevents;
 
+  lua = lib.generators.mkLuaInline;
+  # hl.on("hyprland.start", function() ... end) startup handler
+  onStart = body: { _args = [ "hyprland.start" (lua "function()\n${body}\nend") ]; };
+  exec = cmd: "  hl.exec_cmd([[${cmd}]])";
+
   hyprlandEventHandlers = pkgs.writeShellScript "hyprlandEventHandlers" (
     builtins.concatStringsSep
       "\n"
@@ -61,8 +66,8 @@ let
 
 in
 {
-  config.wayland.windowManager.hyprland.settings.exec-once = lib.mkIf cfg.enable [
-    "${hyprlandHandleEvents}"
+  config.wayland.windowManager.hyprland.settings.on = lib.mkIf cfg.enable [
+    (onStart (exec "${hyprlandHandleEvents}"))
   ];
 
   options.services.hypr-shellevents = {

@@ -62,9 +62,9 @@
   specialisation.multi-monitor.configuration = {
     home-manager.users.samu.wayland.windowManager.hyprland.settings.env = [
       # for hyprland with nvidia gpu, ref https://wiki.hyprland.org/Nvidia/
-      "LIBVA_DRIVER_NAME,nvidia"
-      "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-      "NVD_BACKEND,direct"
+      { _args = [ "LIBVA_DRIVER_NAME" "nvidia" ]; }
+      { _args = [ "__GLX_VENDOR_LIBRARY_NAME" "nvidia" ]; }
+      { _args = [ "NVD_BACKEND" "direct" ]; }
     ];
     hardware.nvidia = {
       prime.offload = {

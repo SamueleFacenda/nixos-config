@@ -96,13 +96,14 @@ in
   services.hardware.bolt.enable = true;
 
   home-manager.users.samu.wayland.windowManager.hyprland.settings = {
-    workspace = [
-      "m[eDP-1] w[t1], gapsin:0, rounding:false, decorate:false, gapsout:0"
+    # smart-gaps workspace rule: hl.workspace_rule uses no_rounding (bool), not rounding
+    workspace_rule = [
+      { workspace = "m[eDP-1] w[t1]"; gaps_in = 0; gaps_out = 0; no_rounding = true; decorate = false; }
     ];
-    windowrulev2 = [
-      #   # "fullscreen:1, onworkspace:m[eDP-1] w[1]"
-      # "maxsize 0 0, class(waybar) onworkspace:m[eDP-1] w[1]"
-      #   "minsize 1440 900, onworkspace:m[eDP-1] w[t1]"
+    window_rule = [
+      #   # { match = { fullscreen = 1; }; onworkspace = "m[eDP-1] w[1]"; }
+      # { match = { class = "waybar"; onworkspace = "m[eDP-1] w[1]"; }; maxsize = [ 0 0 ]; }
+      #   { match = { onworkspace = "m[eDP-1] w[t1]"; }; minsize = [ 1440 900 ]; }
     ];
   };
 

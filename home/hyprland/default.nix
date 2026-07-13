@@ -1,4 +1,10 @@
 { config, pkgs, lib, utils, disabledFiles, ... }:
+let
+  lua = lib.generators.mkLuaInline;
+  # hl.on("hyprland.start", function() ... end) startup handler
+  onStart = body: { _args = [ "hyprland.start" (lua "function()\n${body}\nend") ]; };
+  exec = cmd: "  hl.exec_cmd([[${cmd}]])";
+in
 {
 
   imports = utils.listDirPathsExcluding (disabledFiles ++ [ "dunst.nix" ]) ./.;
@@ -39,17 +45,19 @@
   wayland.windowManager.hyprland = {
     enable = true;
     maxNWorkspaces = 7;
-    configType = "hyprlang";
+    configType = "lua";
     plugins = with pkgs.hyprlandPlugins; [
       # hyprfocus # animation on focus change TODO wait for build fix
       # hyprspace
       # hyprexpo # hyprctl dispatch hyprexpo:expo toggle
     ];
-    settings.exec-once = [
-      "hyprctl setcursor Adwaita 24"
-      "brave"
-      "kitty"
-      "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+    settings.on = [
+      (onStart (lib.concatStringsSep "\n" [
+        (exec "hyprctl setcursor Adwaita 24")
+        (exec "brave")
+        (exec "kitty")
+        (exec "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1")
+      ]))
     ];
     portalPackage = null; # fix wrong portal config dir set, use option from nixos
   };

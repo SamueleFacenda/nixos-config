@@ -3,15 +3,15 @@
   systemd.user.services.swaync.Unit.After = lib.mkForce [ "hyprland-session.target" ];
   
   # Enable blur on layers
-  wayland.windowManager.hyprland.settings.layerrule = [
-    "match:namespace swaync-control-center, blur on"
-    "match:namespace swaync-notification-window, blur on"
-    
-    "match:namespace swaync-control-center, ignore_alpha 0"
-    "match:namespace swaync-notification-window, ignore_alpha 0"
-    
-    # "ignorealpha 0.5, swaync-control-center"
-    # "ignorealpha 0.5, swaync-notification-window"
+  wayland.windowManager.hyprland.settings.layer_rule = [
+    { match = { namespace = "swaync-control-center"; }; blur = true; }
+    { match = { namespace = "swaync-notification-window"; }; blur = true; }
+
+    { match = { namespace = "swaync-control-center"; }; ignore_alpha = 0; }
+    { match = { namespace = "swaync-notification-window"; }; ignore_alpha = 0; }
+
+    # { match = { namespace = "swaync-control-center"; }; ignore_alpha = 0.5; }
+    # { match = { namespace = "swaync-notification-window"; }; ignore_alpha = 0.5; }
   ];
   
   services.swaync = {
