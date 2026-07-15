@@ -66,7 +66,7 @@
 
   inputs = {
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"; # Faster and non GH dependant (TODO switch to zst compression)
+    nixpkgs.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"; # Faster and non GH dependant
     
     # nixpkgs-stable.url = "github/NixOS/nixpkgs/nixos-25.05";
 
