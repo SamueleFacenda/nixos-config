@@ -296,6 +296,29 @@
         "type": "github"
       }
     },
+    "ieri-oggi": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784107117,
+        "narHash": "sha256-zXyc3bQ4C894mPrt8Dw8s2iL9CJV2KV14R6iTSru1i0=",
+        "owner": "SamueleFacenda",
+        "repo": "ieri_oggi",
+        "rev": "bb950587203e752a680077990157e9c74bbb7a11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SamueleFacenda",
+        "repo": "ieri_oggi",
+        "type": "github"
+      }
+    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -544,6 +567,7 @@
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
+        "ieri-oggi": "ieri-oggi",
         "lanzaboote": "lanzaboote",
         "lib-aggregate": "lib-aggregate",
         "nix-index-database": "nix-index-database",

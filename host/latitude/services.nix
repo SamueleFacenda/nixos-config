@@ -75,12 +75,25 @@
         forceSSL = true;
         enableACME = true;
         http2 = true;
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:2342";
-          proxyWebsockets = true;
-          extraConfig = ''
-            proxy_buffering off;
-          '';
+        
+        locations = {
+          "= /ieri".extraConfig = "return 301 /ieri/;";
+          "/ieri/" = {
+            proxyPass = "http://127.0.0.1:8090/";   # trailing slash strips the prefix
+            extraConfig = ''
+              proxy_set_header X-Forwarded-Prefix /ieri;
+              proxy_set_header X-Forwarded-Proto  $scheme;
+              client_max_body_size 250m;
+            '';
+          };
+          
+          "/" = {
+            proxyPass = "http://127.0.0.1:2342";
+            proxyWebsockets = true;
+            extraConfig = ''
+              proxy_buffering off;
+            '';
+          };
         };
       };
     };
@@ -182,4 +195,13 @@
       RuntimeMaxSec = 1800;
     };
   };
+  
+  services.ieri-oggi = {
+    enable = true;
+    passphraseFile = "/home/samuelef/ieri_oggi_psw.txt";
+    bind = "127.0.0.1:8090";
+    cookieSecure = true;
+    trustProxy = true;
+  };
+  
 }

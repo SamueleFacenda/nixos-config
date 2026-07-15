@@ -42,6 +42,8 @@ in
       # { nixpkgs.overlays = [ nixpkgs-wayland.overlay ]; }
       # { nixpkgs.overlays = [ hyprland.overlays.default ]; }
       ../../overlays
+      
+      ieri-oggi.nixosModules.default
     ];
 
   # override for custom name (this is also the default value)
