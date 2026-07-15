@@ -306,11 +306,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784107117,
-        "narHash": "sha256-zXyc3bQ4C894mPrt8Dw8s2iL9CJV2KV14R6iTSru1i0=",
+        "lastModified": 1784120656,
+        "narHash": "sha256-jqoPOetpAJvvNLhSqQ7zn+oyqLNk/e43MMWKbLIws2A=",
         "owner": "SamueleFacenda",
         "repo": "ieri_oggi",
-        "rev": "bb950587203e752a680077990157e9c74bbb7a11",
+        "rev": "b142d797116c66a38d7ed1e14c35120c11da82f5",
         "type": "github"
       },
       "original": {
