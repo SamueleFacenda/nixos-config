@@ -2,7 +2,14 @@
   
   services.photoprism = {
     enable = true;
-    package = pkgs.photoprism.override { ffmpeg = pkgs.ffmpeg_7; };
+    package = pkgs.photoprism.override { 
+      ffmpeg = pkgs.ffmpeg_7;
+      # Override backend python version
+      callPackage = fn: args: pkgs.callPackage fn (args // (
+        if builtins.baseNameOf fn == "backend.nix"
+        then { python3 = pkgs.python313; } 
+        else {})); 
+    };
     originalsPath = "/var/lib/private/photoprism/originals";
     port = 2342;
     address = "0.0.0.0";
