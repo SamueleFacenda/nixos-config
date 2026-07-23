@@ -40,6 +40,8 @@
         if secrets ? github-token
         then "sudo cat ${secrets.github-token.path} | gh auth login --with-token"
         else "gh auth login";
+      hg = "history | grep";
+      ag = "alias | grep";
 
       ac = "sudo auto-cpufreq --force performance && sudo tlp ac";
       bat = "sudo auto-cpufreq --force powersave && sudo tlp bat";
