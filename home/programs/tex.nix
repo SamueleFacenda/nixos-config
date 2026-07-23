@@ -1,11 +1,12 @@
 { config, pkgs, ... }:
 let
-  tex = pkgs.texlive.combine {
-    inherit (pkgs.texlive) scheme-medium
+  tex = pkgs.texliveSmall.withPackages (
+    ps: with ps; [scheme-medium
       hyphenat collection-langitalian
       etoolbox txfonts
-      titlesec graphics eso-pic;
-  };
+      titlesec graphics eso-pic
+    ]
+  );
 
 in
 {

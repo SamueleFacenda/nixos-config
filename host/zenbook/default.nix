@@ -186,6 +186,7 @@ in
     gimp
     rawtherapee
     (darktable.override { withAi = true; })
+    ansel
     libreoffice-fresh
     # logseq # wait for https://github.com/NixOS/nixpkgs/pull/536292
     vlc
