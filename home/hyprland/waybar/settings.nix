@@ -95,7 +95,8 @@ let
     };
 
     temperature = {
-      thermal-zone = 11; # 5 for surface, TODO make an option
+      hwmon-path-abs = "/sys/devices/platform/coretemp.0/hwmon";
+      input-filename = "temp1_input";
       critical-threshold = 100;
       interval = 5;
       format-icons = [ "" "" "" "" "" "󰸁" ];

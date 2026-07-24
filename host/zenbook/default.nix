@@ -179,16 +179,16 @@ in
     bottles
     # cura
     cura-appimage
-    cloudcompare
-    qgis
+    # cloudcompare
+    # qgis
     zoom-us
     inkscape
     gimp
-    rawtherapee
+    # rawtherapee
     (darktable.override { withAi = true; })
     ansel
     libreoffice-fresh
-    # logseq # wait for https://github.com/NixOS/nixpkgs/pull/536292
+    logseq
     vlc
   ];
   
