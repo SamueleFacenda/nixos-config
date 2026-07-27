@@ -12,59 +12,62 @@
       "electron-39.8.10"
     ];
   };
+  
+  nix = {
+    package = pkgs.nixVersions.latest;
+    settings = {
+      use-xdg-base-directories = true;
+      warn-dirty = false;
+      auto-optimise-store = true;
+      trusted-users = [ "@wheel" ];
+      pure-eval = false;
+      max-jobs = "auto";
+      log-lines = 20;
+      keep-going = false;
+      user-agent-suffix = "NixOS unstable";
+      
+      substituters = config.nix.settings.trusted-substituters;
 
-  nix.settings = {
-    use-xdg-base-directories = true;
-    warn-dirty = false;
-    auto-optimise-store = true;
-    trusted-users = [ "@wheel" ];
-    pure-eval = false;
-    max-jobs = "auto";
-    log-lines = 20;
-    keep-going = false;
-    user-agent-suffix = "NixOS unstable";
-    
-    substituters = config.nix.settings.trusted-substituters;
+      trusted-substituters = [
+        "https://cache.nixos.org/"
+        "https://nix-community.cachix.org"
+        # "https://cuda-maintainers.cachix.org"
+        # "https://ros.cachix.org"
+      ];
 
-    trusted-substituters = [
-      "https://cache.nixos.org/"
-      "https://nix-community.cachix.org"
-      # "https://cuda-maintainers.cachix.org"
-      # "https://ros.cachix.org"
-    ];
-
-    trusted-public-keys = [
-      "nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      # "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-      # "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="
-    ];
-  };
-
-  nix.extraOptions = lib.mkIf (config.age.secrets ? nix-access-tokens) ''
-    !include ${config.age.secrets.nix-access-tokens.path}
-  '';
-
-  nix.registry = {
-    # shortcut to this flake
-    samu = {
-      from = {
-        id = "samu";
-        type = "indirect";
-      };
-      to = {
-        path = "/nixos-config";
-        type = "path";
-      };
+      trusted-public-keys = [
+        "nixpkgs.cachix.org-1:q91R6hxbwFvDqTSDKwDAV4T5PxqXGxswD8vhONFMeOE="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        # "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+        # "ros.cachix.org-1:dSyZxI8geDCJrwgvCOHDoAfOm5sV1wCPjBkKL+38Rvo="
+      ];
     };
-    templates = {
-      from = {
-        id = "templates";
-        type = "indirect";
+
+    extraOptions = lib.mkIf (config.age.secrets ? nix-access-tokens) ''
+      !include ${config.age.secrets.nix-access-tokens.path}
+    '';
+
+    registry = {
+      # shortcut to this flake
+      samu = {
+        from = {
+          id = "samu";
+          type = "indirect";
+        };
+        to = {
+          path = "/nixos-config";
+          type = "path";
+        };
       };
-      to = {
-        id = "samu";
-        type = "indirect";
+      templates = {
+        from = {
+          id = "templates";
+          type = "indirect";
+        };
+        to = {
+          id = "samu";
+          type = "indirect";
+        };
       };
     };
   };

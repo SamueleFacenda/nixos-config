@@ -112,7 +112,7 @@ in
         "texpresso.command" = "${pkgs.texpresso}/bin/texpresso";
         "texpresso.syncTeXForwardOnSelection" = true;
         "texpresso.useEditorTheme" = true;
-        "texpresso.useChangeRangeMode" = false;
+        "texpresso.useChangeRangeMode" = true;
         # "platformio-ide.useBuiltinPIOCore" = false;
       };
     };
