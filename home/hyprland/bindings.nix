@@ -75,7 +75,8 @@ in
 
         # bindl (locked)
         # review: switch:off/on:Lid Switch bind key syntax
-        (locked "switch:off:Lid Switch" (exec "hyprctl keyword monitor 'eDP-1,highres,0x0,2'"))
+        # the bind runs in Hyprland's lua state, so call hl.monitor directly (no hyprctl eval round-trip)
+        (locked "switch:off:Lid Switch" ''function() hl.monitor({ output = "eDP-1", mode = "highres", position = "0x0", scale = "2", disabled = false }) end'')
         (locked "switch:on:Lid Switch" (exec "clamshell-suspend"))
         # Allow hibernate (boot switch) while locked
         (locked "${mod} + Delete" (exec "pgrep hyprlock && systemctl hibernate"))

@@ -128,4 +128,7 @@
     nix-index-database.nixosModules.nix-index
   ];
   programs.nix-index-database.comma.enable = true;
+  
+  # Nix-ld: run unpatched binaries out-of-the-box
+  programs.nix-ld.enable = true;
 }
