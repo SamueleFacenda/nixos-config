@@ -13,6 +13,9 @@
 
     keybindings = {
       "ctrl+shift+o" = "next_layout";
+      # italian layout equivalent of ctrl+shift+[ / ], which need altgr here
+      "ctrl+shift+ò" = "previous_window";
+      "ctrl+shift+à" = "next_window";
     };
 
     settings = with config.lib.stylix.colors.withHashtag; {
