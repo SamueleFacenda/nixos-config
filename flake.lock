@@ -401,11 +401,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784981317,
-        "narHash": "sha256-W3nkLOqSmzBD/YFPqnbDkibFb13jMjg1wf0iTQHDG0w=",
+        "lastModified": 1785567270,
+        "narHash": "sha256-DWG29xhfYNEP0zLMzg773UHLE1YkEgMWY1NSQg6rmV4=",
         "owner": "nix-community",
         "repo": "nix-jetbrains-plugins",
-        "rev": "2a811b563f27a7ee85a4b558053c2c7479c1ad0f",
+        "rev": "94d96ad2dba1923c5af0a68f845ff8c5364dc4df",
         "type": "github"
       },
       "original": {
