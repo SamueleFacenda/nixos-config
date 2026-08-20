@@ -161,12 +161,9 @@ for less expert users or for different mouse configs.
 
 ### Stuff that needs to be fixed:
 - asus dialpad shortcuts
-- hyprland lua config
-- nvidia card sleep
 - faster hibernate resume (smaller image)
 - waybar hover not retracting
 - opencode agents, memory and models retry
-- hyprland crashing
 - text console language and font
 - cpu scaling to max
 - photoprism video conversion force
