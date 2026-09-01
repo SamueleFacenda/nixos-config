@@ -17,6 +17,7 @@
       swaync.enable = false;
       hyprlock.enable = false;
       gnome-text-editor.enable = false; # https://www.reddit.com/r/NixOS/comments/1ivo70f/comment/mea7qgm/
+      gtksourceview.enable = false; # https://github.com/nix-community/stylix/issues/2318
     };
 
     cursor = {

@@ -62,11 +62,7 @@
   };
 
   powerManagement.powertop.enable = false;
-
-  # Packages
-  environment.systemPackages = with pkgs; [
-    powertop
-  ];
+  # environment.systemPackages = [ pkgs.powertop ];
 
   services.asusd.enable = false;
 }

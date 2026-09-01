@@ -60,7 +60,7 @@ in
   users.users.samu.hashedPassword = lib.mkForce null;
   
   home-manager.users.samu.home.keyboard.model = "at-translated-set-2-keyboard";
-  home-manager.disabledFiles = [ "hyprgrass.nix" ];
+  home-manager.disabledFiles = [ "hyprgrass.nix" "dconf.nix" ];
 
   secrets = {
     spotify.enable = true;
@@ -388,11 +388,16 @@ in
     DeviceAllow = "char-video4linux rw";
     PrivateDevices = "no";
   };
-  # Audio fixies
-  boot.extraModprobeConfig = ''
-    options snd-hda-intel model=asus-zenbook
-  '';
   
   # Loopback audio and video
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
+  
+  # Gaming
+  programs.steam = {
+    enable = true;
+    protontricks.enable = true;
+    extraCompatPackages = [ pkgs.proton-ge-bin ];
+    extest.enable = false;
+    # PROTON_ENABLE_WAYLAND=1 PROTON_ENABLE_HDR=1 nvidia-offload %command%
+  };
 }
