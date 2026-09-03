@@ -35,7 +35,8 @@
     };
     moduleParams.nvidia = {
       NVreg_DynamicPowerManagementVideoMemoryThreshold = 1024;
-      NVreg_TemporaryFilePath = "/var/tmp";
+      # NVreg_TemporaryFilePath = "/var/tmp";
+      NVreg_PreserveVideoMemoryAllocations = lib.mkForce 0;
     };
   };
 

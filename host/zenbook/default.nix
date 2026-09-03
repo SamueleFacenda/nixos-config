@@ -187,7 +187,7 @@ in
     # rawtherapee
     (darktable.override { withAi = true; })
     ansel
-    libreoffice-fresh
+    libreoffice-stable
     logseq
     vlc
     (prismlauncher.override {
