@@ -118,10 +118,9 @@ in
     "hibernate.compressor=lz4" # faster
   ];
   boot.initrd.kernelModules = [ "lz4" ];
-  # HibernateMode=platform is the default, sometimes it reboots
   systemd.sleep.settings.Sleep = {
     HibernateDelaySec = "3h";
-    HibernateMode = "shutdown";
+    HibernateMode = "platform"; # shutdown
   };
   # systemd.tmpfiles.rules = [ "w /sys/power/image_size - - - - 0" ]; # smaller image size possible
   
