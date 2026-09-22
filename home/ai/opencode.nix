@@ -1,15 +1,21 @@
 {pkgs, config, lib, ...}: {
   programs.opencode = {
     enable = true;
+    package = pkgs.opencode.overrideAttrs { src = pkgs.fetchFromGitHub {
+      owner = "anomalyco";
+      repo = "opencode";
+      tag = "v1.18.32"; 
+      hash = "sha256-h5AmK9R0Clk+LT0Tmmfg7iXa6dXNlPi2I5xCjTDRdcg=";
+    };};
     enableMcpIntegration = true;
     skills = config.ai.skills;
     agents = config.ai.agents;
     commands = config.ai.commands;
     settings = {
       plugin = [
-        "oh-my-opencode-slim@1.1.2"
-        "@tarquinen/opencode-dcp@3.1.12"
-        "opencode-wakatime@1.3.8"
+        "oh-my-opencode-slim@2.2.22"
+        "@tarquinen/opencode-dcp@3.2.0"
+        "opencode-wakatime@1.3.9"
       ];
       tools = {
         webfetch = true;
@@ -51,7 +57,8 @@
       presets = {
         main = {
           orchestrator = {
-            model = "nvidia/moonshotai/kimi-k2.6";
+            model = "nvidia/nvidia/nemotron-3-ultra-550b-a55b";
+            variant = "extra";
             skills = ["*"];
             mcps = [
               "*"
@@ -60,7 +67,7 @@
           };
 
           oracle = {
-            model = "nvidia/mistralai/mistral-large-3-675b-instruct-2512";
+            model = "nvidia/nvidia/nemotron-3-ultra-550b-a55b";
             variant = "high";
             skills = [
               "refactor-plan"
@@ -70,7 +77,7 @@
           };
 
           librarian = {
-            model = "nvidia/openai/gpt-oss-120b";
+            model = "nvidia/nvidia/nemotron-3-super-120b-a12b";
             variant = "low";
             skills = [];
             mcps = [
@@ -82,15 +89,15 @@
           };
 
           explorer = {
-            model = "nvidia/openai/gpt-oss-120b";
+            model = "nvidia/nvidia/nemotron-3-super-120b-a12b";
             variant = "low";
             skills = ["context-map"];
             mcps = [];
           };
 
           designer = {
-            model = "nvidia/qwen/qwen3-coder-480b-a35b-instruct";
-            variant = "medium";
+            model = "nvidia/nvidia/nemotron-3-ultra-550b-a55b";
+            variant = "extra";
             skills = [
               "composition-patterns"
             ];
@@ -111,30 +118,6 @@
       
       fallback = {
         enabled = true;
-        chains = {
-          orchestrator = [
-            "mistral/magistral-medium-latest"
-            "nvidia/qwen/qwen3.5-397b-a17b"
-          ];
-          librarian = [
-            "mistral/codestral-latest"
-            "nvidia/nvidia/nemotron-3-super-120b-a12b"
-          ];
-          explorer = [
-            "mistral/codestral-latest"
-            "nvidia/nvidia/nemotron-3-super-120b-a12b"
-          ];
-          fixer = [
-            "mistral/codestral-latest"
-            "nvidia/openai/gpt-oss-120b"
-          ];
-          designer = [
-            "mistral/mistral-large-latest"
-          ];
-          oracle = [
-            "mistral/mistral-large-latest"
-          ];
-        };
       };
 
       # Use the shared OpenCode MCP config for Context7.
