@@ -1,0 +1,31 @@
+# .claude/skills.yaml - Project skill configuration (same as opencode)
+autoLoad:
+  - category: "language"
+    match:
+      files: ["*.rs", "Cargo.toml"]
+  - category: "testing"
+    match:
+      files: ["*_test.rs", "tests/*.rs"]
+  - category: "security"
+    match:
+      keywords: ["security", "audit", "vulnerability", "secret"]
+  - category: "workflow"
+    match:
+      keywords: ["git", "commit", "pr", "branch", "merge"]
+
+enabled:
+  - "clean-code"
+  - "nix-flake"
+  - "changelog"
+  - "git-workflow"
+  - "testing"
+  - "security-checkers"
+  - "memory-management"
+  - "verification-planning"
+  - "simplify"
+  - "refactor-plan"
+  - "context-map"
+  - "refactor"
+  - "git-commit"
+
+disabled: []

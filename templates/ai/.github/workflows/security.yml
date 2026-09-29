@@ -1,0 +1,26 @@
+# .github/workflows/security.yml
+name: Security Scan
+on: 
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v12
+        
+      - name: Security scan
+        run: nix build .#checks.x86_64-linux.security
+        
+      - name: Upload SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: result/security.sarif

@@ -1,0 +1,168 @@
+# GitLab CI/CD Configuration for AI-assisted development project
+# Uses Nix for reproducible builds and testing
+
+stages:
+  - validate
+  - test
+  - security
+  - build
+  - deploy
+
+variables:
+  NIX_CONFIG: |
+    experimental-features = nix-command flakes
+    accept-flake-config = true
+  CACHIX_CACHE: "ai-projects"
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+
+# Cache Nix store
+cache:
+  key: "${CI_COMMIT_REF_SLUG}"
+  paths:
+    - .nix-cache/
+    - /nix/store/
+  policy: pull-push
+
+# Default image with Nix
+default:
+  image: nixos/nix:latest
+  before_script:
+    - nix --version
+    - nix flake --version
+
+# Validate stage - flake check and formatting
+flake-check:
+  stage: validate
+  script:
+    - nix flake check --show-trace
+  artifacts:
+    reports:
+      junit: flake-check-results.xml
+    when: always
+    expire_in: 1 week
+
+format-check:
+  stage: validate
+  script:
+    - nix run .#pre-commit-run
+  allow_failure: false
+
+# Test stage
+unit-tests:
+  stage: test
+  script:
+    - nix flake check --show-trace --checks unit-tests
+  coverage: '/TOTAL.*\s+(\d+\.\d+%)/'
+  artifacts:
+    reports:
+      coverage_report:
+        coverage.xml
+      junit: test-results.xml
+    when: always
+    expire_in: 1 week
+
+integration-tests:
+  stage: test
+  script:
+    - nix flake check --show-trace --checks integration-tests
+  services:
+    - name: postgres:16
+      alias: postgres
+    - name: redis:7
+      alias: redis
+  variables:
+    POSTGRES_DB: test
+    POSTGRES_USER: test
+    POSTGRES_PASSWORD: test
+
+all-tests:
+  stage: test
+  script:
+    - nix flake check --show-trace --checks all-tests
+  needs: [unit-tests, integration-tests]
+
+# Security stage
+security-scan:
+  stage: security
+  script:
+    - nix flake check --show-trace --checks security
+  artifacts:
+    reports:
+      sast: semgrep-report.json
+      secret_detection: git-secrets-report.json
+    when: always
+    expire_in: 1 week
+
+dependency-audit:
+  stage: security
+  script:
+    - nix run nixpkgs#cargo-audit 2>/dev/null || true
+    - nix run nixpkgs#pip-audit 2>/dev/null || true
+    - nix run nixpkgs#npm-audit 2>/dev/null || true
+  allow_failure: true
+
+# Build stage
+docker-build:
+  stage: build
+  script:
+    - IMAGE_TAG=${CI_COMMIT_SHA} nix build .#dockerImage
+    - docker load < result
+    - docker tag ai-projects:${CI_COMMIT_SHA} $CI_REGISTRY_IMAGE:${CI_COMMIT_SHA}
+    - docker tag ai-projects:${CI_COMMIT_SHA} $CI_REGISTRY_IMAGE:latest
+  needs: [flake-check]
+  only:
+    - main
+    - develop
+    - tags
+
+docker-push:
+  stage: deploy
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:${CI_COMMIT_SHA}
+    - docker push $CI_REGISTRY_IMAGE:latest
+  needs: [docker-build]
+  only:
+    - main
+    - tags
+
+# Release stage
+release:
+  stage: deploy
+  script:
+    - nix run nixpkgs#git-cliff -- --config .cliff.toml -o CHANGELOG.md
+    - cat CHANGELOG.md
+  artifacts:
+    paths:
+      - CHANGELOG.md
+    expire_in: 1 year
+  only:
+    - tags
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^v/
+
+# Manual deployment
+deploy-staging:
+  stage: deploy
+  script:
+    - echo "Deploying to staging..."
+    # Add your staging deployment commands here
+  environment:
+    name: staging
+    url: https://staging.example.com
+  only:
+    - develop
+  when: manual
+
+deploy-production:
+  stage: deploy
+  script:
+    - echo "Deploying to production..."
+    # Add your production deployment commands here
+  environment:
+    name: production
+    url: https://example.com
+  only:
+    - main
+  when: manual

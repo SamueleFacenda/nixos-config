@@ -1,0 +1,39 @@
+# {{project_name}} Configuration
+# {{project_description}}
+# 
+# This file is loaded by the application. Copy to config.local.toml for local overrides.
+# API keys should be set via environment variables or sops/age encrypted files.
+
+[openrouter]
+# API key - set via OPENROUTER_API_KEY environment variable (recommended)
+# or uncomment and set directly (not recommended for version control)
+# api_key = ""
+
+# Base URL for OpenRouter API
+base_url = "https://openrouter.ai/api/v1"
+
+# Model selection - choose based on task complexity
+# Fast/cheap model for simple tasks
+model_fast = "deepseek/deepseek-chat-v3-0324:free"
+# Smart model for general development tasks
+model_smart = "google/gemini-2.5-flash"
+# Reasoning model for complex problems
+model_reasoning = "openai/gpt-5"
+
+[token_optimizer]
+# Enable token optimization via headroom
+enabled = true
+# Headroom proxy URL
+headroom_proxy_url = "http://localhost:8787"
+# Enable output shaping
+headroom_output_shaper = true
+
+[memory]
+# Global memory path (shared across projects)
+global_path = "~/.config/ai-memory"
+# Project-specific memory path
+project_path = ".ai-memory"
+
+[debug]
+# Enable debug logging
+debug = false

@@ -1,0 +1,64 @@
+{
+  "name": "{{project_name}}",
+  "version": "0.1.0",
+  "description": "{{project_description}}",
+  "license": "EUPL-1.2",
+  "author": "{{author_name}} <{{author_email}}>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/{{github_user}}/{{project_name}}.git"
+  },
+  "homepage": "https://github.com/{{github_user}}/{{project_name}}",
+  "bugs": {
+    "url": "https://github.com/{{github_user}}/{{project_name}}/issues"
+  },
+  "keywords": ["ai", "llm", "development", "agent", "openrouter"],
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "{{project_name}}": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/nodejs/cli.ts",
+    "start": "node dist/cli.js",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "openai": "^4.0.0",
+    "zod": "^3.22.0",
+    "dotenv": "^16.3.0",
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "ora": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0",
+    "tsx": "^4.7.0",
+    "vitest": "^1.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "prettier": "^3.2.0",
+    "husky": "^9.0.0",
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "pnpm@9.0.0"
+}

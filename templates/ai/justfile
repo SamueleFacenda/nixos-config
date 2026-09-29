@@ -1,0 +1,172 @@
+# Justfile - Command runner for AI-assisted development project
+# Provides consistent commands across all environments
+
+# Default target
+default: help
+
+# Help
+help:
+	@just --list
+
+# Development
+dev-shell:
+	nix develop
+
+dev-shell-impure:
+	nix develop --impure
+
+# Formatting
+fmt:
+	@echo "Formatting code..."
+	@if [ -f "Cargo.toml" ]; then cargo fmt --all; fi
+	@if [ -f "pyproject.toml" ]; then uv run ruff format .; fi
+	@if [ -f "package.json" ]; then npx prettier --write .; fi
+	@if [ -f "flake.nix" ]; then nix fmt; fi
+
+fmt-check:
+	@echo "Checking formatting..."
+	@if [ -f "Cargo.toml" ]; then cargo fmt --all --check; fi
+	@if [ -f "pyproject.toml" ]; then uv run ruff format --check .; fi
+	@if [ -f "package.json" ]; then npx prettier --check .; fi
+	@if [ -f "flake.nix" ]; then nix fmt --check; fi
+
+# Linting
+lint:
+	@echo "Linting code..."
+	@if [ -f "Cargo.toml" ]; then cargo clippy --all-targets --all-features -- -D warnings; fi
+	@if [ -f "pyproject.toml" ]; then uv run ruff check .; uv run mypy .; fi
+	@if [ -f "package.json" ]; then npx eslint .; fi
+	@if [ -f "flake.nix" ]; then statix check .; fi
+
+# Testing
+test:
+	@echo "Running tests..."
+	@if [ -f "Cargo.toml" ]; then cargo test --all; fi
+	@if [ -f "pyproject.toml" ]; then uv run pytest; fi
+	@if [ -f "package.json" ]; then npm test; fi
+
+test-watch:
+	@if [ -f "Cargo.toml" ]; then cargo watch -x test; fi
+	@if [ -f "pyproject.toml" ]; then uv run pytest --watch; fi
+	@if [ -f "package.json" ]; then npm test -- --watch; fi
+
+# Type checking
+type-check:
+	@if [ -f "pyproject.toml" ]; then uv run mypy .; fi
+	@if [ -f "package.json" ]; then npx tsc --noEmit; fi
+
+# Security
+security-audit:
+	@echo "Running security audit..."
+	@if [ -f "Cargo.toml" ]; then cargo audit; fi
+	@if [ -f "pyproject.toml" ]; then uv run pip-audit; fi
+	@if [ -f "package.json" ]; then npm audit; fi
+
+security-check:
+	@echo "Running security checks..."
+	@if [ -f "Cargo.toml" ]; then cargo deny check; fi
+	@if [ -f "pyproject.toml" ]; then uv run bandit -r .; fi
+	@if [ -f "package.json" ]; then npx snyk test; fi
+
+# Dependency management
+deps-update:
+	@echo "Updating dependencies..."
+	@if [ -f "Cargo.toml" ]; then cargo update; fi
+	@if [ -f "pyproject.toml" ]; then uv lock --upgrade; fi
+	@if [ -f "package.json" ]; then npx npm-check-updates -u && npm install; fi
+
+deps-check:
+	@echo "Checking for outdated dependencies..."
+	@if [ -f "Cargo.toml" ]; then cargo outdated; fi
+	@if [ -f "pyproject.toml" ]; then uv pip list --outdated; fi
+	@if [ -f "package.json" ]; then npx npm-check-updates; fi
+
+# Build
+build:
+	@echo "Building project..."
+	@if [ -f "Cargo.toml" ]; then cargo build --release; fi
+	@if [ -f "pyproject.toml" ]; then uv build; fi
+	@if [ -f "package.json" ]; then npm run build; fi
+
+build-docker:
+	docker build -t {{project_name}}:latest .
+	docker build -t {{project_name}}:$(git rev-parse --short HEAD) .
+
+# Pre-commit
+pre-commit-install:
+	pre-commit install
+	pre-commit install --hook-type commit-msg
+
+pre-commit-run:
+	pre-commit run --all-files
+
+pre-commit-update:
+	pre-commit autoupdate
+
+# Git
+git-status:
+	git status
+
+git-diff:
+	git diff
+
+git-log:
+	git log --oneline -20
+
+# Release
+changelog:
+	@echo "Generating changelog..."
+	git cliff --config .cliff.toml -o CHANGELOG.md
+
+release-patch:
+	just changelog
+	git add CHANGELOG.md
+	git commit -m "chore: release patch version"
+	git tag v$(cat VERSION | awk -F. '{print $1"."$2"."$3+1}')
+
+release-minor:
+	just changelog
+	git add CHANGELOG.md
+	git commit -m "chore: release minor version"
+	git tag v$(cat VERSION | awk -F. '{print $1"."$2+1".0"}')
+
+release-major:
+	just changelog
+	git add CHANGELOG.md
+	git commit -m "chore: release major version"
+	git tag v$(cat VERSION | awk -F. '{print $1+1".0.0"}')
+
+# AI agents
+opencode:
+	opencode
+
+claude:
+	claude
+
+opencode-config:
+	mkdir -p .opencode
+	cp /nixos-config/opencode.nix .opencode/config.nix
+
+claude-config:
+	mkdir -p .claude
+	cp /nixos-config/claude.nix .claude/config.nix
+
+# Memory
+memory-init:
+	mkdir -p .ai-memory/{global,project}
+	cp /nixos-config/memory.nix .ai-memory/config.nix
+
+memory-sync:
+	@echo "Syncing memory..."
+	# Add sync logic here
+
+# Clean
+clean:
+	@echo "Cleaning build artifacts..."
+	@if [ -f "Cargo.toml" ]; then cargo clean; fi
+	@if [ -f "pyproject.toml" ]; then rm -rf .venv dist build *.egg-info; fi
+	@if [ -f "package.json" ]; then rm -rf node_modules dist build; fi
+	rm -rf .cache target
+
+clean-all: clean
+	rm -rf .direnv .cargo .rustup .venv node_modules .pnpm

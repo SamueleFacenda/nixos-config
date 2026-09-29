@@ -1,0 +1,56 @@
+[package]
+name = "{{project_name}}"
+version = "0.1.0"
+edition = "2021"
+license = "EUPL-1.2"
+description = "{{project_description}}"
+repository = "https://github.com/{{github_user}}/{{project_name}}"
+authors = ["{{author_name}} <{{author_email}}>"]
+categories = ["ai", "development-tools"]
+keywords = ["ai", "llm", "development", "agent"]
+readme = "README.md"
+homepage = "https://github.com/{{github_user}}/{{project_name}}"
+documentation = "https://docs.rs/{{project_name}}"
+
+[workspace]
+resolver = "2"
+members = ["src/rust/*"]
+
+[dependencies]
+# Core
+tokio = { version = "1", features = ["full"] }
+anyhow = "1"
+thiserror = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+
+# AI/OpenRouter
+reqwest = { version = "0.12", features = ["json", "rustls-tls"] }
+async-openai = "0.20"
+
+# Config
+config = "0.14"
+toml = "0.8"
+
+# CLI
+clap = { version = "4", features = ["derive", "env"] }
+
+[dev-dependencies]
+tokio-test = "0.4"
+mockito = "1"
+tempfile = "3"
+predicates = "3"
+
+[profile.release]
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.dev]
+debug = true
+
+[[bin]]
+name = "{{project_name}}"
+path = "src/rust/main.rs"

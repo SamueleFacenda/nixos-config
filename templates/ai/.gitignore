@@ -1,0 +1,80 @@
+# AI-assisted development project - Git ignore rules
+
+# Build artifacts
+/target/
+/dist/
+/build/
+*.egg-info/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.node_modules/
+*.tsbuildinfo
+
+# Nix
+.result*
+/result*
+/.result-*
+/nix-store-*
+/nix-env-*
+/nix-profile-*
+/gcroots/
+/.nix-dir/
+/.nix-profile/
+/.nix-channels/
+
+# Direnv
+.direnv/
+.envrc.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+.env.*.local
+.envrc.local
+
+# AI Memory (project-specific)
+.ai-memory/
+*.db
+*.db-journal
+
+# Logs
+*.log
+logs/
+
+# Cache
+.cache/
+/tmp/
+/temp/
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# Docker
+docker-compose.override.yml
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Testing
+.test-results/
+.junit.xml
+
+# Release
+*.tar.gz
+*.whl

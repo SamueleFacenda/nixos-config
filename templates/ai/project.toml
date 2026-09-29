@@ -1,0 +1,80 @@
+# Project Configuration
+# This file defines project-specific settings for AI agents
+
+[project]
+name = "{{project_name}}"
+description = "{{project_description}}"
+license = "EUPL-1.2"
+version = "0.1.0"
+repository = "https://github.com/{{github_user}}/{{project_name}}"
+
+[languages]
+rust = true
+python = true
+nodejs = true
+
+[ai_agents]
+# OpenRouter only - no other providers
+openrouter = {
+  base_url = "https://openrouter.ai/api/v1"
+  # API key should be set via OPENROUTER_API_KEY env var (sops/age encrypted)
+  models = {
+    fast = "deepseek/deepseek-chat-v3-0324:free"      # Cheap/fast model
+    smart = "google/gemini-2.5-flash"                  # Smart model for complex tasks
+    reasoning = "openai/gpt-5"                         # Reasoning model for hard problems
+  }
+}
+
+# Token optimization
+token_optimizer = {
+  enabled = true
+  headroom_proxy = "http://localhost:8787"
+  output_shaper = true
+}
+
+# Memory configuration
+memory = {
+  global_path = "~/.config/ai-memory"
+  project_path = ".ai-memory"
+  harness_db = ".ai-memory/harness-memory.db"
+  lemma_db = ".ai-memory/lemma.db"
+  honcho_uri = "http://localhost:24843"
+}
+
+# MCP servers (centralized in nixos-config, not duplicated here)
+# See /nixos-config/modules/mcp.nix for full list
+
+[lsp]
+# Language servers (auto-configured via nix)
+servers = [
+  "rust-analyzer",
+  "pyright",
+  "typescript-language-server",
+  "nil",
+  "gopls",
+  "clangd",
+  "lua-language-server",
+  "marksman",
+  "yaml-language-server",
+  "vscode-langservers-extracted",
+  "dockerfile-language-server-nodejs",
+  "taplo"
+]
+
+[hooks]
+pre_commit = true
+commit_msg = true
+pre_push = false
+
+[security]
+semgrep = true
+bandit = true
+trivy = true
+git_secrets = true
+cargo_audit = true
+pip_audit = true
+npm_audit = true
+
+[docker]
+enabled = true
+registry = "ghcr.io"

@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# .git/hooks/post-merge - Runs after merge
+# Installed via: cp scripts/git-hooks/post-merge .git/hooks/post-merge && chmod +x .git/hooks/post-merge
+
+set -euo pipefail
+
+# Colors
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+echo -e "${YELLOW}🔄 Post-merge actions...${NC}"
+
+# Update flake lock if needed
+if git diff HEAD@{1} --name-only | grep -q "flake.lock"; then
+    echo "Flake lock updated, rebuilding..."
+    nix build .#checks.x86_64-linux.all 2>/dev/null || true
+fi
+
+# Sync project memory between opencode and claude
+if [ -f ".opencode/project-memory.md" ] && [ -f ".claude/project-memory.md" ]; then
+    echo "Syncing project memory..."
+    # Could add actual sync logic here
+fi
+
+# Check for new dependencies
+if git diff HEAD@{1} --name-only | grep -qE "(Cargo.toml|pyproject.toml|package.json|flake.nix)"; then
+    echo -e "${YELLOW}⚠️  Dependencies changed - consider running security scan${NC}"
+fi
+
+echo -e "${GREEN}✅ Post-merge complete!${NC}"

@@ -1,0 +1,162 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  NIX_CONFIG: |
+    experimental-features = nix-command flakes
+    accept-flake-config = true
+  CACHIX_CACHE: "ai-projects"
+  CACHIX_SIGNING_KEY: "${{ secrets.CACHIX_SIGNING_KEY }}"
+
+jobs:
+  checks:
+    name: Nix Flake Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          extra-conf: |
+            experimental-features = nix-command flakes
+            accept-flake-config = true
+
+      - name: Configure Cachix
+        if: env.CACHIX_SIGNING_KEY != ''
+        uses: cachix/cachix-action@v15
+        with:
+          name: ${{ env.CACHIX_CACHE }}
+          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
+
+      - name: Run flake checks
+        run: |
+          nix flake check --show-trace
+
+      - name: Run pre-commit
+        run: |
+          nix run .#pre-commit-run
+
+      - name: Upload check results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: check-results
+          path: |
+            bandit-report.json
+            semgrep-report.json
+            trivy-report.json
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: checks
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Run tests
+        run: |
+          nix flake check --show-trace --checks all-tests
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: checks
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Run security checks
+        run: |
+          nix flake check --show-trace --checks security
+
+      - name: Upload security reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-reports
+          path: |
+            bandit-report.json
+            semgrep-report.json
+            trivy-report.json
+
+  docker:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: checks
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Build Docker image
+        run: |
+          IMAGE_TAG=latest nix build .#dockerImage
+
+      - name: Login to registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push Docker image
+        run: |
+          docker tag ai-projects:latest ghcr.io/${{ github.repository }}/ai-projects:latest
+          docker push ghcr.io/${{ github.repository }}/ai-projects:latest
+          docker tag ai-projects:latest ghcr.io/${{ github.repository }}/ai-projects:${{ github.sha }}
+          docker push ghcr.io/${{ github.repository }}/ai-projects:${{ github.sha }}
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: [test, security]
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+
+      - name: Generate changelog
+        run: |
+          nix run nixpkgs#git-cliff -- --config .cliff.toml -o CHANGELOG.md
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            CHANGELOG.md
