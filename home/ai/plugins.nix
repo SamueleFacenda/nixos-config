@@ -77,6 +77,14 @@
       hash = "sha256-MluDtToGoxA+79iP+XqA8sLW8QgXFMfjfLaiv632hKI=";
     };
 
+    # Web search with citations (antigravity-based)
+    "opencode-websearch-cited" = pkgs.fetchFromGitHub {
+      repo = "opencode-websearch-cited";
+      owner = "ghoulr";
+      rev = "v1.2.0";
+      hash = "sha256-E83yoMRQjEdzTwrUQCl4GrN1Jw2k5FyMgKjoiDvBILc=";
+    };
+
     # Skill retrieval & management
     "opencode-agent-skills" = pkgs.fetchFromGitHub {
       repo = "opencode-agent-skills";

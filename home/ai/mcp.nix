@@ -59,7 +59,7 @@ in {
   programs.mcp = {
     enable = true;
     servers = {
-      # Memory server (local) - lemma only (harness-memory disabled due to npm issues)
+# Memory server (local) - lemma only (harness-memory disabled due to npm issues)
       lemma = {
         type = "local";
         command = "${mcpServers.lemma}/bin/lemma";
@@ -67,13 +67,7 @@ in {
         env = { LEMMA_DB_PATH = "${memoryDir}/lemma.db"; };
       };
 
-      # Honcho - remote (running on localhost)
-      honcho = {
-        type = "remote";
-        url = "http://localhost:24843/mcp";
-      };
-
-      # Documentation & knowledge - remote
+      # Documentation & knowledge - remote (SSE)
       context7 = {
         type = "remote";
         url = "https://mcp.context7.com/mcp";
@@ -82,17 +76,6 @@ in {
       deepwiki = {
         type = "remote";
         url = "https://mcp.deepwiki.com/mcp";
-      };
-
-      
-      google = {
-        type = "remote";
-        url = "https://mcp.google.com/mcp";
-      };
-
-      fetch = {
-        type = "remote";
-        url = "https://mcp.fetcher.ai/mcp";
       };
 
       # Browser testing - local
@@ -165,16 +148,5 @@ in {
       command = [ "${lib.getExe pkgs.taplo}" "lsp" "stdio" ];
       extensions = [".toml"];
     };
-  };
-
-  # Session environment variables (model overrides)
-  home.sessionVariables = {
-    # Model aliases (updated values - use mkForce to override memory.nix)
-    OPencode_MODEL_FAST = lib.mkForce "deepseek/deepseek-chat-v3-0324:free";
-    OPencode_MODEL_SMART = lib.mkForce "google/gemini-2.5-flash";
-    OPencode_MODEL_REASONING = lib.mkForce "openai/gpt-5";
-
-    # OpenRouter base URL
-    OPENROUTER_BASE_URL = lib.mkForce "https://openrouter.ai/api/v1";
   };
 }

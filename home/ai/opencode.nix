@@ -34,6 +34,7 @@
         config.ai.plugins."opencode-context-analysis"
         config.ai.plugins."opencode-crawlberg"
         config.ai.plugins."opencode-chromium"
+        config.ai.plugins."opencode-websearch-cited"
         config.ai.plugins."opencode-agent-skills"
         config.ai.plugins."oh-my-opencode-slim"
         config.ai.plugins."opencode-wakatime"
@@ -65,6 +66,93 @@
         sound = true;
         volume = 0.4;
       };
+    };
+  };
+
+  # Session environment variables (model configuration for opencode)
+  home.sessionVariables = {
+    OPencode_MODEL_FAST = lib.mkForce "deepseek/deepseek-chat-v3-0324:free";
+    OPencode_MODEL_SMART = lib.mkForce "google/gemini-2.5-flash";
+    OPencode_MODEL_REASONING = lib.mkForce "openai/gpt-5";
+    OPENROUTER_BASE_URL = lib.mkForce "https://openrouter.ai/api/v1";
+  };
+
+  # oh-my-opencode-slim configuration with agent presets and fallback chains
+  xdg.configFile."opencode/oh-my-opencode-slim.json" = {
+    force = true;
+    text = builtins.toJSON {
+      "$schema" = "https://unpkg.com/oh-my-opencode-slim@latest/oh-my-opencode-slim.schema.json";
+      autoUpdate = false;
+      showStartupToast = false;
+      preset = "main";
+      presets = {
+        main = {
+          orchestrator = {
+            model = [
+              "openrouter/deepseek/deepseek-chat-v3-0324:free"
+              "openrouter/google/gemini-2.5-flash"
+              "nvidia/nvidia/nemotron-3-ultra-550b-a55b"
+            ];
+            variant = "extra";
+            skills = ["*"];
+            mcps = ["*" "!context7"];
+          };
+
+          oracle = {
+            model = [
+              "openrouter/google/gemini-2.5-flash"
+              "openrouter/openai/gpt-5"
+              "nvidia/nvidia/nemotron-3-ultra-550b-a55b"
+            ];
+            variant = "high";
+            skills = ["*"];
+            mcps = [];
+          };
+
+          librarian = {
+            model = [
+              "openrouter/deepseek/deepseek-chat-v3-0324:free"
+              "openrouter/google/gemini-2.5-flash"
+              "nvidia/nvidia/nemotron-3-super-120b-a12b"
+            ];
+            variant = "low";
+            skills = ["*"];
+            mcps = ["websearch" "context7" "deepwiki" "grep_app" "github"];
+          };
+
+          explorer = {
+            model = [
+              "openrouter/deepseek/deepseek-chat-v3-0324:free"
+              "nvidia/nvidia/nemotron-3-super-120b-a12b"
+            ];
+            variant = "low";
+            skills = ["*"];
+            mcps = [];
+          };
+
+          designer = {
+            model = [
+              "openrouter/openai/gpt-5"
+              "nvidia/nvidia/nemotron-3-ultra-550b-a55b"
+            ];
+            variant = "extra";
+            skills = ["*"];
+            mcps = ["playwright"];
+          };
+
+          fixer = {
+            model = [
+              "openrouter/google/gemini-2.5-flash"
+              "nvidia/nvidia/nemotron-3-super-120b-a12b"
+            ];
+            variant = "low";
+            skills = ["*"];
+            mcps = [];
+          };
+        };
+      };
+      fallback = { enabled = true; };
+      disabled_mcps = ["context7"];
     };
   };
 }
