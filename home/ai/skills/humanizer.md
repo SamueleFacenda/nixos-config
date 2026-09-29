@@ -10,6 +10,8 @@ description: |
 license: MIT
 metadata:
   version: "2.9.1"
+compatibility: ["opencode", "claude-code"]
+tags: ["writing", "editing", "humanizer", "ai-detection", "style"]
 ---
 
 # Humanizer: Remove AI Writing Patterns

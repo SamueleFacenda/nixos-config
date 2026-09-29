@@ -40,6 +40,7 @@
         if secrets ? github-token
         then "sudo cat ${secrets.github-token.path} | gh auth login --with-token"
         else "gh auth login";
+      univpn = "${pkgs.gpclient}/bin/gpclient connect --hip ${pkgs.openconnect}/libexec/openconnect/hipreport.sh vpn-mfa.icts.unitn.it";
       hg = "history | grep";
       ag = "alias | grep";
 
