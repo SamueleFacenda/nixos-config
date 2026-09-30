@@ -15,58 +15,33 @@ dev-shell:
 dev-shell-impure:
 	nix develop --impure
 
-# Formatting
+# Formatting & Linting (via pre-commit from flake)
 fmt:
-	@echo "Formatting code..."
-	@if [ -f "Cargo.toml" ]; then cargo fmt --all; fi
-	@if [ -f "pyproject.toml" ]; then uv run ruff format .; fi
-	@if [ -f "package.json" ]; then npx prettier --write .; fi
-	@if [ -f "flake.nix" ]; then nix fmt; fi
+	pre-commit-run
 
 fmt-check:
-	@echo "Checking formatting..."
-	@if [ -f "Cargo.toml" ]; then cargo fmt --all --check; fi
-	@if [ -f "pyproject.toml" ]; then uv run ruff format --check .; fi
-	@if [ -f "package.json" ]; then npx prettier --check .; fi
-	@if [ -f "flake.nix" ]; then nix fmt --check; fi
-
-# Linting
-lint:
-	@echo "Linting code..."
-	@if [ -f "Cargo.toml" ]; then cargo clippy --all-targets --all-features -- -D warnings; fi
-	@if [ -f "pyproject.toml" ]; then uv run ruff check .; uv run mypy .; fi
-	@if [ -f "package.json" ]; then npx eslint .; fi
-	@if [ -f "flake.nix" ]; then statix check .; fi
+	pre-commit-run
 
 # Testing
 test:
 	@echo "Running tests..."
-	@if [ -f "Cargo.toml" ]; then cargo test --all; fi
-	@if [ -f "pyproject.toml" ]; then uv run pytest; fi
-	@if [ -f "package.json" ]; then npm test; fi
+	@if [ -f "Cargo.toml" ]; then cargo nextest run --profile=ci; fi
+	@if [ -f "pyproject.toml" ]; then uv run pytest -v --cov=src --cov-fail-under=80; fi
+	@if [ -f "package.json" ]; then npx vitest run --coverage; fi
 
 test-watch:
-	@if [ -f "Cargo.toml" ]; then cargo watch -x test; fi
+	@if [ -f "Cargo.toml" ]; then cargo watch -x "nextest run"; fi
 	@if [ -f "pyproject.toml" ]; then uv run pytest --watch; fi
-	@if [ -f "package.json" ]; then npm test -- --watch; fi
+	@if [ -f "package.json" ]; then npx vitest watch; fi
 
 # Type checking
 type-check:
 	@if [ -f "pyproject.toml" ]; then uv run mypy .; fi
 	@if [ -f "package.json" ]; then npx tsc --noEmit; fi
 
-# Security
-security-audit:
-	@echo "Running security audit..."
-	@if [ -f "Cargo.toml" ]; then cargo audit; fi
-	@if [ -f "pyproject.toml" ]; then uv run pip-audit; fi
-	@if [ -f "package.json" ]; then npm audit; fi
-
-security-check:
-	@echo "Running security checks..."
-	@if [ -f "Cargo.toml" ]; then cargo deny check; fi
-	@if [ -f "pyproject.toml" ]; then uv run bandit -r .; fi
-	@if [ -f "package.json" ]; then npx snyk test; fi
+# Security (via nix flake check --checks security)
+security:
+	nix flake check --show-trace --checks security
 
 # Dependency management
 deps-update:
@@ -91,17 +66,6 @@ build:
 build-docker:
 	docker build -t {{project_name}}:latest .
 	docker build -t {{project_name}}:$(git rev-parse --short HEAD) .
-
-# Pre-commit
-pre-commit-install:
-	pre-commit install
-	pre-commit install --hook-type commit-msg
-
-pre-commit-run:
-	pre-commit run --all-files
-
-pre-commit-update:
-	pre-commit autoupdate
 
 # Git
 git-status:
@@ -143,18 +107,9 @@ opencode:
 claude:
 	claude
 
-opencode-config:
-	mkdir -p .opencode
-	cp /nixos-config/opencode.nix .opencode/config.nix
-
-claude-config:
-	mkdir -p .claude
-	cp /nixos-config/claude.nix .claude/config.nix
-
 # Memory
 memory-init:
 	mkdir -p .ai-memory/{global,project}
-	cp /nixos-config/memory.nix .ai-memory/config.nix
 
 memory-sync:
 	@echo "Syncing memory..."

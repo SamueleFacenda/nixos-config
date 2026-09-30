@@ -18,7 +18,19 @@ footer = """
 """
 
 [git]
-conventional_commits = true
+conventional_commits = { types = [
+  { type = "feat", section = "Features" },
+  { type = "fix", section = "Bug Fixes" },
+  { type = "perf", section = "Performance Improvements" },
+  { type = "refactor", section = "Refactoring" },
+  { type = "docs", section = "Documentation" },
+  { type = "style", section = "Styling" },
+  { type = "test", section = "Tests" },
+  { type = "chore", section = "Chores" },
+  { type = "build", section = "Build System" },
+  { type = "ci", section = "Continuous Integration" },
+  { type = "revert", section = "Reverts" }
+] }
 filter_unconventional = true
 commit_parsers = [
   { message = "^(?m)^(?P<type>feat|fix|perf|refactor|docs|style|test|chore|build|ci|revert)(?:\\((?P<scope>[^)]+)\\))?: (?P<message>.*)$" },
@@ -32,21 +44,6 @@ protect_breaking_commits = true
 filter_commits = false
 include_merge_commits = false
 strip_prefixes = []
-
-[git.conventional_commits]
-types = [
-  { type = "feat", section = "Features" },
-  { type = "fix", section = "Bug Fixes" },
-  { type = "perf", section = "Performance Improvements" },
-  { type = "refactor", section = "Refactoring" },
-  { type = "docs", section = "Documentation" },
-  { type = "style", section = "Styling" },
-  { type = "test", section = "Tests" },
-  { type = "chore", section = "Chores" },
-  { type = "build", section = "Build System" },
-  { type = "ci", section = "Continuous Integration" },
-  { type = "revert", section = "Reverts" }
-]
 
 [output]
 path = "CHANGELOG.md"

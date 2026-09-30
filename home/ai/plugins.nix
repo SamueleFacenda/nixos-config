@@ -93,14 +93,6 @@
       hash = "sha256-TqkwWdTvD7HLYDKxJkTC39HjcZTi17ZPFO1OOVaqNuI=";
     };
 
-    # Orchestration & workflow
-    "oh-my-opencode-slim" = pkgs.fetchFromGitHub {
-      repo = "oh-my-opencode-slim";
-      owner = "alvinunreal";
-      rev = "v2.2.22";
-      hash = "sha256-YC1NdbSsxQmyV6zfstflVjrrQ8xz9UiWmQuUXPwnTjI=";
-    };
-
     # Memory (also in mcp.nix as local derivation)
     # harness-memory = pkgs.fetchFromGitHub { ... };  // defined in mcp.nix with buildNpmPackage
 
