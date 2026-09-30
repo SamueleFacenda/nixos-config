@@ -172,6 +172,20 @@ let
 
     ---
 
+    ## Subagent Delegation Rules
+
+    - ALWAYS launch the `@explore` subagent to perform codebase searching, file locating, or symbol references before planning or editing code.
+    - ALWAYS use `@scout` when researching external dependencies or library documentation.
+    - Do not perform codebase-wide `grep` or file reads directly in the main session when `@explore` can do it in a background child session.
+    - Run multiple `@explore` subagents in parallel for independent search paths.
+    - Use `@general` to parallelize the plan implementation and the execution of different tasks.
+
+    ## Temporary Directory Usage
+
+    - Use `''${tmp}` (resolves to `/tmp/opencode/`) for temporary work outside the workspace — this directory is pre-approved for external directory access and created automatically on startup.
+    - Create per-task subdirectories under `''${tmp}` as needed (e.g., `''${tmp}/task-<name>/`).
+    - Experiment freely in `''${tmp}` — write test scripts, prototype changes, run quick validations. It's faster than guessing and avoids polluting the workspace.
+
     ## Agent Behavior Rules
 
     - Never add what/how comments

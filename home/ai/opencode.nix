@@ -119,6 +119,12 @@
         };
       };
 
+      # Explicitly allow /tmp/opencode/* (pre-approved by default, but explicit for clarity)
+      permission.external_directory = {
+        "/tmp/opencode/**" = "allow";
+        "/tmp/opencode-*/**" = "allow";  # covers per-session variant if TMPDIR customized
+      };
+
       # Coding rules from markdown file (opencode uses 'instructions' array of file paths)
       instructions = [
         "${config.home.homeDirectory}/.config/ai/coding-rules.md"
