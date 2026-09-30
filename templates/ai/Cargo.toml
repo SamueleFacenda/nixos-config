@@ -1,16 +1,16 @@
 [package]
-name = "{{project_name}}"
+name = "ai-project"
 version = "0.1.0"
 edition = "2021"
 license = "EUPL-1.2"
-description = "{{project_description}}"
-repository = "https://github.com/{{github_user}}/{{project_name}}"
-authors = ["{{author_name}} <{{author_email}}>"]
+description = "AI-assisted development project"
+repository = "https://github.com/user/ai-project"
+authors = ["User <user@example.com>"]
 categories = ["ai", "development-tools"]
 keywords = ["ai", "llm", "development", "agent"]
 readme = "README.md"
-homepage = "https://github.com/{{github_user}}/{{project_name}}"
-documentation = "https://docs.rs/{{project_name}}"
+homepage = "https://github.com/user/ai-project"
+documentation = "https://docs.rs/ai-project"
 
 [workspace]
 resolver = "2"
@@ -52,5 +52,5 @@ panic = "abort"
 debug = true
 
 [[bin]]
-name = "{{project_name}}"
+name = "ai-project"
 path = "src/rust/main.rs"

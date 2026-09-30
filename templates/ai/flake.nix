@@ -141,41 +141,29 @@
             pkgs.runCommand "pre-commit-run"
               {
                 buildInputs = [ pkgs.prek ] ++ preCommitCheckBase.enabledPackages;
-                PRE_COMMIT_CONFIG_FILE = preCommitCheckBase.config.configFile;
               }
               ''
-                            mkdir -p $out/bin
-                            cat > $out/bin/pre-commit-run <<EOF
-                #!/usr/bin/env bash
-                mkdir -p /tmp/pre-commit-cache
-                HOME=/tmp PRE_COMMIT_HOME=/tmp/pre-commit-cache ${pkgs.lib.getExe pkgs.prek} run --all-files --config $PRE_COMMIT_CONFIG_FILE
-                EOF
-                            chmod +x $out/bin/pre-commit-run
+                mkdir -p $out/bin
+                echo '#!/usr/bin/env bash' > $out/bin/pre-commit-run
+                echo 'mkdir -p /tmp/pre-commit-cache' >> $out/bin/pre-commit-run
+                echo 'HOME=/tmp PRE_COMMIT_HOME=/tmp/pre-commit-cache ${pkgs.lib.getExe pkgs.prek} run --all-files --config ${preCommitCheckBase.config.configFile}' >> $out/bin/pre-commit-run
+                chmod +x $out/bin/pre-commit-run
               '';
 
           # Language-specific dev packages
-          langDevPackages =
-            with pkgs;
-            lib.concatLists [
-              (lib.optional config.rust [
-                rustToolchain
-                pkgs.rustfmt
-                pkgs.clippy
-                pkgs.cargo-nextest
-              ])
-              (lib.optional config.python [
-                pythonSet.python3
-                pythonSet.pythonPackages.pytest
-                pythonSet.pythonPackages.ruff
-                pythonSet.pythonPackages.mypy
-                pythonSet.pythonPackages.hypothesis
-                pkgs.uv
-              ])
-              (lib.optional config.nodejs [
-                pkgs.nodejs
-                pkgs.pnpm
-              ])
-            ];
+          langDevPackages = lib.filter (x: x != null) [
+            (lib.optional config.rust pkgs.rustfmt)
+            (lib.optional config.rust pkgs.clippy)
+            (lib.optional config.rust pkgs.cargo-nextest)
+            (lib.optional config.python pythonSet.python3)
+            (lib.optional config.python pythonSet.pythonPackages.pytest)
+            (lib.optional config.python pythonSet.pythonPackages.ruff)
+            (lib.optional config.python pythonSet.pythonPackages.mypy)
+            (lib.optional config.python pythonSet.pythonPackages.hypothesis)
+            (lib.optional config.python pkgs.uv)
+            (lib.optional config.nodejs pkgs.nodejs)
+            (lib.optional config.nodejs pkgs.pnpm)
+          ];
 
           # Common dev packages (always available)
           commonDevPackages = with pkgs; [
@@ -220,6 +208,52 @@
             ]
           );
 
+          # Individual language packages
+          rustPackage = lib.mkIf config.rust (
+            pkgs.rustPlatform.buildRustPackage {
+              pname = "ai-project-rust";
+              src = lib.cleanSource ./.;
+              inherit (config.project) version;
+              cargoLock.lockFile = ./Cargo.lock;
+              nativeBuildInputs = with pkgs; [ pkg-config ];
+            }
+          );
+
+          pythonPackage = lib.mkIf config.python (
+            pythonSet.mkVirtualEnv "ai-project-python" pythonSet.pythonPackages
+          );
+
+          nodejsPackage = lib.mkIf config.nodejs (
+            pkgs.nodejs.runCommand "ai-project-nodejs"
+              {
+                buildInputs = [
+                  pkgs.nodejs
+                  pkgs.pnpm
+                ];
+                src = lib.cleanSource ./.;
+              }
+              ''
+                mkdir -p $out
+                cp -r $src/src/nodejs $out/
+                cp $src/package.json $out/
+                cp $src/tsconfig.json $out/
+                cd $out
+                ${pkgs.pnpm}/bin/pnpm install --frozen-lockfile
+              ''
+          );
+
+          # Default package for flake-parts - always a concrete derivation
+          # Use the first enabled language, or a dummy package
+          defaultPackageForOutput =
+            if config.rust then
+              rustPackage
+            else if config.python then
+              pythonPackage
+            else if config.nodejs then
+              nodejsPackage
+            else
+              pkgs.runCommand "ai-project" { } "echo 'No language enabled' > $out/README.txt";
+
         in
         {
           options = {
@@ -244,13 +278,20 @@
           };
 
           config = {
+            # Default config values (all languages disabled by default)
+            rust = false;
+            python = false;
+            nodejs = false;
+            docker = false;
+
             # Dev shell
             devShells.default = pkgs.mkShell {
               name = "ai-dev";
               packages =
                 commonDevPackages ++ langDevPackages ++ preCommitCheckBase.enabledPackages ++ [ formatter ];
               inputsFrom =
-                lib.optional config.python pythonVenv ++ lib.optional config.rust self.packages.${system}.default;
+                lib.optional config.python pythonVenv
+                ++ lib.optional (config.rust || config.python || config.nodejs) self.packages.${system}.default;
               shellHook = preCommitCheckBase.shellHook + ''
                 # Direnv integration
                 eval "$(direnv hook ${pkgs.bash}/bin/bash)"
@@ -290,6 +331,20 @@
 
             # Formatter
             inherit formatter;
+
+            # Packages - use lib.optionalAttrs for conditional packages
+            packages = {
+              default = defaultPackageForOutput;
+            }
+            // lib.optionalAttrs config.rust {
+              rust = rustPackage;
+            }
+            // lib.optionalAttrs config.python {
+              python = pythonPackage;
+            }
+            // lib.optionalAttrs config.nodejs {
+              nodejs = nodejsPackage;
+            };
 
             # Checks - override git-hooks auto pre-commit with our version
             checks = {
