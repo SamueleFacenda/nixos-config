@@ -224,22 +224,27 @@
           );
 
           nodejsPackage = lib.mkIf config.nodejs (
-            pkgs.nodejs.runCommand "ai-project-nodejs"
-              {
-                buildInputs = [
-                  pkgs.nodejs
-                  pkgs.pnpm
-                ];
-                src = lib.cleanSource ./.;
-              }
-              ''
+            let
+              npmDeps = pkgs.importNpmLock {
+                npmRoot = ./.;
+              };
+            in
+            pkgs.buildNpmPackage {
+              pname = "ai-project-nodejs";
+              src = lib.cleanSource ./.;
+              inherit (config.project) version;
+              inherit npmDeps;
+              npmConfigHook = pkgs.importNpmLock.npmConfigHook;
+              dontNpmBuild = true;
+              installPhase = ''
                 mkdir -p $out
-                cp -r $src/src/nodejs $out/
-                cp $src/package.json $out/
-                cp $src/tsconfig.json $out/
+                cp -r src/nodejs $out/
+                cp package.json $out/
+                cp tsconfig.json $out/
                 cd $out
                 ${pkgs.pnpm}/bin/pnpm install --frozen-lockfile
-              ''
+              '';
+            }
           );
 
           # Default package for flake-parts - always a concrete derivation

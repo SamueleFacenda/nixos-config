@@ -12,9 +12,9 @@ readme = "README.md"
 homepage = "https://github.com/user/ai-project"
 documentation = "https://docs.rs/ai-project"
 
-[workspace]
-resolver = "2"
-members = ["src/rust/*"]
+[lib]
+name = "ai_project"
+path = "src/rust/lib.rs"
 
 [dependencies]
 # Core

@@ -90,3 +90,26 @@ impl AIClient {
         ]
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[tokio::test]
+    async fn test_ai_client_creation() {
+        let config = OpenRouterConfig {
+            api_key: Some("test-key".to_string()),
+            base_url: "https://openrouter.ai/api/v1".to_string(),
+            model_fast: "test/fast".to_string(),
+            model_smart: "test/smart".to_string(),
+            model_reasoning: "test/reasoning".to_string(),
+        };
+        let client = AIClient::new(config);
+        
+        let models = client.available_models();
+        assert_eq!(models.len(), 3);
+        assert!(models.contains(&"test/fast"));
+        assert!(models.contains(&"test/smart"));
+        assert!(models.contains(&"test/reasoning"));
+    }
+}
