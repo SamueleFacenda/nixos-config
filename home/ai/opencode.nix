@@ -140,14 +140,9 @@
       attention = {
         enabled = true;
         notifications = true;
-        sound = true;
-        volume = 0.4;
+         sound = true;
+         volume = 0.4;
       };
     };
-  };
-
-  # Session environment variables
-  home.sessionVariables = {
-    OPENROUTER_BASE_URL = lib.mkForce "https://openrouter.ai/api/v1";
   };
 }
