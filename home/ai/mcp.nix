@@ -67,6 +67,12 @@ in {
         env = { LEMMA_DB_PATH = "${memoryDir}/lemma.db"; };
       };
 
+      # GitHub grep search - remote (SSE)
+      gh_grep = {
+        type = "remote";
+        url = "https://mcp.grep.app";
+      };
+
       # Documentation & knowledge - remote (SSE)
       context7 = {
         type = "remote";

@@ -1,4 +1,13 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+
+let
+  headroomSrc = pkgs.fetchFromGitHub {
+    owner = "headroomlabs-ai";
+    repo = "headroom";
+    rev = "v0.38.0";
+    hash = "sha256-k4xxC+tAiX+pjSj5nK1SBcpbIPQQLKbkQVn5wgzpywY=";
+  };
+in {
   ai.plugins = {
     # Core productivity & safety
     ponytail = pkgs.fetchFromGitHub {
@@ -20,11 +29,34 @@
       '';
     };
 
-    headroom = pkgs.fetchFromGitHub {
-      repo = "headroom";
-      owner = "headroomlabs-ai";
-      rev = "v0.38.0";
-      hash = "sha256-k4xxC+tAiX+pjSj5nK1SBcpbIPQQLKbkQVn5wgzpywY=";
+    headroom = pkgs.python3Packages.buildPythonPackage {
+      pname = "headroom-ai";
+      version = "0.38.0";
+      src = headroomSrc;
+      pyproject = true;
+      cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
+        pname = "headroom-ai";
+        version = "0.38.0";
+        src = headroomSrc;
+        hash = "sha256-ORX8+LTUAgKb0SJLhwh8WLICmtkDR2uvKF9psNjJUhY=";
+      };
+      nativeBuildInputs = with pkgs.rustPlatform; [
+        cargoSetupHook
+        maturinBuildHook
+      ];
+      build-system = [ pkgs.maturin ];
+      propagatedBuildInputs = with pkgs.python3Packages; [
+        ast-grep-cli
+        click
+        litellm
+        opentelemetry-api
+        pydantic
+        pyyaml
+        rich
+        tiktoken
+        tomlkit
+      ];
+      pythonImportsCheck = [ "headroom" ];
     };
 
     "opencode-dynamic-context-pruning" = pkgs.fetchFromGitHub {
@@ -32,34 +64,6 @@
       owner = "Tarquinen";
       rev = "v3.2.0";
       hash = "sha256-5ewFGpWhvc5m4NVYBwG0s20m49u80Z7jBl0AGeg9uk0=";
-    };
-
-    "opencode-tokenscope" = pkgs.fetchFromGitHub {
-      repo = "opencode-tokenscope";
-      owner = "ramtinJ95";
-      rev = "v1.8.1";
-      hash = "sha256-+FIFp82UerRLyiyTOejaiwwRZSrSmOGb/WXkd3hPULo=";
-    };
-
-    "opencode-token-tracker" = pkgs.fetchFromGitHub {
-      repo = "opencode-token-tracker";
-      owner = "eserete";
-      rev = "6a634805a65ae2b86f2dec9ec4d9905f113f0c03";
-      hash = "sha256-NHKAmtJbriKxlpmNVGmYbmzCAejPaVTmeadIRQ5OFHs=";
-    };
-
-    "opencode-token-monitor" = pkgs.fetchFromGitHub {
-      repo = "opencode-token-monitor";
-      owner = "Ainsley0917";
-      rev = "v0.5.0";
-      hash = "sha256-gcg8yCu0ZfVHPzXq9t/lfAn7vO4QtzBxCDHIpx6xxGU=";
-    };
-
-    "opencode-context-analysis" = pkgs.fetchFromGitHub {
-      repo = "Opencode-Context-Analysis-Plugin";
-      owner = "IgorWarzocha";
-      rev = "3676b9f213298780cfbc0b8c5dbbb33980308885";
-      hash = "sha256-cbagJLiT9mwlZL2KWWc1mykK2hwCEbHwOFVUa463ILg=";
     };
 
     # Web research & navigation
@@ -83,14 +87,6 @@
       owner = "ghoulr";
       rev = "v1.2.0";
       hash = "sha256-E83yoMRQjEdzTwrUQCl4GrN1Jw2k5FyMgKjoiDvBILc=";
-    };
-
-    # Skill retrieval & management
-    "opencode-agent-skills" = pkgs.fetchFromGitHub {
-      repo = "opencode-agent-skills";
-      owner = "joshuadavidthomas";
-      rev = "v0.7.0";
-      hash = "sha256-TqkwWdTvD7HLYDKxJkTC39HjcZTi17ZPFO1OOVaqNuI=";
     };
 
     # Memory (also in mcp.nix as local derivation)
@@ -123,8 +119,5 @@
     # "opencode-agent-memory" = pkgs.fetchFromGitHub { ... }; // persistent agent memory
     # "opencode-agent-registry" = pkgs.fetchFromGitHub { ... }; // community agent/skill discovery
     # "opencode-worktree-memory-sync" = pkgs.fetchFromGitHub { ... }; // sync memory across worktrees
-    # "opencode-simple-notify" = pkgs.fetchFromGitHub { ... }; // desktop notifications
-    # "opencode-ayu-theme" = pkgs.fetchFromGitHub { ... }; // Ayu Dark theme
-    # "opencode-charcoal-theme" = pkgs.fetchFromGitHub { ... }; // Charcoal grayscale theme
   };
 }

@@ -13,7 +13,7 @@
     };
 
     # Scratch directory for temporary work (like claude-code's scratch)
-    extraPackages = [ pkgs.coreutils ];
+    extraPackages = [ config.ai.plugins.headroom pkgs.coreutils ];
 
     # Use centralized LSP from ai.lsp (MCP comes from programs.mcp via enableMcpIntegration)
     settings.lsp = config.ai.lsp;
@@ -29,14 +29,9 @@
         config.ai.plugins."token-optimizer"
         config.ai.plugins.headroom
         config.ai.plugins."opencode-dynamic-context-pruning"
-        config.ai.plugins."opencode-tokenscope"
-        config.ai.plugins."opencode-token-tracker"
-        config.ai.plugins."opencode-token-monitor"
-        config.ai.plugins."opencode-context-analysis"
         config.ai.plugins."opencode-crawlberg"
         config.ai.plugins."opencode-chromium"
         config.ai.plugins."opencode-websearch-cited"
-        config.ai.plugins."opencode-agent-skills"
         config.ai.plugins."opencode-wakatime"
         config.ai.plugins."opencode-toast-history"
       ];
@@ -44,6 +39,20 @@
       tools = {
         webfetch = true;
         websearch = true;
+      };
+
+      # Provider configuration with cost-optimized models
+      provider = {
+        openrouter = {
+          options = {
+            websearch_cited = { model = "google/gemini-2.5-flash"; };
+          };
+        };
+        nvidia = {
+          options = {
+            model = "z-ai/glm-5.1";
+          };
+        };
       };
 
       # Per-agent model configuration with fallbacks (first available wins)
@@ -128,6 +137,8 @@
       # Coding rules from markdown file (opencode uses 'instructions' array of file paths)
       instructions = [
         "${config.home.homeDirectory}/.config/ai/coding-rules.md"
+        "STRICTLY follow the coding rules in the above file. No exceptions. Enforce on every task."
+        "Before starting any task, consult <available_skills> and load matching skills via the `skill` tool."
       ];
     };
 
