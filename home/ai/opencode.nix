@@ -48,11 +48,6 @@
             websearch_cited = { model = "google/gemini-2.5-flash"; };
           };
         };
-        nvidia = {
-          options = {
-            model = "z-ai/glm-5.1";
-          };
-        };
       };
 
       # Per-agent model configuration with fallbacks (first available wins)
@@ -134,11 +129,9 @@
         "/tmp/opencode-*/**" = "allow";  # covers per-session variant if TMPDIR customized
       };
 
-      # Coding rules from markdown file (opencode uses 'instructions' array of file paths)
+      # Coding rules consumed directly from the rules option (store path, rebuilt on change)
       instructions = [
-        "${config.home.homeDirectory}/.config/ai/coding-rules.md"
-        "STRICTLY follow the coding rules in the above file. No exceptions. Enforce on every task."
-        "Before starting any task, consult <available_skills> and load matching skills via the `skill` tool."
+        (pkgs.writeText "coding-rules.md" config.ai.rules.codingRulesMarkdown)
       ];
     };
 
@@ -153,11 +146,8 @@
     };
   };
 
-  # Session environment variables (model configuration for opencode - fallback for agents without explicit config)
+  # Session environment variables
   home.sessionVariables = {
-    OPencode_MODEL_FAST = lib.mkForce "deepseek/deepseek-chat-v3-0324:free";
-    OPencode_MODEL_SMART = lib.mkForce "google/gemini-2.5-flash";
-    OPencode_MODEL_REASONING = lib.mkForce "openai/gpt-5";
     OPENROUTER_BASE_URL = lib.mkForce "https://openrouter.ai/api/v1";
   };
 }

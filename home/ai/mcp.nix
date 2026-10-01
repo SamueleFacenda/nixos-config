@@ -1,12 +1,6 @@
 { pkgs, config, lib, ... }:
 
 let
-  # Memory directory path
-  memoryDir = "${config.home.homeDirectory}/.local/share/ai-memory";
-
-  # MCP config directory
-  mcpConfigDir = "${config.home.homeDirectory}/.config/mcp";
-
   # Helper to build an npm package from GitHub
   buildNpmPackage = { pname, version, src, buildInputs ? [], postInstall ? "", npmDepsHash ? null, npmDepsFetcherVersion ? null, makeCacheWritable ? false }:
     pkgs.buildNpmPackage ({
@@ -17,14 +11,6 @@ let
     } // lib.optionalAttrs (npmDepsHash != null) { inherit npmDepsHash; }
       // lib.optionalAttrs (npmDepsFetcherVersion != null) { inherit npmDepsFetcherVersion; }
       // lib.optionalAttrs (makeCacheWritable != false) { inherit makeCacheWritable; });
-
-  # Helper to build a Python package from GitHub
-  buildPythonPackage = { pname, version, src, buildInputs ? [], propagatedBuildInputs ? [] }:
-    pkgs.python3Packages.buildPythonPackage {
-      inherit pname version src buildInputs propagatedBuildInputs;
-      pyproject = true;
-      buildSystem = [ pkgs.python3Packages.setuptools ];
-    };
 
 # MCP server packages (built inline for reproducibility)
   mcpServers = {
@@ -64,7 +50,6 @@ in {
         type = "local";
         command = "${mcpServers.lemma}/bin/lemma";
         args = [];
-        env = { LEMMA_DB_PATH = "${memoryDir}/lemma.db"; };
       };
 
       # GitHub grep search - remote (SSE)

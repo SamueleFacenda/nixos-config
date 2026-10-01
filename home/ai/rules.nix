@@ -198,6 +198,11 @@ let
     - Update changelog on merge
     - Run security scans
     - Prefer stdlib over dependencies
+
+    ## Enforcement
+
+    - STRICTLY follow these coding rules. No exceptions. Enforce on every task.
+    - Before starting any task, consult <available_skills> and load matching skills via the `skill` tool.
   '';
 
 in {

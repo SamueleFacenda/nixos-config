@@ -1,4 +1,4 @@
-{ pkgs, config, lib, secrets, ... }:
+{ pkgs, config, lib, ... }:
 
 {
   programs.claude-code = {
@@ -8,31 +8,13 @@
     skills = config.ai.skills;
     agents = config.ai.agents;
     commands = config.ai.commands;
-    plugins = config.ai.plugins;
 
-    settings = {
-      # Use centralized MCP from programs.mcp (via enableMcpIntegration)
-      mcpServers = config.programs.mcp.servers;
+    # Claude-compatible plugins only (opencode-runtime JS plugins are excluded)
+    plugins = lib.filterAttrs (name: _:
+      builtins.elem name [ "ponytail" "token-optimizer" "opencode-chromium" ]
+    ) config.ai.plugins;
 
-      # Model configuration - keys from agenix secret files
-      env = {
-        GITHUB_TOKEN_FILE = secrets.github-token.path;
-      };
-
-      # Model aliases
-      CLAUDE_MODEL_FAST = "deepseek/deepseek-chat-v3-0324:free";
-      CLAUDE_MODEL_SMART = "google/gemini-2.5-flash";
-      CLAUDE_MODEL_REASONING = "openai/gpt-5";
-
-      # Memory (uses centralized paths)
-      memory = {
-        global = { enabled = true; path = "${config.home.homeDirectory}/.config/ai/global-memory.md"; };
-        project = { enabled = true; path = ".ai-memory/project-memory.md"; autoLoad = true; };
-        shared = { enabled = true; mcpServers = [ "lemma" "honcho" ]; };
-      };
-
-      # Use CLAUDE.md as global context (coding standards from coding-rules.md)
-      context = config.ai.rules.codingRulesMarkdown;
-    };
+    # Global context written to ~/.claude/CLAUDE.md (top-level option, not a settings key)
+    context = config.ai.rules.codingRulesMarkdown;
   };
 }
