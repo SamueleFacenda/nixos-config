@@ -7,6 +7,7 @@
     hyprland-virtual-desktops
     hyprswitch
     hypr-shellevents
+    donsetch
     Hyprspace
     x-typewriter
     xdg-desktop-portal-termfilechooser;

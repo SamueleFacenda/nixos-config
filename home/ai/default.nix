@@ -60,6 +60,7 @@
           security = lib.mkOption { type = lib.types.attrs; default = {}; };
           nixFlake = lib.mkOption { type = lib.types.attrs; default = {}; };
           agentBehavior = lib.mkOption { type = lib.types.attrs; default = {}; };
+          webResearch = lib.mkOption { type = lib.types.attrs; default = {}; };
         };
       };
       default = {};

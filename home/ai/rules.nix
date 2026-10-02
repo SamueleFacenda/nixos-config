@@ -175,7 +175,8 @@ let
     ## Subagent Delegation Rules
 
     - ALWAYS launch the `@explore` subagent to perform codebase searching, file locating, or symbol references before planning or editing code.
-    - ALWAYS use `@scout` when researching external dependencies or library documentation.
+    - ALWAYS use `@scout` for external research: dependency or library documentation, API behavior, version details, pricing, current events.
+    - `@scout` MUST ground every answer in web search results and cite source URLs, never answer from memory.
     - Do not perform codebase-wide `grep` or file reads directly in the main session when `@explore` can do it in a background child session.
     - Run multiple `@explore` subagents in parallel for independent search paths.
     - Use `@general` to parallelize the plan implementation and the execution of different tasks.
@@ -198,6 +199,18 @@ let
     - Update changelog on merge
     - Run security scans
     - Prefer stdlib over dependencies
+    - Verify external facts online before asserting them
+
+    ## Web Research & Verification
+
+    **Policy:** Verify before assert.
+
+    - Any claim about external systems — library APIs, versions, config syntax, CLI flags, pricing, current events, third-party error causes — must be grounded in a web search or a fetched document before being asserted.
+    - Never state version numbers, API signatures, or CLI flags from memory alone.
+    - Use the `websearch`/`webfetch` tools, the donsetch MCP tools (`web_search`, `web_fetch`, `web_crawl`), or delegate to `@scout`.
+    - Prefer primary sources (official docs, source repos) over blog posts for technical facts.
+    - Cite the source URL next to verified claims.
+    - If search tools fail or are unavailable, label the claim "unverified" instead of guessing.
 
     ## Enforcement
 
@@ -382,6 +395,17 @@ in {
         updateChangelogOnMerge = true;
         runSecurityScans = true;
         preferStdlibOverDeps = true;
+        verifyExternalFactsOnline = true;
+      };
+
+      # Web research & verification (anti-hallucination)
+      webResearch = {
+        verifyBeforeAssert = true;
+        noVersionsOrSignaturesFromMemory = true;
+        tools = [ "websearch" "webfetch" "mcp:donsetch" ];
+        designatedResearcher = "scout";
+        citeSourceUrls = true;
+        labelUnverifiedOnFailure = true;
       };
     };
   };

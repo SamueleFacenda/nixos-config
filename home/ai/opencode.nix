@@ -31,7 +31,6 @@
         config.ai.plugins."opencode-dynamic-context-pruning"
         config.ai.plugins."opencode-crawlberg"
         config.ai.plugins."opencode-chromium"
-        config.ai.plugins."opencode-websearch-cited"
         config.ai.plugins."opencode-wakatime"
         config.ai.plugins."opencode-toast-history"
       ];
@@ -39,15 +38,6 @@
       tools = {
         webfetch = true;
         websearch = true;
-      };
-
-      # Provider configuration with cost-optimized models
-      provider = {
-        openrouter = {
-          options = {
-            websearch_cited = { model = "google/gemini-2.5-flash"; };
-          };
-        };
       };
 
       # Per-agent model configuration with fallbacks (first available wins)

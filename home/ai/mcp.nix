@@ -75,6 +75,17 @@ in {
         command = "${mcpServers.playwright-mcp}/bin/playwright-mcp";
         args = [];
       };
+
+      # Web fetch/search/crawl (keyless) - local
+      donsetch = {
+        type = "local";
+        command = "${pkgs.donsetch}/bin/donsetch";
+        args = ["mcp" "--supervised"];
+        env = {
+          # Ghost browser for bot-wall escalation
+          DONGHOST_CHROME = "${pkgs.chromium}/bin/chromium";
+        };
+      };
     };
   };
 

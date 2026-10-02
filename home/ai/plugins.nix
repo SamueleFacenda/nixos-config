@@ -81,14 +81,6 @@ in {
       hash = "sha256-MluDtToGoxA+79iP+XqA8sLW8QgXFMfjfLaiv632hKI=";
     };
 
-    # Web search with citations (antigravity-based)
-    "opencode-websearch-cited" = pkgs.fetchFromGitHub {
-      repo = "opencode-websearch-cited";
-      owner = "ghoulr";
-      rev = "v1.2.0";
-      hash = "sha256-E83yoMRQjEdzTwrUQCl4GrN1Jw2k5FyMgKjoiDvBILc=";
-    };
-
     # Memory (also in mcp.nix as local derivation)
     # harness-memory = pkgs.fetchFromGitHub { ... };  // defined in mcp.nix with buildNpmPackage
 
