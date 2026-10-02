@@ -36,8 +36,8 @@
       ];
 
       tools = {
-        webfetch = true;
-        websearch = true;
+        webfetch = false;
+        websearch = false;
       };
 
       # Per-agent model configuration with fallbacks (first available wins)

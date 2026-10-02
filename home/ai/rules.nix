@@ -207,7 +207,7 @@ let
 
     - Any claim about external systems — library APIs, versions, config syntax, CLI flags, pricing, current events, third-party error causes — must be grounded in a web search or a fetched document before being asserted.
     - Never state version numbers, API signatures, or CLI flags from memory alone.
-    - Use the `websearch`/`webfetch` tools, the donsetch MCP tools (`web_search`, `web_fetch`, `web_crawl`), or delegate to `@scout`.
+    - Use the donsetch MCP tools (`web_search`, `web_fetch`, `web_crawl`, `web_screenshot`), or delegate to `@scout`.
     - Prefer primary sources (official docs, source repos) over blog posts for technical facts.
     - Cite the source URL next to verified claims.
     - If search tools fail or are unavailable, label the claim "unverified" instead of guessing.
@@ -402,7 +402,7 @@ in {
       webResearch = {
         verifyBeforeAssert = true;
         noVersionsOrSignaturesFromMemory = true;
-        tools = [ "websearch" "webfetch" "mcp:donsetch" ];
+        tools = [ "mcp:donsetch" ];
         designatedResearcher = "scout";
         citeSourceUrls = true;
         labelUnverifiedOnFailure = true;

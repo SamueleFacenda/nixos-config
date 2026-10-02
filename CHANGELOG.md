@@ -15,3 +15,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Removed
 
 - `opencode-websearch-cited` plugin and its OpenRouter `websearch_cited` model config: per-search grounding cost replaced by keyless donsetch search plus the built-in free `websearch` tool
+- Built-in opencode `websearch`/`webfetch` tools: donsetch MCP tools cover all web access
