@@ -3,14 +3,6 @@
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
-    package = pkgs.opencode.overrideAttrs {
-      src = pkgs.fetchFromGitHub {
-        owner = "anomalyco";
-        repo = "opencode";
-        tag = "v1.18.32";
-        hash = "sha256-h5AmK9R0Clk+LT0Tmmfg7iXa6dXNlPi2I5xCjTDRdcg=";
-      };
-    };
 
     # Scratch directory for temporary work (like claude-code's scratch)
     extraPackages = [ config.ai.plugins.headroom pkgs.coreutils ];

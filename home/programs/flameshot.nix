@@ -9,8 +9,8 @@
         saveAsFileExtension = ".png";
         showDesktopNotification = true;
         filenamePattern = "flameshot_%F_%H-%M";
-        disabledGrimWarning = true;
         disabledTrayIcon = false;
+        showStartupLaunchMessage = false;
       };
     };
   };
