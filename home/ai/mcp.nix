@@ -73,7 +73,10 @@ in {
       playwright = {
         type = "local";
         command = "${mcpServers.playwright-mcp}/bin/playwright-mcp";
-        args = [];
+        args = [ ];
+        env = {
+          PLAYWRIGHT_MCP_EXECUTABLE_PATH = "${pkgs.chromium}/bin/chromium";
+        };
       };
 
       # Web fetch/search/crawl (keyless) - local

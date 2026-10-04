@@ -120,7 +120,7 @@ in
   boot.initrd.kernelModules = [ "lz4" ];
   systemd.sleep.settings.Sleep = {
     HibernateDelaySec = "3h";
-    HibernateMode = "platform"; # shutdown
+    HibernateMode = "platform"; # or shutdown
   };
   # systemd.tmpfiles.rules = [ "w /sys/power/image_size - - - - 0" ]; # smaller image size possible
   
