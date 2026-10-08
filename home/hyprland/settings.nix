@@ -101,6 +101,7 @@ in
 
       cursor = {
         enable_hyprcursor = true;
+        no_hardware_cursors = 0;
       };
 
       decoration = {

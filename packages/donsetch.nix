@@ -7,11 +7,11 @@
 
 stdenv.mkDerivation rec {
   pname = "donsetch";
-  version = "4.4.2";
+  version = "4.4.5";
 
   src = fetchurl {
     url = "https://github.com/dondai44423/donsetch/releases/download/v${version}/donsetch-linux-x64.tar.gz";
-    hash = "sha256-vkgT0NozKixG3d+rQrBKfLwWKz7cSfOodEIWj4RDlzk=";
+    hash = "sha256-pf/dZ2vJnEZkdH3clD2px0tEL9HhnKoi37yag4NfvzQ=";
   };
 
   nativeBuildInputs = [ autoPatchelfHook ];
