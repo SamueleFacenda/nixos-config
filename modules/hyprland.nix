@@ -91,8 +91,8 @@
     useTextGreeter = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --user-menu --cmd start-hyprland --width 50";
-        # XDG_SESSION_TYPE=wayland dbus-run-session gnome-session
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --asterisks --user-menu --user-menu-max-uid 30000 --cmd start-hyprland --width 50";
+        # XDG_SESSION_TYPE=wayland dbus-run-session gnome-session>
         user = "greeter";
       };
     };
