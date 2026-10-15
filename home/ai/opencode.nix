@@ -36,7 +36,7 @@
       agent = {
         # Primary agents - same model chain for build & plan
         build = {
-          model = "nvidia/nvidia/nemotron-3-ultra-550b-a55b"; # [
+          model = "nvidia/z-ai/glm-5.3"; # [
           # "openrouter/google/gemini-2.5-flash"
           # "openrouter/openai/gpt-5"
           # "nvidia/nvidia/nemotron-3-ultra-550b-a55b"
@@ -49,7 +49,7 @@
           };
         };
         plan = {
-          model = "nvidia/nvidia/nemotron-3-ultra-550b-a55b"; # [
+          model = "nvidia/z-ai/glm-5.3"; # [
           # "openrouter/google/gemini-2.5-flash"
           # "openrouter/openai/gpt-5"
           # "nvidia/nvidia/nemotron-3-ultra-550b-a55b"
@@ -62,18 +62,18 @@
           };
         };
         compaction = {
-          model = "nvidia/nvidia/nemotron-3-ultra-550b-a55b";
+          model = "nvidia/z-ai/glm-5.3";
         };
         title = {
-          model = "nvidia/nvidia/nemotron-3-ultra-550b-a55b";
+          model = "nvidia/z-ai/glm-5.3";
         };
         summary = {
-          model = "nvidia/nvidia/nemotron-3-ultra-550b-a55b";
+          model = "nvidia/z-ai/glm-5.3";
         };
 
         # Subagents - enable them and configure models
         general = {
-          model = "nvidia/nvidia/nemotron-3-ultra-550b-a55b"; # [
+          model = "nvidia/z-ai/glm-5.3"; # [
           # "openrouter/google/gemini-2.5-flash"
           # "openrouter/openai/gpt-5"
           # "nvidia/nvidia/nemotron-3-ultra-550b-a55b"

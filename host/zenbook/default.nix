@@ -121,6 +121,7 @@ in
   systemd.sleep.settings.Sleep = {
     HibernateDelaySec = "3h";
     HibernateMode = "platform"; # or shutdown
+    SuspendEstimationSec = "15m";
   };
   # systemd.tmpfiles.rules = [ "w /sys/power/image_size - - - - 0" ]; # smaller image size possible
   
