@@ -80,7 +80,7 @@
           # ];
         };
         explore = {
-          model = "nvidia/nvidia/nemotron-3-super-120b-a12b"; # [
+          model = "nvidia/nvidia/nemotron-3.5-super-vl-120b-a12b"; # [
           # "openrouter/deepseek/deepseek-chat-v3-0324:free"
           # "nvidia/nvidia/nemotron-3-super-120b-a12b"
           # ];
@@ -92,7 +92,7 @@
           };
         };
         scout = {
-          model = "nvidia/nvidia/nemotron-3-super-120b-a12b"; # [
+          model = "nvidia/nvidia/nemotron-3.5-super-vl-120b-a12b"; # [
           # "openrouter/deepseek/deepseek-chat-v3-0324:free"
           # "nvidia/nvidia/nemotron-3-super-120b-a12b"
           # ];

@@ -325,6 +325,8 @@ in
       brlaser # Open source Brother laser printer driver
       brgenml1lpr # Brother generic LPR driver
       brgenml1cupswrapper # Brother CUPS wrapper
+      gutenprint
+      cups-filters
     ];
     openFirewall = true;
     browsing = true;
@@ -333,6 +335,7 @@ in
     startWhenNeeded = true;
     # allowFrom = [ "all" ];
   };
+  services.ipp-usb.enable = false;
   
   # Face auth
   security.pam.services.login.howdy.enable = false;
