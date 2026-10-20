@@ -110,21 +110,14 @@ export class AIClient {
   }
 
   /**
-   * Get available models from OpenRouter
+   * Get the configured models
    * @returns List of available models
    */
-  async getModels(): Promise<string[]> {
-    try {
-      // This would require a different API endpoint
-      // For now, return our configured models
-      return [
-        this.config.model_fast,
-        this.config.model_smart,
-        this.config.model_reasoning,
-      ];
-    } catch (error) {
-      console.error('Get models error:', error);
-      return [];
-    }
+  getModels(): string[] {
+    return [
+      this.config.model_fast,
+      this.config.model_smart,
+      this.config.model_reasoning,
+    ];
   }
 }

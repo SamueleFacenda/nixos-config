@@ -45,7 +45,7 @@ async fn main() -> Result<()> {
     info!("Configuration loaded");
 
     // Initialize AI client
-    let ai_client = ai::Client::new(config.openrouter)?;
+    let ai_client = ai::AIClient::new(config.openrouter);
     info!("AI client initialized");
 
     // Run main logic
@@ -55,14 +55,14 @@ async fn main() -> Result<()> {
     Ok(())
 }
 
-async fn run(ai_client: ai::Client) -> Result<()> {
+async fn run(_ai_client: ai::AIClient) -> Result<()> {
     // TODO: Implement main application logic
     // WHY: This is a template - replace with actual implementation
     info!("Application running - replace with actual logic");
-    
+
     // Example: Use AI client
-    // let response = ai_client.chat("Hello, world!").await?;
+    // let response = _ai_client.chat("Hello, world!").await?;
     // info!("AI response: {}", response);
-    
+
     Ok(())
 }

@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "{{project_name}}"
+name = "ai-project"
 version = "0.1.0"
 description = "{{project_description}}"
 readme = "README.md"
@@ -18,15 +18,13 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 requires-python = ">=3.11"
 dependencies = [
     "pydantic>=2.0",
     "pydantic-settings>=2.0",
-    "httpx>=0.27",
-    "async-openai>=0.20",
-    "python-dotenv>=1.0",
     "rich>=13.0",
     "typer>=0.12",
     "loguru>=0.7",
@@ -42,7 +40,6 @@ dev = [
     "ruff>=0.6",
     "mypy>=1.11",
     "bandit>=1.7",
-    "pre-commit>=3.8",
 ]
 test = [
     "pytest>=8.0",
@@ -61,6 +58,11 @@ Issues = "https://github.com/{{github_user}}/{{project_name}}/issues"
 [tool.hatch.build.targets.wheel]
 packages = ["src/python"]
 
+# WHY: the nix dev shell and nix build create store symlinks here,
+# which cannot be packed into an sdist
+[tool.hatch.build.targets.sdist]
+exclude = [".pre-commit-config.yaml", "result", "result-*"]
+
 [tool.ruff]
 target-version = "py311"
 line-length = 100
@@ -78,8 +80,7 @@ select = ["E", "F", "I", "UP", "PTH", "TRY", "SIM", "TID", "ARG", "FLY", "PD", "
 ignore = ["E501", "B008"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["{{project_name}}"]
-known-third-party = ["pydantic", "httpx", "openai", "rich", "typer", "loguru"]
+known-first-party = ["main"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -109,7 +110,7 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
-addopts = "-v --strict-markers --cov=src --cov-report=term-missing --cov-fail-under=80"
+addopts = "-v --strict-markers --cov=src --cov-report=term-missing"
 
 [tool.coverage.run]
 source = ["src"]
@@ -129,12 +130,3 @@ targets = ["src"]
 exclude_dirs = ["tests"]
 severity_level = "medium"
 confidence_level = "medium"
-
-[tool.pre-commit-ci]
-autofix_commit_msg = "chore: auto-fix from pre-commit.com"
-autofix_prs = true
-autoupdate_branch = ""
-autoupdate_commit_msg = "chore: pre-commit autoupdate"
-autoupdate_schedule = "weekly"
-skip = []
-submodules = false

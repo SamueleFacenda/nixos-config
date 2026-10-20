@@ -25,7 +25,6 @@ async function main() {
   spinner.succeed('Configuration loaded');
 
   if (options.debug) {
-    config.debug = true;
     process.env.DEBUG = '*';
   }
 

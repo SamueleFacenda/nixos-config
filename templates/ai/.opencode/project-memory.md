@@ -1,4 +1,4 @@
-# Project Memory: {{PROJECT_NAME}}
+# Project Memory: {{project_name}}
 
 ## Architecture
 - **Type**: {{PROJECT_TYPE}} (CLI, Web API, Library, etc.)

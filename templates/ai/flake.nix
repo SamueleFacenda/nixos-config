@@ -3,14 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pyproject-nix = {
@@ -36,10 +34,8 @@
     {
       self,
       nixpkgs,
-      flake-utils,
       flake-parts,
       git-hooks,
-      rust-overlay,
       pyproject-nix,
       uv2nix,
       pyproject-build-systems,
@@ -52,203 +48,55 @@
         "x86_64-darwin"
         "aarch64-darwin"
       ];
-      imports = [ inputs.git-hooks.flakeModule ];
+      imports = [ git-hooks.flakeModule ];
+
       perSystem =
         {
           config,
           pkgs,
           lib,
-          system,
           ...
         }:
         let
-          # Rust toolchain
-          rustToolchain = lib.mkIf config.rust (
-            pkgs.symlinkJoin {
-              name = "rust-toolchain";
-              paths = with pkgs; [
-                rustc
-                cargo
-                rustPlatform.rustcSrc
-              ];
-            }
-          );
-
-          # Python with uv (computed first as others depend on it)
+          workspace = uv2nix.lib.workspace.loadWorkspace { workspaceRoot = ./.; };
+          overlay = workspace.mkPyprojectOverlay { sourcePreference = "wheel"; };
           pythonSet =
-            let
-              workspace = inputs.uv2nix.lib.workspace.loadWorkspace { workspaceRoot = ./.; };
-              overlay = workspace.mkPyprojectOverlay { sourcePreference = "wheel"; };
-              editableOverlay = workspace.mkEditablePyprojectOverlay { root = "$REPO_ROOT"; };
-              pythonSets = inputs.pyproject-nix.lib.${system}.makePythonPackages {
-                python = pkgs.python3;
-                overlays = [ overlay ];
-              };
-            in
-            pythonSets.overrideScope editableOverlay;
+            (pkgs.callPackage pyproject-nix.build.packages { python = pkgs.python3; }).overrideScope
+              (
+                lib.composeManyExtensions [
+                  pyproject-build-systems.overlays.wheel
+                  overlay
+                ]
+              );
+          pythonDevVenv = pythonSet.mkVirtualEnv "ai-project-dev" workspace.deps.all;
 
-          pythonVenv = lib.mkIf config.python (pythonSet.mkVirtualEnv "dev-env" pythonSet.pythonPackages);
+          pythonPackage = pythonSet.mkVirtualEnv "ai-project-env" workspace.deps.default;
 
-          # PRE-COMMIT CHECK = SINGLE SOURCE OF TRUTH (git-hooks.nix)
-          preCommitCheckBase = git-hooks.lib.${system}.run {
+          rustPackage = pkgs.rustPlatform.buildRustPackage {
+            pname = "ai-project";
+            inherit (config.project) version;
             src = lib.cleanSource ./.;
-            package = pkgs.prek;
-            hooks = {
-              nixfmt = {
-                enable = true;
-                package = pkgs.nixfmt;
-              };
-              statix.enable = true;
-            };
+            cargoLock.lockFile = ./Cargo.lock;
+            nativeBuildInputs = [ pkgs.pkg-config ];
           };
 
-          # Custom check derivation that includes enabledPackages in build inputs
-          preCommitCheck =
-            pkgs.runCommand "pre-commit-check"
-              {
-                buildInputs = [
-                  pkgs.prek
-                  pkgs.git
-                ]
-                ++ preCommitCheckBase.enabledPackages;
-                PRE_COMMIT_CONFIG_FILE = preCommitCheckBase.config.configFile;
-                # Fix permission issues with prek cache
-                HOME = "/tmp";
-                PRE_COMMIT_HOME = "/tmp/pre-commit-cache";
-                # Copy source to have .git directory
-                src = lib.cleanSource ./.;
-              }
-              ''
-                mkdir -p $PRE_COMMIT_HOME
-                mkdir -p $out
-                # Copy source to working directory to have .git
-                cp -r $src/* .
-                cp -r $src/.git . 2>/dev/null || true
-                # Initialize git if not present
-                if [ ! -d .git ]; then
-                  git init
-                  git config user.email "test@test.com"
-                  git config user.name "Test"
-                  git add .
-                  git commit -m "initial" --no-verify
-                fi
-                ${pkgs.lib.getExe pkgs.prek} run --all-files --config $PRE_COMMIT_CONFIG_FILE
-                echo "pre-commit check passed" > $out/result
-              '';
+          nodejsPackage = pkgs.buildNpmPackage {
+            pname = "ai-project";
+            inherit (config.project) version;
+            src = lib.cleanSource ./.;
+            npmDeps = pkgs.importNpmLock { npmRoot = ./.; };
+            npmConfigHook = pkgs.importNpmLock.npmConfigHook;
+            installPhase = ''
+              cp -r dist $out
+            '';
+          };
 
-          # Formatter DERIVED from pre-commit check - as a derivation with tools in PATH
-          formatter =
-            pkgs.runCommand "pre-commit-run"
-              {
-                buildInputs = [ pkgs.prek ] ++ preCommitCheckBase.enabledPackages;
-              }
-              ''
-                mkdir -p $out/bin
-                echo '#!/usr/bin/env bash' > $out/bin/pre-commit-run
-                echo 'mkdir -p /tmp/pre-commit-cache' >> $out/bin/pre-commit-run
-                echo 'HOME=/tmp PRE_COMMIT_HOME=/tmp/pre-commit-cache ${pkgs.lib.getExe pkgs.prek} run --all-files --config ${preCommitCheckBase.config.configFile}' >> $out/bin/pre-commit-run
-                chmod +x $out/bin/pre-commit-run
-              '';
+          dockerImage = pkgs.dockerTools.buildLayeredImage {
+            name = "ai-project";
+            tag = "latest";
+            contents = [ defaultPackageForOutput ];
+          };
 
-          # Language-specific dev packages
-          langDevPackages = lib.filter (x: x != null) [
-            (lib.optional config.rust pkgs.rustfmt)
-            (lib.optional config.rust pkgs.clippy)
-            (lib.optional config.rust pkgs.cargo-nextest)
-            (lib.optional config.python pythonSet.python3)
-            (lib.optional config.python pythonSet.pythonPackages.pytest)
-            (lib.optional config.python pythonSet.pythonPackages.ruff)
-            (lib.optional config.python pythonSet.pythonPackages.mypy)
-            (lib.optional config.python pythonSet.pythonPackages.hypothesis)
-            (lib.optional config.python pkgs.uv)
-            (lib.optional config.nodejs pkgs.nodejs)
-            (lib.optional config.nodejs pkgs.pnpm)
-          ];
-
-          # Common dev packages (always available)
-          commonDevPackages = with pkgs; [
-            git
-            direnv
-            nix
-            nixpkgs-fmt
-            nixfmt
-            statix
-            jq
-            yq
-            fzf
-            ripgrep
-            fd
-            bat
-            delta
-            httpie
-            curl
-            wget
-            prettier
-            stylua
-            taplo
-            semgrep
-            trivy
-            git-secrets
-            opencode
-          ];
-
-          # Default package (language-specific)
-          defaultPackage = builtins.head (
-            lib.filter (x: x != null) [
-              (lib.mkIf config.rust (
-                pkgs.rustPlatform.buildRustPackage {
-                  pname = "default";
-                  src = lib.cleanSource ./.;
-                  inherit (config.project) version;
-                  cargoLock.lockFile = ./Cargo.lock;
-                  nativeBuildInputs = with pkgs; [ pkg-config ];
-                }
-              ))
-              (lib.mkIf config.python (pythonSet.mkVirtualEnv "default" pythonSet.pythonPackages))
-            ]
-          );
-
-          # Individual language packages
-          rustPackage = lib.mkIf config.rust (
-            pkgs.rustPlatform.buildRustPackage {
-              pname = "ai-project-rust";
-              src = lib.cleanSource ./.;
-              inherit (config.project) version;
-              cargoLock.lockFile = ./Cargo.lock;
-              nativeBuildInputs = with pkgs; [ pkg-config ];
-            }
-          );
-
-          pythonPackage = lib.mkIf config.python (
-            pythonSet.mkVirtualEnv "ai-project-python" pythonSet.pythonPackages
-          );
-
-          nodejsPackage = lib.mkIf config.nodejs (
-            let
-              npmDeps = pkgs.importNpmLock {
-                npmRoot = ./.;
-              };
-            in
-            pkgs.buildNpmPackage {
-              pname = "ai-project-nodejs";
-              src = lib.cleanSource ./.;
-              inherit (config.project) version;
-              inherit npmDeps;
-              npmConfigHook = pkgs.importNpmLock.npmConfigHook;
-              dontNpmBuild = true;
-              installPhase = ''
-                mkdir -p $out
-                cp -r src/nodejs $out/
-                cp package.json $out/
-                cp tsconfig.json $out/
-                cd $out
-                ${pkgs.pnpm}/bin/pnpm install --frozen-lockfile
-              '';
-            }
-          );
-
-          # Default package for flake-parts - always a concrete derivation
-          # Use the first enabled language, or a dummy package
           defaultPackageForOutput =
             if config.rust then
               rustPackage
@@ -259,6 +107,58 @@
             else
               pkgs.runCommand "ai-project" { } "echo 'No language enabled' > $out/README.txt";
 
+          formatter =
+            pkgs.runCommand "pre-commit-run"
+              {
+                buildInputs = [ pkgs.prek ] ++ config.pre-commit.settings.enabledPackages;
+              }
+              ''
+                mkdir -p $out/bin
+                echo '#!/usr/bin/env bash' > $out/bin/pre-commit-run
+                echo 'mkdir -p /tmp/pre-commit-cache' >> $out/bin/pre-commit-run
+                echo 'HOME=/tmp PRE_COMMIT_HOME=/tmp/pre-commit-cache ${pkgs.lib.getExe pkgs.prek} run --all-files --config ${config.pre-commit.settings.configFile}' >> $out/bin/pre-commit-run
+                chmod +x $out/bin/pre-commit-run
+              '';
+
+          langDevPackages =
+            lib.optionals config.rust (
+              with pkgs;
+              [
+                rustc
+                cargo
+                rustfmt
+                clippy
+                cargo-nextest
+                cargo-audit
+                rust-analyzer
+              ]
+            )
+            ++ lib.optionals config.python [
+              pythonDevVenv
+              pkgs.uv
+            ]
+            ++ lib.optionals config.nodejs [ pkgs.nodejs ];
+
+          commonDevPackages = with pkgs; [
+            git
+            just
+            direnv
+            nix
+            nixfmt
+            statix
+            jq
+            fzf
+            ripgrep
+            fd
+            curl
+            prettier
+            taplo
+            semgrep
+            trivy
+            git-secrets
+            prek
+            opencode
+          ];
         in
         {
           options = {
@@ -279,54 +179,41 @@
             rust = lib.mkEnableOption "Rust support";
             python = lib.mkEnableOption "Python support";
             nodejs = lib.mkEnableOption "Node.js support";
-            docker = lib.mkEnableOption "Docker image support";
+            docker = lib.mkEnableOption "Docker image output (dockerImage package)";
           };
 
           config = {
-            # Default config values (all languages disabled by default)
-            rust = false;
-            python = false;
-            nodejs = false;
-            docker = false;
+            pre-commit.settings = {
+              package = pkgs.prek;
+              hooks = {
+                nixfmt.enable = true;
+                statix.enable = true;
+              };
+            };
 
-            # Dev shell
             devShells.default = pkgs.mkShell {
               name = "ai-dev";
               packages =
-                commonDevPackages ++ langDevPackages ++ preCommitCheckBase.enabledPackages ++ [ formatter ];
-              inputsFrom =
-                lib.optional config.python pythonVenv
-                ++ lib.optional (config.rust || config.python || config.nodejs) self.packages.${system}.default;
-              shellHook = preCommitCheckBase.shellHook + ''
-                # Direnv integration
-                eval "$(direnv hook ${pkgs.bash}/bin/bash)"
-
-                # Project info
+                commonDevPackages ++ langDevPackages ++ config.pre-commit.settings.enabledPackages ++ [ formatter ];
+              inputsFrom = lib.optional (config.rust || config.python || config.nodejs) defaultPackageForOutput;
+              shellHook = config.pre-commit.shellHook + ''
                 echo "🚀 AI Development Environment"
                 echo "   Project: ${config.project.description}"
                 echo "   License: ${config.project.license}"
                 echo ""
                 echo "Available commands:"
-                echo "  nix flake check     - Run all flake checks"
-                echo "  pre-commit-run      - Run pre-commit hooks"
-                echo "  just test           - Run tests"
-                echo "  just build          - Build project"
+                echo "  nix flake check   - Run all flake checks"
+                echo "  pre-commit-run    - Run pre-commit hooks"
+                echo "  just test         - Run tests"
+                echo "  just build        - Build project"
+                echo "  just security     - Security scan"
                 echo ""
-
-                # Load project memory if exists
-                if [ -f .ai-memory/project-memory.md ]; then
-                  echo "📋 Project memory loaded"
-                fi
-
-                # Python setup
                 ${lib.optionalString config.python ''
                   unset PYTHONPATH
                   export UV_NO_SYNC=1
                   export UV_PYTHON=${pythonSet.python.interpreter}
                   export UV_PYTHON_DOWNLOADS=never
                 ''}
-
-                # Rust setup
                 ${lib.optionalString config.rust ''
                   export RUST_BACKTRACE=1
                   export RUST_SRC_PATH=${pkgs.rustPlatform.rustLibSrc}
@@ -334,28 +221,15 @@
               '';
             };
 
-            # Formatter
             inherit formatter;
 
-            # Packages - use lib.optionalAttrs for conditional packages
             packages = {
               default = defaultPackageForOutput;
             }
-            // lib.optionalAttrs config.rust {
-              rust = rustPackage;
-            }
-            // lib.optionalAttrs config.python {
-              python = pythonPackage;
-            }
-            // lib.optionalAttrs config.nodejs {
-              nodejs = nodejsPackage;
-            };
-
-            # Checks - override git-hooks auto pre-commit with our version
-            checks = {
-              inherit preCommitCheck;
-              "pre-commit" = lib.mkForce preCommitCheck;
-            };
+            // lib.optionalAttrs config.docker { inherit dockerImage; }
+            // lib.optionalAttrs config.rust { rust = rustPackage; }
+            // lib.optionalAttrs config.python { python = pythonPackage; }
+            // lib.optionalAttrs config.nodejs { nodejs = nodejsPackage; };
           };
         };
     };

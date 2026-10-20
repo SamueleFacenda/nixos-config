@@ -2,8 +2,8 @@
 // Run with: pnpm test
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { ConfigManager, Config } from '../src/nodejs/config.js';
-import { AIClient } from '../src/nodejs/ai.js';
+import { ConfigManager, Config } from '../../src/nodejs/config.js';
+import { AIClient } from '../../src/nodejs/ai.js';
 
 // Mock file system
 vi.mock('fs/promises', () => ({

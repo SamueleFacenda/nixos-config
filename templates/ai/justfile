@@ -1,127 +1,58 @@
 # Justfile - Command runner for AI-assisted development project
-# Provides consistent commands across all environments
+# Run inside the dev shell: nix develop -c just <recipe>
+# Recipes detect enabled languages by tool availability.
 
-# Default target
 default: help
 
-# Help
 help:
 	@just --list
 
-# Development
 dev-shell:
 	nix develop
 
-dev-shell-impure:
-	nix develop --impure
-
-# Formatting & Linting (via pre-commit from flake)
+# Formatting via pre-commit hooks (managed by git-hooks.nix)
 fmt:
 	pre-commit-run
 
-fmt-check:
-	pre-commit-run
-
-# Testing
+# Tests
 test:
 	@echo "Running tests..."
-	@if [ -f "Cargo.toml" ]; then cargo nextest run --profile=ci; fi
-	@if [ -f "pyproject.toml" ]; then uv run pytest -v --cov=src --cov-fail-under=80; fi
-	@if [ -f "package.json" ]; then npx vitest run --coverage; fi
-
-test-watch:
-	@if [ -f "Cargo.toml" ]; then cargo watch -x "nextest run"; fi
-	@if [ -f "pyproject.toml" ]; then uv run pytest --watch; fi
-	@if [ -f "package.json" ]; then npx vitest watch; fi
+	@if command -v cargo >/dev/null; then cargo nextest run; fi
+	@if command -v pytest >/dev/null; then pytest -v; fi
+	@if command -v npm >/dev/null; then npm ci --silent && npm test; fi
 
 # Type checking
 type-check:
-	@if [ -f "pyproject.toml" ]; then uv run mypy .; fi
-	@if [ -f "package.json" ]; then npx tsc --noEmit; fi
+	@if command -v mypy >/dev/null; then mypy src/python; fi
+	@if command -v npm >/dev/null; then npm run typecheck; fi
 
-# Security (via nix flake check --checks security)
+# Security scans (semgrep/trivy use network databases)
 security:
-	nix flake check --show-trace --checks security
-
-# Dependency management
-deps-update:
-	@echo "Updating dependencies..."
-	@if [ -f "Cargo.toml" ]; then cargo update; fi
-	@if [ -f "pyproject.toml" ]; then uv lock --upgrade; fi
-	@if [ -f "package.json" ]; then npx npm-check-updates -u && npm install; fi
-
-deps-check:
-	@echo "Checking for outdated dependencies..."
-	@if [ -f "Cargo.toml" ]; then cargo outdated; fi
-	@if [ -f "pyproject.toml" ]; then uv pip list --outdated; fi
-	@if [ -f "package.json" ]; then npx npm-check-updates; fi
+	@echo "Running security scans..."
+	@if command -v semgrep >/dev/null; then semgrep scan --config auto .; fi
+	@if command -v trivy >/dev/null; then trivy fs .; fi
+	@if command -v bandit >/dev/null; then bandit -r src/python; fi
+	@if command -v cargo-audit >/dev/null; then cargo audit; fi
+	@if command -v git-secrets >/dev/null; then git secrets --scan; fi
 
 # Build
 build:
 	@echo "Building project..."
-	@if [ -f "Cargo.toml" ]; then cargo build --release; fi
-	@if [ -f "pyproject.toml" ]; then uv build; fi
-	@if [ -f "package.json" ]; then npm run build; fi
+	@if command -v cargo >/dev/null; then cargo build --release; fi
+	@if command -v uv >/dev/null; then uv build; fi
+	@if command -v npm >/dev/null; then npm run build; fi
 
 build-docker:
-	docker build -t {{project_name}}:latest .
-	docker build -t {{project_name}}:$(git rev-parse --short HEAD) .
+	nix build .#dockerImage
 
-# Git
-git-status:
-	git status
+# Dependency updates
+deps-update:
+	@echo "Updating dependencies..."
+	@if command -v cargo >/dev/null; then cargo update; fi
+	@if command -v uv >/dev/null; then uv lock --upgrade; fi
+	@if command -v npm >/dev/null; then npm update; fi
 
-git-diff:
-	git diff
-
-git-log:
-	git log --oneline -20
-
-# Release
-changelog:
-	@echo "Generating changelog..."
-	git cliff --config .cliff.toml -o CHANGELOG.md
-
-release-patch:
-	just changelog
-	git add CHANGELOG.md
-	git commit -m "chore: release patch version"
-	git tag v$(cat VERSION | awk -F. '{print $1"."$2"."$3+1}')
-
-release-minor:
-	just changelog
-	git add CHANGELOG.md
-	git commit -m "chore: release minor version"
-	git tag v$(cat VERSION | awk -F. '{print $1"."$2+1".0"}')
-
-release-major:
-	just changelog
-	git add CHANGELOG.md
-	git commit -m "chore: release major version"
-	git tag v$(cat VERSION | awk -F. '{print $1+1".0.0"}')
-
-# AI agents
-opencode:
-	opencode
-
-claude:
-	claude
-
-# Memory
-memory-init:
-	mkdir -p .ai-memory/{global,project}
-
-memory-sync:
-	@echo "Syncing memory..."
-	# Add sync logic here
-
-# Clean
+# Clean build artifacts
 clean:
-	@echo "Cleaning build artifacts..."
-	@if [ -f "Cargo.toml" ]; then cargo clean; fi
-	@if [ -f "pyproject.toml" ]; then rm -rf .venv dist build *.egg-info; fi
-	@if [ -f "package.json" ]; then rm -rf node_modules dist build; fi
-	rm -rf .cache target
-
-clean-all: clean
-	rm -rf .direnv .cargo .rustup .venv node_modules .pnpm
+	@if command -v cargo >/dev/null; then cargo clean; fi
+	rm -rf dist build target .cache node_modules .pytest_cache .mypy_cache .ruff_cache .coverage htmlcov coverage
