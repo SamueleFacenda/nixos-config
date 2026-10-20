@@ -6,8 +6,8 @@ use async_openai::{
     config::OpenAIConfig,
     Client as OpenAIClient,
     types::{
-        ChatCompletionRequestMessage, ChatCompletionRequestSystemMessageArgs,
-        ChatCompletionRequestUserMessageArgs, CreateChatCompletionRequestArgs,
+        ChatCompletionRequestSystemMessageArgs, ChatCompletionRequestUserMessageArgs,
+        CreateChatCompletionRequestArgs,
     },
 };
 use crate::config::OpenRouterConfig;
@@ -20,7 +20,7 @@ pub struct AIClient {
 impl AIClient {
     pub fn new(config: OpenRouterConfig) -> Self {
         let openai_config = OpenAIConfig::new()
-            .with_api_key(config.api_key.unwrap_or_else(|| {
+            .with_api_key(config.api_key.clone().unwrap_or_else(|| {
                 std::env::var("OPENROUTER_API_KEY").unwrap_or_default()
             }))
             .with_api_base(config.base_url.clone());
@@ -42,7 +42,7 @@ impl AIClient {
                     .build()?
                     .into(),
             ])
-            .temperature(0.7)
+            .temperature(0.7_f32)
             .max_tokens(4096_u16)
             .build()?;
 
@@ -72,7 +72,7 @@ impl AIClient {
                     .build()?
                     .into(),
             ])
-            .temperature(0.7)
+            .temperature(0.7_f32)
             .max_tokens(4096_u16)
             .build()?;
 

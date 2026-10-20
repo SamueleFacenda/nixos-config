@@ -35,7 +35,17 @@ fn default_model_reasoning() -> String {
     "openai/gpt-5".to_string()
 }
 
-#[derive(Debug, Deserialize, Clone)]
+fn default_openrouter() -> OpenRouterConfig {
+    OpenRouterConfig {
+        api_key: None,
+        base_url: default_base_url(),
+        model_fast: default_model_fast(),
+        model_smart: default_model_smart(),
+        model_reasoning: default_model_reasoning(),
+    }
+}
+
+#[derive(Debug, Deserialize, Clone, Default)]
 pub struct TokenOptimizerConfig {
     #[serde(default = "default_true")]
     pub enabled: bool,
@@ -53,7 +63,7 @@ fn default_headroom_proxy() -> String {
     "http://localhost:8787".to_string()
 }
 
-#[derive(Debug, Deserialize, Clone)]
+#[derive(Debug, Deserialize, Clone, Default)]
 pub struct MemoryConfig {
     #[serde(default = "default_global_path")]
     pub global_path: String,
@@ -71,6 +81,7 @@ fn default_project_path() -> String {
 
 #[derive(Debug, Deserialize, Clone)]
 pub struct Config {
+    #[serde(default = "default_openrouter")]
     pub openrouter: OpenRouterConfig,
     #[serde(default)]
     pub token_optimizer: TokenOptimizerConfig,
@@ -109,7 +120,7 @@ impl Config {
     pub async fn load(path: &str) -> Result<Self> {
         let path = Path::new(path);
         
-        let mut builder = ConfigBuilder::default();
+        let mut builder = ConfigBuilder::builder();
         
         // Load from file if it exists
         if path.exists() {

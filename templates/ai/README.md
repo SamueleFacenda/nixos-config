@@ -2,234 +2,128 @@
 
 {{project_description}}
 
-AI-assisted development project template with OpenRouter integration, multi-language support (Rust, Python, Node.js), and comprehensive tooling.
+AI-assisted development project template with OpenRouter integration,
+multi-language support (Rust, Python, Node.js), and Nix-managed tooling.
 
 ## Features
 
-- 🤖 **OpenRouter Integration** - Single provider for all models (fast, smart, reasoning)
-- 🔧 **Multi-language Support** - Rust, Python, Node.js in one project
-- ⚡ **Token Optimization** - Headroom proxy for cost reduction
-- 🧠 **Shared Memory** - Global and project-level memory for AI agents
-- 🔍 **Language Servers** - Full LSP support for all languages
-- 🛡️ **Security First** - Semgrep, Bandit, Trivy, cargo-audit, pip-audit, npm-audit
-- 🪝 **Pre-commit Hooks** - Via git-hooks.nix (nix-managed, reproducible)
-- 📦 **Docker Support** - Reproducible container builds
-- 🚀 **CI/CD** - GitHub Actions and GitLab CI pipelines
-- 📝 **Changelog** - Keep a Changelog format with git-cliff
-- 🌿 **Git Workflow** - Feature branches, conventional commits, PRs
+- Multi-language support - Rust, Python, Node.js behind per-language flake options
+- Reproducible dev shell and packages via Nix (flake-parts)
+- Python environment built by uv2nix from `uv.lock`
+- Pre-commit hooks via git-hooks.nix (nix-managed, run with prek)
+- Security tooling - semgrep, trivy, git-secrets, bandit, cargo-audit
+- CI pipelines for GitHub Actions and GitLab
+- Keep a Changelog (maintained manually)
+- AI agent skeletons (OpenRouter client) in `src/` for each language
 
 ## Quick Start
 
-### Prerequisites
-
-- [Nix](https://nixos.org/download.html) with flakes enabled
-- [Direnv](https://direnv.net/) for automatic environment loading
-- OpenRouter API key (get from [openrouter.ai/keys](https://openrouter.ai/keys))
-
-### Create a New Project
+### Create a new project
 
 ```bash
-# Using the template directly
-/nixos-config/templates/ai/create-project.sh my-project "My AI project" "John Doe" "john@example.com" "johndoe"
-
-# Or manually
-git clone https://github.com/your-org/ai-template my-project
-cd my-project
-# Replace placeholders in all files
+nix flake init -t /nixos-config#ai
 ```
 
-### Setup
+### Replace placeholders
 
 ```bash
-# Enter project directory
-cd my-project
-
-# Copy local env template and add your API key
-cp .envrc.local.example .envrc.local
-# Edit .envrc.local and add your OPENROUTER_API_KEY
-
-# Allow direnv
-direnv allow
-
-# Enter development shell
-nix develop
+grep -rl --exclude-dir=.git '{{' . | xargs sed -i \
+  -e "s/{{project_name}}/my-project/g" \
+  -e "s/{{project_description}}/My project/g" \
+  -e "s/{{author_name}}/John Doe/g" \
+  -e "s/{{author_email}}/john@example.com/g" \
+  -e "s/{{github_user}}/johndoe/g"
 ```
 
-### Development Commands
-
-Once in the dev shell (`nix develop`), you have access to:
+Package names in `Cargo.toml`, `pyproject.toml`, and `package.json` stay
+`ai-project` so the lockfiles remain valid. Rename them and regenerate the
+locks when you want your own package name:
 
 ```bash
-# Run all checks (format, lint, test, security, pre-commit)
-/nix-flake-check
-
-# Run tests
-/test-run
-
-# Security scan
-/sec-scan
-
-# Add changelog entry
-/changelog-add
-
-# Start new feature branch
-/git-feature-start my-feature
-
-# Run AI agents
-opencode
-claude
+# after renaming, in the dev shell:
+cargo update && uv lock && npm install
 ```
+
+### Enter the development shell
+
+```bash
+direnv allow   # or: nix develop
+```
+
+### Enable languages
+
+All languages are off by default. Edit the `config` block in `flake.nix`:
+
+```nix
+config = {
+  rust = true;
+  python = true;
+  nodejs = true;
+  docker = true;   # adds the dockerImage package
+};
+```
+
+### OpenRouter API key
+
+Export `OPENROUTER_API_KEY` in your environment. With direnv, add it to a
+`.env` file in the project root (gitignored, loaded by `dotenv_if_exists`).
+
+## Commands
+
+Inside the dev shell:
+
+```bash
+nix flake check        # all checks incl. pre-commit
+pre-commit-run         # format via pre-commit hooks
+just test              # tests for enabled languages
+just type-check        # mypy / tsc
+just build             # build enabled languages
+just security          # semgrep, trivy, bandit, cargo-audit, git-secrets
+just deps-update       # cargo update, uv lock --upgrade, npm update
+just build-docker      # nix build .#dockerImage (needs docker option)
+```
+
+Language-specific tools are added to the shell when the language is enabled:
+
+- Rust: cargo, clippy, rustfmt, cargo-nextest, cargo-audit, rust-analyzer
+- Python: uv2nix venv (pytest, mypy, ruff, bandit from lockfile), uv
+- Node.js: node, npm
 
 ## Project Structure
 
 ```
-my-project/
-├── .github/workflows/     # GitHub Actions CI/CD
-├── .gitlab-ci.yml         # GitLab CI/CD
+├── .github/workflows/     # GitHub Actions CI
+├── .gitlab-ci.yml         # GitLab CI
+├── .claude/               # Claude project memory
+├── .opencode/            # OpenCode project memory
 ├── src/
-│   ├── rust/              # Rust source code
-│   ├── python/            # Python source code
-│   └── nodejs/            # Node.js/TypeScript source code
-├── tests/
-│   ├── unit/              # Unit tests
-│   └── integration/       # Integration tests
-├── docs/                  # Documentation
-├── .ai-memory/            # Project AI memory (gitignored)
-├── flake.nix              # Nix flake configuration
-├── .envrc                 # Direnv configuration
-├── .cliff.toml            # git-cliff changelog config
-├── config.toml            # Application configuration
-├── Cargo.toml             # Rust workspace
-├── pyproject.toml         # Python project
-├── package.json           # Node.js project
-├── tsconfig.json          # TypeScript config
-├── justfile               # Command runner
-├── CHANGELOG.md           # Keep a Changelog
-└── README.md              # This file
+│   ├── rust/             # Rust skeleton (OpenRouter client, config)
+│   ├── python/           # Python skeleton (typer CLI, env-based config)
+│   └── nodejs/           # TypeScript skeleton (commander CLI, TOML config)
+├── tests/unit/           # Unit tests per language
+├── flake.nix             # Dev shell, packages, checks, language options
+├── pyproject.toml        # Python project (uv.lock drives uv2nix)
+├── Cargo.toml            # Rust package
+├── package.json          # Node.js project (npm, package-lock.json)
+├── justfile              # Command runner
+├── CHANGELOG.md          # Keep a Changelog (manual)
+└── LICENSE               # EUPL-1.2
 ```
 
-## AI Agent Configuration
+## Changelog
 
-This template uses **OpenRouter exclusively** for all AI models:
+Maintained manually in [CHANGELOG.md](CHANGELOG.md) following
+[Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Add entries to the
+`[Unreleased]` section with each change.
 
-| Model Type | Model | Use Case |
-|------------|-------|----------|
-| Fast | `deepseek/deepseek-chat-v3-0324:free` | Simple tasks, quick responses |
-| Smart | `google/gemini-2.5-flash` | General development, coding |
-| Reasoning | `openai/gpt-5` | Complex problems, architecture |
+## CI
 
-Token optimization via **Headroom** proxy reduces costs by 30-70%.
-
-### Memory System
-
-- **Global Memory** (`~/.config/ai-memory`) - Shared across all projects
-- **Project Memory** (`.ai-memory/`) - Project-specific context
-- **Harness Memory** (`.ai-memory/harness-memory.db`) - Test/execution history
-- **Lemma DB** (`.ai-memory/lemma.db`) - Learned patterns and facts
-
-## Language-Specific Commands
-
-### Rust
-```bash
-cargo build          # Build
-cargo test           # Test
-cargo fmt            # Format
-cargo clippy         # Lint
-cargo nextest run    # Fast tests
-```
-
-### Python
-```bash
-uv run pytest        # Test
-uv run ruff check .  # Lint
-uv run ruff format . # Format
-uv run mypy .        # Type check
-```
-
-### Node.js
-```bash
-pnpm test            # Test
-pnpm lint            # Lint
-pnpm format          # Format
-pnpm typecheck       # Type check
-pnpm build           # Build
-```
-
-## Git Workflow
-
-### Branch Naming
-- `feature/description` - New features
-- `fix/description` - Bug fixes
-- `docs/description` - Documentation
-- `refactor/description` - Refactoring
-- `chore/description` - Maintenance
-
-### Commit Messages (Conventional Commits)
-```
-type(scope): description
-
-[optional body]
-
-[optional footer]
-```
-
-Types: `feat`, `fix`, `perf`, `refactor`, `docs`, `style`, `test`, `chore`, `build`, `ci`, `revert`
-
-### Pull Requests
-1. Create feature branch from `develop`
-2. Make changes with conventional commits
-3. Run `/nix-flake-check` locally
-4. Open PR to `develop`
-5. CI must pass
-6. Code review required
-7. Squash merge to `develop`
-8. Release from `main` via tags
-
-## CI/CD
-
-### GitHub Actions
-- **Checks** - Flake check, pre-commit, formatting
-- **Tests** - Unit and integration tests
-- **Security** - Semgrep, Bandit, Trivy, dependency audits
-- **Docker** - Build and push on main branch
-- **Release** - Auto-generate changelog on tags
-
-### GitLab CI
-Same stages with GitLab-specific features (environments, manual deployments)
-
-## Security
-
-All security tools run in CI and locally via pre-commit:
-
-- **SAST**: Semgrep (multi-language)
-- **Secrets**: Git-secrets, Gitleaks
-- **Dependencies**: cargo-audit, pip-audit, npm-audit
-- **Container**: Trivy filesystem scan
-- **Python**: Bandit
-
-## Docker
-
-```bash
-# Build image
-IMAGE_TAG=latest nix build .#dockerImage
-
-# Run container
-docker run --rm ai-projects:latest
-```
+- **GitHub Actions** (`.github/workflows/ci.yml`): flake checks, tests, and a
+  security scan on push/PR to `main`/`develop`. The docker job is manual
+  (`workflow_dispatch`) and needs the `docker` option enabled.
+- **GitLab CI** (`.gitlab-ci.yml`): same stages; the docker job publishes the
+  image tarball as an artifact on `main` and tags.
 
 ## License
 
-EUPL-1.2 (European Union Public License 1.2) - See [LICENSE](LICENSE) for details.
-
-## Contributing
-
-1. Fork the repository
-2. Create feature branch
-3. Make changes
-4. Run checks: `/nix-flake-check`
-5. Submit PR
-
-## Support
-
-- Issues: [GitHub Issues](https://github.com/{{github_user}}/{{project_name}}/issues)
-- Discussions: [GitHub Discussions](https://github.com/{{github_user}}/{{project_name}}/discussions)
+EUPL-1.2 - see [LICENSE](LICENSE).

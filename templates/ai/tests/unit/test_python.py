@@ -71,9 +71,9 @@ class TestAIClient:
             mock_chat.return_value = "Mocked response"
             
             response = await ai_client.chat("Hello")
-            
+
             assert response == "Mocked response"
-            mock_chat.assert_called_once_with("Hello", None)
+            mock_chat.assert_called_once_with("Hello")
     
     @pytest.mark.asyncio
     async def test_chat_with_model(self, ai_client):
@@ -82,9 +82,9 @@ class TestAIClient:
             mock_chat.return_value = "Model specific response"
             
             response = await ai_client.chat("Hello", model="custom/model")
-            
+
             assert response == "Model specific response"
-            mock_chat.assert_called_once_with("Hello", "custom/model")
+            mock_chat.assert_called_once_with("Hello", model="custom/model")
 
 
 # Integration tests would go in tests/integration/ and require OPENROUTER_API_KEY

@@ -27,9 +27,9 @@ const MemoryConfigSchema = z.object({
 });
 
 const ConfigSchema = z.object({
-  openrouter: OpenRouterConfigSchema,
-  token_optimizer: TokenOptimizerConfigSchema,
-  memory: MemoryConfigSchema,
+  openrouter: OpenRouterConfigSchema.prefault({}),
+  token_optimizer: TokenOptimizerConfigSchema.prefault({}),
+  memory: MemoryConfigSchema.prefault({}),
   debug: z.boolean().default(false),
 });
 

@@ -17,10 +17,6 @@
     "isolatedModules": true,
     "noEmit": false,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/nodejs/*"]
-    },
     "types": ["node", "vitest/globals"]
   },
   "include": ["src/nodejs/**/*"],

@@ -1,23 +1,23 @@
 {
-  "name": "{{project_name}}",
+  "name": "ai-project",
   "version": "0.1.0",
   "description": "{{project_description}}",
   "license": "EUPL-1.2",
   "author": "{{author_name}} <{{author_email}}>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/{{github_user}}/{{project_name}}.git"
+    "url": "https://github.com/{{github_user}}/ai-project.git"
   },
-  "homepage": "https://github.com/{{github_user}}/{{project_name}}",
+  "homepage": "https://github.com/{{github_user}}/ai-project",
   "bugs": {
-    "url": "https://github.com/{{github_user}}/{{project_name}}/issues"
+    "url": "https://github.com/{{github_user}}/ai-project/issues"
   },
   "keywords": ["ai", "llm", "development", "agent", "openrouter"],
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cli.js",
+  "types": "dist/cli.d.ts",
   "bin": {
-    "{{project_name}}": "dist/cli.js"
+    "ai-project": "dist/cli.js"
   },
   "files": [
     "dist"
@@ -28,33 +28,32 @@
     "start": "node dist/cli.js",
     "test": "vitest run --coverage",
     "test:watch": "vitest watch",
-    "lint": "eslint src --ext .ts",
-    "lint:fix": "eslint src --ext .ts --fix",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "openai": "^4.0.0",
-    "zod": "^3.22.0",
-    "dotenv": "^16.3.0",
-    "chalk": "^5.3.0",
-    "commander": "^12.0.0",
-    "ora": "^8.0.0"
+    "openai": "^7.39.0",
+    "zod": "^4.6.7",
+    "toml": "^5.0.1",
+    "chalk": "^6.0.1",
+    "commander": "^15.0.0",
+    "ora": "^9.4.1"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/node": "^26.6.5",
     "typescript": "^5.3.0",
-    "tsx": "^4.7.0",
-    "vitest": "^5.0.3",
-    "@vitest/coverage-v8": "^1.0.0",
-    "eslint": "^8.56.0",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "prettier": "^3.2.0"
+    "tsx": "^4.23.15",
+    "vitest": "^5.0.5",
+    "@vitest/coverage-v8": "^5.0.5",
+    "eslint": "^10.13.0",
+    "@eslint/js": "^10.0.1",
+    "typescript-eslint": "^8.72.0",
+    "prettier": "^3.9.10"
   },
   "engines": {
     "node": ">=20.0.0"
-  },
-  "packageManager": "pnpm@9.0.0"
+  }
 }
