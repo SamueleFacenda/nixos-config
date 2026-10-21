@@ -9,12 +9,17 @@
     agents = config.ai.agents;
     commands = config.ai.commands;
 
-    # Claude-compatible plugins only (opencode-runtime JS plugins are excluded)
+    # Plugins managed via Home Manager's plugins option
+    # (ponytail excluded: the wrapper's per-file symlinks trip Claude Code's
+    # path-escape security check, so it is symlinked directly below)
     plugins = lib.filterAttrs (name: _:
-      builtins.elem name [ "ponytail" "token-optimizer" "opencode-chromium" ]
+      builtins.elem name [ "token-optimizer" "opencode-chromium" ]
     ) config.ai.plugins;
 
-    # Global context written to ~/.claude/CLAUDE.md (top-level option, not a settings key)
     context = config.ai.rules.codingRulesMarkdown;
   };
+
+  # Direct symlink for ponytail to avoid Home Manager's path-escape bug
+  home.file."${config.programs.claude-code.configDir}/skills/ponytail".source =
+    config.ai.plugins.ponytail;
 }

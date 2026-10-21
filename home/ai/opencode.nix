@@ -18,8 +18,7 @@
       # Use plugins from ai.plugins (all verified with real hashes)
       plugin = [
         config.ai.plugins.ponytail
-        config.ai.plugins."token-optimizer"
-        config.ai.plugins.headroom
+        config.ai.plugins."token-optimizer-opencode"
         config.ai.plugins."opencode-dynamic-context-pruning"
         config.ai.plugins."opencode-crawlberg"
         config.ai.plugins."opencode-chromium"
