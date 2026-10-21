@@ -73,7 +73,7 @@ in {
       playwright = {
         type = "local";
         command = "${mcpServers.playwright-mcp}/bin/playwright-mcp";
-        args = [ ];
+        args = [ "--headless" "--isolated" ];
         env = {
           PLAYWRIGHT_MCP_EXECUTABLE_PATH = "${pkgs.chromium}/bin/chromium";
         };
