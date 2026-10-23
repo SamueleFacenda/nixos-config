@@ -393,7 +393,7 @@ in
   };
   
   # Loopback audio and video
-  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
+  # boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
   
   # Gaming
   programs.steam = {
