@@ -1,0 +1,22 @@
+{
+  "name": "opencode-chromium",
+  "version": "1.9.3",
+  "dependencies": {
+    "@huggingface/transformers": "^4.2.0",
+    "@jridgewell/trace-mapping": "^0.3.31",
+    "@modelcontextprotocol/node": "2.1.1",
+    "@modelcontextprotocol/server": "2.3.1",
+    "@opencode-ai/plugin": "1.19.3",
+    "effect": "4.0.2",
+    "jsonc-parser": "^3.3.1",
+    "pngjs": "7.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "smol-toml": "^1.9.0",
+    "ws": "^8.22.0",
+    "yaml": "^2.9.0",
+    "zod": "4.6.7",
+    "devtools-protocol": "0.0.1724436",
+    "webdriver-bidi-protocol": "0.4.3"
+  }
+}

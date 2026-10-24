@@ -23,8 +23,8 @@ let
   ponytailSrc = pkgs.fetchFromGitHub {
     repo = "ponytail";
     owner = "DietrichGebert";
-    rev = "v4.8.4";
-    hash = "sha256-1A9GkjCuiqwd6Wxl18CZUGYekxrbeTLVDapNUua8ihg=";
+    rev = "v5.3.2";
+    hash = "sha256-IJlhfkdXI6pMZZCZO7XBRg88LBiNfzc5Gnm4ofGybL8=";
   };
 in {
   ai.plugins = {
@@ -46,26 +46,35 @@ in {
     };
 
     "opencode-crawlberg" = pkgs.fetchzip {
-      url = "https://registry.npmjs.org/@xberg-io/opencode-crawlberg/-/opencode-crawlberg-1.11.1.tgz";
-      hash = "sha256-wJZwl5Qd9lznpbisyZOY0ewE54TzS8YQutbhS3dC8+o=";
+      url = "https://registry.npmjs.org/@xberg-io/opencode-crawlberg/-/opencode-crawlberg-1.12.0.tgz";
+      hash = "sha256-8qsxMaTNfKmeM7uJxSDcyXihbkc3oKBMUfORvymRDVE=";
+    };
+
+    # Prebuilt Rust CLI the crawlberg plugin spawns from PATH (x86_64-linux only)
+    crawlberg = pkgs.stdenv.mkDerivation rec {
+      pname = "crawlberg";
+      version = "1.12.0";
+      src = pkgs.fetchzip {
+        url = "https://github.com/xberg-io/crawlberg/releases/download/v${version}/crawlberg-cli-x86_64-unknown-linux-gnu.tar.gz";
+        hash = "sha256-5Lt6s292jy37lMio9BrJYLy7Z7DL1/yx3ejeTVPhcho=";
+      };
+      nativeBuildInputs = [ pkgs.autoPatchelfHook ];
+      buildInputs = [ pkgs.libgcc ];
+      installPhase = ''
+        mkdir -p $out/bin
+        install -m755 crawlberg $out/bin/crawlberg
+      '';
+      meta.platforms = [ "x86_64-linux" ];
     };
 
     "opencode-chromium" = pkgs.fetchzip {
-      url = "https://registry.npmjs.org/opencode-chromium/-/opencode-chromium-1.9.2.tgz";
-      hash = "sha256-WHaUm6XCkyfX+jG7MYPWV9xQRPwefkd6b5Y6uAdZmGw=";
+      url = "https://registry.npmjs.org/opencode-chromium/-/opencode-chromium-1.9.3.tgz";
+      hash = "sha256-84oE9pUPT/Fqs4ltHtJmEceChk0eXB7yuqXE8EAhups=";
     };
 
     "opencode-wakatime" = pkgs.fetchzip {
       url = "https://registry.npmjs.org/opencode-wakatime/-/opencode-wakatime-1.4.0.tgz";
       hash = "sha256-QF9J6O2KVDZLPSXHB6ZgJw/ktlSKdPWQpfYmj78Gvcw=";
-    };
-
-    # Git checkouts that already contain valid entrypoints
-    "opencode-toast-history" = pkgs.fetchFromGitHub {
-      repo = "opencode-toast-history";
-      owner = "LouisLau-art";
-      rev = "974e2347bb450bae957f5da3534883b70d2e5428";
-      hash = "sha256-Ku/2cnNr5h9yIaCKnNvEubQVOFYsJbeuIItabYRbxtY=";
     };
 
     # Python CLI package

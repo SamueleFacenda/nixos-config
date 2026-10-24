@@ -1,11 +1,80 @@
 { pkgs, config, lib, ... }:
+
+let
+  raw = config.ai.plugins;
+
+  # OpenCode v2 loads a local plugin directory through its root server.*
+  # module; published plugins keep their entry deeper in dist/ or
+  # .opencode/plugins/, so expose it through a generated server.js.
+  reexportPlugin = name: entry:
+    pkgs.runCommand "${name}-opencode-plugin" { } ''
+      mkdir -p $out
+      ln -s ${raw.${name}}/package.json $out/package.json
+      printf '%s\n' 'export { default } from "${raw.${name}}/${entry}";' 'export * from "${raw.${name}}/${entry}";' > $out/server.js
+    '';
+
+  # v2 resolves runtime imports (peer SDK, zod) from the plugin directory, so
+  # npm plugin tarballs need their production dependency tree installed next
+  # to the shipped dist/. The vendored manifest+lock keep the offline install
+  # deterministic; the tarball provides the compiled code. When serverJs is
+  # given, the package entry is exposed through a generated root server.js
+  # instead of the tarball's own entrypoint.
+  npmPluginWithDeps = name: {
+    src,
+    vendorDir,
+    npmDepsHash,
+    serverJs ? (_: null),
+  }:
+    let
+      deps = pkgs.fetchNpmDeps {
+        src = vendorDir;
+        hash = npmDepsHash;
+      };
+      withDeps = pkgs.stdenv.mkDerivation {
+        name = "${name}-opencode-plugin";
+        inherit src;
+        dontConfigure = true;
+        dontStrip = true;
+        nativeBuildInputs = [ pkgs.autoPatchelfHook ];
+        # libstdc++ for prebuilt .node binaries inside npm deps
+        buildInputs = [ pkgs.nodejs pkgs.libgcc pkgs.stdenv.cc.cc.lib ];
+        buildPhase = ''
+          runHook preBuild
+          mkdir -p $TEMPDIR/deps
+          cp -r ${vendorDir}/. $TEMPDIR/deps/
+          export HOME=$TEMPDIR
+          (
+            cd $TEMPDIR/deps
+            npm ci --offline --cache ${deps} --ignore-scripts --no-audit --no-fund
+          )
+          mv $TEMPDIR/deps/node_modules ./node_modules
+          runHook postBuild
+        '';
+        installPhase = ''
+          cp -r . $out
+        '';
+      };
+      entry = serverJs withDeps;
+    in
+    if entry == null then withDeps
+    else pkgs.runCommand "${name}-opencode-plugin" { } ''
+      mkdir -p $out
+      ln -s ${withDeps}/package.json $out/package.json
+      printf '%s\n' '${entry}' > $out/server.js
+    '';
+in
 {
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
 
-    # Scratch directory for temporary work (like claude-code's scratch)
-    extraPackages = [ config.ai.plugins.headroom pkgs.coreutils ];
+    # Scratch directory for temporary work (like claude-code's scratch);
+    # crawlberg is the CLI the crawlberg plugin spawns from PATH
+    extraPackages = [
+      config.ai.plugins.headroom
+      config.ai.plugins.crawlberg
+      pkgs.coreutils
+    ];
 
     # Use centralized LSP from ai.lsp (MCP comes from programs.mcp via enableMcpIntegration)
     settings.lsp = config.ai.lsp;
@@ -15,15 +84,29 @@
     commands = config.ai.commands;
 
     settings = {
-      # Use plugins from ai.plugins (all verified with real hashes)
-      plugin = [
-        config.ai.plugins.ponytail
-        config.ai.plugins."token-optimizer-opencode"
-        config.ai.plugins."opencode-dynamic-context-pruning"
-        config.ai.plugins."opencode-crawlberg"
-        config.ai.plugins."opencode-chromium"
-        config.ai.plugins."opencode-wakatime"
-        config.ai.plugins."opencode-toast-history"
+      # v2-native plugins key; every entry is a directory with a root
+      # server.* entrypoint that v2's local plugin loader can resolve
+      plugins = [
+        (reexportPlugin "ponytail" ".opencode/plugins/ponytail.mjs")
+        (reexportPlugin "token-optimizer-opencode" "dist/plugin.js")
+        (reexportPlugin "opencode-crawlberg" ".opencode/plugins/crawlberg.js")
+        (reexportPlugin "opencode-wakatime" "dist/server.js")
+        # ships its own root server.js; only the dependency tree was missing
+        (npmPluginWithDeps "opencode-dynamic-context-pruning" {
+          src = raw."opencode-dynamic-context-pruning";
+          vendorDir = ./vendor/dcp-3.2.0;
+          npmDepsHash = "sha256-3NTOCCIWo+YX/ZtcTPp5BCwavhFfh2mqzcZcT4Tzbts=";
+        })
+        # package default export is V1-shaped; expose the V2 plugin object
+        (npmPluginWithDeps "opencode-chromium" {
+          src = raw."opencode-chromium";
+          vendorDir = ./vendor/opencode-chromium-1.9.3;
+          npmDepsHash = "sha256-UdRmYrhPirI60bECLNuItiLmeH9KVfbFbiR5gUWUqr4=";
+          serverJs = withDeps: ''
+            import { opencodeV2Plugin } from "${withDeps}/dist/adapters/opencode/index.js";
+            export default { id: opencodeV2Plugin.id, setup: opencodeV2Plugin.setup };
+          '';
+        })
       ];
 
       tools = {
@@ -114,16 +197,6 @@
       instructions = [
         (pkgs.writeText "coding-rules.md" config.ai.rules.codingRulesMarkdown)
       ];
-    };
-
-    # TUI configuration - includes attention/notifications (theme handled by stylix)
-    tui = {
-      attention = {
-        enabled = true;
-        notifications = true;
-         sound = true;
-         volume = 0.4;
-      };
     };
   };
 }
