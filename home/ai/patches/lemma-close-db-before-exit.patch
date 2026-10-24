@@ -1,0 +1,20 @@
+diff -ruN a/src/server/index.ts b/src/server/index.ts
+--- a/src/server/index.ts	2026-09-06 22:45:59.000000000 +0200
++++ b/src/server/index.ts	2026-10-24 22:21:42.911516586 +0200
+@@ -16,7 +16,7 @@
+ import { installSkill } from "./install-skill.js";
+ import { triggerHook, HookTypes } from "./hooks.js";
+ import * as core_config from "../memory/config.js";
+-import { initDatabase, getDb } from "../db/index.js";
++import { initDatabase, getDb, closeDb } from "../db/index.js";
+ import { collectLibrarySnapshot, formatLibrarySnapshot } from "../db/library-store.js";
+ import { setNotifyChange } from "./handlers.js";
+ import { logger, initLogger } from "../logger.js";
+@@ -433,6 +433,7 @@
+     logger.flow("server", "virtual_session_finalize_skipped", { reason: "none" });
+   }
+ 
++  closeDb();
+   process.exit(0);
+ }
+ 

@@ -2,9 +2,9 @@
 
 let
   # Helper to build an npm package from GitHub
-  buildNpmPackage = { pname, version, src, buildInputs ? [], postInstall ? "", npmDepsHash ? null, npmDepsFetcherVersion ? null, makeCacheWritable ? false }:
+  buildNpmPackage = { pname, version, src, buildInputs ? [], postInstall ? "", npmDepsHash ? null, npmDepsFetcherVersion ? null, makeCacheWritable ? false, patches ? [] }:
     pkgs.buildNpmPackage ({
-      inherit pname version src buildInputs;
+      inherit pname version src buildInputs patches;
       postInstall = ''
         ${postInstall}
       '';
@@ -25,6 +25,10 @@ let
         hash = "sha256-hMT3PMnUVYUS2blbc75p5mpRWjUk+ohI+sioyR+V52Q=";
       };
       npmDepsHash = "sha256-zeQsjfXXLkgGnzR22Fxquj0d28UTfuEYIsyvr4fxNcw=";
+      # gracefulShutdown exits without closing better-sqlite3, so OpenCode v2's
+      # connection recycling segfaults in the native teardown; close the
+      # database before process.exit
+      patches = [ ./patches/lemma-close-db-before-exit.patch ];
     };
 
     playwright-mcp = buildNpmPackage {
