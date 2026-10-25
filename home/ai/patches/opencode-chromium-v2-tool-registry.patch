@@ -1,0 +1,55 @@
+diff -ruN a/dist/adapters/opencode/index.js b/dist/adapters/opencode/index.js
+--- a/dist/adapters/opencode/index.js	2026-10-25 12:46:56.365191711 +0100
++++ b/dist/adapters/opencode/index.js	2026-10-25 12:51:10.759247947 +0100
+@@ -17,9 +17,9 @@
+     const extension = IMAGE_EXTENSION_BY_MIME[mimeType] ?? "png";
+     return {
+         type: "file",
++        uri: `data:${mimeType};base64,${Buffer.from(data).toString("base64")}`,
+         mime: mimeType,
+-        filename: `screenshot.${extension}`,
+-        url: `data:${mimeType};base64,${Buffer.from(data).toString("base64")}`,
++        name: `screenshot.${extension}`,
+     };
+ }
+ function imageAttachments(result, runtime) {
+@@ -66,11 +66,12 @@
+         id: name,
+         name,
+         description: definition.description,
++        input: inputSchema,
+         inputSchema,
+         parameters: inputSchema,
+         outputSchema: jsonSchemaFor(definition.outputSchema),
+         annotations: definition.annotations,
+-        codemode: false,
++        options: { codemode: false },
+         async execute(args, context = {}) {
+             const result = await dispatchBrowserTool({ [name]: definition }, name, args, {
+                 ...context,
+@@ -78,11 +79,11 @@
+             });
+             const output = concise(result);
+             return {
+-                output,
+-                content: [{ type: "text", text: output }],
+-                structuredContent: sanitizeImagePayloads(result),
+-                attachments: imageAttachments(result, runtime),
+-                ...contractMetadata(),
++                content: [
++                    { type: "text", text: output },
++                    ...(imageAttachments(result, runtime) ?? []),
++                ],
++                metadata: contractMetadata(),
+             };
+         },
+     };
+@@ -130,7 +131,7 @@
+     if (typeof ctx?.addTool === "function")
+         return ctx.addTool(name, tool);
+     if (typeof ctx?.tool?.transform === "function") {
+-        return ctx.tool.transform({ name, tool, codemode: false });
++        return ctx.tool.transform((editor) => editor.add(tool));
+     }
+     throw new Error("This OpenCode context cannot register custom tools. Install the standard server plugin or configure the browser MCP server.");
+ }

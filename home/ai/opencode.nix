@@ -23,6 +23,7 @@ let
     src,
     vendorDir,
     npmDepsHash,
+    patches ? [ ],
     serverJs ? (_: null),
   }:
     let
@@ -32,7 +33,7 @@ let
       };
       withDeps = pkgs.stdenv.mkDerivation {
         name = "${name}-opencode-plugin";
-        inherit src;
+        inherit src patches;
         dontConfigure = true;
         dontStrip = true;
         nativeBuildInputs = [ pkgs.autoPatchelfHook ];
@@ -88,7 +89,16 @@ in
       # server.* entrypoint that v2's local plugin loader can resolve
       plugins = [
         (reexportPlugin "ponytail" ".opencode/plugins/ponytail.mjs")
-        (reexportPlugin "token-optimizer-opencode" "dist/plugin.js")
+        # dist/ imports the @opencode-ai/plugin v1 SDK at runtime; vendor it
+        (npmPluginWithDeps "token-optimizer-opencode" {
+          src = raw."token-optimizer-opencode";
+          vendorDir = ./vendor/token-optimizer-opencode-1.2.0;
+          npmDepsHash = "sha256-gISp/W3qlvcQuFhso2o76FF8E72k7QtKEk+Y/JT2MSo=";
+          serverJs = withDeps: ''
+            export { default } from "${withDeps}/dist/plugin.js";
+            export * from "${withDeps}/dist/plugin.js";
+          '';
+        })
         (reexportPlugin "opencode-crawlberg" ".opencode/plugins/crawlberg.js")
         (reexportPlugin "opencode-wakatime" "dist/server.js")
         # ships its own root server.js; only the dependency tree was missing
@@ -97,11 +107,13 @@ in
           vendorDir = ./vendor/dcp-3.2.0;
           npmDepsHash = "sha256-3NTOCCIWo+YX/ZtcTPp5BCwavhFfh2mqzcZcT4Tzbts=";
         })
-        # package default export is V1-shaped; expose the V2 plugin object
+        # package default export is V1-shaped; expose the V2 plugin object.
+        # patch: adapt tool registration to the v2 tool registry API
         (npmPluginWithDeps "opencode-chromium" {
           src = raw."opencode-chromium";
           vendorDir = ./vendor/opencode-chromium-1.9.3;
           npmDepsHash = "sha256-UdRmYrhPirI60bECLNuItiLmeH9KVfbFbiR5gUWUqr4=";
+          patches = [ ./patches/opencode-chromium-v2-tool-registry.patch ];
           serverJs = withDeps: ''
             import { opencodeV2Plugin } from "${withDeps}/dist/adapters/opencode/index.js";
             export default { id: opencodeV2Plugin.id, setup: opencodeV2Plugin.setup };

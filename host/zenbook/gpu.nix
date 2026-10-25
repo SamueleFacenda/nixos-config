@@ -21,7 +21,7 @@
     };
     open = true;
     nvidiaSettings = true;
-    dynamicBoost.enable = true; # nvidia-powerd, should make changes only on AC
+    dynamicBoost.enable = false; # nvidia-powerd, should make changes only on AC
     videoAcceleration = true; # vaapi nvidia
 
     prime = {
