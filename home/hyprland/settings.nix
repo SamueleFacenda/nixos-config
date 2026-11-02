@@ -36,11 +36,7 @@ in
 
     window_rule = [
       # xdg-desktop-portal-termfilechooser
-      { match = { initial_class = "^(file_chooser)$"; }; float = true; }
-      # review at first login: window-rule size effect shape (list vs "800 500")
-      { match = { initial_class = "^(file_chooser)$"; }; size = [ 800 500 ]; }
-      # review at first login: window-rule center effect field name
-      { match = { initial_class = "^(file_chooser)$"; }; center = true; }
+      { match = { initial_class = "^(file_chooser)$"; }; float = true; size = [ 800 500 ]; center = true; }
     ];
 
     # All hyprland.conf groups merge into a single hl.config({...}) call.

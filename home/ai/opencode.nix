@@ -211,4 +211,8 @@ in
       ];
     };
   };
+  
+  xdg.configFile."opencode/dcp.jsonc".text = builtins.toJSON {
+    compress.maxContextLimit = "40%";
+  };
 }
