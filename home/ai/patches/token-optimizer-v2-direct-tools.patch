@@ -1,0 +1,10 @@
+--- a/dist/v2.js
++++ b/dist/v2.js
+@@ -78,6 +78,7 @@
+                     name,
+                     description: tool.description,
+                     input: { type: "object", properties: name === "token_status" ? { detail: { type: "boolean" } } : { days: { type: "number" } }, additionalProperties: false },
++                    options: { codemode: false },
+                     async execute(input, context) {
+                         const result = name === "token_status"
+                             ? await legacy.statusForSession(context.sessionID, input)

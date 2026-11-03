@@ -65,6 +65,7 @@ let
     '';
 in
 {
+  home.packages = [ config.ai.plugins.headroom ];
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
@@ -89,11 +90,15 @@ in
       # server.* entrypoint that v2's local plugin loader can resolve
       plugins = [
         (reexportPlugin "ponytail" ".opencode/plugins/ponytail.mjs")
-        # dist/ imports the @opencode-ai/plugin v1 SDK at runtime; vendor it
+        # dist/ imports the @opencode-ai/plugin v1 SDK at runtime; vendor it.
+        # patch: register token_status/token_dashboard as direct tools —
+        # without options.codemode=false they are CodeMode-only and never
+        # appear in the TUI tool picker
         (npmPluginWithDeps "token-optimizer-opencode" {
           src = raw."token-optimizer-opencode";
           vendorDir = ./vendor/token-optimizer-opencode-1.2.0;
           npmDepsHash = "sha256-gISp/W3qlvcQuFhso2o76FF8E72k7QtKEk+Y/JT2MSo=";
+          patches = [ ./patches/token-optimizer-v2-direct-tools.patch ];
           serverJs = withDeps: ''
             export { default } from "${withDeps}/dist/plugin.js";
             export * from "${withDeps}/dist/plugin.js";

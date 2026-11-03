@@ -45,10 +45,21 @@ in {
       hash = "sha256-8eM3F6PVnih+0YZ6DUYdRc1HyzoUtrTqgDw4xH3VD44=";
     };
 
-    "opencode-crawlberg" = pkgs.fetchzip {
-      url = "https://registry.npmjs.org/@xberg-io/opencode-crawlberg/-/opencode-crawlberg-1.12.0.tgz";
-      hash = "sha256-8qsxMaTNfKmeM7uJxSDcyXihbkc3oKBMUfORvymRDVE=";
-    };
+    # the bundled ai-rulez MCP server fails opencode 2's tools/list
+    # validation (array outputSchema); the plugin's direct tools cover
+    # scrape/crawl/map, so drop the implicit server
+    "opencode-crawlberg" = let
+      src = pkgs.fetchzip {
+        url = "https://registry.npmjs.org/@xberg-io/opencode-crawlberg/-/opencode-crawlberg-1.12.0.tgz";
+        hash = "sha256-8qsxMaTNfKmeM7uJxSDcyXihbkc3oKBMUfORvymRDVE=";
+      };
+    in
+      pkgs.runCommand "opencode-crawlberg" { nativeBuildInputs = [ pkgs.jq ]; } ''
+        cp -r ${src}/. $out
+        chmod -R u+w $out
+        jq 'del(.mcp)' $out/.opencode/ai-rulez-bundle.json > $out/.opencode/b.tmp
+        mv $out/.opencode/b.tmp $out/.opencode/ai-rulez-bundle.json
+      '';
 
     # Prebuilt Rust CLI the crawlberg plugin spawns from PATH (x86_64-linux only)
     crawlberg = pkgs.stdenv.mkDerivation rec {
