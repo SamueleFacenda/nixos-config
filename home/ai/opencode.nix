@@ -65,7 +65,6 @@ let
     '';
 in
 {
-  home.packages = [ config.ai.plugins.headroom ];
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
@@ -83,7 +82,20 @@ in
 
     skills = config.ai.skills;
     agents = config.ai.agents;
-    commands = config.ai.commands;
+    # tools are model-invoked (not listed in the / menu); these command
+    # files inject the prompt so the audit/dashboard are one keystroke
+    commands = config.ai.commands // {
+      token-status = ''
+        # Token Status
+
+        Run the token_status tool with {"detail": true} and paste its output verbatim.
+      '';
+      token-dashboard = ''
+        # Token Dashboard
+
+        Run the token_dashboard tool with {"days": 7} and report where the dashboard was written.
+      '';
+    };
 
     settings = {
       # v2-native plugins key; every entry is a directory with a root
@@ -122,6 +134,18 @@ in
           serverJs = withDeps: ''
             import { opencodeV2Plugin } from "${withDeps}/dist/adapters/opencode/index.js";
             export default { id: opencodeV2Plugin.id, setup: opencodeV2Plugin.setup };
+          '';
+        })
+        # dist/ imports headroom-ai (compress) and the @opencode-ai/plugin v1
+        # SDK at runtime; vendor them. The tarball has no root server.js, so
+        # re-export the v2 plugin object ({ id, server, setup })
+        (npmPluginWithDeps "headroom-opencode" {
+          src = raw."headroom-opencode";
+          vendorDir = ./vendor/headroom-opencode-0.42.0;
+          npmDepsHash = "sha256-nwpXcQRE1X2uorDU8bdAHGTUGfOlL1I/op9BdrJQ/0w=";
+          serverJs = withDeps: ''
+            export { default } from "${withDeps}/dist/entry.opencode.js";
+            export * from "${withDeps}/dist/entry.opencode.js";
           '';
         })
       ];
