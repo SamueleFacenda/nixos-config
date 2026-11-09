@@ -72,7 +72,6 @@ in
     # Scratch directory for temporary work (like claude-code's scratch);
     # crawlberg is the CLI the crawlberg plugin spawns from PATH
     extraPackages = [
-      config.ai.plugins.headroom
       config.ai.plugins.crawlberg
       pkgs.coreutils
     ];
@@ -134,18 +133,6 @@ in
           serverJs = withDeps: ''
             import { opencodeV2Plugin } from "${withDeps}/dist/adapters/opencode/index.js";
             export default { id: opencodeV2Plugin.id, setup: opencodeV2Plugin.setup };
-          '';
-        })
-        # dist/ imports headroom-ai (compress) and the @opencode-ai/plugin v1
-        # SDK at runtime; vendor them. The tarball has no root server.js, so
-        # re-export the v2 plugin object ({ id, server, setup })
-        (npmPluginWithDeps "headroom-opencode" {
-          src = raw."headroom-opencode";
-          vendorDir = ./vendor/headroom-opencode-0.42.0;
-          npmDepsHash = "sha256-nwpXcQRE1X2uorDU8bdAHGTUGfOlL1I/op9BdrJQ/0w=";
-          serverJs = withDeps: ''
-            export { default } from "${withDeps}/dist/entry.opencode.js";
-            export * from "${withDeps}/dist/entry.opencode.js";
           '';
         })
       ];

@@ -1,13 +1,6 @@
 { pkgs, lib, ... }:
 
 let
-  headroomSrc = pkgs.fetchFromGitHub {
-    owner = "headroomlabs-ai";
-    repo = "headroom";
-    rev = "v0.38.0";
-    hash = "sha256-k4xxC+tAiX+pjSj5nK1SBcpbIPQQLKbkQVn5wgzpywY=";
-  };
-
   # GitHub source for token-optimizer (Claude Code adapter with .claude-plugin/)
   tokenOptimizerSrc = pkgs.fetchFromGitHub {
     repo = "token-optimizer";
@@ -88,59 +81,5 @@ in {
       hash = "sha256-QF9J6O2KVDZLPSXHB6ZgJw/ktlSKdPWQpfYmj78Gvcw=";
     };
 
-    # native OpenCode plugin (dual v1/v2 export, self-contained bundle);
-    # talks to the headroom-proxy systemd user service on 127.0.0.1:8787
-    "headroom-opencode" = pkgs.fetchzip {
-      url = "https://registry.npmjs.org/headroom-opencode/-/headroom-opencode-0.42.0.tgz";
-      hash = "sha256-CPxsxAqjkk6hzK+ZCg+wHKzEVXkFUlA+dhJjvwZdPXE=";
-    };
-
-    # Python CLI package
-    headroom = pkgs.python3Packages.buildPythonPackage {
-      pname = "headroom-ai";
-      version = "0.38.0";
-      src = headroomSrc;
-      pyproject = true;
-      cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
-        pname = "headroom-ai";
-        version = "0.38.0";
-        src = headroomSrc;
-        hash = "sha256-ORX8+LTUAgKb0SJLhwh8WLICmtkDR2uvKF9psNjJUhY=";
-      };
-      nativeBuildInputs = with pkgs.rustPlatform; [
-        cargoSetupHook
-        maturinBuildHook
-      ];
-      build-system = [ pkgs.maturin ];
-      propagatedBuildInputs = with pkgs.python3Packages; [
-        ast-grep-cli
-        click
-        litellm
-        opentelemetry-api
-        pydantic
-        pyyaml
-        rich
-        tiktoken
-        tomlkit
-        # [proxy] extra: the headroom-proxy service refuses to start without
-        # these (see headroom/cli/proxy.py required_modules)
-        fastapi
-        uvicorn
-        httpx
-        openai
-        mcp
-        magika
-        zstandard
-        websockets
-        onnxruntime
-        transformers
-        orjson
-        httpx
-        h2
-        torch
-        pillow
-      ];
-      pythonImportsCheck = [ "headroom" ];
-    };
   };
 }

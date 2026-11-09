@@ -29,6 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `opencode-toast-history` plugin: V1-only plugin with no V2 port upstream; native notification history is tracked in anomalyco/opencode#50082
 - Dead `programs.opencode.tui` block: OpenCode v2 ignores `tui.json` and owns the auto-migrated `cli.json`
 - `templates/ai`: dead `project.toml` (read by nothing, invalid TOML), git-cliff config and changelog/release justfile recipes (manual keep-a-changelog only), fictional recipes (`test-watch`, `deps-check`, `VERSION`-based releases), empty `tests/integration/`
+- Headroom context-compression stack from `home/ai`: `headroom.nix` (systemd user service `headroom-proxy` on 127.0.0.1:8787), the `headroom` Python package and `headroom-opencode` plugin in `plugins.nix`, their wiring in `opencode.nix` (`extraPackages` + `settings.plugins`), and the `vendor/headroom-opencode-0.42.0` dependency tree — measured token savings negligible versus the maturin/Rust build and torch/transformers runtime cost; opencode talks to providers directly again
 
 ### Fixed
 

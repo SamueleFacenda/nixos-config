@@ -1,9 +1,0 @@
-{
-  "name": "headroom-opencode-vendor",
-  "version": "0.42.0",
-  "private": true,
-  "dependencies": {
-    "@opencode-ai/plugin": "^1.18.2",
-    "headroom-ai": "^0.42.0"
-  }
-}
