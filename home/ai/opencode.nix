@@ -146,7 +146,7 @@ in
       agent = {
         # Primary agents - same model chain for build & plan
         build = {
-          model = "nvidia/z-ai/glm-5.3"; # [
+          model = "nvidia/stepfun-ai/step-5-preview"; # [
           # "openrouter/google/gemini-2.5-flash"
           # "openrouter/openai/gpt-5"
           # "nvidia/nvidia/nemotron-3-ultra-550b-a55b"
@@ -159,7 +159,7 @@ in
           };
         };
         plan = {
-          model = "nvidia/z-ai/glm-5.3"; # [
+          model = "nvidia/stepfun-ai/step-5-preview"; # [
           # "openrouter/google/gemini-2.5-flash"
           # "openrouter/openai/gpt-5"
           # "nvidia/nvidia/nemotron-3-ultra-550b-a55b"
@@ -172,18 +172,18 @@ in
           };
         };
         compaction = {
-          model = "nvidia/z-ai/glm-5.3";
+          model = "nvidia/stepfun-ai/step-5-preview";
         };
         title = {
-          model = "nvidia/z-ai/glm-5.3";
+          model = "nvidia/stepfun-ai/step-5-preview";
         };
         summary = {
-          model = "nvidia/z-ai/glm-5.3";
+          model = "nvidia/stepfun-ai/step-5-preview";
         };
 
         # Subagents - enable them and configure models
         general = {
-          model = "nvidia/z-ai/glm-5.3"; # [
+          model = "nvidia/stepfun-ai/step-5-preview"; # [
           # "openrouter/google/gemini-2.5-flash"
           # "openrouter/openai/gpt-5"
           # "nvidia/nvidia/nemotron-3-ultra-550b-a55b"
