@@ -95,6 +95,24 @@
           };
         };
       };
+      "opencode.samuele.freeddns.it" = {
+        forceSSL = true;
+        enableACME = true;
+        http2 = true;
+  
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:4096";
+          proxyWebsockets = true;
+          extraConfig = ''
+            # Prevent Nginx from buffering LLM streaming outputs
+            proxy_buffering off;
+  
+            # Keep long-running connections (terminal/WebSocket) open without timing out
+            proxy_read_timeout 86400s;
+            proxy_send_timeout 86400s;
+          '';
+        };
+      };
     };
   };
   
@@ -202,4 +220,15 @@
     trustProxy = true;
   };
   
+  # Opencode 
+  home-manager.users.samuelef = {
+    programs.opencode.web = {
+      enable = true;
+      extraArgs = [
+        "--port" "4096"
+        "--host" "0.0.0.0"
+      ];
+    };
+    systemd.user.services.opencode-web.Service.EnvironmentFile = "/home/samuelef/opencodeEnv.txt";
+  };
 }

@@ -73,7 +73,7 @@ in
   
   services.fail2ban.enable = true;
   
-  home-manager.disabledFiles = [ "hyprland" "programs"  ];
+  home-manager.disabledFiles = [ "hyprland" "programs" ];
 
   environment.systemPackages = with pkgs; [
     eza
