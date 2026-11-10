@@ -226,7 +226,7 @@
       enable = true;
       extraArgs = [
         "--port" "4096"
-        "--host" "0.0.0.0"
+        "--hostname" "0.0.0.0"
       ];
     };
     systemd.user.services.opencode-web.Service.EnvironmentFile = "/home/samuelef/opencodeEnv.txt";
