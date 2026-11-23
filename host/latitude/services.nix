@@ -26,6 +26,7 @@
   
   users.groups.photos = {};
   users.users.samuelef.extraGroups = [ "photos" ];
+  users.users.samuelef.linger = true;
 
   systemd.services.photoprism = {
     environment.LIBVA_DRIVER_NAME = "i965";

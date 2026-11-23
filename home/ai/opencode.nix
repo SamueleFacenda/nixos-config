@@ -141,6 +141,8 @@ in
         webfetch = false;
         websearch = false;
       };
+      
+      session.tps = true;
 
       # Per-agent model configuration with fallbacks (first available wins)
       agent = {
