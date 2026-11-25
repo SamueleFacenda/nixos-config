@@ -44,7 +44,5 @@
       grub.enable = false;
       gtksourceview.enable = false; # https://github.com/nix-community/stylix/issues/2318
     };
-  };
-  home-manager.users.${config.users.default.name}.config.stylix.targets.wayprompt.enable = false;
-  
+  };  
 }

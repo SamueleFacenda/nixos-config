@@ -219,8 +219,6 @@ in
     tctiEnvironment.enable = true;
   };
   users.users.samu.extraGroups = [ "tss" "docker" "i2c" "input" "uinput" ];
-
-  boot.initrd.systemd.enable = true; # Auto luks unlock
   
   services.fwupd.enable = true;
   

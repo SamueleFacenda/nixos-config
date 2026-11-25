@@ -57,9 +57,7 @@ in
     enable = true;
     pkiBundle = "/etc/secureboot";
   };
-  
-  boot.initrd.systemd.enable = true; # Auto luks unlock
-  
+    
   services.logind.settings.Login = {
     HandleLidSwitch = lib.mkForce "suspend-then-hibernate"; # hibernate only when not connected to power or monitors
     HandleLidSwitchExternalPower = lib.mkForce "suspend-then-hibernate";
